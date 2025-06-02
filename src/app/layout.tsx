@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Cdata Consultancy",
   description: "- Cdata Consultancy",
+  other: {
+    "google-site-verification": "google04fd5ddf37c379bb.html",
+  },
 };
 
 export default function RootLayout({
@@ -24,12 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <meta>
-          name="google-site-verification"
-          content="google04fd5ddf37c379bb.html"
-        </meta>
-      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
