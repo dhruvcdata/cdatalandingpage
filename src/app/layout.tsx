@@ -16,10 +16,9 @@ export const metadata: Metadata = {
   title: "Cdata Consultancy",
   description: "- Cdata Consultancy",
   other: {
-    "google-site-verification": "google04fd5ddf37c379bb.html",
+    "google-site-verification": "bTOaQeiDZTtLH8fbvtES76JCrBIjx1At8wzT6fIwp8w",
   },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
