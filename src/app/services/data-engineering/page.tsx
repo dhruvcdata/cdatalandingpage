@@ -20,6 +20,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Head from 'next/head';
 export default function DataEngineeringPage() {
   // State for Solutions component
   type SolutionKey = 'DataPipelines' | 'DataWarehousing' | 'DataLake' | 'DataGovernance';
@@ -85,6 +86,33 @@ export default function DataEngineeringPage() {
 
   return (
     <div>
+      <Head>
+        <title>Top Data Engineering Solutions in Toronto & GTA | CData Consultancy</title>
+
+        {/* SEO Meta Tags */}
+        <meta name="description" content="Expert data engineering solutions in Toronto & GTA. Boost performance with advanced data engineering and machine learning services tailored to your business." />
+        <meta name="author" content="CData Consultancy" />
+        <meta name="keywords" content="Data Engineering, Machine Learning, Toronto, GTA, CData Consultancy" />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Top Data Engineering Solutions in Toronto & GTA | CData Consultancy" />
+        <meta property="og:description" content="Expert data engineering solutions in Toronto & GTA. Boost performance with advanced data engineering and machine learning services tailored to your business." />
+        <meta property="og:url" content="https://cdatainsights.com/services/data-engineering" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="CData Consultancy" />
+        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" /> {/* optional image */}
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Top Data Engineering Solutions in Toronto & GTA | CData Consultancy" />
+        <meta name="twitter:description" content="Expert data engineering solutions in Toronto & GTA. Boost performance with advanced data engineering and machine learning services tailored to your business." />
+        <meta name="twitter:url" content="https://cdatainsights.com/services/data-engineering" />
+        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" /> {/* optional image */}
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <HeroHeader />
 
       {/* Hero Section */}

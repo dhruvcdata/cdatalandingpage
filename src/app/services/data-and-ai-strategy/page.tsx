@@ -19,6 +19,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Head from 'next/head';
 
 export default function DataAndAIStrategyPage() {
   // State for Solutions component
@@ -85,6 +86,29 @@ export default function DataAndAIStrategyPage() {
 
   return (
     <div>
+      <Head>
+        <title>Top Data & AI Strategy Services in Toronto & Mississauga | CData Consultancy</title>
+
+        <meta name="description" content="Leading data & AI strategy services in Toronto & Mississauga. Get expert solutions to drive innovation and growth across Canada with proven AI strategies." />
+        <meta name="author" content="CData Consultancy" />
+        <meta name="keywords" content="AI Strategy, Data Strategy, Innovation, Toronto, Mississauga, CData Consultancy" />
+
+        <meta property="og:title" content="Top Data & AI Strategy Services in Toronto & Mississauga | CData Consultancy" />
+        <meta property="og:description" content="Leading data & AI strategy services in Toronto & Mississauga. Get expert solutions to drive innovation and growth across Canada with proven AI strategies." />
+        <meta property="og:url" content="https://cdatainsights.com/services/data-and-ai-strategy" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="CData Consultancy" />
+        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Top Data & AI Strategy Services in Toronto & Mississauga | CData Consultancy" />
+        <meta name="twitter:description" content="Leading data & AI strategy services in Toronto & Mississauga. Get expert solutions to drive innovation and growth across Canada with proven AI strategies." />
+        <meta name="twitter:url" content="https://cdatainsights.com/services/data-and-ai-strategy" />
+        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <HeroHeader />
 
       {/* Hero Section */}

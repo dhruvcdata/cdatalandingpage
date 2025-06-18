@@ -19,6 +19,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Head from 'next/head';
 
 export default function DataMigrationPage() {
   // State for Solutions component
@@ -85,6 +86,29 @@ export default function DataMigrationPage() {
 
   return (
     <div>
+      <Head>
+        <title>Best Data & Cloud Migration Services | Toronto & GTA | CData Consultancy</title>
+
+        <meta name="description" content="Get the best data migration services in Toronto, GTA & Mississauga. We offer expert cloud data and database migration solutions tailored to your business needs." />
+        <meta name="author" content="CData Consultancy" />
+        <meta name="keywords" content="Data Migration, Cloud Migration, Toronto, GTA, Mississauga, CData Consultancy" />
+
+        <meta property="og:title" content="Best Data & Cloud Migration Services | Toronto & GTA | CData Consultancy" />
+        <meta property="og:description" content="Get the best data migration services in Toronto, GTA & Mississauga. We offer expert cloud data and database migration solutions tailored to your business needs." />
+        <meta property="og:url" content="https://cdatainsights.com/services/data-migration" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="CData Consultancy" />
+        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Best Data & Cloud Migration Services | Toronto & GTA | CData Consultancy" />
+        <meta name="twitter:description" content="Get the best data migration services in Toronto, GTA & Mississauga. We offer expert cloud data and database migration solutions tailored to your business needs." />
+        <meta name="twitter:url" content="https://cdatainsights.com/services/data-migration" />
+        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <HeroHeader />
 
       {/* Hero Section */}

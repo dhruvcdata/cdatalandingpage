@@ -19,6 +19,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Head from 'next/head';
 export default function AIMLServicesPage() {
   // State for Solutions component
   type SolutionKey = 'PredictiveAnalytics' | 'MLOps' | 'ComputerVision' | 'NLP';
@@ -91,6 +92,29 @@ export default function AIMLServicesPage() {
 
   return (
     <div>
+      <Head>
+        <title>AI & Machine Learning Services in Detroit & Mississauga | CData Consultancy</title>
+
+        <meta name="description" content="Get expert machine learning services in Detroit & Mississauga. We offer AI solutions, machine learning consulting, and custom models for smarter decisions." />
+        <meta name="author" content="CData Consultancy" />
+        <meta name="keywords" content="AI Services, Machine Learning, Detroit, Mississauga, CData Consultancy" />
+
+        <meta property="og:title" content="AI & Machine Learning Services in Detroit & Mississauga | CData Consultancy" />
+        <meta property="og:description" content="Get expert machine learning services in Detroit & Mississauga. We offer AI solutions, machine learning consulting, and custom models for smarter decisions." />
+        <meta property="og:url" content="https://cdatainsights.com/services/ai-ml" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="CData Consultancy" />
+        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AI & Machine Learning Services in Detroit & Mississauga | CData Consultancy" />
+        <meta name="twitter:description" content="Get expert machine learning services in Detroit & Mississauga. We offer AI solutions, machine learning consulting, and custom models for smarter decisions." />
+        <meta name="twitter:url" content="https://cdatainsights.com/services/ai-ml" />
+        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <HeroHeader />
 
       {/* Hero Section */}

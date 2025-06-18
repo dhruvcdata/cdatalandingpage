@@ -25,6 +25,7 @@ import {
   Share2
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Head from 'next/head';
 
 export default function DataVisualizationPage() {
   // State for Solutions component
@@ -91,6 +92,29 @@ export default function DataVisualizationPage() {
 
   return (
     <div>
+      <Head>
+        <title>Top Data Visualization Services | Toronto, Detroit & GTA | CData Consultancy</title>
+
+        <meta name="description" content="Get top data visualization services in Toronto, Detroit & Mississauga. We offer the best online data analysis and visualization to turn insights into action." />
+        <meta name="author" content="CData Consultancy" />
+        <meta name="keywords" content="Data Visualization, Analytics, Toronto, Detroit, Mississauga, CData Consultancy" />
+
+        <meta property="og:title" content="Top Data Visualization Services | Toronto, Detroit & GTA | CData Consultancy" />
+        <meta property="og:description" content="Get top data visualization services in Toronto, Detroit & Mississauga. We offer the best online data analysis and visualization to turn insights into action." />
+        <meta property="og:url" content="https://cdatainsights.com/services/data-visualization" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="CData Consultancy" />
+        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Top Data Visualization Services | Toronto, Detroit & GTA | CData Consultancy" />
+        <meta name="twitter:description" content="Get top data visualization services in Toronto, Detroit & Mississauga. We offer the best online data analysis and visualization to turn insights into action." />
+        <meta name="twitter:url" content="https://cdatainsights.com/services/data-visualization" />
+        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <HeroHeader />
 
       {/* Hero Section */}

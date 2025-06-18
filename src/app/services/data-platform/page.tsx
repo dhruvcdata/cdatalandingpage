@@ -25,6 +25,7 @@ import {
   Box
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Head from 'next/head';
 
 export default function DataPlatformsPage() {
   // State for Solutions component
@@ -91,6 +92,29 @@ export default function DataPlatformsPage() {
 
   return (
     <div>
+      <Head>
+        <title>Top Customer Data & Digital Asset Platforms | GTA & Detroit | CData Consultancy</title>
+
+        <meta name="description" content="Discover the best customer data platform in GTA, top digital asset management in Detroit, and expert solutions using Google Cloud database technology." />
+        <meta name="author" content="CData Consultancy" />
+        <meta name="keywords" content="Customer Data Platform, Digital Asset Management, GTA, Detroit, CData Consultancy" />
+
+        <meta property="og:title" content="Top Customer Data & Digital Asset Platforms | GTA & Detroit | CData Consultancy" />
+        <meta property="og:description" content="Discover the best customer data platform in GTA, top digital asset management in Detroit, and expert solutions using Google Cloud database technology." />
+        <meta property="og:url" content="https://cdatainsights.com/services/data-platform" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="CData Consultancy" />
+        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Top Customer Data & Digital Asset Platforms | GTA & Detroit | CData Consultancy" />
+        <meta name="twitter:description" content="Discover the best customer data platform in GTA, top digital asset management in Detroit, and expert solutions using Google Cloud database technology." />
+        <meta name="twitter:url" content="https://cdatainsights.com/services/data-platform" />
+        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" />
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <HeroHeader />
 
       {/* Hero Section */}
