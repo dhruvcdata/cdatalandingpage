@@ -8,7 +8,7 @@ logo  -->
 buttons
 <!-- remove from home TOG 1  -->
   
-
+vs
 <!-- LOGO GRIDS  -->
 
 BLOGS for later/////
