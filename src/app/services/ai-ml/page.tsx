@@ -104,13 +104,13 @@ export default function AIMLServicesPage() {
         <meta property="og:url" content="https://cdatainsights.com/services/ai-ml" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="CData Consultancy" />
-        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" />
+
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AI & Machine Learning Services in Detroit & Mississauga | CData Consultancy" />
         <meta name="twitter:description" content="Get expert machine learning services in Detroit & Mississauga. We offer AI solutions, machine learning consulting, and custom models for smarter decisions." />
         <meta name="twitter:url" content="https://cdatainsights.com/services/ai-ml" />
-        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" />
+
 
         <link rel="icon" href="/favicon.ico" />
       </Head>

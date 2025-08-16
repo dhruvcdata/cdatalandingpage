@@ -20,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cdata Consultancy",
-  description: "- Cdata Consultancy",
+  title: "Cdata Consultancy Expert Data & AI Services",
+  description: "Creating a powerhouse in data modernization and AI driven transformation, specializing in data engineering, AI/ML, and data analytics.",
   other: {
     "google-site-verification": "bTOaQeiDZTtLH8fbvtES76JCrBIjx1At8wzT6fIwp8w",
   },

@@ -10,6 +10,7 @@ import { Cpu, Zap } from 'lucide-react'
 
 import DataRevivalComponent from "../tog2";
 import CallToAction from "@/components/call-to-action";
+import Head from "next/head";
 
 const members = [
   {
@@ -40,6 +41,7 @@ const testimonialChunks = chunkArray(testimonials, Math.ceil(testimonials.length
 export default function Home() {
   return (
     <div>
+      <Head></Head>
       <HeroHeader />
       <section className="py-16 md:py-32">
         <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
