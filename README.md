@@ -13,7 +13,7 @@ vs
 
 BLOGS for later/////
 
-
+bndf
 EMAIL DOMAIN CONNECT 
 
 FOOTER 
