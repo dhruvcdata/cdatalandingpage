@@ -22,11 +22,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Cdata Consultancy Expert Data & AI Services",
   description: "Creating a powerhouse in data modernization and AI driven transformation, specializing in data engineering, AI/ML, and data analytics.",
+  alternates: { canonical: "https://cdatainsights.com/" },
   robots: {
     index: true,
     follow: true,
   },
-  alternates: { canonical: "https://cdatainsights.com/" },
+
   openGraph: {
     locale: "en_US",
     type: "website",
