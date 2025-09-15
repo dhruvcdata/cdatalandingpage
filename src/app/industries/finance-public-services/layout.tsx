@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: "Cdata",
     description:
         "Cdata",
-    alternates: { canonical: "https://cdatainsights.com/services/ai-ml" },
+    alternates: { canonical: "https://cdatainsights.com/industries/finance-public-services" },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
