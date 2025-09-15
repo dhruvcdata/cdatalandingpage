@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: { canonical: "https://cdatainsights.com/" },
   openGraph: {
     locale: "en_US",
     type: "website",
@@ -65,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://cdatainsights.com" />
+        {/* <link rel="canonical" href="https://cdatainsights.com" /> */}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
