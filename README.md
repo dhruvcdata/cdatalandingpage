@@ -9,7 +9,7 @@ buttons
 <!-- remove from home TOG 1  -->
   vd
 vsvfd
-<!-- LOGO GRIDS  -->
+<!-- LOGO GRIDS  -->v
 
 BLOGS for later/////
 
