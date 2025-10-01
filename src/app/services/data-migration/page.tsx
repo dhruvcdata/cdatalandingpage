@@ -147,7 +147,7 @@ export default function DataMigrationPage() {
               autoPlay
               loop
               className="size-full -scale-x-100 object-cover opacity-50 dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
-              src="/videos/dm.mp4"></video>
+              src="/videos/dm.webm"></video>
           </div>
         </div>
       </section>

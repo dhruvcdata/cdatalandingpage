@@ -153,7 +153,7 @@ export default function DataVisualizationPage() {
               autoPlay
               loop
               className="size-full -scale-x-100 object-cover opacity-50 dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
-              src="/videos/dv.mp4"></video>
+              src="/videos/dv.webm"></video>
           </div>
         </div>
       </section>

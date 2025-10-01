@@ -110,7 +110,7 @@ export default function RealEstatePage() {
               autoPlay
               loop
               className="size-full -scale-x-100 object-cover opacity-30  dark:invert-0 lg:opacity-35"
-              src="/videos/real.mp4"></video>
+              src="/videos/real.webm"></video>
           </div>
         </div>
       </section>

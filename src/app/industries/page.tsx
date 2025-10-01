@@ -48,7 +48,7 @@ export default function IndustriesPage() {
               autoPlay
               loop
               className="size-full -scale-x-100 object-cover opacity-30 dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
-              src="/videos/indus.mp4"></video>
+              src="/videos/indus.webm"></video>
           </div>
         </div>
       </section>

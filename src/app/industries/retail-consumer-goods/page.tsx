@@ -111,7 +111,7 @@ export default function RetailConsumerGoodsPage() {
               autoPlay
               loop
               className="size-full -scale-x-100 object-cover opacity-30 dark:opacity-35 dark:invert-0 dark:lg:opacity-35"
-              src="/videos/retail.mp4"></video>
+              src="/videos/retail.webm"></video>
           </div>
         </div>
       </section>

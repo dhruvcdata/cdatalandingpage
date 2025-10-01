@@ -111,7 +111,7 @@ export default function HealthWellnessPage() {
               autoPlay
               loop
               className="size-full -scale-x-100 object-cover opacity-20 dark:opacity-35 dark:invert-0 dark:lg:opacity-35"
-              src="/videos/health.mp4"></video>
+              src="/videos/health.webm"></video>
           </div>
         </div>
       </section>

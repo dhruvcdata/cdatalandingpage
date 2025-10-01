@@ -151,7 +151,7 @@ export default function DataEngineeringPage() {
               autoPlay
               loop
               className="size-full -scale-x-100  object-cover opacity-60 dark:opacity-35 lg:opacity-75"
-              src="/videos/de.mp4"></video>
+              src="/videos/de.webm"></video>
           </div>
         </div>
       </section>
