@@ -3,8 +3,7 @@
 import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { BLOG_DATA } from '../../../lib/mock-blog-data'
-import { HeroHeader } from '@/components/hero5-header'
-import FooterSection from '@/components/footer'
+
 
 export default function BlogSlugPage() {
     const blog = BLOG_DATA
@@ -12,7 +11,7 @@ export default function BlogSlugPage() {
     return (
 
         <article className="bg-black text-white min-hscreen overflow-x-hidden">
-            {/* <HeroHeader /> */}
+
 
 
             {/* ================= HERO (UNCHANGED) ================= */}
@@ -201,7 +200,7 @@ export default function BlogSlugPage() {
                     </Card>
                 </aside>
             </section>
-            {/* <FooterSection /> */}
+
         </article>
     )
 }
