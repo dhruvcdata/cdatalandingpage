@@ -12,7 +12,7 @@ export default function BlogSlugPage() {
     return (
 
         <article className="bg-black text-white min-hscreen overflow-x-hidden">
-            <HeroHeader />
+            {/* <HeroHeader /> */}
 
 
             {/* ================= HERO (UNCHANGED) ================= */}
@@ -201,7 +201,7 @@ export default function BlogSlugPage() {
                     </Card>
                 </aside>
             </section>
-            <FooterSection />
+            {/* <FooterSection /> */}
         </article>
     )
 }
