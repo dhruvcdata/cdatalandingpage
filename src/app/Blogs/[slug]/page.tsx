@@ -1,21 +1,47 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { BLOG_DATA } from '../../../lib/mock-blog-data'
-
 
 export default function BlogSlugPage() {
     const blog = BLOG_DATA
 
     return (
-
         <article className="bg-black text-white min-hscreen overflow-x-hidden">
 
-
-
-            {/* ================= HERO (UNCHANGED) ================= */}
+            {/* ================= HERO ================= */}
             <section className="relative">
+
+                {/* BACK BUTTON */}
+                <Link
+                    href="/Blogs"
+                    className="
+            absolute
+            top-6
+            left-6
+            z-30
+            inline-flex
+            items-center
+            gap-2
+            rounded-full
+            border
+            border-white/20
+            bg-black/60
+            px-4
+            py-2
+            text-sm
+            text-white
+            backdrop-blur
+            transition
+            hover:bg-white
+            hover:text-black
+          "
+                >
+                    ← Back to Blogs
+                </Link>
+
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black z-10" />
 
                 <Image
@@ -49,15 +75,13 @@ export default function BlogSlugPage() {
 
             {/* ================= CONTENT ================= */}
             <section className="max-w-5xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-16">
+
                 {/* MAIN CONTENT */}
                 <div className="space-y-10 overflow-x-hidden">
                     {blog.content.map((block, index) => {
                         if (block.type === 'heading') {
                             return (
-                                <h2
-                                    key={index}
-                                    className="text-2xl font-semibold text-white"
-                                >
+                                <h2 key={index} className="text-2xl font-semibold text-white">
                                     {block.value}
                                 </h2>
                             )
@@ -65,35 +89,19 @@ export default function BlogSlugPage() {
 
                         if (block.type === 'paragraph') {
                             return (
-                                <p
-                                    key={index}
-                                    className="text-gray-300 leading-relaxed"
-                                >
+                                <p key={index} className="text-gray-300 leading-relaxed">
                                     {block.value}
                                 </p>
                             )
                         }
 
-                        // ✅ STRICT IMAGE (NO BOX, NO BORDER, NO OVERFLOW)
                         if (block.type === 'image') {
                             return (
                                 <div
                                     key={index}
-                                    className="
-                    mx-auto
-                    w-full
-                    max-w-3xl
-                    overflow-hidden
-                  "
+                                    className="mx-auto w-full max-w-3xl overflow-hidden"
                                 >
-                                    <div
-                                        className="
-                      relative
-                      w-full
-                      aspect-[16/9]
-                      max-h-[420px]
-                    "
-                                    >
+                                    <div className="relative w-full aspect-[16/9] max-h-[420px]">
                                         <Image
                                             src={block.value}
                                             alt=""
@@ -121,19 +129,15 @@ export default function BlogSlugPage() {
                                     key={i}
                                     className="bg-neutral-900 border border-white/10 p-6"
                                 >
-                                    <h4 className="font-medium">
-                                        {item.question}
-                                    </h4>
-                                    <p className="mt-2 text-gray-400">
-                                        {item.answer}
-                                    </p>
+                                    <h4 className="font-medium">{item.question}</h4>
+                                    <p className="mt-2 text-gray-400">{item.answer}</p>
                                 </Card>
                             ))}
                         </div>
                     </div>
                 </div>
 
-                {/* ================= SIDEBAR ================= */}
+                {/* SIDEBAR */}
                 <aside className="space-y-8">
                     {/* AUTHOR */}
                     <Card className="bg-neutral-900 border border-white/10 p-6">
@@ -146,35 +150,20 @@ export default function BlogSlugPage() {
                                 className="rounded-full"
                             />
                             <div>
-                                <p className="font-medium">
-                                    {blog.author.name}
-                                </p>
-                                <p className="text-sm text-gray-400">
-                                    {blog.author.role}
-                                </p>
+                                <p className="font-medium">{blog.author.name}</p>
+                                <p className="text-sm text-gray-400">{blog.author.role}</p>
                             </div>
                         </div>
                     </Card>
 
-                    {/* TAGS (FIXED & FETCHED FROM DATA) */}
+                    {/* TAGS */}
                     <Card className="bg-neutral-900 border border-white/10 p-6">
-                        <h4 className="font-medium mb-4">
-                            Tags
-                        </h4>
-
+                        <h4 className="font-medium mb-4">Tags</h4>
                         <div className="flex flex-wrap gap-2">
                             {blog.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="
-                    rounded-full
-                    border
-                    border-white/20
-                    px-3
-                    py-1
-                    text-xs
-                    text-gray-300
-                  "
+                                    className="rounded-full border border-white/20 px-3 py-1 text-xs text-gray-300"
                                 >
                                     {tag}
                                 </span>
@@ -184,9 +173,7 @@ export default function BlogSlugPage() {
 
                     {/* RELATED BLOGS */}
                     <Card className="bg-neutral-900 border border-white/10 p-6">
-                        <h4 className="font-medium mb-4">
-                            Related Articles
-                        </h4>
+                        <h4 className="font-medium mb-4">Related Articles</h4>
                         <ul className="space-y-3">
                             {blog.relatedBlogs.map((item) => (
                                 <li
@@ -200,7 +187,6 @@ export default function BlogSlugPage() {
                     </Card>
                 </aside>
             </section>
-
         </article>
     )
 }
