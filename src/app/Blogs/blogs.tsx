@@ -1,77 +1,247 @@
+'use client'
+
+import { useMemo, useState } from 'react'
+import { Blogs } from '../../lib/blogcards'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+
+
+const BLOGS_PER_PAGE = 2
+const FALLBACK_IMAGE = '/logo.png'
+const TAGS = ['Technology', 'Business', 'Innovation'] as const
 
 export default function BlogPage() {
-    // Sample blog data (replace with dynamic data later)
-    const blogs = Array.from({ length: 15 }).map((_, index) => ({
-        id: index + 1,
-        image: `https://picsum.photos/400/300?random=${index + 1}`,
-        tag: index % 3 === 0 ? 'Technology' : index % 3 === 1 ? 'Business' : 'Innovation',
-        title: `Blog Post Title ${index + 1}`,
-        subtitle: `A brief subtitle for blog post ${index + 1}`,
-        excerpt: `This is a short excerpt from the blog post ${index + 1}. It provides a quick overview of the content.`,
-        date: `October ${index + 1}, 2023`,
-        author: `Author ${index + 1}`,
-    }))
+    const [search, setSearch] = useState('')
+    const [selectedTags, setSelectedTags] = useState<string[]>([])
+    const [sortBy, setSortBy] = useState<'newest' | 'oldest'>('newest')
+    const [currentPage, setCurrentPage] = useState(1)
 
-    // Pagination state (static for now)
-    const currentPage = 1
-    const blogsPerPage = 12
-    const totalPages = Math.ceil(blogs.length / blogsPerPage)
+    const filteredBlogs = useMemo(() => {
+        let result = Blogs.filter((blog) => {
+            const matchesSearch =
+                blog.title.toLowerCase().includes(search.toLowerCase()) ||
+                blog.subtitle.toLowerCase().includes(search.toLowerCase())
+
+            const matchesTag =
+                selectedTags.length === 0 || selectedTags.includes(blog.tag)
+
+            return matchesSearch && matchesTag
+        })
+
+        result.sort((a, b) => {
+            const dateA = new Date(a.date).getTime()
+            const dateB = new Date(b.date).getTime()
+            return sortBy === 'newest' ? dateB - dateA : dateA - dateB
+        })
+
+        return result
+    }, [search, selectedTags, sortBy])
+
+    const totalPages = Math.ceil(filteredBlogs.length / BLOGS_PER_PAGE)
+
+    const paginatedBlogs = filteredBlogs.slice(
+        (currentPage - 1) * BLOGS_PER_PAGE,
+        currentPage * BLOGS_PER_PAGE
+    )
 
     return (
         <section className="py-24 bg-background">
             <div className="mx-auto max-w-7xl px-8 lg:px-0">
-                {/* Page Header */}
+
+                {/* PAGE HEADER */}
                 <div className="text-center">
-                    <h1 className="text-4xl font-semibold lg:text-5xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    <h1 className="text-4xl font-semibold lg:text-5xl text-white">
                         Our Blog
                     </h1>
-                    <p className="mt-4 text-balance text-lg">
+                    <p className="mt-4 text-balance text-lg text-muted-foreground">
                         Insights, trends, and updates from our team of experts.
                     </p>
                 </div>
 
-                {/* Blog Grid */}
+                {/* FILTERS */}
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+
+                    {/* SEARCH */}
+                    <input
+                        value={search}
+                        onChange={(e) => {
+                            setSearch(e.target.value)
+                            setCurrentPage(1)
+                        }}
+                        placeholder="Search by keyword..."
+                        className="w-full max-w-xs rounded-md border px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    />
+
+                    {/* TAG FILTERS */}
+                    {TAGS.map((tag) => {
+                        const isActive = selectedTags.includes(tag)
+                        return (
+                            <button
+                                key={tag}
+                                onClick={() => {
+                                    setSelectedTags((prev) =>
+                                        prev.includes(tag)
+                                            ? prev.filter((t) => t !== tag)
+                                            : [...prev, tag]
+                                    )
+                                    setCurrentPage(1)
+                                }}
+                                className={`rounded-full px-4 py-2 text-sm font-medium border transition-all ${isActive
+                                    ? 'bg-blue-600 text-white border-blue-600'
+                                    : 'bg-transparent text-muted-foreground hover:border-blue-600'
+                                    }`}
+                            >
+                                {tag}
+                            </button>
+                        )
+                    })}
+
+                    {/* DATE SORT */}
+                    <select
+                        value={sortBy}
+                        onChange={(e) => {
+                            setSortBy(e.target.value as 'newest' | 'oldest')
+                            setCurrentPage(1)
+                        }}
+                        className="rounded-md border px-3 py-2 text-sm"
+                    >
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+
+                </div>
+
+                {/* BLOG GRID */}
                 <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    {blogs.slice(0, blogsPerPage).map((blog) => (
-                        <Card key={blog.id} className="overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-                            <img
-                                src={blog.image}
-                                alt={blog.title}
-                                className="w-full h-48 object-cover"
+                    {paginatedBlogs.map((blog) => (
+                        <Card
+                            className="
+    group
+    relative
+    overflow-hidden
+    rounded-xl
+    bg-black
+    shadow-md
+    transition-all
+    duration-300
+    hover:-translate-y-1
+    hover:shadow-[0_0_30px_rgba(59,130,246,0.25)]
+    p-0
+    gap-0
+  "
+                        >
+                            {/* FULL CARD CLICK AREA */}
+                            <Link
+                                href={`/Blogs/${blog.slug}`}
+                                aria-label={`Read blog ${blog.title}`}
+                                className="absolute inset-0 z-10"
                             />
-                            <div className="p-6">
-                                <span className="inline-block px-3 py-1 text-sm font-medium bg-blue-100 text-blue-600 rounded-full">
+
+                            {/* IMAGE SECTION */}
+                            <div className="relative h-56 w-full overflow-hidden rounded-t-xl">
+
+                                {/* IMAGE */}
+                                <img
+                                    src={blog.image}
+                                    alt={blog.title}
+                                    onError={(e) => {
+                                        e.currentTarget.src = '/logo.png'
+                                    }}
+                                    className="absolute inset-0 h-full w-full object-cover"
+                                />
+
+                                {/* TAG OVER IMAGE */}
+                                <span
+                                    className="
+        absolute
+        bottom-4
+        left-4
+        z-20
+        inline-block
+        rounded-full
+        bg-blue-100
+        px-3
+        py-1
+        text-sm
+        font-medium
+        text-blue-600
+        backdrop-blur-sm
+      "
+                                >
                                     {blog.tag}
                                 </span>
-                                <h2 className="mt-4 text-xl font-semibold">{blog.title}</h2>
-                                <p className="mt-2 text-sm text-muted-foreground">{blog.subtitle}</p>
-                                <p className="mt-4 text-sm text-muted-foreground">{blog.excerpt}</p>
+
+                                {/* IMAGE → CONTENT BLUR + GRADIENT */}
+                                <div className="pointer-events-none absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-black to-transparent backdrop-blur-[2px]" />
+
+                                {/* <div className="pointer-events-none absolute bottom-0 left-0 h-10 w-full bg-gradient-to-t from-black/90 via-black/60 to-transparent backdrop-blur-sm" /> */}
+                            </div>
+
+                            {/* CONTENT */}
+                            <div className="relative z-20 px-6 pt-6 pb-6">
+                                <h2 className="text-xl font-semibold text-white">
+                                    {blog.title}
+                                </h2>
+
+                                <p className="mt-2 text-sm text-muted-foreground">
+                                    {blog.subtitle}
+                                </p>
+
+                                <p className="mt-4 text-sm text-muted-foreground">
+                                    {blog.excerpt}
+                                </p>
+
                                 <div className="mt-6 flex items-center justify-between text-sm text-muted-foreground">
                                     <span>{blog.date}</span>
                                     <span>By {blog.author}</span>
                                 </div>
                             </div>
+
+                            {/* BOTTOM DEPTH SHADOW */}
+                            <div className="pointer-events-none absolute bottom-0 left-0 h-10 w-full bg-gradient-to-t from-black/60 to-transparent" />
                         </Card>
+
+
+
+
+
+
                     ))}
                 </div>
 
-                {/* Pagination */}
-                <div className="mt-12 flex items-center justify-center gap-4">
-                    <Button variant="outline" size="sm" disabled={currentPage === 1}>
-                        <ChevronLeft className="size-4" />
-                        <span className="ml-2">Previous</span>
-                    </Button>
-                    <span className="text-sm text-muted-foreground">
-                        Page {currentPage} of {totalPages}
-                    </span>
-                    <Button variant="outline" size="sm" disabled={currentPage === totalPages}>
-                        <span className="mr-2">Next</span>
-                        <ChevronRight className="size-4" />
-                    </Button>
-                </div>
+                {/* PAGINATION */}
+                {totalPages > 1 && (
+                    <div className="mt-12 flex items-center justify-center gap-4">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage((p) => p - 1)}
+                        >
+                            <ChevronLeft className="size-4" />
+                            <span className="ml-2">Previous</span>
+                        </Button>
+
+                        <span className="text-sm text-muted-foreground">
+                            Page {currentPage} of {totalPages}
+                        </span>
+
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            disabled={currentPage === totalPages}
+                            onClick={() => setCurrentPage((p) => p + 1)}
+                        >
+                            <span className="mr-2">Next</span>
+                            <ChevronRight className="size-4" />
+                        </Button>
+                    </div>
+                )}
+
             </div>
         </section>
     )
