@@ -3,12 +3,18 @@
 import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { BLOG_DATA } from '../../../lib/mock-blog-data'
+import { HeroHeader } from '@/components/hero5-header'
+import FooterSection from '@/components/footer'
 
 export default function BlogSlugPage() {
     const blog = BLOG_DATA
 
     return (
+
         <article className="bg-black text-white min-hscreen overflow-x-hidden">
+            <HeroHeader />
+
+
             {/* ================= HERO (UNCHANGED) ================= */}
             <section className="relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black z-10" />
@@ -195,6 +201,7 @@ export default function BlogSlugPage() {
                     </Card>
                 </aside>
             </section>
+            <FooterSection />
         </article>
     )
 }
