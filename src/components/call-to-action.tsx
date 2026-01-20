@@ -8,9 +8,19 @@ export default function CallToAction() {
     const [email, setEmail] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
+    const [hasClickedOnce, setHasClickedOnce] = useState(false)
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+
+        // 🪤 FIRST CLICK — FAKE SUBMIT
+        if (!hasClickedOnce) {
+            setHasClickedOnce(true)
+            setMessage('Click again to submit your request')
+            return
+        }
+
+        // ✅ SECOND CLICK — REAL SUBMIT
         setLoading(true)
         setMessage('')
 
@@ -26,6 +36,7 @@ export default function CallToAction() {
             if (response.ok) {
                 setMessage('Your request has been sent successfully!')
                 setEmail('')
+                setHasClickedOnce(false) // reset after success
             } else {
                 setMessage(data.error || 'Failed to send the email.')
             }
@@ -40,8 +51,13 @@ export default function CallToAction() {
         <section id="cta" className="py-16 md:py-32">
             <div className="mx-auto max-w-5xl px-6">
                 <div className="text-center">
-                    <h2 className="text-balance text-4xl font-semibold lg:text-5xl">Take the next step with CData</h2>
-                    <p className="mt-4">Learn how CData can help solve your most challenging data and AI problems.</p>
+                    <h2 className="text-balance text-4xl font-semibold lg:text-5xl">
+                        Take the next step with CData
+                    </h2>
+
+                    <p className="mt-4">
+                        Learn how CData can help solve your most challenging data and AI problems.
+                    </p>
 
                     <form onSubmit={handleSubmit} className="mx-auto mt-10 max-w-lg lg:mt-12">
                         <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.75rem)] border pr-3 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
@@ -52,16 +68,30 @@ export default function CallToAction() {
                                 className="h-14 w-full bg-transparent pl-12 focus:outline-none"
                                 type="email"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => {
+                                    setEmail(e.target.value)
+                                    setHasClickedOnce(false)
+                                    setMessage('')
+                                }}
                                 required
                             />
 
                             <div className="md:pr-1.5 lg:pr-0">
-                                <Button aria-label="submit" className="rounded-(--radius)" type="submit" disabled={loading}>
+                                <Button
+                                    aria-label="submit"
+                                    className="rounded-(--radius)"
+                                    type="submit"
+                                    disabled={loading}
+                                >
                                     {loading ? 'Sending...' : (
                                         <>
-                                            <span className="hidden md:block">Get Free Assessment</span>
-                                            <SendHorizonal className="relative mx-auto size-5 md:hidden" strokeWidth={2} />
+                                            <span className="hidden md:block">
+                                                Get Free Assessment
+                                            </span>
+                                            <SendHorizonal
+                                                className="relative mx-auto size-5 md:hidden"
+                                                strokeWidth={2}
+                                            />
                                         </>
                                     )}
                                 </Button>
@@ -69,7 +99,11 @@ export default function CallToAction() {
                         </div>
                     </form>
 
-                    {message && <p className="mt-4 text-sm text-gray-600">{message}</p>}
+                    {message && (
+                        <p className="mt-4 text-sm text-gray-600">
+                            {message}
+                        </p>
+                    )}
                 </div>
             </div>
         </section>
