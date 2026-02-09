@@ -23,7 +23,7 @@ const links = [
         items: [
             { title: 'Home', href: '/' },
             { title: 'About Us', href: '/About' },
-            { title: 'Blog', href: '/blog' },
+            { title: 'Blog', href: 'https://blogs.cdatainsights.com/' },
             { title: 'Careers', href: '/Careers' },
             { title: 'Contact Us', href: '/Contact' },
         ],
