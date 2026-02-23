@@ -7,10 +7,9 @@ import { Card } from '@/components/ui/card'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import BlogSubscribe from '@/components/blog-subscribe'
 
-
-
-const BLOGS_PER_PAGE = 2
+const BLOGS_PER_PAGE = 6
 const FALLBACK_IMAGE = '/logo.png'
 const TAGS = ['Technology', 'Business', 'Innovation'] as const
 
@@ -241,6 +240,8 @@ export default function BlogPage() {
                         </Button>
                     </div>
                 )}
+
+                <BlogSubscribe />
 
             </div>
         </section>

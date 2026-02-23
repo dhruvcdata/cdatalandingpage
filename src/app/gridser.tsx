@@ -87,7 +87,7 @@ const DataServicesGrid = () => {
             ),
             title: "Data and AI Strategy",
             description: "Develop a roadmap for data and AI initiatives that align with your business goals.",
-            link: "/services/salesforce"
+            link: "/services/data-and-ai-strategy"
         }
     ];
 

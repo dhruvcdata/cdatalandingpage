@@ -28,7 +28,7 @@ export default function ServicesPage() {
                   size="lg"
                   className="h-12 rounded-full pl-5 pr-3 text-base">
                   <Link href="/Contact">
-                    <span className="text-nowrap">Get Free Assesment</span>
+                    <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
                   </Link>
                 </Button>

@@ -6,7 +6,7 @@ import { HeroHeader } from "@/components/hero5-header";
 
 export default function Home() {
   return (
-    <div>l
+    <div>
       <HeroHeader />
       <ContactSection />
       <FooterSection />

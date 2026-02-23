@@ -4,6 +4,13 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req: Request) {
+    if (!process.env.RESEND_API_KEY) {
+        return NextResponse.json(
+            { error: 'Email service is not configured. Please set RESEND_API_KEY environment variable.' },
+            { status: 503 }
+        )
+    }
+
     try {
         const { firstName, lastName, email, phone, subject, message } = await req.json()
 
@@ -35,7 +42,7 @@ export async function POST(req: Request) {
         const [adminEmailResult, userEmailResult] = await Promise.all([
             // Email to admin with all form details
             resend.emails.send({
-                from: 'noreply@medicbuilds.com', // Update to match your domain
+                from: 'noreply@cdatainsights.com',
                 to: process.env.ADMIN_EMAIL as string,
                 subject: `[Contact Form] ${subject}`,
                 html: adminEmailHtml,
@@ -44,7 +51,7 @@ export async function POST(req: Request) {
 
             // Confirmation email to the user
             resend.emails.send({
-                from: 'noreply@medicbuilds.com', // Update to match your domain
+                from: 'noreply@cdatainsights.com',
                 to: email,
                 subject: `Thank you for contacting ${process.env.COMPANY_NAME || 'CData Insights'}`,
                 html: userEmailHtml,

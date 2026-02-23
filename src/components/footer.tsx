@@ -23,8 +23,8 @@ const links = [
         items: [
             { title: 'Home', href: '/' },
             { title: 'About Us', href: '/About' },
-            { title: 'Blog', href: 'https://blogs.cdatainsights.com/' },
-            { title: 'Careers', href: '/Careers' },
+            { title: 'Blog', href: '/Blogs' },
+            { title: 'Careers', href: '/career' },
             { title: 'Contact Us', href: '/Contact' },
         ],
     },
@@ -33,7 +33,7 @@ const links = [
         items: [
             { title: 'Data Engineering', href: '/services/data-engineering' },
             { title: 'Data Platform', href: '/services/data-platform' },
-            { title: 'AI/ML with GenAI', href: '/services/ai-ml-genai' },
+            { title: 'AI/ML with GenAI', href: '/services/ai-ml' },
             { title: 'Data Migration', href: '/services/data-migration' },
             { title: 'Data and AI Strategy', href: '/services/data-and-ai-strategy' },
             { title: 'Data Visualization', href: '/services/data-visualization' },
