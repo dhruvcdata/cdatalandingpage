@@ -1,12 +1,22 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { Card } from '@/components/ui/card'
-import { BLOG_DATA } from '../../../lib/mock-blog-data'
+import { BLOG_DATA_MAP } from '@/lib/mock-blog-data'
 
-export default function BlogSlugPage() {
-    const blog = BLOG_DATA
+export function generateStaticParams() {
+    return Object.keys(BLOG_DATA_MAP).map((slug) => ({ slug }))
+}
+
+export default async function BlogSlugPage({
+    params,
+}: {
+    params: Promise<{ slug: string }>
+}) {
+    const { slug } = await params
+    const blog = BLOG_DATA_MAP[slug]
+
+    if (!blog) notFound()
 
     return (
         <article className="bg-black text-white min-hscreen overflow-x-hidden">
@@ -176,11 +186,13 @@ export default function BlogSlugPage() {
                         <h4 className="font-medium mb-4">Related Articles</h4>
                         <ul className="space-y-3">
                             {blog.relatedBlogs.map((item) => (
-                                <li
-                                    key={item.slug}
-                                    className="text-sm text-blue-400 hover:underline cursor-pointer"
-                                >
-                                    {item.title}
+                                <li key={item.slug}>
+                                    <Link
+                                        href={item.slug}
+                                        className="text-sm text-blue-400 hover:underline"
+                                    >
+                                        {item.title}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
