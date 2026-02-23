@@ -305,6 +305,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                 value: 'Why Snowflake Costs Get Out of Control',
             },
             {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+            },
+            {
                 type: 'paragraph',
                 value:
                     'Most organizations adopt Snowflake for its elastic compute and separation of storage and compute. But that same flexibility creates risk: any team can spin up warehouses, run expensive queries, or leave compute running idle. Without guardrails, monthly bills balloon from thousands to hundreds of thousands of dollars.',
@@ -335,6 +339,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'heading',
                 value: 'Strategy 3: Resource Monitors and Alerts',
+            },
+            {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
             },
             {
                 type: 'paragraph',
@@ -371,6 +379,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'heading',
                 value: 'Real-World Results',
+            },
+            {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1745270917331-787c80129680?w=1200&q=80',
             },
             {
                 type: 'paragraph',
@@ -452,6 +464,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                 value: 'Phase 1: Assessment and Discovery (Weeks 1–2)',
             },
             {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1542274368-443d694d79aa?w=1200&q=80',
+            },
+            {
                 type: 'paragraph',
                 value:
                     'Every successful migration starts with a thorough assessment. We catalog all databases, schemas, tables, views, stored procedures, and UDFs. We profile query patterns using STL_QUERY and STL_QUERYTEXT to understand workload characteristics. Key deliverables include: a complete inventory of database objects, query complexity analysis identifying Redshift-specific SQL that needs conversion, data volume and growth projections, dependency mapping between tables, views, and downstream applications, and a risk assessment highlighting the most complex migration components.',
@@ -470,6 +486,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                 value: 'Phase 3: Data Migration (Weeks 5–8)',
             },
             {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1762163516269-3c143e04175c?w=1200&q=80',
+            },
+            {
                 type: 'paragraph',
                 value:
                     'For data migration, we use a parallel extraction approach: unload data from Redshift to S3 in compressed Parquet format, then use Snowflake\'s COPY INTO command for high-speed ingestion. For a major media and entertainment conglomerate, we migrated 800+ tables totaling 2.3 TB of compressed data. Our approach included parallel extraction with configurable concurrency (typically 8–16 threads), automatic retry logic for transient failures, progress tracking and resumability for long-running migrations, and incremental sync for tables that continue receiving writes during migration.',
@@ -477,6 +497,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'heading',
                 value: 'Phase 4: Validation and Testing (Weeks 9–10)',
+            },
+            {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1691643158804-d3f02eb456a3?w=1200&q=80',
             },
             {
                 type: 'paragraph',
@@ -495,6 +519,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'heading',
                 value: 'SQL Dialect Differences: A Quick Reference',
+            },
+            {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1727434032773-af3cd98375ba?w=1200&q=80',
             },
             {
                 type: 'paragraph',
@@ -576,6 +604,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                 value: 'What Is Apache Iceberg?',
             },
             {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1536926219478-b81cb954657e?w=1200&q=80',
+            },
+            {
                 type: 'paragraph',
                 value:
                     'Apache Iceberg is an open table format designed for huge analytic datasets. It provides ACID transactions, schema evolution, partition evolution, and time travel — capabilities previously locked inside proprietary systems. Unlike traditional Hive-style partitioning, Iceberg uses hidden partitioning and metadata trees that enable efficient query planning without requiring users to know the physical data layout.',
@@ -608,6 +640,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                 value: 'Iceberg vs Delta Lake: An Honest Comparison',
             },
             {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80',
+            },
+            {
                 type: 'paragraph',
                 value:
                     'Both Iceberg and Delta Lake are open table formats, but they differ in important ways. Ecosystem support: Iceberg has broader multi-engine support (Snowflake, Spark, Trino, Flink, Dremio, StarRocks) while Delta Lake is strongest in the Databricks ecosystem. Catalog architecture: Iceberg\'s catalog-agnostic design allows any catalog implementation, while Delta Lake relies on the Delta Log (a set of JSON and Parquet files). Partition evolution: Iceberg supports partition evolution without rewriting data — a significant advantage for evolving schemas. Delta Lake requires manual repartitioning.',
@@ -620,6 +656,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'heading',
                 value: 'Multi-Engine Interoperability: The Real Promise',
+            },
+            {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1678845536613-5cf0ec5245cd?w=1200&q=80',
             },
             {
                 type: 'paragraph',
@@ -701,6 +741,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                 value: 'Snowflake\'s Three-Layer Architecture',
             },
             {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1745015446589-7ee6f702d8c1?w=1200&q=80',
+            },
+            {
                 type: 'paragraph',
                 value:
                     'Snowflake\'s architecture separates three critical layers: Cloud Services (authentication, metadata management, query optimization, access control), Compute (virtual warehouses that can be independently scaled), and Storage (centralized, compressed, columnar storage on cloud object storage). This separation is the foundation of Snowflake\'s flexibility. Understanding it deeply is essential for designing architectures that maximize performance while minimizing cost.',
@@ -717,6 +761,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'heading',
                 value: 'Bronze/Silver/Gold Data Organization',
+            },
+            {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1686061593213-98dad7c599b9?w=1200&q=80',
             },
             {
                 type: 'paragraph',
@@ -742,6 +790,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                 value: 'Security Architecture',
             },
             {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1629739884942-8678d138dd64?w=1200&q=80',
+            },
+            {
                 type: 'paragraph',
                 value:
                     'Enterprise Snowflake security should be layered. Network security: use Snowflake\'s network policies to restrict access by IP range, and enable private connectivity (AWS PrivateLink, Azure Private Link) for production environments. Authentication: enforce MFA for all human users, use key-pair authentication for service accounts, and integrate with your enterprise SSO via SAML or OAuth. Authorization: implement role-based access control (RBAC) with a role hierarchy that mirrors your organization. We typically create functional roles (e.g., ANALYST, ENGINEER, ADMIN) and data access roles (e.g., RAW_READ, ANALYTICS_READ_WRITE) and compose them. Data protection: use dynamic data masking for PII columns, row access policies for multi-tenant data, and external tokenization for highly sensitive data.',
@@ -749,6 +801,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'heading',
                 value: 'Reference Architecture: Real Estate Analytics',
+            },
+            {
+                type: 'image',
+                value: 'https://images.unsplash.com/photo-1749467140630-1d8b1f3018eb?w=1200&q=80',
             },
             {
                 type: 'paragraph',
