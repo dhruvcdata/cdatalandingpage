@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="420" fill="url(#bg4)" rx="16"/>
+  <text x="450" y="40" text-anchor="middle" fill="#f1f5f9" font-size="22" font-weight="700">5-Phase Migration Framework</text>
+  <text x="450" y="65" text-anchor="middle" fill="#94a3b8" font-size="13">Redshift to Snowflake — Enterprise Migration Timeline</text>
+
+  <!-- Timeline line -->
+  <line x1="90" y1="135" x2="810" y2="135" stroke="#334155" stroke-width="3"/>
+
+  <!-- Phase 1 -->
+  <circle cx="130" cy="135" r="20" fill="#3b82f6"/>
+  <text x="130" y="141" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">1</text>
+  <rect x="65" y="170" width="130" height="110" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="130" y="193" text-anchor="middle" fill="#60a5fa" font-size="12" font-weight="700">ASSESSMENT</text>
+  <text x="130" y="212" text-anchor="middle" fill="#94a3b8" font-size="11">Weeks 1–2</text>
+  <line x1="80" y1="222" x2="180" y2="222" stroke="#334155" stroke-width="1"/>
+  <text x="130" y="240" text-anchor="middle" fill="#cbd5e1" font-size="10">Object inventory</text>
+  <text x="130" y="255" text-anchor="middle" fill="#cbd5e1" font-size="10">Query profiling</text>
+  <text x="130" y="270" text-anchor="middle" fill="#cbd5e1" font-size="10">Risk assessment</text>
+
+  <!-- Arrow -->
+  <path d="M200 135 L235 135" stroke="#334155" stroke-width="2"/>
+
+  <!-- Phase 2 -->
+  <circle cx="270" cy="135" r="20" fill="#6366f1"/>
+  <text x="270" y="141" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">2</text>
+  <rect x="205" y="170" width="130" height="110" rx="10" fill="#1e293b" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="270" y="193" text-anchor="middle" fill="#818cf8" font-size="12" font-weight="700">SCHEMA</text>
+  <text x="270" y="212" text-anchor="middle" fill="#94a3b8" font-size="11">Weeks 3–4</text>
+  <line x1="220" y1="222" x2="320" y2="222" stroke="#334155" stroke-width="1"/>
+  <text x="270" y="240" text-anchor="middle" fill="#cbd5e1" font-size="10">DDL conversion</text>
+  <text x="270" y="255" text-anchor="middle" fill="#cbd5e1" font-size="10">Function mapping</text>
+  <text x="270" y="270" text-anchor="middle" fill="#cbd5e1" font-size="10">Auto-scripting</text>
+
+  <!-- Arrow -->
+  <path d="M340 135 L375 135" stroke="#334155" stroke-width="2"/>
+
+  <!-- Phase 3 -->
+  <circle cx="450" cy="135" r="24" fill="#8b5cf6" stroke="#a78bfa" stroke-width="2"/>
+  <text x="450" y="141" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">3</text>
+  <rect x="375" y="170" width="150" height="110" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="450" y="193" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="700">DATA MIGRATION</text>
+  <text x="450" y="212" text-anchor="middle" fill="#94a3b8" font-size="11">Weeks 5–8</text>
+  <line x1="390" y1="222" x2="510" y2="222" stroke="#334155" stroke-width="1"/>
+  <text x="450" y="240" text-anchor="middle" fill="#cbd5e1" font-size="10">Parallel extraction</text>
+  <text x="450" y="255" text-anchor="middle" fill="#cbd5e1" font-size="10">S3 → COPY INTO</text>
+  <text x="450" y="270" text-anchor="middle" fill="#cbd5e1" font-size="10">Incremental sync</text>
+
+  <!-- Arrow -->
+  <path d="M530 135 L575 135" stroke="#334155" stroke-width="2"/>
+
+  <!-- Phase 4 -->
+  <circle cx="610" cy="135" r="20" fill="#d946ef"/>
+  <text x="610" y="141" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">4</text>
+  <rect x="545" y="170" width="130" height="110" rx="10" fill="#1e293b" stroke="#d946ef" stroke-width="1.5"/>
+  <text x="610" y="193" text-anchor="middle" fill="#e879f9" font-size="12" font-weight="700">VALIDATION</text>
+  <text x="610" y="212" text-anchor="middle" fill="#94a3b8" font-size="11">Weeks 9–10</text>
+  <line x1="560" y1="222" x2="660" y2="222" stroke="#334155" stroke-width="1"/>
+  <text x="610" y="240" text-anchor="middle" fill="#cbd5e1" font-size="10">Row count checks</text>
+  <text x="610" y="255" text-anchor="middle" fill="#cbd5e1" font-size="10">Aggregate validation</text>
+  <text x="610" y="270" text-anchor="middle" fill="#cbd5e1" font-size="10">Query comparison</text>
+
+  <!-- Arrow -->
+  <path d="M680 135 L715 135" stroke="#334155" stroke-width="2"/>
+
+  <!-- Phase 5 -->
+  <circle cx="750" cy="135" r="20" fill="#22c55e"/>
+  <text x="750" y="141" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">5</text>
+  <rect x="685" y="170" width="130" height="110" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="750" y="193" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="700">CUTOVER</text>
+  <text x="750" y="212" text-anchor="middle" fill="#94a3b8" font-size="11">Weeks 11–12</text>
+  <line x1="700" y1="222" x2="800" y2="222" stroke="#334155" stroke-width="1"/>
+  <text x="750" y="240" text-anchor="middle" fill="#cbd5e1" font-size="10">Parallel run</text>
+  <text x="750" y="255" text-anchor="middle" fill="#cbd5e1" font-size="10">Phased switchover</text>
+  <text x="750" y="270" text-anchor="middle" fill="#cbd5e1" font-size="10">Decommission</text>
+
+  <!-- Bottom summary -->
+  <rect x="130" y="320" width="640" height="75" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="280" y="348" text-anchor="middle" fill="#94a3b8" font-size="12">Mid-size (100–500 tables):</text>
+  <text x="280" y="368" text-anchor="middle" fill="#60a5fa" font-size="16" font-weight="700">8–12 weeks</text>
+  <line x1="450" y1="330" x2="450" y2="385" stroke="#334155" stroke-width="1"/>
+  <text x="620" y="348" text-anchor="middle" fill="#94a3b8" font-size="12">Enterprise (500+ tables):</text>
+  <text x="620" y="368" text-anchor="middle" fill="#60a5fa" font-size="16" font-weight="700">12–20 weeks</text>
+</svg>

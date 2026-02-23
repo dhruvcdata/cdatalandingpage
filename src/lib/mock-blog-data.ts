@@ -306,7 +306,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+                value: '/blog-diagrams/cost-warehouse-sizing.svg',
             },
             {
                 type: 'paragraph',
@@ -342,7 +342,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
+                value: '/blog-diagrams/cost-resource-monitors.svg',
             },
             {
                 type: 'paragraph',
@@ -382,7 +382,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1745270917331-787c80129680?w=1200&q=80',
+                value: '/blog-diagrams/cost-savings-results.svg',
             },
             {
                 type: 'paragraph',
@@ -465,7 +465,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1542274368-443d694d79aa?w=1200&q=80',
+                value: '/blog-diagrams/migration-5-phase.svg',
             },
             {
                 type: 'paragraph',
@@ -487,7 +487,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1762163516269-3c143e04175c?w=1200&q=80',
+                value: '/blog-diagrams/migration-architecture.svg',
             },
             {
                 type: 'paragraph',
@@ -500,7 +500,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1691643158804-d3f02eb456a3?w=1200&q=80',
+                value: '/blog-diagrams/migration-validation.svg',
             },
             {
                 type: 'paragraph',
@@ -522,7 +522,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1727434032773-af3cd98375ba?w=1200&q=80',
+                value: '/blog-diagrams/migration-sql-dialect.svg',
             },
             {
                 type: 'paragraph',
@@ -605,7 +605,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1536926219478-b81cb954657e?w=1200&q=80',
+                value: '/blog-diagrams/iceberg-table-types.svg',
             },
             {
                 type: 'paragraph',
@@ -641,7 +641,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80',
+                value: '/blog-diagrams/iceberg-vs-delta.svg',
             },
             {
                 type: 'paragraph',
@@ -659,7 +659,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1678845536613-5cf0ec5245cd?w=1200&q=80',
+                value: '/blog-diagrams/iceberg-multi-engine.svg',
             },
             {
                 type: 'paragraph',
@@ -742,7 +742,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1745015446589-7ee6f702d8c1?w=1200&q=80',
+                value: '/blog-diagrams/arch-three-layer.svg',
             },
             {
                 type: 'paragraph',
@@ -764,7 +764,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1686061593213-98dad7c599b9?w=1200&q=80',
+                value: '/blog-diagrams/arch-medallion.svg',
             },
             {
                 type: 'paragraph',
@@ -791,7 +791,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1629739884942-8678d138dd64?w=1200&q=80',
+                value: '/blog-diagrams/arch-security.svg',
             },
             {
                 type: 'paragraph',
@@ -804,7 +804,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
             {
                 type: 'image',
-                value: 'https://images.unsplash.com/photo-1749467140630-1d8b1f3018eb?w=1200&q=80',
+                value: '/blog-diagrams/arch-data-mesh.svg',
             },
             {
                 type: 'paragraph',

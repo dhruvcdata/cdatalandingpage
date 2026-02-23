@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="450" fill="url(#bg2)" rx="16"/>
+  <text x="450" y="40" text-anchor="middle" fill="#f1f5f9" font-size="22" font-weight="700">Resource Monitor Alert Flow</text>
+  <text x="450" y="65" text-anchor="middle" fill="#94a3b8" font-size="13">Tiered monitoring strategy to prevent cost overruns</text>
+
+  <!-- Credit usage bar -->
+  <rect x="60" y="100" width="780" height="40" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <rect x="60" y="100" width="780" height="40" rx="8" fill="#1e293b"/>
+  <!-- Fill segments -->
+  <rect x="60" y="100" width="585" height="40" rx="8" fill="#22c55e" opacity="0.3"/>
+  <rect x="60" y="100" width="585" height="40" rx="8" fill="none" stroke="#22c55e" stroke-width="1"/>
+  <rect x="645" y="100" width="117" height="40" fill="#eab308" opacity="0.3"/>
+  <rect x="762" y="100" width="78" height="40" rx="8" fill="#ef4444" opacity="0.3"/>
+
+  <text x="350" y="125" text-anchor="middle" fill="#86efac" font-size="13" font-weight="600">Normal Usage (0–75%)</text>
+  <text x="703" y="125" text-anchor="middle" fill="#fde047" font-size="13" font-weight="600">Warning</text>
+  <text x="801" y="125" text-anchor="middle" fill="#fca5a5" font-size="13" font-weight="600">Critical</text>
+
+  <!-- 75% marker -->
+  <line x1="645" y1="90" x2="645" y2="150" stroke="#eab308" stroke-width="2" stroke-dasharray="4"/>
+  <text x="645" y="85" text-anchor="middle" fill="#eab308" font-size="12" font-weight="700">75%</text>
+  <!-- 90% marker -->
+  <line x1="762" y1="90" x2="762" y2="150" stroke="#f97316" stroke-width="2" stroke-dasharray="4"/>
+  <text x="762" y="85" text-anchor="middle" fill="#f97316" font-size="12" font-weight="700">90%</text>
+  <!-- 100% marker -->
+  <line x1="840" y1="90" x2="840" y2="150" stroke="#ef4444" stroke-width="2" stroke-dasharray="4"/>
+  <text x="840" y="85" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">100%</text>
+
+  <!-- Action boxes -->
+  <!-- 75% action -->
+  <line x1="645" y1="150" x2="645" y2="185" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="530" y="185" width="230" height="70" rx="10" fill="#1e293b" stroke="#eab308" stroke-width="1.5"/>
+  <text x="645" y="210" text-anchor="middle" fill="#fde047" font-size="14" font-weight="700">WARNING ALERT</text>
+  <text x="645" y="232" text-anchor="middle" fill="#94a3b8" font-size="12">Email + Slack notification</text>
+  <text x="645" y="248" text-anchor="middle" fill="#94a3b8" font-size="12">to warehouse owner</text>
+
+  <!-- 90% action -->
+  <line x1="762" y1="150" x2="762" y2="290" stroke="#f97316" stroke-width="1.5"/>
+  <rect x="647" y="290" width="230" height="70" rx="10" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="762" y="315" text-anchor="middle" fill="#fb923c" font-size="14" font-weight="700">ESCALATION ALERT</text>
+  <text x="762" y="337" text-anchor="middle" fill="#94a3b8" font-size="12">Notify team lead + manager</text>
+  <text x="762" y="353" text-anchor="middle" fill="#94a3b8" font-size="12">Review active queries</text>
+
+  <!-- 100% action -->
+  <line x1="200" y1="150" x2="200" y2="365" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3"/>
+  <path d="M200 365 L530 365" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+  <rect x="530" y="290" width="110" height="30" rx="6" fill="none"/>
+  <rect x="220" y="345" width="300" height="75" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="370" y="372" text-anchor="middle" fill="#fca5a5" font-size="14" font-weight="700">AUTO-SUSPEND TRIGGERED</text>
+  <text x="370" y="394" text-anchor="middle" fill="#94a3b8" font-size="12">Warehouse suspended to prevent</text>
+  <text x="370" y="410" text-anchor="middle" fill="#94a3b8" font-size="12">budget overrun. Requires manual restart.</text>
+</svg>

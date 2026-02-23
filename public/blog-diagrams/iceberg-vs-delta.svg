@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg9" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="440" fill="url(#bg9)" rx="16"/>
+  <text x="450" y="40" text-anchor="middle" fill="#f1f5f9" font-size="22" font-weight="700">Apache Iceberg vs Delta Lake</text>
+
+  <!-- Header row -->
+  <rect x="40" y="65" width="260" height="40" rx="8" fill="#1e293b"/>
+  <text x="170" y="91" text-anchor="middle" fill="#94a3b8" font-size="14" font-weight="600">Feature</text>
+  <rect x="320" y="65" width="260" height="40" rx="8" fill="#1e3a5f"/>
+  <text x="450" y="91" text-anchor="middle" fill="#60a5fa" font-size="14" font-weight="700">Apache Iceberg</text>
+  <rect x="600" y="65" width="260" height="40" rx="8" fill="#2e1065"/>
+  <text x="730" y="91" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="700">Delta Lake</text>
+
+  <!-- Row 1 -->
+  <rect x="40" y="115" width="260" height="45" fill="#1e293b" opacity="0.6"/>
+  <text x="60" y="143" fill="#cbd5e1" font-size="13" font-weight="600">Multi-Engine Support</text>
+  <rect x="320" y="115" width="260" height="45" fill="#1e293b" opacity="0.3"/>
+  <text x="450" y="137" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700">Broad</text>
+  <text x="450" y="153" text-anchor="middle" fill="#94a3b8" font-size="11">Snowflake, Spark, Trino, Flink</text>
+  <rect x="600" y="115" width="260" height="45" fill="#1e293b" opacity="0.3"/>
+  <text x="730" y="137" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700">Databricks-centric</text>
+  <text x="730" y="153" text-anchor="middle" fill="#94a3b8" font-size="11">Best with Databricks ecosystem</text>
+
+  <!-- Row 2 -->
+  <rect x="40" y="165" width="260" height="45" fill="#1e293b" opacity="0.4"/>
+  <text x="60" y="193" fill="#cbd5e1" font-size="13" font-weight="600">Catalog Architecture</text>
+  <rect x="320" y="165" width="260" height="45" fill="#1e293b" opacity="0.2"/>
+  <text x="450" y="187" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700">Catalog-Agnostic</text>
+  <text x="450" y="203" text-anchor="middle" fill="#94a3b8" font-size="11">Glue, HMS, REST, Nessie</text>
+  <rect x="600" y="165" width="260" height="45" fill="#1e293b" opacity="0.2"/>
+  <text x="730" y="187" text-anchor="middle" fill="#94a3b8" font-size="13" font-weight="700">Delta Log</text>
+  <text x="730" y="203" text-anchor="middle" fill="#94a3b8" font-size="11">JSON + Parquet files</text>
+
+  <!-- Row 3 -->
+  <rect x="40" y="215" width="260" height="45" fill="#1e293b" opacity="0.6"/>
+  <text x="60" y="243" fill="#cbd5e1" font-size="13" font-weight="600">Partition Evolution</text>
+  <rect x="320" y="215" width="260" height="45" fill="#1e293b" opacity="0.3"/>
+  <text x="450" y="237" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700">No Rewrite Needed</text>
+  <text x="450" y="253" text-anchor="middle" fill="#94a3b8" font-size="11">Evolve partitions in-place</text>
+  <rect x="600" y="215" width="260" height="45" fill="#1e293b" opacity="0.3"/>
+  <text x="730" y="237" text-anchor="middle" fill="#ef4444" font-size="13" font-weight="700">Manual Repartition</text>
+  <text x="730" y="253" text-anchor="middle" fill="#94a3b8" font-size="11">Requires data rewrite</text>
+
+  <!-- Row 4 -->
+  <rect x="40" y="265" width="260" height="45" fill="#1e293b" opacity="0.4"/>
+  <text x="60" y="293" fill="#cbd5e1" font-size="13" font-weight="600">Schema Evolution</text>
+  <rect x="320" y="265" width="260" height="45" fill="#1e293b" opacity="0.2"/>
+  <text x="450" y="293" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700">Full (add, rename, drop)</text>
+  <rect x="600" y="265" width="260" height="45" fill="#1e293b" opacity="0.2"/>
+  <text x="730" y="293" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700">Full (add, rename, drop)</text>
+
+  <!-- Row 5 -->
+  <rect x="40" y="315" width="260" height="45" fill="#1e293b" opacity="0.6"/>
+  <text x="60" y="343" fill="#cbd5e1" font-size="13" font-weight="600">Time Travel</text>
+  <rect x="320" y="315" width="260" height="45" fill="#1e293b" opacity="0.3"/>
+  <text x="450" y="343" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700">Snapshot-based</text>
+  <rect x="600" y="315" width="260" height="45" fill="#1e293b" opacity="0.3"/>
+  <text x="730" y="343" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700">Version-based</text>
+
+  <!-- Recommendation -->
+  <rect x="120" y="380" width="660" height="45" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="450" y="408" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="600">Recommendation: Iceberg for Snowflake/multi-engine  |  Delta Lake for Databricks-primary</text>
+</svg>

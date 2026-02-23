@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="430" fill="url(#bg6)" rx="16"/>
+  <text x="450" y="40" text-anchor="middle" fill="#f1f5f9" font-size="22" font-weight="700">Three-Level Validation Framework</text>
+  <text x="450" y="65" text-anchor="middle" fill="#94a3b8" font-size="13">Ensuring data integrity at every layer of migration</text>
+
+  <!-- Pyramid / Stacked levels -->
+  <!-- Level 3 (top - most granular) -->
+  <polygon points="450,95 580,195 320,195" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="450" y="150" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="700">LEVEL 3</text>
+  <text x="450" y="170" text-anchor="middle" fill="#cbd5e1" font-size="11">Row-Level Sampling</text>
+
+  <!-- Level 2 (middle) -->
+  <polygon points="320,200 580,200 650,300 250,300" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+  <text x="450" y="240" text-anchor="middle" fill="#818cf8" font-size="13" font-weight="700">LEVEL 2</text>
+  <text x="450" y="260" text-anchor="middle" fill="#cbd5e1" font-size="11">Aggregate Validation (SUM, MIN, MAX, COUNT DISTINCT)</text>
+
+  <!-- Level 1 (bottom - broadest) -->
+  <polygon points="250,305 650,305 720,400 180,400" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="342" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="700">LEVEL 1</text>
+  <text x="450" y="362" text-anchor="middle" fill="#cbd5e1" font-size="11">Row Count Comparison (Source vs Target)</text>
+
+  <!-- Right-side descriptions -->
+  <rect x="680" y="110" width="195" height="70" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="777" y="135" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="600">Catches:</text>
+  <text x="777" y="152" text-anchor="middle" fill="#94a3b8" font-size="10">Subtle transformation</text>
+  <text x="777" y="167" text-anchor="middle" fill="#94a3b8" font-size="10">errors and edge cases</text>
+
+  <rect x="680" y="215" width="195" height="70" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="1"/>
+  <text x="777" y="240" text-anchor="middle" fill="#818cf8" font-size="11" font-weight="600">Catches:</text>
+  <text x="777" y="257" text-anchor="middle" fill="#94a3b8" font-size="10">Data type conversion</text>
+  <text x="777" y="272" text-anchor="middle" fill="#94a3b8" font-size="10">issues and truncation</text>
+
+  <rect x="680" y="320" width="195" height="70" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="777" y="345" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="600">Catches:</text>
+  <text x="777" y="362" text-anchor="middle" fill="#94a3b8" font-size="10">Missing tables, dropped</text>
+  <text x="777" y="377" text-anchor="middle" fill="#94a3b8" font-size="10">rows, load failures</text>
+
+  <!-- Connecting lines -->
+  <line x1="585" y1="150" x2="675" y2="145" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3"/>
+  <line x1="655" y1="250" x2="675" y2="250" stroke="#6366f1" stroke-width="1" stroke-dasharray="3"/>
+  <line x1="720" y1="350" x2="675" y2="355" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3"/>
+</svg>

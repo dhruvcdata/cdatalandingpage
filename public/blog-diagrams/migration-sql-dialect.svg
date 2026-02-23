@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="440" fill="url(#bg7)" rx="16"/>
+  <text x="450" y="40" text-anchor="middle" fill="#f1f5f9" font-size="22" font-weight="700">SQL Dialect Differences: Redshift vs Snowflake</text>
+
+  <!-- Table header -->
+  <rect x="40" y="70" width="280" height="40" rx="8" fill="#7f1d1d" opacity="0.5"/>
+  <text x="180" y="96" text-anchor="middle" fill="#fca5a5" font-size="14" font-weight="700">Redshift</text>
+  <rect x="340" y="70" width="60" height="40" rx="8" fill="#1e293b"/>
+  <text x="370" y="96" text-anchor="middle" fill="#94a3b8" font-size="18">→</text>
+  <rect x="420" y="70" width="440" height="40" rx="8" fill="#14532d" opacity="0.5"/>
+  <text x="640" y="96" text-anchor="middle" fill="#86efac" font-size="14" font-weight="700">Snowflake</text>
+
+  <!-- Row 1 -->
+  <rect x="40" y="120" width="820" height="50" rx="0" fill="#1e293b" opacity="0.5"/>
+  <text x="60" y="142" fill="#94a3b8" font-size="11" font-weight="600">TIMESTAMP</text>
+  <rect x="50" y="143" width="260" height="22" rx="4" fill="#0f172a"/>
+  <text x="60" y="159" fill="#fca5a5" font-size="13" font-family="monospace">GETDATE()</text>
+  <text x="370" y="152" text-anchor="middle" fill="#475569" font-size="16">→</text>
+  <rect x="430" y="143" width="420" height="22" rx="4" fill="#0f172a"/>
+  <text x="440" y="159" fill="#86efac" font-size="13" font-family="monospace">CURRENT_TIMESTAMP()</text>
+
+  <!-- Row 2 -->
+  <rect x="40" y="175" width="820" height="50" rx="0" fill="#1e293b" opacity="0.3"/>
+  <text x="60" y="197" fill="#94a3b8" font-size="11" font-weight="600">APPROX COUNT</text>
+  <rect x="50" y="198" width="260" height="22" rx="4" fill="#0f172a"/>
+  <text x="60" y="214" fill="#fca5a5" font-size="13" font-family="monospace">APPROXIMATE COUNT(DISTINCT col)</text>
+  <text x="370" y="207" text-anchor="middle" fill="#475569" font-size="16">→</text>
+  <rect x="430" y="198" width="420" height="22" rx="4" fill="#0f172a"/>
+  <text x="440" y="214" fill="#86efac" font-size="13" font-family="monospace">APPROX_COUNT_DISTINCT(col)</text>
+
+  <!-- Row 3 -->
+  <rect x="40" y="230" width="820" height="50" rx="0" fill="#1e293b" opacity="0.5"/>
+  <text x="60" y="252" fill="#94a3b8" font-size="11" font-weight="600">CONCAT</text>
+  <rect x="50" y="253" width="260" height="22" rx="4" fill="#0f172a"/>
+  <text x="60" y="269" fill="#fca5a5" font-size="13" font-family="monospace">CONCAT(a, b)  -- 2 args only</text>
+  <text x="370" y="262" text-anchor="middle" fill="#475569" font-size="16">→</text>
+  <rect x="430" y="253" width="420" height="22" rx="4" fill="#0f172a"/>
+  <text x="440" y="269" fill="#86efac" font-size="13" font-family="monospace">CONCAT(a, b, c, ...)  -- N args</text>
+
+  <!-- Row 4 -->
+  <rect x="40" y="285" width="820" height="50" rx="0" fill="#1e293b" opacity="0.3"/>
+  <text x="60" y="307" fill="#94a3b8" font-size="11" font-weight="600">DATA EXPORT</text>
+  <rect x="50" y="308" width="260" height="22" rx="4" fill="#0f172a"/>
+  <text x="60" y="324" fill="#fca5a5" font-size="13" font-family="monospace">UNLOAD ('query') TO 's3://...'</text>
+  <text x="370" y="317" text-anchor="middle" fill="#475569" font-size="16">→</text>
+  <rect x="430" y="308" width="420" height="22" rx="4" fill="#0f172a"/>
+  <text x="440" y="324" fill="#86efac" font-size="13" font-family="monospace">COPY INTO @stage FROM table</text>
+
+  <!-- Row 5 -->
+  <rect x="40" y="340" width="820" height="50" rx="0" fill="#1e293b" opacity="0.5"/>
+  <text x="60" y="362" fill="#94a3b8" font-size="11" font-weight="600">KEYS</text>
+  <rect x="50" y="363" width="260" height="22" rx="4" fill="#0f172a"/>
+  <text x="60" y="379" fill="#fca5a5" font-size="13" font-family="monospace">DISTKEY, SORTKEY, ENCODE</text>
+  <text x="370" y="372" text-anchor="middle" fill="#475569" font-size="16">→</text>
+  <rect x="430" y="363" width="420" height="22" rx="4" fill="#0f172a"/>
+  <text x="440" y="379" fill="#86efac" font-size="13" font-family="monospace">Auto micro-partition + CLUSTER BY</text>
+
+  <!-- Footer note -->
+  <text x="450" y="420" text-anchor="middle" fill="#475569" font-size="12">80–90% of conversions can be automated with custom scripts</text>
+</svg>

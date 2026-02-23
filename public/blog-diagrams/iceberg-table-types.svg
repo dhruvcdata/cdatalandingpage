@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg8" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="480" fill="url(#bg8)" rx="16"/>
+  <text x="450" y="40" text-anchor="middle" fill="#f1f5f9" font-size="22" font-weight="700">Iceberg Table Types on Snowflake</text>
+  <text x="450" y="65" text-anchor="middle" fill="#94a3b8" font-size="13">Managed vs External — choosing the right approach</text>
+
+  <!-- Managed Iceberg -->
+  <rect x="40" y="90" width="390" height="350" rx="14" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="40" y="90" width="390" height="50" rx="14" fill="#1e3a5f"/>
+  <rect x="40" y="120" width="390" height="20" fill="#1e3a5f"/>
+  <text x="235" y="122" text-anchor="middle" fill="#60a5fa" font-size="17" font-weight="700">Managed Iceberg Tables</text>
+  <text x="235" y="165" text-anchor="middle" fill="#94a3b8" font-size="12">Snowflake-managed catalog</text>
+
+  <rect x="60" y="185" width="350" height="30" rx="6" fill="#14532d" opacity="0.5"/>
+  <text x="75" y="205" fill="#86efac" font-size="12">Full DML (INSERT, UPDATE, DELETE, MERGE)</text>
+  <rect x="60" y="225" width="350" height="30" rx="6" fill="#14532d" opacity="0.5"/>
+  <text x="75" y="245" fill="#86efac" font-size="12">Automatic compaction and optimization</text>
+  <rect x="60" y="265" width="350" height="30" rx="6" fill="#14532d" opacity="0.5"/>
+  <text x="75" y="285" fill="#86efac" font-size="12">Simplest migration from native tables</text>
+  <rect x="60" y="305" width="350" height="30" rx="6" fill="#14532d" opacity="0.5"/>
+  <text x="75" y="325" fill="#86efac" font-size="12">Open format — future portability</text>
+
+  <rect x="60" y="355" width="350" height="65" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="235" y="378" text-anchor="middle" fill="#60a5fa" font-size="12" font-weight="600">BEST FOR</text>
+  <text x="235" y="400" text-anchor="middle" fill="#cbd5e1" font-size="12">Snowflake as primary query engine</text>
+
+  <!-- External Iceberg -->
+  <rect x="470" y="90" width="390" height="350" rx="14" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <rect x="470" y="90" width="390" height="50" rx="14" fill="#2e1065"/>
+  <rect x="470" y="120" width="390" height="20" fill="#2e1065"/>
+  <text x="665" y="122" text-anchor="middle" fill="#a78bfa" font-size="17" font-weight="700">External Iceberg Tables</text>
+  <text x="665" y="165" text-anchor="middle" fill="#94a3b8" font-size="12">Customer-managed catalog (Glue, HMS, REST)</text>
+
+  <rect x="490" y="185" width="350" height="30" rx="6" fill="#312e81" opacity="0.4"/>
+  <text x="505" y="205" fill="#c4b5fd" font-size="12">Multi-engine read/write (Spark, Trino, Flink)</text>
+  <rect x="490" y="225" width="350" height="30" rx="6" fill="#312e81" opacity="0.4"/>
+  <text x="505" y="245" fill="#c4b5fd" font-size="12">Single source of truth across engines</text>
+  <rect x="490" y="265" width="350" height="30" rx="6" fill="#312e81" opacity="0.4"/>
+  <text x="505" y="285" fill="#c4b5fd" font-size="12">Full control over data layout</text>
+  <rect x="490" y="305" width="350" height="30" rx="6" fill="#312e81" opacity="0.4"/>
+  <text x="505" y="325" fill="#c4b5fd" font-size="12">Read-only from Snowflake</text>
+
+  <rect x="490" y="355" width="350" height="65" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="665" y="378" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="600">BEST FOR</text>
+  <text x="665" y="400" text-anchor="middle" fill="#cbd5e1" font-size="12">Multi-engine data architectures</text>
+</svg>

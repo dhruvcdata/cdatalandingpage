@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg11" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="500" fill="url(#bg11)" rx="16"/>
+  <text x="450" y="40" text-anchor="middle" fill="#f1f5f9" font-size="22" font-weight="700">Snowflake Three-Layer Architecture</text>
+
+  <!-- Layer 1: Cloud Services -->
+  <rect x="100" y="70" width="700" height="110" rx="14" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="100" text-anchor="middle" fill="#60a5fa" font-size="18" font-weight="700">Cloud Services Layer</text>
+  <rect x="130" y="115" width="145" height="45" rx="8" fill="#1e3a5f"/>
+  <text x="202" y="143" text-anchor="middle" fill="#93c5fd" font-size="12">Authentication</text>
+  <rect x="290" y="115" width="145" height="45" rx="8" fill="#1e3a5f"/>
+  <text x="362" y="143" text-anchor="middle" fill="#93c5fd" font-size="12">Metadata Mgmt</text>
+  <rect x="450" y="115" width="145" height="45" rx="8" fill="#1e3a5f"/>
+  <text x="522" y="143" text-anchor="middle" fill="#93c5fd" font-size="12">Query Optimization</text>
+  <rect x="610" y="115" width="145" height="45" rx="8" fill="#1e3a5f"/>
+  <text x="682" y="143" text-anchor="middle" fill="#93c5fd" font-size="12">Access Control</text>
+
+  <!-- Arrow -->
+  <line x1="450" y1="185" x2="450" y2="210" stroke="#475569" stroke-width="2" stroke-dasharray="4"/>
+
+  <!-- Layer 2: Compute -->
+  <rect x="100" y="215" width="700" height="130" rx="14" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="450" y="245" text-anchor="middle" fill="#a78bfa" font-size="18" font-weight="700">Compute Layer (Virtual Warehouses)</text>
+  <text x="450" y="265" text-anchor="middle" fill="#94a3b8" font-size="12">Independently scalable — each warehouse is isolated</text>
+
+  <rect x="120" y="280" width="145" height="50" rx="8" fill="#2e1065" opacity="0.6"/>
+  <text x="192" y="302" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="600">ETL Warehouse</text>
+  <text x="192" y="320" text-anchor="middle" fill="#94a3b8" font-size="10">Medium | 60s suspend</text>
+
+  <rect x="280" y="280" width="145" height="50" rx="8" fill="#2e1065" opacity="0.6"/>
+  <text x="352" y="302" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="600">BI Warehouse</text>
+  <text x="352" y="320" text-anchor="middle" fill="#94a3b8" font-size="10">Small | 300s suspend</text>
+
+  <rect x="440" y="280" width="145" height="50" rx="8" fill="#2e1065" opacity="0.6"/>
+  <text x="512" y="302" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="600">ML Warehouse</text>
+  <text x="512" y="320" text-anchor="middle" fill="#94a3b8" font-size="10">XL | On-demand</text>
+
+  <rect x="600" y="280" width="180" height="50" rx="8" fill="#2e1065" opacity="0.6"/>
+  <text x="690" y="302" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="600">Ad-hoc Warehouse</text>
+  <text x="690" y="320" text-anchor="middle" fill="#94a3b8" font-size="10">XS–M | Auto-scale</text>
+
+  <!-- Arrow -->
+  <line x1="450" y1="350" x2="450" y2="375" stroke="#475569" stroke-width="2" stroke-dasharray="4"/>
+
+  <!-- Layer 3: Storage -->
+  <rect x="100" y="380" width="700" height="100" rx="14" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="450" y="410" text-anchor="middle" fill="#4ade80" font-size="18" font-weight="700">Centralized Storage Layer</text>
+  <text x="450" y="435" text-anchor="middle" fill="#94a3b8" font-size="12">Compressed columnar format on cloud object storage (S3, Azure Blob, GCS)</text>
+  <text x="450" y="460" text-anchor="middle" fill="#94a3b8" font-size="12">Automatic clustering  |  Zero-copy cloning  |  Time travel  |  Pay per TB/month</text>
+</svg>

@@ -106,20 +106,29 @@ export default async function BlogSlugPage({
                         }
 
                         if (block.type === 'image') {
+                            const isSvg = block.value.endsWith('.svg')
                             return (
                                 <div
                                     key={index}
                                     className="mx-auto w-full max-w-3xl overflow-hidden"
                                 >
-                                    <div className="relative w-full aspect-[16/9] max-h-[420px]">
-                                        <Image
+                                    {isSvg ? (
+                                        <img
                                             src={block.value}
                                             alt=""
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, 768px"
-                                            className="object-contain"
+                                            className="w-full h-auto rounded-lg"
                                         />
-                                    </div>
+                                    ) : (
+                                        <div className="relative w-full aspect-[16/9] max-h-[420px]">
+                                            <Image
+                                                src={block.value}
+                                                alt=""
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, 768px"
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                    )}
                                 </div>
                             )
                         }
