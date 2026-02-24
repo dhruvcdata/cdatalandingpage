@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Top Data Visualization Services | Toronto, Detroit & GTA",
+    title: "Data Visualization & BI Dashboards | CData Insights",
     description:
-        "Get top data visualization services in Toronto, Detroit & Mississauga. We offer the best online data analysis and visualization to turn insights into action.",
+        "Transform data into actionable insights with custom dashboards and BI solutions. Tableau, Power BI, and Snowflake-native visualization for enterprise analytics.",
     alternates: { canonical: "https://cdatainsights.com/services/data-visualization" },
+    openGraph: {
+        title: "Data Visualization & BI Dashboards | CData Insights",
+        description: "Custom dashboards and BI solutions with Tableau, Power BI, and Snowflake.",
+        url: "https://cdatainsights.com/services/data-visualization",
+        type: "website",
+    },
+    twitter: {
+        card: "summary",
+        title: "Data Visualization & BI Dashboards | CData Insights",
+        description: "Enterprise data visualization and BI dashboard consulting.",
+    },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

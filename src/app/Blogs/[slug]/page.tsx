@@ -3,9 +3,45 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Card } from '@/components/ui/card'
 import { BLOG_DATA_MAP } from '@/lib/mock-blog-data'
+import Script from 'next/script'
+import type { Metadata } from 'next'
 
 export function generateStaticParams() {
     return Object.keys(BLOG_DATA_MAP).map((slug) => ({ slug }))
+}
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+    const { slug } = await params
+    const blog = BLOG_DATA_MAP[slug]
+    if (!blog) return {}
+
+    const url = `https://cdatainsights.com/Blogs/${slug}`
+
+    return {
+        title: `${blog.title} | CData Insights`,
+        description: blog.subtitle,
+        alternates: { canonical: url },
+        openGraph: {
+            type: 'article',
+            title: blog.title,
+            description: blog.subtitle,
+            url,
+            siteName: 'CData Insights',
+            images: [{ url: blog.heroImage, alt: blog.title }],
+            publishedTime: blog.date,
+            authors: [blog.author.name],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: blog.title,
+            description: blog.subtitle,
+            images: [blog.heroImage],
+        },
+    }
 }
 
 export default async function BlogSlugPage({
@@ -18,8 +54,48 @@ export default async function BlogSlugPage({
 
     if (!blog) notFound()
 
+    const articleSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: blog.title,
+        description: blog.subtitle,
+        image: blog.heroImage,
+        datePublished: blog.date,
+        author: {
+            '@type': 'Person',
+            name: blog.author.name,
+            jobTitle: blog.author.role,
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: 'CData Insights',
+            logo: { '@type': 'ImageObject', url: 'https://cdatainsights.com/whitelogo.png' },
+        },
+        mainEntityOfPage: `https://cdatainsights.com/Blogs/${slug}`,
+    }
+
+    const faqSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: blog.faq.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: { '@type': 'Answer', text: item.answer },
+        })),
+    }
+
     return (
         <article className="bg-black text-white min-hscreen overflow-x-hidden">
+            <Script
+                id={`article-schema-${slug}`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
+            <Script
+                id={`faq-schema-${slug}`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
 
             {/* ================= HERO ================= */}
             <section className="relative">

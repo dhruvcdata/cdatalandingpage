@@ -20,42 +20,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cdata Consultancy Expert Data & AI Services",
-  description: "Creating a powerhouse in data modernization and AI driven transformation, specializing in data engineering, AI/ML, and data analytics.",
+  title: "CData Insights — Expert Data Engineering & AI Consulting",
+  description: "CData Insights is a data engineering and AI consulting firm specializing in Snowflake, data platform modernization, cloud migration, and enterprise analytics for real estate, media, and financial services.",
   alternates: { canonical: "https://cdatainsights.com/" },
   robots: {
     index: true,
     follow: true,
   },
-
   openGraph: {
     locale: "en_US",
     type: "website",
-    title: "AI & Machine Learning",
-    description: "At CData, we specialize in transforming how businesses manage, analyze, and leverage their data.",
+    title: "CData Insights — Expert Data Engineering & AI Consulting",
+    description: "Data engineering, Snowflake implementation, cloud migration, and AI consulting for enterprises.",
     url: "https://cdatainsights.com/",
-    siteName: "CData Consulting",
+    siteName: "CData Insights",
     images: [
       {
         url: "https://cdatainsights.com/whitelogo.png",
-        alt: "CData Consulting Logo",
+        alt: "CData Insights Logo",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "CData Consulting",
-    description: "At CData, we specialize in transforming how businesses manage, analyze, and leverage their data.",
+    title: "CData Insights — Data Engineering & AI Consulting",
+    description: "Data engineering, Snowflake implementation, cloud migration, and AI consulting for enterprises.",
     creator: "@cdatainsights",
     site: "@cdatainsights",
     images: ["https://cdatainsights.com/whitelogo.png"],
   },
   other: {
     "google-site-verification": "bTOaQeiDZTtLH8fbvtES76JCrBIjx1At8wzT6fIwp8w",
-    "twitter:label1": "Written by",
-    "twitter:data1": "admin",
-    "twitter:label2": "Est. reading time",
-    "twitter:data2": "31 minutes",
   },
 };
 
@@ -80,7 +75,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "CData Consulting",
+              name: "CData Insights",
               alternateName: "cdatainsights",
               url: "https://cdatainsights.com/",
               logo: "https://cdatainsights.com/whitelogo.png",
