@@ -24,6 +24,10 @@ export default function BlogSubscribe() {
             const data = await response.json()
 
             if (response.ok) {
+                window.gtag?.('event', 'sign_up', {
+                    event_category: 'Blog Subscribe',
+                    method: 'email',
+                })
                 setStatus('success')
                 setMessage('You\'re subscribed! Check your inbox for a welcome email.')
                 setEmail('')

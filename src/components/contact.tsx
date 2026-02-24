@@ -48,6 +48,11 @@ export default function ContactSection() {
             const data = await response.json()
 
             if (response.ok) {
+                window.gtag?.('event', 'generate_lead', {
+                    event_category: 'Contact',
+                    event_label: formData.subject,
+                    value: 1,
+                })
                 setFormStatus({
                     success: true,
                     error: false,
