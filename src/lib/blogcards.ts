@@ -95,4 +95,17 @@ export const Blogs: BlogCard[] = [
         image:
             'https://img.freepik.com/free-vector/gradient-abstract-wireframe-background_23-2149020364.jpg',
     },
+    {
+        id: 7,
+        slug: 'scaling-data-engineering-consultancies',
+        title: 'Scaling Data Engineering in Consultancies: Build, Partner, or Both?',
+        subtitle:
+            'Digital consultancies are racing to build data practices. Here\'s how to scale delivery without burning out your team or compromising quality.',
+        excerpt:
+            'How consultancies can scale data engineering delivery using a hybrid model of core teams and specialized partners.',
+        tag: 'Business',
+        author: 'Nitin Jain',
+        date: 'Feb 26, 2026',
+        image: '/scaling-data-consultancy.svg',
+    },
 ]
