@@ -108,4 +108,30 @@ export const Blogs: BlogCard[] = [
         date: 'Feb 26, 2026',
         image: '/scaling-data-consultancy.svg',
     },
+    {
+        id: 8,
+        slug: 'regulatory-data-platform-canadian-fintechs',
+        title: 'Building a Regulatory-Ready Data Platform for Canadian Fintechs',
+        subtitle:
+            'What OSFI, FINTRAC, and PIPEDA actually require from your data infrastructure — and how to build for compliance without slowing down product delivery.',
+        excerpt:
+            'A practical framework for building data platforms that satisfy Canadian financial regulators without becoming a bottleneck for product teams.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'Feb 26, 2026',
+        image: '/regulatory-data-platform-fintech.svg',
+    },
+    {
+        id: 9,
+        slug: 'dbt-airflow-at-scale',
+        title: 'DBT + Airflow at Scale: What Breaks After 200 Models (and How to Fix It)',
+        subtitle:
+            'The patterns that work at 50 models collapse at 200+. Here is what production DBT + Airflow architectures actually look like at high-growth companies.',
+        excerpt:
+            'Production-tested patterns for scaling DBT and Airflow beyond 200 models — domain-scoped DAGs, test gates, incremental strategies, and warehouse isolation.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'Feb 26, 2026',
+        image: '/dbt-airflow-at-scale.svg',
+    },
 ]

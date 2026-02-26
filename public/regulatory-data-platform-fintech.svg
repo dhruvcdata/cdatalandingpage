@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#111128;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="680" fill="url(#bg)" rx="12"/>
+  <text x="600" y="48" text-anchor="middle" fill="#e2e8f0" font-size="24" font-weight="700">Regulatory-Ready Data Platform Architecture</text>
+  <text x="600" y="74" text-anchor="middle" fill="#94a3b8" font-size="14">OSFI / FINTRAC / PIPEDA compliance for Canadian fintechs</text>
+  <line x1="100" y1="92" x2="1100" y2="92" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Layer 1: Data Sources -->
+  <rect x="60" y="110" width="1080" height="90" rx="10" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="120" y="140" fill="#93c5fd" font-size="14" font-weight="700">DATA SOURCES</text>
+  <rect x="120" y="155" width="140" height="32" rx="6" fill="#1e293b"/><text x="190" y="176" text-anchor="middle" fill="#cbd5e1" font-size="12">Core Banking</text>
+  <rect x="280" y="155" width="140" height="32" rx="6" fill="#1e293b"/><text x="350" y="176" text-anchor="middle" fill="#cbd5e1" font-size="12">Payments (Visa)</text>
+  <rect x="440" y="155" width="140" height="32" rx="6" fill="#1e293b"/><text x="510" y="176" text-anchor="middle" fill="#cbd5e1" font-size="12">KYC / AML</text>
+  <rect x="600" y="155" width="140" height="32" rx="6" fill="#1e293b"/><text x="670" y="176" text-anchor="middle" fill="#cbd5e1" font-size="12">Credit Bureau</text>
+  <rect x="760" y="155" width="140" height="32" rx="6" fill="#1e293b"/><text x="830" y="176" text-anchor="middle" fill="#cbd5e1" font-size="12">App Events</text>
+  <rect x="920" y="155" width="140" height="32" rx="6" fill="#1e293b"/><text x="990" y="176" text-anchor="middle" fill="#cbd5e1" font-size="12">3rd Party APIs</text>
+
+  <!-- Arrows down -->
+  <line x1="600" y1="200" x2="600" y2="225" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="595,225 605,225 600,232" fill="#3b82f6"/>
+
+  <!-- Layer 2: Ingestion + Governance -->
+  <rect x="60" y="235" width="530" height="120" rx="10" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="120" y="265" fill="#93c5fd" font-size="14" font-weight="700">INGESTION &amp; TRANSFORMATION</text>
+  <rect x="90" y="280" width="110" height="28" rx="6" fill="#1e293b"/><text x="145" y="299" text-anchor="middle" fill="#fbbf24" font-size="11">Airflow / MWAA</text>
+  <rect x="215" y="280" width="80" height="28" rx="6" fill="#1e293b"/><text x="255" y="299" text-anchor="middle" fill="#fbbf24" font-size="11">DBT</text>
+  <rect x="310" y="280" width="100" height="28" rx="6" fill="#1e293b"/><text x="360" y="299" text-anchor="middle" fill="#fbbf24" font-size="11">Spark / Glue</text>
+  <rect x="425" y="280" width="140" height="28" rx="6" fill="#1e293b"/><text x="495" y="299" text-anchor="middle" fill="#fbbf24" font-size="11">Schema Registry</text>
+  <text x="120" y="340" fill="#64748b" font-size="11">Bronze → Silver → Gold medallion layers</text>
+  <text x="360" y="340" fill="#64748b" font-size="11">with lineage tracked at every hop</text>
+
+  <!-- Right: Governance Layer -->
+  <rect x="610" y="235" width="530" height="120" rx="10" fill="#0f172a" stroke="#14532d" stroke-width="1.5"/>
+  <text x="670" y="265" fill="#6ee7b7" font-size="14" font-weight="700">GOVERNANCE &amp; COMPLIANCE</text>
+  <rect x="640" y="280" width="110" height="28" rx="6" fill="#052e16"/><text x="695" y="299" text-anchor="middle" fill="#6ee7b7" font-size="11">Data Lineage</text>
+  <rect x="765" y="280" width="110" height="28" rx="6" fill="#052e16"/><text x="820" y="299" text-anchor="middle" fill="#6ee7b7" font-size="11">Access Control</text>
+  <rect x="890" y="280" width="110" height="28" rx="6" fill="#052e16"/><text x="945" y="299" text-anchor="middle" fill="#6ee7b7" font-size="11">Audit Trails</text>
+  <rect x="1015" y="280" width="100" height="28" rx="6" fill="#052e16"/><text x="1065" y="299" text-anchor="middle" fill="#6ee7b7" font-size="11">PII Masking</text>
+  <text x="670" y="340" fill="#64748b" font-size="11">OSFI B-13 | FINTRAC | PIPEDA | SOC2 | PCI-DSS</text>
+
+  <!-- Arrows down -->
+  <line x1="600" y1="355" x2="600" y2="380" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="595,380 605,380 600,387" fill="#3b82f6"/>
+
+  <!-- Layer 3: Warehouse -->
+  <rect x="60" y="390" width="1080" height="100" rx="10" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="120" y="420" fill="#93c5fd" font-size="14" font-weight="700">DATA WAREHOUSE + LAKE</text>
+  <rect x="120" y="435" width="160" height="36" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/><text x="200" y="458" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="600">Redshift</text>
+  <rect x="310" y="435" width="160" height="36" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/><text x="390" y="458" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="600">BigQuery</text>
+  <rect x="500" y="435" width="160" height="36" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/><text x="580" y="458" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="600">S3 Data Lake</text>
+  <rect x="690" y="435" width="160" height="36" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/><text x="770" y="458" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="600">SageMaker</text>
+  <rect x="880" y="435" width="160" height="36" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/><text x="960" y="458" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="600">ML Feature Store</text>
+
+  <!-- Arrows down -->
+  <line x1="600" y1="490" x2="600" y2="515" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="595,515 605,515 600,522" fill="#3b82f6"/>
+
+  <!-- Layer 4: Consumption -->
+  <rect x="60" y="525" width="1080" height="55" rx="10" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="120" y="558" fill="#93c5fd" font-size="14" font-weight="700">CONSUMPTION</text>
+  <rect x="280" y="540" width="120" height="28" rx="6" fill="#1e293b"/><text x="340" y="559" text-anchor="middle" fill="#cbd5e1" font-size="11">Sisense / BI</text>
+  <rect x="420" y="540" width="120" height="28" rx="6" fill="#1e293b"/><text x="480" y="559" text-anchor="middle" fill="#cbd5e1" font-size="11">Fraud Detection</text>
+  <rect x="560" y="540" width="120" height="28" rx="6" fill="#1e293b"/><text x="620" y="559" text-anchor="middle" fill="#cbd5e1" font-size="11">Credit Scoring</text>
+  <rect x="700" y="540" width="120" height="28" rx="6" fill="#1e293b"/><text x="760" y="559" text-anchor="middle" fill="#cbd5e1" font-size="11">Reg Reporting</text>
+  <rect x="840" y="540" width="140" height="28" rx="6" fill="#1e293b"/><text x="910" y="559" text-anchor="middle" fill="#cbd5e1" font-size="11">Customer Analytics</text>
+
+  <!-- Bottom bar -->
+  <rect x="60" y="600" width="1080" height="60" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="130" y="625" fill="#f87171" font-size="13" font-weight="700">KEY REQUIREMENT:</text>
+  <text x="310" y="625" fill="#e2e8f0" font-size="13">Every data transformation is traceable, every access is logged, every PII field is masked or tokenized.</text>
+  <text x="310" y="648" fill="#94a3b8" font-size="12">Auditors can reconstruct any data point's journey from source to dashboard in under 24 hours.</text>
+</svg>
