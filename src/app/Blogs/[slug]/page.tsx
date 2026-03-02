@@ -175,9 +175,11 @@ export default async function BlogSlugPage({
 
                         if (block.type === 'paragraph') {
                             return (
-                                <p key={index} className="text-gray-300 leading-relaxed">
-                                    {block.value}
-                                </p>
+                                <p
+                                    key={index}
+                                    className="text-gray-300 leading-relaxed [&_strong]:text-white [&_strong]:font-semibold [&_code]:text-blue-400 [&_code]:bg-white/5 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono [&_a]:text-blue-400 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-blue-300"
+                                    dangerouslySetInnerHTML={{ __html: block.value }}
+                                />
                             )
                         }
 
@@ -228,6 +230,33 @@ export default async function BlogSlugPage({
                                     <p className="mt-2 text-gray-400">{item.answer}</p>
                                 </Card>
                             ))}
+                        </div>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="mt-16 rounded-xl border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-8 lg:p-10">
+                        <h3 className="text-2xl font-semibold text-white">
+                            Need help building your data platform?
+                        </h3>
+                        <p className="mt-3 text-gray-300 leading-relaxed max-w-2xl">
+                            At CData Consulting, we design, build, and operate modern data
+                            infrastructure for companies across North America. Whether you are
+                            planning a migration, optimizing costs, or building from scratch
+                            — let&apos;s talk.
+                        </p>
+                        <div className="mt-6 flex flex-wrap gap-4">
+                            <Link
+                                href="/Contact"
+                                className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
+                            >
+                                Schedule a Consultation
+                            </Link>
+                            <a
+                                href="mailto:nitin@cdatainsights.com"
+                                className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                            >
+                                Email Us Directly
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -281,6 +310,20 @@ export default async function BlogSlugPage({
                                 </li>
                             ))}
                         </ul>
+                    </Card>
+
+                    {/* SIDEBAR CTA */}
+                    <Card className="bg-gradient-to-b from-blue-500/10 to-purple-500/10 border border-blue-500/20 p-6">
+                        <h4 className="font-medium text-white mb-2">Work with Us</h4>
+                        <p className="text-sm text-gray-400 mb-4">
+                            Data engineering, platform architecture, and cloud migration — delivered by senior consultants.
+                        </p>
+                        <Link
+                            href="/Contact"
+                            className="block w-full rounded-lg bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-blue-500"
+                        >
+                            Get in Touch
+                        </Link>
                     </Card>
                 </aside>
             </section>
