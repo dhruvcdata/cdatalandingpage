@@ -134,4 +134,43 @@ export const Blogs: BlogCard[] = [
         date: 'Feb 26, 2026',
         image: '/dbt-airflow-at-scale.svg',
     },
+    {
+        id: 10,
+        slug: 'modern-data-lakehouse-iceberg-spark-glue',
+        title: 'Building a Modern Data Lakehouse with Apache Iceberg, Spark, and AWS Glue',
+        subtitle:
+            'A practical guide to building a production data lakehouse — from raw ingestion to serving analytics — with architecture diagrams, code examples, and lessons from real deployments.',
+        excerpt:
+            'How to build a production lakehouse with Iceberg on S3, Spark for compute, and AWS Glue as the catalog — with code examples and deployment lessons.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'Mar 01, 2026',
+        image: '/blog-diagrams/lakehouse-architecture.svg',
+    },
+    {
+        id: 11,
+        slug: 'real-time-vs-batch-data-pipelines',
+        title: 'Real-Time vs Batch Pipelines: Architecture Patterns for Data Teams',
+        subtitle:
+            'When should you stream and when should you batch? A practical comparison with architecture diagrams, code examples, and a hybrid pattern that gives you both.',
+        excerpt:
+            'Streaming vs batch pipelines compared — with a hybrid Kafka-based pattern that gives data teams both real-time speed and batch accuracy.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'Mar 01, 2026',
+        image: '/blog-diagrams/hybrid-pipeline-architecture.svg',
+    },
+    {
+        id: 12,
+        slug: 'data-pipeline-observability-silent-failures',
+        title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
+        subtitle:
+            'Your pipeline succeeded. Your dashboard is wrong. Here is how to build an observability layer that catches data quality issues before they reach production.',
+        excerpt:
+            'How to build quality gates and a three-layer observability stack that catches silent data pipeline failures before they reach stakeholders.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'Mar 01, 2026',
+        image: '/blog-diagrams/observability-architecture.svg',
+    },
 ]

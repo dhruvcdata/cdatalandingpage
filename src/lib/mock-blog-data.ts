@@ -1314,4 +1314,535 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
         ],
     },
+    'modern-data-lakehouse-iceberg-spark-glue': {
+        slug: 'modern-data-lakehouse-iceberg-spark-glue',
+        title: 'Building a Modern Data Lakehouse with Apache Iceberg, Spark, and AWS Glue',
+        subtitle:
+            'A practical guide to building a production data lakehouse \u2014 from raw ingestion to serving analytics \u2014 with architecture diagrams, code examples, and lessons from real deployments.',
+        category: 'DATA ENGINEERING',
+        date: 'March 1, 2026',
+        readingTime: '10 min read',
+        author: {
+            name: 'Nitin Jain',
+            role: 'Founder, CData Insights',
+            avatar: '/whitelogo.png',
+        },
+        heroImage: '/blog-diagrams/lakehouse-architecture.svg',
+        tags: ['Apache Iceberg', 'Spark', 'AWS Glue', 'Data Lakehouse', 'Parquet', 'Data Engineering'],
+        content: [
+            {
+                type: 'paragraph',
+                value:
+                    'The data lakehouse has moved from buzzword to production reality. Organizations that used to choose between the flexibility of a data lake and the reliability of a data warehouse now get both \u2014 with <strong>Apache Iceberg</strong> as the table format, <strong>Spark</strong> as the compute engine, and <strong>AWS Glue</strong> as the catalog and orchestration layer.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'At CData Consulting, we have deployed this pattern for clients ranging from mid-market companies to enterprises managing petabytes. This post walks through the production architecture we use, with real code and the design decisions that matter.',
+            },
+            {
+                type: 'heading',
+                value: 'Why a Lakehouse? The Problem It Solves',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Traditional architectures force a choice. A <strong>data lake</strong> (S3 + Parquet) gives you cheap storage, any format, and schema-on-read flexibility \u2014 but no transactions, no schema enforcement, and no time travel. A <strong>data warehouse</strong> (Redshift/Snowflake) gives you ACID transactions, schema enforcement, and time travel \u2014 but is expensive at scale, creates vendor lock-in, and couples compute with storage.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'A <strong>data lakehouse</strong> (S3 + Iceberg + Spark) combines both: cheap object storage on S3, ACID transactions via Iceberg snapshots, schema evolution without rewrites, time travel and rollback, open format queryable from Spark, Trino, Athena, and Snowflake, and fully decoupled compute and storage.',
+            },
+            {
+                type: 'heading',
+                value: 'Reference Architecture',
+            },
+            {
+                type: 'image',
+                value: '/blog-diagrams/lakehouse-architecture.svg',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The key insight: <strong>raw data stays in its original format, curated data lives in Iceberg tables, and any engine can query through the Glue Catalog.</strong>',
+            },
+            {
+                type: 'heading',
+                value: 'Layer 1: Raw Ingestion',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Raw data lands in S3 organized by source and date. No transformation yet \u2014 just land it safely. We use a consistent path structure: <code>s3://lake/raw/{source}/{date}/data.parquet</code>. The critical design decision here is that raw data stays immutable. Never modify it. If upstream changes schema, the old data still exists in its original format. This is your safety net.',
+            },
+            {
+                type: 'heading',
+                value: 'Layer 2: Catalog with AWS Glue',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The Glue Crawler auto-discovers schemas and registers tables in the catalog. We configure crawlers to scan the raw zone daily, with <code>DeleteBehavior</code> set to <code>LOG</code> instead of <code>DELETE_FROM_DATABASE</code>. If a source table disappears, we want an alert \u2014 not silent deletion of the catalog entry. The Glue Data Catalog becomes the single metadata store that Spark, Athena, Trino, and Snowflake all reference.',
+            },
+            {
+                type: 'heading',
+                value: 'Layer 3: Transform with Spark + Iceberg',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'This is where data becomes useful. Spark reads from the raw zone, cleans and enriches, then writes to Iceberg tables. We configure Spark with the Iceberg Spark Catalog backed by GlueCatalog, pointing the warehouse to <code>s3://lake/curated/</code>. The pipeline reads raw Parquet, validates row counts (halting if more than 5% of rows are dropped), enriches with dimension tables using broadcast joins for small lookups, and writes atomically to Iceberg using Zstd-compressed Parquet partitioned by date and country.',
+            },
+            {
+                type: 'heading',
+                value: 'Iceberg Table Management',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Iceberg is not just about writing tables. Its power is in <strong>table maintenance</strong> \u2014 the operations that keep your lakehouse fast and cost-efficient. Schema evolution is instant: add or rename columns without rewriting data. Old data returns NULL for new columns. Time travel lets you query historical snapshots or roll back bad writes. Compaction merges small files (critical for streaming writes that create thousands of tiny files). Snapshot expiry controls storage costs by cleaning up old metadata.',
+            },
+            {
+                type: 'heading',
+                value: 'Lessons from Our Client Deployments',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>1. Partition by date first, then by high-cardinality dimension.</strong> A common mistake is partitioning by too many columns. <code>event_date</code> + <code>country</code> works well. Adding <code>campaign_id</code> + <code>device_type</code> creates millions of tiny files.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>2. Compaction is not optional.</strong> Streaming writes create thousands of small files. Schedule <code>rewrite_data_files</code> daily. Without it, query performance degrades within a week.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>3. Set snapshot expiry from day one.</strong> Each Iceberg snapshot keeps references to all data files. Without expiry, metadata grows unbounded. We expire snapshots older than 7 days and keep the latest 10.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>4. Use Zstd compression, not Snappy.</strong> Zstd gives 30\u201340% better compression than Snappy with comparable read speed. At petabyte scale, that is real money on S3 storage.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>5. The Glue Catalog is your single source of truth.</strong> Every engine \u2014 Spark, Athena, Trino, Snowflake \u2014 should read table definitions from the same catalog. If teams create ad-hoc tables outside the catalog, you lose governance.',
+            },
+            {
+                type: 'heading',
+                value: 'When to Use This Architecture',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'This pattern works best when you have multiple consumers (analytics, ML, reporting) reading the same data, you need engine flexibility without lock-in, your data is too large for a traditional warehouse to be cost-effective, you need schema evolution without painful migrations, and you want time travel for debugging and compliance. If your data fits in a single Postgres instance, you do not need a lakehouse. Use the right tool for the scale.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'At <a href="https://cdatainsights.com">CData Consulting</a>, we help organizations design, build, and operate modern data platforms. Whether you are planning a lakehouse migration or optimizing an existing one, <a href="mailto:nitin@cdatainsights.com">reach out</a> \u2014 we would love to help.',
+            },
+        ],
+        faq: [
+            {
+                question: 'What is the difference between a data lake and a data lakehouse?',
+                answer:
+                    'A data lake stores raw files (Parquet, JSON, CSV) on cheap object storage like S3 but lacks transactions, schema enforcement, and time travel. A data lakehouse adds a table format like Apache Iceberg on top of the lake, providing ACID transactions, schema evolution, and time travel while keeping the cost and flexibility of object storage.',
+            },
+            {
+                question: 'Why use Apache Iceberg instead of Delta Lake?',
+                answer:
+                    'Iceberg is engine-agnostic \u2014 it works equally well with Spark, Trino, Athena, Snowflake, and Flink. Delta Lake is tightly coupled with Databricks. If you need multi-engine interoperability and want to avoid vendor lock-in, Iceberg is the stronger choice.',
+            },
+            {
+                question: 'How does AWS Glue fit into the lakehouse architecture?',
+                answer:
+                    'AWS Glue serves two roles: the Data Catalog provides centralized metadata (table schemas, partition info, statistics) that any compute engine can reference, and Glue ETL provides managed Spark jobs for transformation. The catalog is the more critical piece \u2014 it is the single source of truth for table definitions.',
+            },
+            {
+                question: 'How much does a lakehouse architecture cost compared to Snowflake?',
+                answer:
+                    'At petabyte scale, a lakehouse on S3 + Iceberg typically costs 50\u201370% less than an equivalent Snowflake deployment. The savings come from decoupled storage (S3 at $0.023/GB vs Snowflake compressed storage pricing) and flexible compute (spot instances, auto-scaling Spark). At smaller scales under 10TB, the operational complexity may not justify the savings.',
+            },
+        ],
+        relatedBlogs: [
+            {
+                title: 'Real-Time vs Batch Pipelines: Architecture Patterns for Data Teams',
+                slug: '/Blogs/real-time-vs-batch-data-pipelines',
+            },
+            {
+                title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
+                slug: '/Blogs/data-pipeline-observability-silent-failures',
+            },
+        ],
+    },
+    'real-time-vs-batch-data-pipelines': {
+        slug: 'real-time-vs-batch-data-pipelines',
+        title: 'Real-Time vs Batch Pipelines: Architecture Patterns for Data Teams',
+        subtitle:
+            'When should you stream and when should you batch? A practical comparison with architecture diagrams, code examples, and a hybrid pattern that gives you both.',
+        category: 'DATA ENGINEERING',
+        date: 'March 1, 2026',
+        readingTime: '9 min read',
+        author: {
+            name: 'Nitin Jain',
+            role: 'Founder, CData Insights',
+            avatar: '/whitelogo.png',
+        },
+        heroImage: '/blog-diagrams/hybrid-pipeline-architecture.svg',
+        tags: ['Kafka', 'Spark', 'Streaming', 'Batch', 'Data Engineering', 'Architecture'],
+        content: [
+            {
+                type: 'paragraph',
+                value:
+                    'Every data team faces the same question: <strong>should we process this data in real-time or in batch?</strong> The answer is almost always "both" \u2014 but knowing which workloads go where is the difference between a system that scales and one that collapses under its own complexity.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'At CData Consulting, we see this question on nearly every engagement. This post breaks down both architectures, shows when to use each, and presents the hybrid pattern we deploy for clients who need both speed and accuracy.',
+            },
+            {
+                type: 'heading',
+                value: 'The Core Tradeoff',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Real-time</strong> gives you speed but costs more in complexity, infrastructure, and debugging difficulty. Use cases include live dashboards, fraud detection, and real-time bidding (sub-second to sub-minute latency). <strong>Batch</strong> is simpler and cheaper but your data is always stale by at least one processing interval. Use cases include daily reports, ML training data, and billing reconciliation (hourly to daily latency). The right answer depends on one question: <strong>what is the cost of stale data for this use case?</strong>',
+            },
+            {
+                type: 'heading',
+                value: 'Architecture 1: Batch Pipeline',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The workhorse of data engineering. Data flows from source systems to a landing zone on S3 (raw files in Parquet or CSV), then through a Spark job for cleaning, enrichment, and aggregation, and finally to the serving layer (Iceberg tables queryable via Athena, Snowflake, or dashboards). The entire flow is orchestrated by an Airflow DAG \u2014 scheduled daily or hourly.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'A typical Airflow DAG validates that source data exists, runs a Spark transformation with Iceberg catalog support and dynamic allocation, updates the Glue Catalog via a crawler, and performs data quality checks against expected row counts and drop thresholds.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>When batch works best:</strong> reporting and analytics (dashboards refreshed daily or hourly), ML model training (models retrained on yesterday\'s data), billing and reconciliation (accuracy matters more than speed), backfills (reprocessing historical data after a schema change), and complex joins (joining 10 tables is straightforward in batch, painful in streaming).',
+            },
+            {
+                type: 'heading',
+                value: 'Architecture 2: Real-Time Streaming Pipeline',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Events flow continuously from sources (clickstream, IoT sensors, ad events, webhooks) into Kafka topics \u2014 a durable, partitioned, replayable log. Spark Structured Streaming reads from Kafka, parses JSON events, and performs windowed aggregations with watermarks to handle late-arriving data. Results are written to two sinks: a real-time serving layer (ClickHouse or Redis for dashboards) and S3 for batch reconciliation.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>When streaming works best:</strong> real-time dashboards (live campaign performance, active user counts), fraud and anomaly detection (catch suspicious patterns before damage is done), real-time bidding (ad-tech needs sub-second decisions), operational monitoring (system health, SLA tracking), and event-driven triggers (send an alert when a campaign budget is exhausted).',
+            },
+            {
+                type: 'heading',
+                value: 'Architecture 3: The Hybrid (What We Actually Deploy)',
+            },
+            {
+                type: 'image',
+                value: '/blog-diagrams/hybrid-pipeline-architecture.svg',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'In practice, most organizations need both. The hybrid architecture uses <strong>Kafka as the central nervous system</strong>, with streaming and batch paths consuming the same events. The <strong>hot path</strong> runs Spark Structured Streaming with 5-minute windowed aggregations, writing to Redis (hot cache) and ClickHouse (real-time OLAP). The <strong>cold path</strong> uses Kafka Connect to land events on S3, then daily Spark jobs perform full recomputation with complex joins, writing to Iceberg tables queryable via Athena and BI tools.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Kafka is the single source of truth.</strong> Both paths consume from the same topics. The streaming path gives you speed (seconds). The batch path gives you accuracy (complete joins, reconciled numbers). When they disagree, batch wins \u2014 it is the <strong>system of record</strong>.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Practical example at an ad-tech company:</strong> The hot path reports "Campaign X has 12,847 impressions in the last hour, CTR is 2.3%, spend is $4,521" \u2014 powering the live campaign dashboard, updated every 30 seconds, approximately correct. The cold path reports "Campaign X had 12,892 impressions yesterday, CTR was 2.31%, spend was $4,538.42" \u2014 powering the daily report and billing, updated at 6 AM, exactly correct. The dashboard shows the hot path during the day. The next morning, batch numbers replace streaming approximations.',
+            },
+            {
+                type: 'heading',
+                value: 'Decision Framework',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'To decide which path a workload belongs on, ask: <strong>Do you need it in under 1 minute?</strong> If yes, and approximate data is OK for now, <strong>stream only</strong> (live dashboards, monitoring). If yes but you need exact numbers later, <strong>stream + fix in batch</strong> (billing, reporting). If no, and the logic is simple, use <strong>micro-batch</strong> at 15-minute intervals (alerts, simple aggregations). If no and the logic is complex, use <strong>full batch</strong> daily or hourly (reporting, ML, complex joins).',
+            },
+            {
+                type: 'heading',
+                value: 'Common Pitfalls',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>1. Streaming everything because it sounds impressive.</strong> Streaming adds operational complexity \u2014 checkpointing, watermarks, out-of-order events, exactly-once semantics. If daily freshness is fine, batch is 10x simpler to build and debug.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>2. Not archiving streaming data.</strong> Always land streaming events to S3 (the cold path). Without an archive, you cannot backfill, debug, or retrain ML models on historical data.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>3. Trusting streaming aggregates for billing.</strong> Streaming numbers are approximate by nature (late events, processing delays). Always reconcile with a batch job for anything financial.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>4. Ignoring late-arriving data.</strong> Events arrive out of order. A click from 11:59 PM might arrive at 12:02 AM. Your watermark strategy determines whether you include or drop it. For batch, this is trivial \u2014 you reprocess the full day. For streaming, you need explicit watermark policies.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>5. Building two completely separate pipelines.</strong> The hybrid pattern works because both paths share the same Kafka source and the same schema. If your streaming and batch pipelines read from different sources with different schemas, you are maintaining two systems with inevitable drift.',
+            },
+            {
+                type: 'heading',
+                value: 'The Bottom Line',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Do not choose between streaming and batch. <strong>Use Kafka as the backbone, stream what needs to be fast, batch what needs to be accurate, and reconcile where they overlap.</strong> This is the architecture pattern that scales from startup to enterprise \u2014 and it is what we deploy for clients who need both operational speed and analytical accuracy.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'At <a href="https://cdatainsights.com">CData Consulting</a>, we design and build data pipelines that match your latency requirements \u2014 whether that is sub-second streaming or reliable daily batch. <a href="mailto:nitin@cdatainsights.com">Let\'s talk</a> about your architecture.',
+            },
+        ],
+        faq: [
+            {
+                question: 'When should I use streaming instead of batch?',
+                answer:
+                    'Use streaming when the cost of stale data is high \u2014 live dashboards, fraud detection, real-time bidding, and operational monitoring. If daily or hourly freshness is acceptable (reporting, ML training, billing), batch is simpler, cheaper, and easier to debug.',
+            },
+            {
+                question: 'What is the hybrid pipeline architecture?',
+                answer:
+                    'The hybrid pattern uses Kafka as the central event log with two consumer paths: a hot path (Spark Structured Streaming for real-time aggregations) and a cold path (Kafka Connect to S3, then daily Spark batch jobs). Both paths consume the same events. The hot path gives speed, the cold path gives accuracy.',
+            },
+            {
+                question: 'Why does batch win when streaming and batch numbers disagree?',
+                answer:
+                    'Streaming aggregates are approximate \u2014 they may miss late-arriving events, have processing delays, or use windowed approximations. Batch jobs reprocess the complete dataset for a given period, including all late arrivals, and can perform complex multi-table joins. For anything financial or compliance-related, batch is the system of record.',
+            },
+            {
+                question: 'How much more expensive is streaming compared to batch?',
+                answer:
+                    'Streaming typically costs 3\u20135x more than batch for the same data volume. The cost comes from always-on compute (Spark Streaming clusters, Kafka brokers), operational complexity (monitoring checkpoints, handling failures, managing watermarks), and serving infrastructure (Redis, ClickHouse). The tradeoff is latency \u2014 seconds instead of hours.',
+            },
+        ],
+        relatedBlogs: [
+            {
+                title: 'Building a Modern Data Lakehouse with Apache Iceberg, Spark, and AWS Glue',
+                slug: '/Blogs/modern-data-lakehouse-iceberg-spark-glue',
+            },
+            {
+                title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
+                slug: '/Blogs/data-pipeline-observability-silent-failures',
+            },
+        ],
+    },
+    'data-pipeline-observability-silent-failures': {
+        slug: 'data-pipeline-observability-silent-failures',
+        title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
+        subtitle:
+            'Your pipeline succeeded. Your dashboard is wrong. Here is how to build an observability layer that catches data quality issues before they reach production.',
+        category: 'DATA ENGINEERING',
+        date: 'March 1, 2026',
+        readingTime: '8 min read',
+        author: {
+            name: 'Nitin Jain',
+            role: 'Founder, CData Insights',
+            avatar: '/whitelogo.png',
+        },
+        heroImage: '/blog-diagrams/observability-architecture.svg',
+        tags: ['Observability', 'Data Quality', 'Data Engineering', 'Monitoring', 'Architecture'],
+        content: [
+            {
+                type: 'paragraph',
+                value:
+                    'The most dangerous data pipeline failure is one that does not look like a failure.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The Airflow DAG shows green. The Spark job completed in 12 minutes. The data landed in the table. Everyone goes home. The next morning, the CFO opens the revenue dashboard and the numbers are 40% lower than expected. A frantic Slack thread begins.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>What happened?</strong> An upstream system changed a column name. The join silently returned zero matches instead of erroring. The pipeline wrote empty results to the serving table. Every downstream check passed because technically, the pipeline succeeded.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'At CData Consulting, we have seen this pattern at nearly every client we work with. The fix is not more tests \u2014 it is a fundamentally different approach to observability that treats <strong>data</strong> as a first-class citizen alongside infrastructure.',
+            },
+            {
+                type: 'heading',
+                value: 'The Three Layers of Pipeline Observability',
+            },
+            {
+                type: 'image',
+                value: '/blog-diagrams/observability-architecture.svg',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Most teams only monitor Layer 1. The teams that sleep through the night monitor all three. <strong>Layer 1: Infrastructure Observability</strong> \u2014 CPU, memory, disk, pod health, Spark executor status, Kafka consumer lag. This tells you the machine is running. <strong>Layer 2: Pipeline Observability</strong> \u2014 execution time, rows processed, data volume in vs out, join hit rates. This tells you the job worked. <strong>Layer 3: Data Quality Observability</strong> \u2014 row counts, distributions, freshness, schema drift, business rule validation. This tells you the data is right.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Without Layer 3, you can have green dashboards and wrong numbers.',
+            },
+            {
+                type: 'heading',
+                value: 'Quality Gates: Stop Bad Data at the Source',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'We build quality checks directly into the pipeline as <strong>gates</strong> \u2014 the pipeline halts if a check fails, preventing bad data from reaching production.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Gate 1: Schema Validation at Ingestion.</strong> Validate that incoming data matches expected schema. This catches upstream column renames, type changes, and missing fields. Compare actual column names and types against expected, raise an error on mismatches, and log warnings for new unexpected columns (which are worth knowing about but should not block the pipeline).',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Gate 2: Volume Anomaly Detection.</strong> Compare today\'s row count against the trailing 7-day average. If the count drops more than 30%, halt the pipeline and alert. If the count is zero, that is always an error \u2014 a pipeline that writes zero rows should fail, not succeed silently.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Gate 3: Freshness Monitoring.</strong> Verify that the table has been updated within the SLA window. With Iceberg, you can check snapshot metadata directly \u2014 no need to scan data. If the table is staler than the defined threshold (for example, 2 hours), raise a freshness alert.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Gate 4: Distribution Drift Detection.</strong> Check that key column distributions have not shifted dramatically. For example, if the US segment suddenly disappears from the data or drops below a minimum expected row count, flag it. This catches issues like a country filter being accidentally applied upstream.',
+            },
+            {
+                type: 'heading',
+                value: 'The Observable Pipeline: Putting It All Together',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'All four gates integrate into a single Airflow DAG: <strong>Ingest</strong> (land raw data) \u2192 <strong>Gate 1</strong> (validate schema \u2014 fail: halt + alert) \u2192 <strong>Transform</strong> (clean, enrich, aggregate) \u2192 <strong>Gate 2</strong> (validate volume \u2014 fail: halt + alert) \u2192 <strong>Load</strong> (write to Iceberg) \u2192 <strong>Gates 3 &amp; 4</strong> (validate freshness + distribution \u2014 fail: halt + rollback) \u2192 <strong>Publish Metrics</strong> (Grafana dashboards).',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The critical detail: when a post-load validation fails, we use <strong>Iceberg\'s time travel to rollback</strong> to the last known good snapshot. The serving table is never left in a bad state. Consumers either see fresh-and-correct data, or yesterday\'s data with a freshness alert \u2014 never wrong data.',
+            },
+            {
+                type: 'heading',
+                value: 'The Metrics Dashboard',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Every CData pipeline deployment includes a Grafana dashboard tracking core metrics: <strong>data freshness</strong> per table with SLA status, <strong>volume trends</strong> over the trailing 7 days, <strong>pipeline latency</strong> broken down by stage (ingest, transform, load, validate), and <strong>quality check status</strong> (schema, volume, nulls, uniqueness, distribution, freshness) with pass/fail history.',
+            },
+            {
+                type: 'heading',
+                value: 'Five Rules for Data Observability',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>1. Zero-row output is always an error.</strong> A pipeline that writes zero rows should fail, not succeed silently. This one rule alone would prevent the majority of data incidents we have seen.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>2. Monitor data, not just infrastructure.</strong> Your Kubernetes cluster can be perfectly healthy while your pipeline writes garbage to the serving table. Layer 3 observability is non-negotiable.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>3. Use relative thresholds, not absolute.</strong> Do not alert on "fewer than 1 million rows." Alert on "30% fewer rows than the trailing 7-day average." Absolute thresholds break whenever your data naturally grows or shrinks.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>4. Build rollback into the architecture.</strong> Iceberg\'s snapshot isolation makes this trivial. When a quality gate fails post-load, roll back to the previous snapshot. Your consumers see stale-but-correct data while you investigate. This is infinitely better than wrong data in production.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>5. Alert the right person with the right context.</strong> "Pipeline failed" is useless. "Table fact_ad_events has 0 rows for 2026-03-01 after transform. Expected ~1.2M based on 7-day average. Last successful run: 23 hours ago. Possible cause: upstream schema change in raw.ad_events (new column device_category detected)." That is actionable.',
+            },
+            {
+                type: 'heading',
+                value: 'The Cost of Not Doing This',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'We have worked with teams that discovered data quality issues through their stakeholders \u2014 the CFO asking "why are revenue numbers wrong?" or a campaign manager noticing "the dashboard shows zero clicks for the US." The cost is not just the bug fix. It is the <strong>trust deficit</strong>. Once stakeholders lose confidence in the data, they start maintaining their own spreadsheets, double-checking every number, and building shadow analytics. Rebuilding that trust takes months.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Investing in observability upfront is orders of magnitude cheaper than rebuilding trust after a data incident.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'At <a href="https://cdatainsights.com">CData Consulting</a>, we build observable data pipelines from day one \u2014 not as an afterthought. If your data team is fighting silent failures and trust issues, <a href="mailto:nitin@cdatainsights.com">let\'s talk</a> about building the right observability layer for your stack.',
+            },
+        ],
+        faq: [
+            {
+                question: 'What is a silent pipeline failure?',
+                answer:
+                    'A silent failure is when a data pipeline completes successfully (no errors, green status in Airflow) but produces incorrect or incomplete data. Common causes include upstream schema changes that cause joins to return zero matches, empty source files that result in zero-row outputs, and data type changes that cause silent truncation or casting errors.',
+            },
+            {
+                question: 'What are data quality gates?',
+                answer:
+                    'Quality gates are validation checks embedded directly into the pipeline that halt execution if they fail. Unlike post-hoc testing, gates prevent bad data from ever reaching the serving layer. Common gates include schema validation, volume anomaly detection, freshness checks, and distribution drift detection.',
+            },
+            {
+                question: 'How does Iceberg time travel help with data quality?',
+                answer:
+                    'When a post-load quality gate fails, you can use Iceberg rollback to revert the table to its previous good snapshot. This means the serving table is never left in a bad state \u2014 consumers see stale-but-correct data while the team investigates. Without time travel, a bad write can corrupt the production table with no easy way to undo it.',
+            },
+            {
+                question: 'What tools do you recommend for data observability?',
+                answer:
+                    'We use Prometheus and Grafana for metrics and dashboards, PagerDuty or Slack for alerting, and OpenLineage with Marquez for data lineage. For data quality checks, we build custom gates in Python rather than relying on a single vendor tool \u2014 this gives more control and avoids another SaaS dependency in the critical path.',
+            },
+        ],
+        relatedBlogs: [
+            {
+                title: 'Building a Modern Data Lakehouse with Apache Iceberg, Spark, and AWS Glue',
+                slug: '/Blogs/modern-data-lakehouse-iceberg-spark-glue',
+            },
+            {
+                title: 'Real-Time vs Batch Pipelines: Architecture Patterns for Data Teams',
+                slug: '/Blogs/real-time-vs-batch-data-pipelines',
+            },
+        ],
+    },
 }

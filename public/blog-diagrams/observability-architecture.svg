@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bgO" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="650" fill="url(#bgO)" rx="12"/>
+  <text x="450" y="38" text-anchor="middle" fill="#f1f5f9" font-size="20" font-weight="700">Data Pipeline Observability Architecture</text>
+  <text x="450" y="56" text-anchor="middle" fill="#94a3b8" font-size="12">Quality gates at every stage — catch silent failures before stakeholders do</text>
+
+  <!-- Pipeline stages -->
+  <rect x="50" y="80" width="800" height="75" rx="8" fill="rgba(139,92,246,0.08)" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="450" y="100" text-anchor="middle" fill="#8b5cf6" font-size="11" font-weight="700" letter-spacing="1">DATA PIPELINE</text>
+
+  <rect x="75" y="112" width="150" height="32" rx="5" fill="#1e293b" stroke="#374151" stroke-width="1"/>
+  <text x="150" y="133" text-anchor="middle" fill="#e5e7eb" font-size="10" font-weight="600">Ingest</text>
+
+  <line x1="225" y1="128" x2="265" y2="128" stroke="#475569" stroke-width="1.5"/>
+  <rect x="265" y="112" width="150" height="32" rx="5" fill="#1e293b" stroke="#374151" stroke-width="1"/>
+  <text x="340" y="133" text-anchor="middle" fill="#e5e7eb" font-size="10" font-weight="600">Transform</text>
+
+  <line x1="415" y1="128" x2="455" y2="128" stroke="#475569" stroke-width="1.5"/>
+  <rect x="455" y="112" width="150" height="32" rx="5" fill="#1e293b" stroke="#374151" stroke-width="1"/>
+  <text x="530" y="133" text-anchor="middle" fill="#e5e7eb" font-size="10" font-weight="600">Load (Iceberg)</text>
+
+  <line x1="605" y1="128" x2="645" y2="128" stroke="#475569" stroke-width="1.5"/>
+  <rect x="645" y="112" width="150" height="32" rx="5" fill="#1e293b" stroke="#374151" stroke-width="1"/>
+  <text x="720" y="133" text-anchor="middle" fill="#e5e7eb" font-size="10" font-weight="600">Serve</text>
+
+  <!-- Quality gate arrows -->
+  <line x1="150" y1="144" x2="150" y2="180" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="340" y1="144" x2="340" y2="180" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="530" y1="144" x2="530" y2="180" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="720" y1="144" x2="720" y2="180" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4"/>
+
+  <!-- Quality Gates -->
+  <rect x="50" y="180" width="800" height="100" rx="8" fill="rgba(245,158,11,0.08)" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="450" y="200" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700" letter-spacing="1">QUALITY GATES</text>
+
+  <!-- Gate 1 -->
+  <rect x="80" y="212" width="140" height="55" rx="5" fill="rgba(245,158,11,0.1)" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="150" y="230" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="600">Gate 1: Schema</text>
+  <text x="150" y="245" text-anchor="middle" fill="#64748b" font-size="8">Column names match?</text>
+  <text x="150" y="257" text-anchor="middle" fill="#64748b" font-size="8">Types correct?</text>
+
+  <!-- Gate 2 -->
+  <rect x="270" y="212" width="140" height="55" rx="5" fill="rgba(245,158,11,0.1)" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="340" y="230" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="600">Gate 2: Volume</text>
+  <text x="340" y="245" text-anchor="middle" fill="#64748b" font-size="8">Row count in range?</text>
+  <text x="340" y="257" text-anchor="middle" fill="#64748b" font-size="8">No nulls in keys?</text>
+
+  <!-- Gate 3 -->
+  <rect x="460" y="212" width="140" height="55" rx="5" fill="rgba(245,158,11,0.1)" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="530" y="230" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="600">Gate 3: Freshness</text>
+  <text x="530" y="245" text-anchor="middle" fill="#64748b" font-size="8">Updated within SLA?</text>
+  <text x="530" y="257" text-anchor="middle" fill="#64748b" font-size="8">Unique keys valid?</text>
+
+  <!-- Gate 4 -->
+  <rect x="650" y="212" width="140" height="55" rx="5" fill="rgba(245,158,11,0.1)" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="720" y="230" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="600">Gate 4: Distribution</text>
+  <text x="720" y="245" text-anchor="middle" fill="#64748b" font-size="8">Segments present?</text>
+  <text x="720" y="257" text-anchor="middle" fill="#64748b" font-size="8">No drift detected?</text>
+
+  <!-- FAIL / PASS arrows -->
+  <text x="150" y="298" text-anchor="middle" fill="#f87171" font-size="9" font-weight="700">FAIL → Halt + Alert</text>
+  <text x="530" y="298" text-anchor="middle" fill="#10b981" font-size="9" font-weight="700">PASS → Continue</text>
+
+  <!-- Three observability layers -->
+  <text x="450" y="335" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">Three Layers of Observability</text>
+
+  <!-- Layer 3 -->
+  <rect x="80" y="355" width="740" height="60" rx="8" fill="rgba(16,185,129,0.08)" stroke="#10b981" stroke-width="1.5"/>
+  <text x="130" y="380" fill="#10b981" font-size="11" font-weight="700">Layer 3</text>
+  <text x="220" y="380" fill="#34d399" font-size="10" font-weight="600">Data Quality Observability</text>
+  <text x="130" y="400" fill="#64748b" font-size="9">Row counts, distributions, freshness, schema drift, business rule validation</text>
+  <rect x="680" y="370" width="110" height="24" rx="4" fill="rgba(16,185,129,0.15)"/>
+  <text x="735" y="387" text-anchor="middle" fill="#34d399" font-size="9" font-weight="600">Elite teams</text>
+
+  <!-- Layer 2 -->
+  <rect x="80" y="425" width="740" height="60" rx="8" fill="rgba(59,130,246,0.08)" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="130" y="450" fill="#3b82f6" font-size="11" font-weight="700">Layer 2</text>
+  <text x="220" y="450" fill="#93c5fd" font-size="10" font-weight="600">Pipeline Observability</text>
+  <text x="130" y="470" fill="#64748b" font-size="9">Execution time, rows processed, data volume in vs out, join hit rates</text>
+  <rect x="680" y="440" width="110" height="24" rx="4" fill="rgba(59,130,246,0.15)"/>
+  <text x="735" y="457" text-anchor="middle" fill="#93c5fd" font-size="9" font-weight="600">Mature teams</text>
+
+  <!-- Layer 1 -->
+  <rect x="80" y="495" width="740" height="60" rx="8" fill="rgba(248,113,113,0.08)" stroke="#f87171" stroke-width="1.5"/>
+  <text x="130" y="520" fill="#f87171" font-size="11" font-weight="700">Layer 1</text>
+  <text x="248" y="520" fill="#fca5a5" font-size="10" font-weight="600">Infrastructure Observability</text>
+  <text x="130" y="540" fill="#64748b" font-size="9">CPU, memory, disk, pod health, Spark executor status, Kafka consumer lag</text>
+  <rect x="680" y="510" width="110" height="24" rx="4" fill="rgba(248,113,113,0.15)"/>
+  <text x="735" y="527" text-anchor="middle" fill="#fca5a5" font-size="9" font-weight="600">Most teams</text>
+
+  <!-- Observability platform -->
+  <rect x="120" y="575" width="200" height="40" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="220" y="595" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="600">Prometheus + Grafana</text>
+  <text x="220" y="608" text-anchor="middle" fill="#64748b" font-size="8">Metrics + Dashboards</text>
+
+  <rect x="350" y="575" width="200" height="40" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="450" y="595" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="600">PagerDuty + Slack</text>
+  <text x="450" y="608" text-anchor="middle" fill="#64748b" font-size="8">Alerts + Escalation</text>
+
+  <rect x="580" y="575" width="200" height="40" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="680" y="595" text-anchor="middle" fill="#f1f5f9" font-size="10" font-weight="600">OpenLineage + Marquez</text>
+  <text x="680" y="608" text-anchor="middle" fill="#64748b" font-size="8">Data Lineage</text>
+
+  <!-- Footer -->
+  <text x="450" y="643" text-anchor="middle" fill="#475569" font-size="10">cdatainsights.com — CData Consulting Inc</text>
+</svg>
