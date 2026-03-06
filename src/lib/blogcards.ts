@@ -161,6 +161,20 @@ export const Blogs: BlogCard[] = [
         image: '/blog-diagrams/hybrid-pipeline-architecture.svg',
     },
     {
+        id: 13,
+        slug: 'esg-data-real-estate-certification',
+        title: 'ESG in Real Estate: How Data Pipelines Power Green Building Certification and Compliance',
+        subtitle:
+            'Real estate portfolios face growing ESG mandates. Here is how modern data infrastructure turns sensor feeds, utility data, and tenant surveys into audit-ready certification evidence.',
+        excerpt:
+            'How data engineering teams build the pipelines behind LEED, GRESB, and ENERGY STAR certification for commercial real estate portfolios.',
+        tag: 'Business',
+        author: 'Nitin Jain',
+        date: 'Mar 06, 2026',
+        image:
+            'https://img.freepik.com/free-vector/gradient-abstract-wireframe-background_23-2149020364.jpg',
+    },
+    {
         id: 12,
         slug: 'data-pipeline-observability-silent-failures',
         title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
