@@ -171,8 +171,7 @@ export const Blogs: BlogCard[] = [
         tag: 'Business',
         author: 'Nitin Jain',
         date: 'Mar 06, 2026',
-        image:
-            'https://img.freepik.com/free-vector/gradient-abstract-wireframe-background_23-2149020364.jpg',
+        image: '/blog-diagrams/esg-data-sources.svg',
     },
     {
         id: 12,

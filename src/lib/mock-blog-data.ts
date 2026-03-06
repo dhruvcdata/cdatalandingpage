@@ -1908,6 +1908,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                     '<strong>Canada-specific: Federal Greening Government Strategy and BERDO-equivalent municipal bylaws</strong> \u2014 Canadian federal buildings must reach net-zero by 2050. Toronto\u2019s Energy and Water Reporting and Benchmarking (EWRB) bylaw requires annual reporting for buildings over 50,000 sq ft. Vancouver\u2019s Building By-law mandates energy benchmarking and emissions limits. These regulations are tightening every year, and non-compliance carries financial penalties.',
             },
             {
+                type: 'image',
+                value: '/blog-diagrams/esg-data-sources.svg',
+            },
+            {
                 type: 'heading',
                 value: 'Why This Is a Data Engineering Problem',
             },
@@ -1951,6 +1955,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                 value: 'Architecture: The ESG Data Platform',
             },
             {
+                type: 'image',
+                value: '/blog-diagrams/esg-medallion-pipeline.svg',
+            },
+            {
                 type: 'paragraph',
                 value:
                     'The architecture we recommend for ESG data in real estate follows the same medallion pattern (bronze/silver/gold) that works for any analytical data platform, but with specific adaptations for certification workflows.',
@@ -1992,6 +2000,10 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'heading',
                 value: 'GHG Emissions: Scope 1, 2, and the Scope 3 Problem',
+            },
+            {
+                type: 'image',
+                value: '/blog-diagrams/esg-ghg-scopes.svg',
             },
             {
                 type: 'paragraph',
