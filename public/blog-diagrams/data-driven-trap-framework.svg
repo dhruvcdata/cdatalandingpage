@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0d1529"/>
+    </linearGradient>
+    <linearGradient id="redColBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#451a03" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1c0a02" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="greenColBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#042f2e" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#021716" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad3)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#1a2744" stroke-width="0.3" opacity="0.25">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="#e2e8f0" text-anchor="middle" letter-spacing="0.5">Complete Data Decision Framework</text>
+  <line x1="250" y1="50" x2="550" y2="50" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- VS divider -->
+  <line x1="400" y1="75" x2="400" y2="470" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <g transform="translate(400, 265)">
+    <rect x="-18" y="-14" width="36" height="28" rx="14" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="0" y="5" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#64748b" text-anchor="middle">VS</text>
+  </g>
+
+  <!-- LEFT COLUMN: Incomplete -->
+  <!-- Column background -->
+  <rect x="30" y="70" width="340" height="410" rx="12" fill="url(#redColBg)" stroke="#7f1d1d" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Column header -->
+  <g transform="translate(200, 98)">
+    <!-- X icon -->
+    <circle cx="-130" cy="0" r="12" fill="#7f1d1d" opacity="0.5"/>
+    <line x1="-135" y1="-5" x2="-125" y2="5" stroke="#dc2626" stroke-width="2" opacity="0.8"/>
+    <line x1="-125" y1="-5" x2="-135" y2="5" stroke="#dc2626" stroke-width="2" opacity="0.8"/>
+    <text x="-10" y="-2" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#fca5a5" text-anchor="middle">Incomplete</text>
+    <text x="-10" y="16" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#f87171" text-anchor="middle" opacity="0.7">(What Nike Did)</text>
+  </g>
+
+  <!-- Left items -->
+  <!-- Item 1 -->
+  <g transform="translate(55, 155)">
+    <rect x="0" y="0" width="290" height="60" rx="8" fill="#1a0e0e" stroke="#7f1d1d" stroke-width="1" opacity="0.8"/>
+    <circle cx="25" cy="30" r="14" fill="#451a03" opacity="0.6"/>
+    <rect cx="25" x="18" y="24" width="14" height="3" rx="1.5" fill="#f97316" opacity="0.5"/>
+    <rect x="18" y="29" width="14" height="3" rx="1.5" fill="#f97316" opacity="0.4"/>
+    <rect x="20" y="34" width="10" height="3" rx="1.5" fill="#f97316" opacity="0.3"/>
+    <text x="52" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#fca5a5">Online sales data</text>
+    <text x="52" y="43" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#a8704a" opacity="0.8">Only digital channel metrics</text>
+  </g>
+
+  <!-- Item 2 -->
+  <g transform="translate(55, 230)">
+    <rect x="0" y="0" width="290" height="60" rx="8" fill="#1a0e0e" stroke="#7f1d1d" stroke-width="1" opacity="0.8"/>
+    <circle cx="25" cy="30" r="14" fill="#451a03" opacity="0.6"/>
+    <circle cx="25" cy="28" r="6" fill="none" stroke="#f97316" stroke-width="1.5" opacity="0.5"/>
+    <line x1="25" y1="34" x2="25" y2="40" stroke="#f97316" stroke-width="1.5" opacity="0.4"/>
+    <text x="52" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#fca5a5">Existing customer behavior</text>
+    <text x="52" y="43" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#a8704a" opacity="0.8">Ignoring potential customers</text>
+  </g>
+
+  <!-- Item 3 -->
+  <g transform="translate(55, 305)">
+    <rect x="0" y="0" width="290" height="60" rx="8" fill="#1a0e0e" stroke="#7f1d1d" stroke-width="1" opacity="0.8"/>
+    <circle cx="25" cy="30" r="14" fill="#451a03" opacity="0.6"/>
+    <text x="25" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#f97316" text-anchor="middle" opacity="0.5">$</text>
+    <text x="52" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#fca5a5">Short-term revenue metrics</text>
+    <text x="52" y="43" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#a8704a" opacity="0.8">Quarter-over-quarter focus</text>
+  </g>
+
+  <!-- Item 4 -->
+  <g transform="translate(55, 380)">
+    <rect x="0" y="0" width="290" height="60" rx="8" fill="#1a0e0e" stroke="#7f1d1d" stroke-width="1" opacity="0.8"/>
+    <circle cx="25" cy="30" r="14" fill="#451a03" opacity="0.6"/>
+    <rect x="17" y="24" width="16" height="12" rx="2" fill="none" stroke="#f97316" stroke-width="1.2" opacity="0.5"/>
+    <line x1="20" y1="28" x2="30" y2="28" stroke="#f97316" stroke-width="1" opacity="0.4"/>
+    <line x1="20" y1="32" x2="28" y2="32" stroke="#f97316" stroke-width="1" opacity="0.3"/>
+    <text x="52" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#fca5a5">Easy-to-measure KPIs</text>
+    <text x="52" y="43" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#a8704a" opacity="0.8">Vanity metrics over substance</text>
+  </g>
+
+  <!-- RIGHT COLUMN: Complete -->
+  <!-- Column background -->
+  <rect x="430" y="70" width="340" height="410" rx="12" fill="url(#greenColBg)" stroke="#134e4a" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Column header -->
+  <g transform="translate(600, 98)">
+    <!-- Check icon -->
+    <circle cx="-130" cy="0" r="12" fill="#134e4a" opacity="0.5"/>
+    <polyline points="-136,-1 -131,5 -123,-5" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+    <text x="-10" y="-2" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#5eead4" text-anchor="middle">Complete</text>
+    <text x="-10" y="16" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#14b8a6" text-anchor="middle" opacity="0.7">(What Works)</text>
+  </g>
+
+  <!-- Right items -->
+  <!-- Item 1 -->
+  <g transform="translate(455, 155)">
+    <rect x="0" y="0" width="290" height="60" rx="8" fill="#0a1a18" stroke="#134e4a" stroke-width="1" opacity="0.8"/>
+    <circle cx="25" cy="30" r="14" fill="#042f2e" opacity="0.6"/>
+    <rect x="17" y="23" width="7" height="14" rx="1" fill="none" stroke="#14b8a6" stroke-width="1.2" opacity="0.5"/>
+    <rect x="26" y="27" width="7" height="10" rx="1" fill="none" stroke="#14b8a6" stroke-width="1.2" opacity="0.5"/>
+    <text x="52" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#5eead4">Market research + sales data</text>
+    <text x="52" y="43" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#4a9e8e" opacity="0.8">Full picture across channels</text>
+  </g>
+
+  <!-- Item 2 -->
+  <g transform="translate(455, 230)">
+    <rect x="0" y="0" width="290" height="60" rx="8" fill="#0a1a18" stroke="#134e4a" stroke-width="1" opacity="0.8"/>
+    <circle cx="25" cy="30" r="14" fill="#042f2e" opacity="0.6"/>
+    <circle cx="21" cy="28" r="5" fill="none" stroke="#14b8a6" stroke-width="1.2" opacity="0.5"/>
+    <circle cx="29" cy="28" r="5" fill="none" stroke="#14b8a6" stroke-width="1.2" opacity="0.4"/>
+    <text x="52" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#5eead4">New + existing customer insights</text>
+    <text x="52" y="43" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#4a9e8e" opacity="0.8">Acquisition and retention balance</text>
+  </g>
+
+  <!-- Item 3 -->
+  <g transform="translate(455, 305)">
+    <rect x="0" y="0" width="290" height="60" rx="8" fill="#0a1a18" stroke="#134e4a" stroke-width="1" opacity="0.8"/>
+    <circle cx="25" cy="30" r="14" fill="#042f2e" opacity="0.6"/>
+    <circle cx="25" cy="30" r="8" fill="none" stroke="#14b8a6" stroke-width="1.2" opacity="0.5"/>
+    <path d="M25,22 L25,30 L31,30" fill="none" stroke="#14b8a6" stroke-width="1.5" opacity="0.5"/>
+    <text x="52" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#5eead4">Brand health + revenue metrics</text>
+    <text x="52" y="43" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#4a9e8e" opacity="0.8">Long-term and short-term together</text>
+  </g>
+
+  <!-- Item 4 -->
+  <g transform="translate(455, 380)">
+    <rect x="0" y="0" width="290" height="60" rx="8" fill="#0a1a18" stroke="#134e4a" stroke-width="1" opacity="0.8"/>
+    <circle cx="25" cy="30" r="14" fill="#042f2e" opacity="0.6"/>
+    <rect x="17" y="23" width="16" height="14" rx="2" fill="none" stroke="#14b8a6" stroke-width="1.2" opacity="0.5"/>
+    <polyline points="20,30 23,33 30,26" fill="none" stroke="#14b8a6" stroke-width="1.5" opacity="0.5"/>
+    <text x="52" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#5eead4">Qualitative + quantitative data</text>
+    <text x="52" y="43" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#4a9e8e" opacity="0.8">Numbers informed by context</text>
+  </g>
+
+  <!-- Connecting arrows between left and right items -->
+  <g opacity="0.25">
+    <line x1="350" y1="185" x2="450" y2="185" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+    <polygon points="448,182 455,185 448,188" fill="#64748b"/>
+
+    <line x1="350" y1="260" x2="450" y2="260" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+    <polygon points="448,257 455,260 448,263" fill="#64748b"/>
+
+    <line x1="350" y1="335" x2="450" y2="335" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+    <polygon points="448,332 455,335 448,338" fill="#64748b"/>
+
+    <line x1="350" y1="410" x2="450" y2="410" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+    <polygon points="448,407 455,410 448,413" fill="#64748b"/>
+  </g>
+</svg>

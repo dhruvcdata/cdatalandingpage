@@ -5,53 +5,51 @@ const LatestInsightsComponent = () => {
     const blogPosts = [
         {
             id: 1,
-            title: 'How to Handle Context Transition in Power BI',
-            excerpt: 'How to Handle Context Transition in Power BI',
+            title: 'The Data-Driven Trap: What Nike\'s $25B Blunder Teaches Data Teams',
+            excerpt: 'Why more data doesn\'t mean better decisions — lessons from Nike\'s $25B data-driven blunder.',
 
-            date: 'March 11, 2025',
-            category: 'MICROSOFT POWER PLATFORM',
-            slug: '/handle-context-transition'
+            date: 'March 9, 2026',
+            category: 'DATA STRATEGY',
+            slug: '/Blogs/data-driven-trap-nike-25b-lesson'
         },
         {
             id: 2,
-            title: 'Uncovering the "How" Behind cdata\'s Award-Winning Workplace',
-            excerpt: 'Uncovering the "How" Behind cdata\'s Award-Winning Workplace',
+            title: 'ESG in Real Estate: How Data Pipelines Power Green Building Certification',
+            excerpt: 'How data engineering teams build pipelines behind LEED, GRESB, and ENERGY STAR certification.',
 
-            date: 'March 10, 2025',
-            category: 'CDATA UPDATES',
-            slug: '/award-winning-workplace'
+            date: 'March 6, 2026',
+            category: 'DATA ENGINEERING',
+            slug: '/Blogs/esg-data-real-estate-certification'
         },
         {
             id: 3,
-            title: 'Why You Should Use Copilot in Microsoft Fabric: A Short Introduction',
-            excerpt: 'Why You Should Use Copilot in Fabric: A Short Introduction',
+            title: 'The Complete Redshift to Snowflake Migration Playbook',
+            excerpt: 'A 5-phase enterprise playbook for Redshift to Snowflake migration.',
 
-            date: 'March 7, 2025',
-            category: 'UNCATEGORIZED',
-            slug: '/copilot-introduction'
+            date: 'March 4, 2026',
+            category: 'DATA ENGINEERING',
+            slug: '/Blogs/redshift-to-snowflake-migration'
         },
         {
             id: 4,
-            title: 'How to Create a Gauge Chart in Sigma Computing',
-            excerpt: 'How to Create a Gauge Chart in Sigma Computing',
+            title: 'Data Pipeline Observability: Catching Silent Failures',
+            excerpt: 'How to build quality gates that catch silent data pipeline failures.',
 
-            date: 'March 5, 2025',
-            category: 'SIGMA COMPUTING',
-            slug: '/gauge-chart-sigma'
+            date: 'March 1, 2026',
+            category: 'DATA ENGINEERING',
+            slug: '/Blogs/data-pipeline-observability-silent-failures'
         }
     ];
 
     // Function to get category color
     const getCategoryColor = (category: string) => {
         switch (category) {
-            case 'MICROSOFT POWER PLATFORM':
-                return 'text-green-400';
-            case 'CDATA UPDATES':
+            case 'DATA STRATEGY':
+                return 'text-orange-400';
+            case 'DATA ENGINEERING':
                 return 'text-blue-400';
-            case 'UNCATEGORIZED':
-                return 'text-purple-400';
-            case 'SIGMA COMPUTING':
-                return 'text-teal-400';
+            case 'CDATA UPDATES':
+                return 'text-green-400';
             default:
                 return 'text-gray-400';
         }

@@ -2139,4 +2139,218 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
         ],
     },
+
+    'data-driven-trap-nike-25b-lesson': {
+        slug: 'data-driven-trap-nike-25b-lesson',
+        title: 'The Data-Driven Trap: What Nike\'s $25B Blunder Teaches Data Teams',
+        subtitle:
+            'Nike\'s pivot to "data-driven" decision making cost them $25B in market cap. Here\'s why measuring the wrong things is worse than not measuring at all — and how data teams can avoid the same trap.',
+        category: 'DATA STRATEGY',
+        date: 'March 9, 2026',
+        readingTime: '7 min read',
+        author: {
+            name: 'Nitin Jain',
+            role: 'Founder, CData Insights',
+            avatar: '/whitelogo.png',
+        },
+        heroImage: 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        tags: ['Data Strategy', 'Analytics', 'Decision Making', 'Business Intelligence', 'Data Culture'],
+        content: [
+            {
+                type: 'paragraph',
+                value:
+                    'Last year, the former Sr. Brand Director of Nike published a rare deep dive into a marketing blunder four years in the making. As someone who builds data platforms for enterprises, I think there is a critical lesson here that every data team needs to hear.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '"Nike invested billions into something that was <strong>less effective but easier to measure</strong> vs something that was <strong>more effective but less easy to measure</strong>." Sound familiar? If you\'ve ever watched a data team optimize dashboards that nobody uses while real business problems go unsolved — you\'ve seen this same pattern play out.',
+            },
+            {
+                type: 'heading',
+                value: 'What Happened at Nike',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'On the advice of McKinsey, Nike\'s CEO John Donahoe decided to pivot to a "data-driven" approach, reorganizing the company towards digital direct-to-consumer sales and eliminating the former model centered on distinct product categories. The strategy promised efficiency: eliminate duplicate processes, streamline operations, improve productivity.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The result? A <strong>$25 billion loss in market cap</strong> and a <strong>32% decline in stock price</strong>. The "data-driven" approach drove the company straight into a wall.',
+            },
+            {
+                type: 'image',
+                value: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Nike dismantled the category-specific teams — Running, Basketball, Training — that had deep specialist knowledge of their customers and products. In their place came a generic, centralized data model that could measure clicks and conversions but couldn\'t tell you why a runner chooses one shoe over another.',
+            },
+            {
+                type: 'heading',
+                value: 'The Hard Limits of Data',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'As W. Edwards Deming warned: <strong>"It is wrong to suppose that if you can\'t measure it, you can\'t manage it — a costly myth."</strong>',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Data is invaluable for telling you what has happened in the past. Enormous investment has gone into producing data that can tell you what\'s happening in the present. But as the 7- and 8-figure salaries of quantitative analysts at hedge funds show us, using data to predict the future is one of the hardest things you can try to do.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The way you bridge that gap is through <strong>warm data</strong> — the qualitative context that gives numbers their meaning. Without it, you get the equivalent of Amazon\'s ad algorithm: you bought a bathtub, so clearly you need more bathtubs. Human merchandisers know to put paper towels next to BBQ sauce. Getting a data model to make that kind of contextual leap is much harder than most executives believe.',
+            },
+            {
+                type: 'image',
+                value: 'https://images.pexels.com/photos/7054384/pexels-photo-7054384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            },
+            {
+                type: 'heading',
+                value: 'The Data-Driven Death Spiral',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Nike\'s decision to eliminate individual product categories — where domain experts could marshal exactly this kind of contextual knowledge — in favor of a one-size-fits-all data model created a predictable death spiral:',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>1. Measure existing customers</strong> — Online shopping data captures who\'s already buying, not who could be buying.<br/><strong>2. Optimize for existing behavior</strong> — Products and marketing are tuned for the current base.<br/><strong>3. Lose new customer appeal</strong> — Product priorities diverge from what ordinary customers want.<br/><strong>4. Revenue declines</strong> — Mass-appeal products rot in warehouses while competitors gain ground.<br/><strong>5. Double down on existing data</strong> — Under pressure, teams chase the metrics they can measure even harder.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'This is the trap: <strong>the most vocal, most frequent, loudest participants in your data are the least representative of your total addressable market.</strong> The people who don\'t — or can\'t — use your product barely show up on the radar.',
+            },
+            {
+                type: 'heading',
+                value: 'What This Means for Data Teams',
+            },
+            {
+                type: 'image',
+                value: 'https://images.pexels.com/photos/3861957/pexels-photo-3861957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'If you\'re building data platforms, pipelines, or analytics for an enterprise, this story should be a wake-up call. Here\'s what we see go wrong in practice:',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Dashboards that confirm instead of inform.</strong> Teams build beautiful dashboards that track the metrics leadership already believes in. The value of analytics doesn\'t come from elevating what everyone already knows — it comes from surfacing what\'s being missed.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Data models that exclude domain knowledge.</strong> When you centralize all analytics into a generic data team that doesn\'t understand the business domains, you lose the qualitative context that makes data useful. This is exactly the problem Data Mesh tries to solve — decentralizing data ownership to the people who understand what the numbers actually mean.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Optimization loops that ignore acquisition.</strong> It\'s easier to measure retention and upsell than it is to measure brand awareness and market expansion. But optimizing only for what\'s easy to measure is how you end up handing out flyers for your pizza shop inside the pizza shop.',
+            },
+            {
+                type: 'heading',
+                value: 'A Framework for Complete Data Decisions',
+            },
+            {
+                type: 'image',
+                value: '/blog-diagrams/data-driven-trap-framework.svg',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The fix isn\'t to abandon data — it\'s to use <strong>all</strong> the data, not just the data that\'s cheapest to collect. Here\'s what that looks like in practice:',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Pair quantitative with qualitative.</strong> Every data pipeline should have a corresponding feedback loop from domain experts, customer interviews, or market research. Numbers tell you what happened; people tell you why.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Measure what matters, not what\'s easy.</strong> If your most important business questions can\'t be answered by your current data infrastructure, that\'s a signal to invest in better instrumentation — not to change the questions.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Build domain-aware data products.</strong> The people closest to the customer should own their data and analytics. A centralized platform team provides the infrastructure; domain teams provide the context. This is Data Mesh in practice.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Design for the missing customer.</strong> Deliberately instrument your analytics to capture who you\'re not reaching. Churn analysis, competitive intelligence, and market sizing should sit alongside your conversion funnels.',
+            },
+            {
+                type: 'image',
+                value: 'https://images.pexels.com/photos/5716001/pexels-photo-5716001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            },
+            {
+                type: 'heading',
+                value: 'The Bottom Line',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Nike\'s mistake wasn\'t using data. It was letting easily-available data substitute for genuine understanding. "Data-driven" became "data-convenient," and it cost them $25 billion.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The same trap awaits any data team that confuses dashboard coverage with business insight. The most dangerous analytics culture is one where everyone feels informed but nobody is asking the hard questions that the data can\'t easily answer.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Real data-driven decision making isn\'t about having more data. It\'s about having the <strong>right</strong> data — and the courage to seek out the information that\'s hardest to find.',
+            },
+        ],
+        faq: [
+            {
+                question: 'What was Nike\'s data-driven mistake?',
+                answer:
+                    'Nike reorganized around digital direct-to-consumer data, eliminating product category teams with deep domain expertise. This led them to optimize for existing online customers while losing mass-market appeal, resulting in a $25B market cap loss.',
+            },
+            {
+                question: 'What is warm data and why does it matter?',
+                answer:
+                    'Warm data is qualitative, contextual information that gives quantitative metrics their meaning. Without it, data teams risk optimizing for easily-measurable metrics that don\'t capture the full business picture.',
+            },
+            {
+                question: 'How does Data Mesh help avoid the data-driven trap?',
+                answer:
+                    'Data Mesh decentralizes data ownership to domain teams who understand business context, preventing the loss of qualitative insight that happens when analytics is fully centralized in a generic data team.',
+            },
+            {
+                question: 'How should data teams balance quantitative and qualitative data?',
+                answer:
+                    'Every data pipeline should have a corresponding feedback loop — customer interviews, domain expert input, or market research. Quantitative data tells you what happened; qualitative data tells you why and what to do about it.',
+            },
+        ],
+        relatedBlogs: [
+            {
+                title: 'Central Data Teams Often Become Blockers — And How to Fix It',
+                slug: '/Blogs/central-data-team-often-becomes-blockers',
+            },
+            {
+                title: 'Scaling Data Engineering in Consultancies: Build, Partner, or Both?',
+                slug: '/Blogs/scaling-data-engineering-consultancies',
+            },
+            {
+                title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
+                slug: '/Blogs/data-pipeline-observability-silent-failures',
+            },
+        ],
+    },
 }

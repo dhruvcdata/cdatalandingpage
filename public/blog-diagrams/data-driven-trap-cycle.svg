@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0d1529"/>
+    </linearGradient>
+    <linearGradient id="blueNode" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0f2340"/>
+    </linearGradient>
+    <linearGradient id="tealNode" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#134e4a"/>
+      <stop offset="100%" stop-color="#0a302d"/>
+    </linearGradient>
+    <linearGradient id="redNode" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </linearGradient>
+    <linearGradient id="orangeNode" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 L2,4 Z" fill="#1a9fff" opacity="0.8"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 L2,4 Z" fill="#f97316" opacity="0.8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad2)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#1a2744" stroke-width="0.3" opacity="0.3">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="#94a3b8" text-anchor="middle" letter-spacing="0.5">The Data-Driven Death Spiral</text>
+
+  <!-- Central warning icon -->
+  <g transform="translate(400, 265)" opacity="0.15">
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#f97316" stroke-width="1"/>
+    <circle cx="0" cy="0" r="40" fill="none" stroke="#f97316" stroke-width="0.5"/>
+    <polygon points="0,-28 16,12 -16,12" fill="none" stroke="#f97316" stroke-width="2"/>
+    <line x1="0" y1="-16" x2="0" y2="2" stroke="#f97316" stroke-width="2.5"/>
+    <circle cx="0" cy="8" r="2" fill="#f97316"/>
+  </g>
+
+  <!-- Node positions (elliptical layout):
+    1: top center (400, 95) - Measure existing customers
+    2: right (620, 195) - Optimize for existing behavior
+    3: bottom-right (600, 365) - Lose new customer appeal
+    4: bottom-left (200, 365) - Revenue declines
+    5: left (180, 195) - Double down on existing data
+  -->
+
+  <!-- Curved arrows connecting nodes -->
+  <g fill="none" stroke-width="2">
+    <!-- 1 -> 2 (blue) -->
+    <path d="M 490,100 Q 570,110 610,165" stroke="#1a9fff" opacity="0.7" marker-end="url(#arrowBlue)"/>
+    <!-- 2 -> 3 (transitioning) -->
+    <path d="M 640,230 Q 660,300 620,345" stroke="#1a9fff" opacity="0.6" marker-end="url(#arrowBlue)"/>
+    <!-- 3 -> 4 (red/orange) -->
+    <path d="M 520,380 Q 400,420 280,380" stroke="#f97316" opacity="0.7" marker-end="url(#arrowRed)"/>
+    <!-- 4 -> 5 (red) -->
+    <path d="M 160,345 Q 130,290 160,230" stroke="#f97316" opacity="0.7" marker-end="url(#arrowRed)"/>
+    <!-- 5 -> 1 (back to blue) -->
+    <path d="M 230,170 Q 280,110 330,100" stroke="#1a9fff" opacity="0.6" marker-end="url(#arrowBlue)"/>
+  </g>
+
+  <!-- Node 1: Measure existing customers (top) -->
+  <g transform="translate(400, 95)">
+    <rect x="-105" y="-30" width="210" height="60" rx="10" fill="url(#blueNode)" stroke="#1a9fff" stroke-width="1.5" filter="url(#glow2)"/>
+    <text x="0" y="-5" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#7dd3fc" text-anchor="middle">Measure Existing</text>
+    <text x="0" y="13" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#7dd3fc" text-anchor="middle">Customers</text>
+    <!-- Data icon -->
+    <rect x="-90" y="-18" width="16" height="3" rx="1" fill="#1a9fff" opacity="0.5"/>
+    <rect x="-90" y="-12" width="12" height="3" rx="1" fill="#1a9fff" opacity="0.4"/>
+    <rect x="-90" y="-6" width="14" height="3" rx="1" fill="#1a9fff" opacity="0.3"/>
+  </g>
+
+  <!-- Node 2: Optimize for existing behavior (right) -->
+  <g transform="translate(620, 195)">
+    <rect x="-105" y="-30" width="210" height="60" rx="10" fill="url(#tealNode)" stroke="#14b8a6" stroke-width="1.5" filter="url(#glow2)"/>
+    <text x="0" y="-5" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#5eead4" text-anchor="middle">Optimize for Existing</text>
+    <text x="0" y="13" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#5eead4" text-anchor="middle">Behavior</text>
+    <!-- Gear icon -->
+    <circle cx="82" cy="0" r="8" fill="none" stroke="#14b8a6" stroke-width="1.5" opacity="0.4"/>
+    <circle cx="82" cy="0" r="3" fill="#14b8a6" opacity="0.3"/>
+  </g>
+
+  <!-- Node 3: Lose new customer appeal (bottom-right) -->
+  <g transform="translate(570, 365)">
+    <rect x="-105" y="-30" width="210" height="60" rx="10" fill="url(#orangeNode)" stroke="#f97316" stroke-width="1.5" filter="url(#glow2)"/>
+    <text x="0" y="-5" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#fdba74" text-anchor="middle">Lose New Customer</text>
+    <text x="0" y="13" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#fdba74" text-anchor="middle">Appeal</text>
+    <!-- Warning icon -->
+    <polygon points="82,-8 90,6 74,6" fill="none" stroke="#f97316" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- Node 4: Revenue declines (bottom-left) -->
+  <g transform="translate(230, 365)">
+    <rect x="-105" y="-30" width="210" height="60" rx="10" fill="url(#redNode)" stroke="#dc2626" stroke-width="1.5" filter="url(#glow2)"/>
+    <text x="0" y="-5" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#fca5a5" text-anchor="middle">Revenue</text>
+    <text x="0" y="13" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#fca5a5" text-anchor="middle">Declines</text>
+    <!-- Down arrow icon -->
+    <polygon points="82,-6 88,4 85,4 85,10 79,10 79,4 76,4" fill="#dc2626" opacity="0.5"/>
+  </g>
+
+  <!-- Node 5: Double down on existing data (left) -->
+  <g transform="translate(180, 195)">
+    <rect x="-105" y="-30" width="210" height="60" rx="10" fill="url(#orangeNode)" stroke="#f97316" stroke-width="1.5" filter="url(#glow2)"/>
+    <text x="0" y="-5" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#fdba74" text-anchor="middle">Double Down on</text>
+    <text x="0" y="13" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#fdba74" text-anchor="middle">Existing Data</text>
+    <!-- Repeat/loop icon -->
+    <path d="M-82,-4 A6,6 0 1,1 -82,4" fill="none" stroke="#f97316" stroke-width="1.5" opacity="0.4"/>
+    <polygon points="-84,5 -80,5 -82,9" fill="#f97316" opacity="0.4"/>
+  </g>
+
+  <!-- Step numbers -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">
+    <circle cx="335" cy="72" r="11" fill="#1a9fff" opacity="0.2"/>
+    <text x="335" y="76" fill="#7dd3fc" text-anchor="middle">1</text>
+
+    <circle cx="545" cy="142" r="11" fill="#14b8a6" opacity="0.2"/>
+    <text x="545" y="146" fill="#5eead4" text-anchor="middle">2</text>
+
+    <circle cx="640" cy="310" r="11" fill="#f97316" opacity="0.2"/>
+    <text x="640" y="314" fill="#fdba74" text-anchor="middle">3</text>
+
+    <circle cx="355" cy="410" r="11" fill="#dc2626" opacity="0.2"/>
+    <text x="355" y="414" fill="#fca5a5" text-anchor="middle">4</text>
+
+    <circle cx="150" cy="310" r="11" fill="#f97316" opacity="0.2"/>
+    <text x="150" y="314" fill="#fdba74" text-anchor="middle">5</text>
+  </g>
+
+  <!-- "REPEAT" label at center bottom -->
+  <text x="400" y="468" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569" text-anchor="middle" letter-spacing="3" font-weight="500">CYCLE REPEATS</text>
+  <line x1="320" y1="475" x2="480" y2="475" stroke="#1e293b" stroke-width="0.8"/>
+</svg>

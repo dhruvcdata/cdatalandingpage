@@ -186,4 +186,17 @@ export const Blogs: BlogCard[] = [
         date: 'Mar 01, 2026',
         image: '/blog-diagrams/observability-architecture.svg',
     },
+    {
+        id: 14,
+        slug: 'data-driven-trap-nike-25b-lesson',
+        title: 'The Data-Driven Trap: What Nike\'s $25B Blunder Teaches Data Teams',
+        subtitle:
+            'Nike\'s pivot to "data-driven" decision making cost them $25B in market cap. Here\'s why measuring the wrong things is worse than not measuring at all — and how data teams can avoid the same trap.',
+        excerpt:
+            'Why more data doesn\'t mean better decisions — lessons from Nike\'s $25B data-driven blunder for enterprise data teams.',
+        tag: 'Business',
+        author: 'Nitin Jain',
+        date: 'Mar 09, 2026',
+        image: 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=600',
+    },
 ]
