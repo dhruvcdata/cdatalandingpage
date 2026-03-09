@@ -24,6 +24,7 @@ const links = [
             { title: 'Home', href: '/' },
             { title: 'About Us', href: '/About' },
             { title: 'Blog', href: '/Blogs' },
+            { title: 'News', href: '/news' },
             { title: 'Careers', href: '/career' },
             { title: 'Contact Us', href: '/Contact' },
         ],
