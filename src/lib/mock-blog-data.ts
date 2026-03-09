@@ -527,7 +527,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    'Key syntax changes to watch for: Redshift\'s GETDATE() becomes Snowflake\'s CURRENT_TIMESTAMP(). DATEADD(\'day\', 7, date_col) syntax is compatible but timezone handling differs. Redshift\'s APPROXIMATE COUNT(DISTINCT col) becomes Snowflake\'s APPROX_COUNT_DISTINCT(col). String concatenation with || works in both, but Redshift\'s CONCAT() only accepts two arguments while Snowflake accepts multiple. Redshift\'s UNLOAD syntax is replaced by Snowflake\'s COPY INTO for exports.',
+                    'Key syntax changes to watch for: Redshift\'s GETDATE() becomes Snowflake\'s CURRENT_TIMESTAMP(). DATEADD(day, 7, date_col) syntax is compatible in both systems but timezone handling differs — be explicit with CONVERT_TIMEZONE(). Redshift\'s APPROXIMATE COUNT(DISTINCT col) becomes Snowflake\'s APPROX_COUNT_DISTINCT(col). String concatenation with || works in both, and both support multi-argument CONCAT(). Redshift\'s UNLOAD syntax is replaced by Snowflake\'s COPY INTO for exports.',
             },
             {
                 type: 'heading',
@@ -536,7 +536,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    'In our experience, organizations typically see 30–50% lower total cost of ownership after migrating to Snowflake, driven by: elimination of cluster management overhead, per-second billing vs. hourly billing, automatic optimization reducing the need for manual tuning, and reduced storage costs through automatic compression. However, Snowflake\'s consumption model means costs scale with usage — without governance, it\'s possible to spend more. We always implement cost monitoring and resource monitors as part of the migration.',
+                    'In our experience, organizations can see 30–50% lower total cost of ownership after migrating to Snowflake, depending on workload patterns and current Redshift configuration. Key drivers include: elimination of cluster management overhead, per-second billing vs. hourly billing, automatic optimization reducing the need for manual tuning, and reduced storage costs through automatic compression. However, Snowflake\'s consumption model means costs scale with usage — without governance, it\'s possible to spend more. We always implement cost monitoring and resource monitors as part of the migration.',
             },
             {
                 type: 'heading',
@@ -1890,7 +1890,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    '<strong>GRESB (Global Real Estate Sustainability Benchmark)</strong> \u2014 The dominant ESG benchmark for real estate investors. Over 1,800 property companies and funds report annually. GRESB scores portfolios on a 0\u2013100 scale across Management, Performance, and Development components. It requires asset-level data: energy consumption by fuel type, water withdrawal by source, waste by disposal method, GHG emissions (Scope 1, 2, and increasingly Scope 3), and social metrics like tenant engagement and health certifications.',
+                    '<strong>GRESB (Global Real Estate Sustainability Benchmark)</strong> \u2014 The dominant ESG benchmark for real estate investors. Over 1,800 property companies and funds report annually. GRESB uses a 0\u2013100 scoring system with peer-relative benchmarking across Management, Performance, and Development components — your score reflects both absolute performance and how you rank against comparable portfolios. It requires asset-level data: energy consumption by fuel type, water withdrawal by source, waste by disposal method, GHG emissions (Scope 1, 2, and increasingly Scope 3), and social metrics like tenant engagement and health certifications.',
             },
             {
                 type: 'paragraph',
@@ -2116,12 +2116,12 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 question: 'How do you handle data gaps in utility records?',
                 answer:
-                    'We use ASHRAE-approved estimation methods for short gaps (under 5 days) and flag longer gaps for manual review. The pipeline tracks which data points are metered vs estimated, and this metadata flows through to the certification submission so auditors can see exactly which values were gap-filled.',
+                    'ENERGY STAR allows gaps of up to 120 days per meter, but we apply a stricter internal threshold: we use ASHRAE-approved estimation methods for short gaps (under 5 days) and flag longer gaps for manual review. The pipeline tracks which data points are metered vs estimated, and this metadata flows through to the certification submission so auditors can see exactly which values were gap-filled.',
             },
             {
                 question: 'What is the difference between Scope 1, 2, and 3 emissions in real estate?',
                 answer:
-                    'Scope 1 is direct emissions from on-site combustion (gas boilers, generators). Scope 2 is indirect emissions from purchased electricity and steam. Scope 3 includes tenant energy use in net-lease properties, embodied carbon in construction materials, commuting, and waste disposal. Scope 3 is the hardest to measure because the building owner often does not control the data sources.',
+                    'Scope 1 is direct emissions from on-site combustion (gas boilers, generators). Scope 2 is indirect emissions from purchased electricity and steam. Scope 3 includes downstream emissions like embodied carbon in construction materials, commuting, and waste disposal. Tenant energy use may fall under Scope 3 depending on the GHG Protocol boundary — specifically whether the landlord has operational control or financial interest in the metered usage (common in net-lease structures). Scope 3 is the hardest to measure because the building owner often does not control the data sources.',
             },
         ],
         relatedBlogs: [
@@ -2159,7 +2159,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    'Last year, the former Sr. Brand Director of Nike published a rare deep dive into a marketing blunder four years in the making. As someone who builds data platforms for enterprises, I think there is a critical lesson here that every data team needs to hear.',
+                    'Last year, Massimo Giunco, former Sr. Brand Director at Nike, published a rare deep dive on LinkedIn into a marketing blunder four years in the making. As someone who builds data platforms for enterprises, I think there is a critical lesson here that every data team needs to hear.',
             },
             {
                 type: 'paragraph',
@@ -2330,7 +2330,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 question: 'How does Data Mesh help avoid the data-driven trap?',
                 answer:
-                    'Data Mesh decentralizes data ownership to domain teams who understand business context, preventing the loss of qualitative insight that happens when analytics is fully centralized in a generic data team.',
+                    'Data Mesh decentralizes data ownership to domain teams, which can help preserve qualitative business context. While Data Mesh is primarily an architecture pattern for scalable data ownership, a key benefit is that domain teams retain the expertise needed to interpret their own data — preventing the loss of context that happens when analytics is fully centralized.',
             },
             {
                 question: 'How should data teams balance quantitative and qualitative data?',
