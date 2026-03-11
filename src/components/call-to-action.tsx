@@ -8,19 +8,9 @@ export default function CallToAction() {
     const [email, setEmail] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
-    const [hasClickedOnce, setHasClickedOnce] = useState(false)
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        // 🪤 FIRST CLICK — FAKE SUBMIT
-        if (!hasClickedOnce) {
-            setHasClickedOnce(true)
-            setMessage('Click again to submit your request')
-            return
-        }
-
-        // ✅ SECOND CLICK — REAL SUBMIT
         setLoading(true)
         setMessage('')
 
@@ -36,7 +26,7 @@ export default function CallToAction() {
             if (response.ok) {
                 setMessage('Your request has been sent successfully!')
                 setEmail('')
-                setHasClickedOnce(false) // reset after success
+
             } else {
                 setMessage(data.error || 'Failed to send the email.')
             }
@@ -70,7 +60,6 @@ export default function CallToAction() {
                                 value={email}
                                 onChange={(e) => {
                                     setEmail(e.target.value)
-                                    setHasClickedOnce(false)
                                     setMessage('')
                                 }}
                                 required

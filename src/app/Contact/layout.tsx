@@ -4,11 +4,11 @@ export const metadata: Metadata = {
     title: "Contact Us | CData Insights — Get a Free Data Assessment",
     description:
         "Get in touch with CData Insights for a free data assessment. We help enterprises with Snowflake implementation, data migration, cost optimization, and AI strategy.",
-    alternates: { canonical: "https://cdatainsights.com/Contact" },
+    alternates: { canonical: "https://cdatainsights.com/contact" },
     openGraph: {
         title: "Contact CData Insights",
         description: "Get a free data assessment. Snowflake implementation, data migration, and AI strategy consulting.",
-        url: "https://cdatainsights.com/Contact",
+        url: "https://cdatainsights.com/contact",
         type: "website",
     },
     twitter: {

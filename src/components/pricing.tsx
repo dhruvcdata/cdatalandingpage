@@ -21,7 +21,7 @@ export default function Pricing() {
 
                                 <div className="flex justify-center">
                                     <Button asChild size="lg">
-                                        <Link href="#">Get started</Link>
+                                        <Link href="/contact">Get started</Link>
                                     </Button>
                                 </div>
 

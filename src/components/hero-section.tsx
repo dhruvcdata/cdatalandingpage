@@ -33,19 +33,9 @@ export default function HeroSection() {
                                     <Button
                                         asChild
                                         size="lg"
-                                        className="px-4 text-sm sm:px-5 sm:text-base z-11">
-                                        <Link href="/#cta">
+                                        className="px-6 text-sm sm:px-8 sm:text-base z-11">
+                                        <Link href="/contact">
                                             <span className="text-nowrap">Get Free Assessment</span>
-                                        </Link>
-                                    </Button>
-                                    <Button
-                                        key={2}
-                                        asChild
-                                        size="lg"
-                                        variant="ghost"
-                                        className="px-4 text-sm sm:px-5 sm:text-base">
-                                        <Link href="/Contact">
-                                            <span className="text-nowrap">Contact Us</span>
                                         </Link>
                                     </Button>
                                 </div>

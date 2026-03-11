@@ -4,12 +4,12 @@ export const metadata: Metadata = {
     title: "Blog | CData Insights",
     description:
         "Insights, trends, and expert articles on data engineering, data architecture, cloud migration, and modern analytics from CData Insights.",
-    alternates: { canonical: "https://cdatainsights.com/Blogs" },
+    alternates: { canonical: "https://cdatainsights.com/blogs" },
     openGraph: {
         title: "Blog | CData Insights",
         description:
             "Insights, trends, and expert articles on data engineering, data architecture, cloud migration, and modern analytics.",
-        url: "https://cdatainsights.com/Blogs",
+        url: "https://cdatainsights.com/blogs",
         type: "website",
     },
     twitter: {

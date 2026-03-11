@@ -95,45 +95,43 @@ export default function ContactSection() {
                 </p>
 
                 {/* Two-Column Layout */}
-                <div className="mt-12 flex lg:flex-row flex-col gap-8 ">
+                <div className="mt-12 grid lg:grid-cols-5 gap-8">
                     {/* Left Column: Contact Information */}
-                    <div className="space-y-6">
-                        {/* Email Card */}
-                        <div className="p-6">
-                            <div className="flex flex-col items-center gap-4">
-                                <div className="rounded-full bg-blue-100 p-3">
-                                    <Mail className="size-5 text-blue-600" />
-                                </div>
-                                <div className='flex flex-col items-center gap-2'>
-                                    <h3 className="text-lg font-medium">Email Addresses</h3>
-                                    <p className="flex flex-col items-center mt- text-sm text-muted-foreground">
-                                        <strong>General Inquiries:</strong><br />
-                                        <a href="mailto:info@cdatainsights.com" className="text-blue-600 hover:underline">
-                                            info@cdatainsights.com
-                                        </a>
-                                    </p>
-                                </div>
-                                <div className="rounded-full bg-blue-100 p-3">
-                                    <MapPin className="size-5 text-blue-600" />
-                                </div>
-                                <div className='flex flex-col items-center gap-2'>
-                                    <h3 className="text-lg font-medium">Our Offices</h3>
-                                    <div className="mt-2 space-y-2">
-                                        <img
-                                            src="/Map.png"
-                                            alt="Office Locations"
-                                            className="w-full h-auto max-h-48 object-cover rounded-lg"
-                                        />
-                                    </div>
-                                </div>
+                    <div className="lg:col-span-2 space-y-8">
+                        <div className="flex items-start gap-4">
+                            <div className="rounded-full bg-blue-100 p-3 shrink-0">
+                                <Mail className="size-5 text-blue-600" />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-medium">Email</h3>
+                                <p className="mt-1 text-sm text-muted-foreground">General Inquiries</p>
+                                <a href="mailto:info@cdatainsights.com" className="mt-1 inline-block text-sm text-blue-500 hover:underline">
+                                    info@cdatainsights.com
+                                </a>
                             </div>
                         </div>
 
+                        <div className="flex items-start gap-4">
+                            <div className="rounded-full bg-blue-100 p-3 shrink-0">
+                                <MapPin className="size-5 text-blue-600" />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-medium">Our Offices</h3>
+                                <p className="mt-1 text-sm text-muted-foreground">Toronto &amp; Mississauga, Ontario</p>
+                            </div>
+                        </div>
 
+                        <div className="overflow-hidden rounded-xl border border-white/10">
+                            <img
+                                src="/Map.png"
+                                alt="Office Locations"
+                                className="w-full h-auto object-cover"
+                            />
+                        </div>
                     </div>
 
                     {/* Right Column: Contact Form */}
-                    <Card className=" p-6 lg:p-10 bg-background rounded-lg shadow-md">
+                    <Card className="lg:col-span-3 p-6 lg:p-10 bg-background rounded-lg shadow-md">
                         <div className="space-y-1">
                             <h2 className="text-2xl font-bold text-gray-100 sm:text-3xl">Send us a message</h2>
                             <p className="text-sm text-gray-200">

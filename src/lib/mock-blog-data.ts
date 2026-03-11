@@ -57,7 +57,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'image',
                 value:
-                    'https://pub-99e59aea1e714d52bb61ed3ecd6a79a9.r2.dev/Blogs/Screenshot%202026-01-12%20at%2011.18.24%E2%80%AFAM.png',
+                    'https://pub-99e59aea1e714d52bb61ed3ecd6a79a9.r2.dev/blogs/Screenshot%202026-01-12%20at%2011.18.24%E2%80%AFAM.png',
             },
             {
                 type: 'paragraph',
@@ -80,7 +80,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'image',
                 value:
-                    'https://pub-99e59aea1e714d52bb61ed3ecd6a79a9.r2.dev/Blogs/Screenshot%202026-01-12%20at%2011.20.51%E2%80%AFAM.png',
+                    'https://pub-99e59aea1e714d52bb61ed3ecd6a79a9.r2.dev/blogs/Screenshot%202026-01-12%20at%2011.20.51%E2%80%AFAM.png',
             },
             {
                 type: 'paragraph',
@@ -109,7 +109,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'image',
                 value:
-                    'https://pub-99e59aea1e714d52bb61ed3ecd6a79a9.r2.dev/Blogs/Screenshot%202026-01-12%20at%2011.20.57%E2%80%AFAM.png',
+                    'https://pub-99e59aea1e714d52bb61ed3ecd6a79a9.r2.dev/blogs/Screenshot%202026-01-12%20at%2011.20.57%E2%80%AFAM.png',
             },
             {
                 type: 'paragraph',
@@ -142,15 +142,15 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: '1.5 PB to 400 GB: Redshift to Snowflake + Apache Iceberg',
-                slug: '/Blogs/redshift-to-snowflake-iceberg',
+                slug: '/blogs/redshift-to-snowflake-iceberg',
             },
             {
                 title: 'Apache Iceberg on Snowflake: A Decision Framework for Enterprise Data Teams',
-                slug: '/Blogs/apache-iceberg-snowflake',
+                slug: '/blogs/apache-iceberg-snowflake',
             },
             {
                 title: 'Snowflake Architecture for the Enterprise: Designing a Scalable, Cost-Efficient Data Platform',
-                slug: '/Blogs/snowflake-enterprise-architecture',
+                slug: '/blogs/snowflake-enterprise-architecture',
             },
         ],
     },
@@ -265,15 +265,15 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'Central Data Team Often Becomes Blockers',
-                slug: '/Blogs/central-data-team-often-becomes-blockers',
+                slug: '/blogs/central-data-team-often-becomes-blockers',
             },
             {
                 title: 'The Complete Redshift to Snowflake Migration Playbook: A Phased Approach for Enterprise Teams',
-                slug: '/Blogs/redshift-to-snowflake-migration',
+                slug: '/blogs/redshift-to-snowflake-migration',
             },
             {
                 title: 'Apache Iceberg on Snowflake: A Decision Framework for Enterprise Data Teams',
-                slug: '/Blogs/apache-iceberg-snowflake',
+                slug: '/blogs/apache-iceberg-snowflake',
             },
         ],
     },
@@ -419,11 +419,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: '1.5 PB to 400 GB: Redshift to Snowflake + Apache Iceberg',
-                slug: '/Blogs/redshift-to-snowflake-iceberg',
+                slug: '/blogs/redshift-to-snowflake-iceberg',
             },
             {
                 title: 'Snowflake Architecture for the Enterprise: Designing a Scalable, Cost-Efficient Data Platform',
-                slug: '/Blogs/snowflake-enterprise-architecture',
+                slug: '/blogs/snowflake-enterprise-architecture',
             },
         ],
     },
@@ -568,11 +568,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: '1.5 PB to 400 GB: Redshift to Snowflake + Apache Iceberg',
-                slug: '/Blogs/redshift-to-snowflake-iceberg',
+                slug: '/blogs/redshift-to-snowflake-iceberg',
             },
             {
                 title: 'The Enterprise Guide to Snowflake Cost Optimization: Proven Strategies to Cut Spend by 40–60%',
-                slug: '/Blogs/snowflake-cost-optimization',
+                slug: '/blogs/snowflake-cost-optimization',
             },
         ],
     },
@@ -705,11 +705,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: '1.5 PB to 400 GB: Redshift to Snowflake + Apache Iceberg',
-                slug: '/Blogs/redshift-to-snowflake-iceberg',
+                slug: '/blogs/redshift-to-snowflake-iceberg',
             },
             {
                 title: 'Snowflake Architecture for the Enterprise: Designing a Scalable, Cost-Efficient Data Platform',
-                slug: '/Blogs/snowflake-enterprise-architecture',
+                slug: '/blogs/snowflake-enterprise-architecture',
             },
         ],
     },
@@ -855,11 +855,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'The Enterprise Guide to Snowflake Cost Optimization: Proven Strategies to Cut Spend by 40–60%',
-                slug: '/Blogs/snowflake-cost-optimization',
+                slug: '/blogs/snowflake-cost-optimization',
             },
             {
                 title: 'Apache Iceberg on Snowflake: A Decision Framework for Enterprise Data Teams',
-                slug: '/Blogs/apache-iceberg-snowflake',
+                slug: '/blogs/apache-iceberg-snowflake',
             },
         ],
     },
@@ -1002,11 +1002,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'Central Data Teams Often Become Blockers \u2014 And How to Fix It',
-                slug: '/Blogs/central-data-team-often-becomes-blockers',
+                slug: '/blogs/central-data-team-often-becomes-blockers',
             },
             {
                 title: '1.5 PB to 400 GB: Redshift to Snowflake + Apache Iceberg',
-                slug: '/Blogs/redshift-to-snowflake-iceberg',
+                slug: '/blogs/redshift-to-snowflake-iceberg',
             },
         ],
     },
@@ -1154,11 +1154,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'DBT + Airflow at Scale: What Breaks After 200 Models (and How to Fix It)',
-                slug: '/Blogs/dbt-airflow-at-scale',
+                slug: '/blogs/dbt-airflow-at-scale',
             },
             {
                 title: '1.5 PB to 400 GB: Redshift to Snowflake + Apache Iceberg',
-                slug: '/Blogs/redshift-to-snowflake-iceberg',
+                slug: '/blogs/redshift-to-snowflake-iceberg',
             },
         ],
     },
@@ -1306,11 +1306,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'Building a Regulatory-Ready Data Platform for Canadian Fintechs',
-                slug: '/Blogs/regulatory-data-platform-canadian-fintechs',
+                slug: '/blogs/regulatory-data-platform-canadian-fintechs',
             },
             {
                 title: 'The Enterprise Guide to Snowflake Cost Optimization: Proven Strategies to Cut Spend by 40\u201360%',
-                slug: '/Blogs/snowflake-cost-optimization',
+                slug: '/blogs/snowflake-cost-optimization',
             },
         ],
     },
@@ -1472,11 +1472,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'Real-Time vs Batch Pipelines: Architecture Patterns for Data Teams',
-                slug: '/Blogs/real-time-vs-batch-data-pipelines',
+                slug: '/blogs/real-time-vs-batch-data-pipelines',
             },
             {
                 title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
-                slug: '/Blogs/data-pipeline-observability-silent-failures',
+                slug: '/blogs/data-pipeline-observability-silent-failures',
             },
         ],
     },
@@ -1649,11 +1649,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'Building a Modern Data Lakehouse with Apache Iceberg, Spark, and AWS Glue',
-                slug: '/Blogs/modern-data-lakehouse-iceberg-spark-glue',
+                slug: '/blogs/modern-data-lakehouse-iceberg-spark-glue',
             },
             {
                 title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
-                slug: '/Blogs/data-pipeline-observability-silent-failures',
+                slug: '/blogs/data-pipeline-observability-silent-failures',
             },
         ],
     },
@@ -1837,11 +1837,11 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'Building a Modern Data Lakehouse with Apache Iceberg, Spark, and AWS Glue',
-                slug: '/Blogs/modern-data-lakehouse-iceberg-spark-glue',
+                slug: '/blogs/modern-data-lakehouse-iceberg-spark-glue',
             },
             {
                 title: 'Real-Time vs Batch Pipelines: Architecture Patterns for Data Teams',
-                slug: '/Blogs/real-time-vs-batch-data-pipelines',
+                slug: '/blogs/real-time-vs-batch-data-pipelines',
             },
         ],
     },
@@ -2127,15 +2127,15 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
-                slug: '/Blogs/data-pipeline-observability-silent-failures',
+                slug: '/blogs/data-pipeline-observability-silent-failures',
             },
             {
                 title: 'Building a Regulatory-Ready Data Platform for Canadian Fintechs',
-                slug: '/Blogs/regulatory-data-platform-canadian-fintechs',
+                slug: '/blogs/regulatory-data-platform-canadian-fintechs',
             },
             {
                 title: 'Real-Time vs Batch Pipelines: Architecture Patterns for Data Teams',
-                slug: '/Blogs/real-time-vs-batch-data-pipelines',
+                slug: '/blogs/real-time-vs-batch-data-pipelines',
             },
         ],
     },
@@ -2341,15 +2341,15 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         relatedBlogs: [
             {
                 title: 'Central Data Teams Often Become Blockers — And How to Fix It',
-                slug: '/Blogs/central-data-team-often-becomes-blockers',
+                slug: '/blogs/central-data-team-often-becomes-blockers',
             },
             {
                 title: 'Scaling Data Engineering in Consultancies: Build, Partner, or Both?',
-                slug: '/Blogs/scaling-data-engineering-consultancies',
+                slug: '/blogs/scaling-data-engineering-consultancies',
             },
             {
                 title: 'Data Pipeline Observability: Catching Silent Failures Before Your Stakeholders Do',
-                slug: '/Blogs/data-pipeline-observability-silent-failures',
+                slug: '/blogs/data-pipeline-observability-silent-failures',
             },
         ],
     },

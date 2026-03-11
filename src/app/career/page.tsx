@@ -1,13 +1,13 @@
-import ContentSection from "@/components/content-7";
-import Features from "@/components/features-4";
 import FooterSection from "@/components/footer";
-import HeroSection from "@/components/hero-section";
 import { HeroHeader } from "@/components/hero5-header";
-import Testimonial from "@/components/testimonials";
 import CareersPage from "./c";
+import type { Metadata } from "next";
 
-
-
+export const metadata: Metadata = {
+    title: "Careers | CData Insights",
+    description: "Join CData Insights — explore career opportunities in data engineering, AI consulting, and analytics.",
+    alternates: { canonical: "https://cdatainsights.com/career" },
+};
 
 
 export default function Home() {

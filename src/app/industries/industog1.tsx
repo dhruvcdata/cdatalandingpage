@@ -105,7 +105,7 @@ const IndustriesComponent = () => {
                             </div>
                         ))}
                     </div>
-                    <a href="/Contact">
+                    <a href="/contact">
                         <button className="bg-blue-600 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300">
                             <span className="mr-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

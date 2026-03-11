@@ -79,7 +79,7 @@ export default function RealEstatePage() {
         <div className="py-24 md:pb-32 lg:pb-36 lg:pt-72">
           <div className="relative mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
             <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
-              <h1 className="mt-8 max-w-2xl text-balance text-5xl md:text-6xl lg:mt-8 xl:text-7xl bg-blue600 from-blue-500 to-purple-600 bg-clip-text ext-transparent">Transform Real Estate with Data Intelligence</h1>
+              <h1 className="mt-8 max-w-2xl text-balance text-5xl md:text-6xl lg:mt-8 xl:text-7xl bg-blue-600 from-blue-500 to-purple-600 bg-clip-text text-transparent">Transform Real Estate with Data Intelligence</h1>
               <p className="mt-8 max-w-2xl text-balance text-lg">Unlock actionable insights from your property data to maximize returns, optimize operations, and make smarter investment decisions.</p>
 
               <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
@@ -87,19 +87,9 @@ export default function RealEstatePage() {
                   asChild
                   size="lg"
                   className="h-12 rounded-lg pl-5 pr-3 text-base">
-                  <Link href="#cta">
-                    <span className="text-nowrap">Get Started</span>
+                  <Link href="/contact">
+                    <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
-                  </Link>
-                </Button>
-                <Button
-                  key={2}
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-lg px-5 text-base  ">
-                  <Link href="/Contact">
-                    <span className="text-nowrap">Schedule a consultation</span>
                   </Link>
                 </Button>
               </div>
@@ -124,7 +114,7 @@ export default function RealEstatePage() {
               <p>In today's competitive property market, data is the foundation of successful investment strategies. Our advanced analytics solutions help real estate developers, property managers, and investment firms transform raw data into actionable insights that maximize returns, optimize operations, and guide strategic decisions.</p>
 
               <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5 bg-blue-500 text-white hover:bg-blue-500">
-                <Link href="#">
+                <Link href="/contact">
                   <span>Learn More</span>
                   <ChevronRight className="size-2" />
                 </Link>
@@ -219,7 +209,7 @@ export default function RealEstatePage() {
                   onClick={() => setActiveSolution(solution as SolutionKey)}
                   className={`py-3 px-6 rounded-full transition-all duration-300 ${activeSolution === solution
                     ? `bg-blue-500 text-white shadow-lg border border-blue-500`
-                    : 'bg-backgroiund text-indigo-200 hover:bg-indigo-800 border border-blue-500'}`}
+                    : 'bg-background text-indigo-200 hover:bg-indigo-800 border border-blue-500'}`}
                 >
                   {solution === 'PropertyAnalytics' ? 'Property Analytics' :
                     solution === 'MarketIntelligence' ? 'Market Intelligence' :
@@ -248,7 +238,7 @@ export default function RealEstatePage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/Contact">
+                <Link href="/contact">
                   <Button className="bg-blue-500 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300 border hover:bg-blue-500">
                     <span className="mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -283,7 +273,7 @@ export default function RealEstatePage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center mb-12">
             <div className="inline-block rounded-full bg-blue-500 px-3 py-1 text-sm font-medium text-white mb-4">Real-World Impact</div>
-            <h2 className="text-3xl font-semibold md:text-4xl mb-4 text-indgo-600">Success Stories</h2>
+            <h2 className="text-3xl font-semibold md:text-4xl mb-4 text-indigo-600">Success Stories</h2>
             <p className="max-w-2xl mx-auto">See how our data solutions are transforming real estate organizations.</p>
           </div>
 
@@ -334,7 +324,7 @@ export default function RealEstatePage() {
           <div className="grid gap-y-12 px-2 lg:grid-cols-[1fr_auto]">
             <div className="text-center lg:text-left">
               <div className="inline-block rounded-full bg-background border border-blue-500 px-3 py-1 text-sm font-medium text-blue-500 mb-4">Got Questions?</div>
-              <h2 className="mb-4 text-3xl font-semibold md:text-4xl text-inigo-600">Frequently Asked Questions</h2>
+              <h2 className="mb-4 text-3xl font-semibold md:text-4xl text-indigo-600">Frequently Asked Questions</h2>
               <p>Common questions about real estate data analytics.</p>
             </div>
             <div className="divide-y divide-blue-500 sm:mx-auto sm:max-w-lg lg:mx-0">
@@ -366,7 +356,7 @@ export default function RealEstatePage() {
           <h2 className="text-3xl font-semibold md:text-4xl mb-6">Ready to Transform Your Real Estate Data?</h2>
           <p className="max-w-2xl mx-auto mb-10">Partner with us to unlock the full potential of your property portfolio data, improving returns and operational excellence.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/Contact">
+            <a href="/contact">
               <Button className="bg-blue-500 text-white hover:bg-blue-400 py-3 px-6 rounded-full font-medium">
                 Get Your Free Assessment
               </Button>

@@ -10,7 +10,7 @@ const LatestInsightsComponent = () => {
 
             date: 'March 9, 2026',
             category: 'DATA STRATEGY',
-            slug: '/Blogs/data-driven-trap-nike-25b-lesson'
+            slug: '/blogs/data-driven-trap-nike-25b-lesson'
         },
         {
             id: 2,
@@ -19,7 +19,7 @@ const LatestInsightsComponent = () => {
 
             date: 'March 6, 2026',
             category: 'DATA ENGINEERING',
-            slug: '/Blogs/esg-data-real-estate-certification'
+            slug: '/blogs/esg-data-real-estate-certification'
         },
         {
             id: 3,
@@ -28,7 +28,7 @@ const LatestInsightsComponent = () => {
 
             date: 'March 4, 2026',
             category: 'DATA ENGINEERING',
-            slug: '/Blogs/redshift-to-snowflake-migration'
+            slug: '/blogs/redshift-to-snowflake-migration'
         },
         {
             id: 4,
@@ -37,7 +37,7 @@ const LatestInsightsComponent = () => {
 
             date: 'March 1, 2026',
             category: 'DATA ENGINEERING',
-            slug: '/Blogs/data-pipeline-observability-silent-failures'
+            slug: '/blogs/data-pipeline-observability-silent-failures'
         }
     ];
 

@@ -124,7 +124,7 @@ export default function HealthWellnessPage() {
                             <p>In today's digital health landscape, data is the foundation of exceptional care. Our advanced analytics solutions help healthcare providers, wellness centers, and fitness organizations transform raw data into actionable insights that improve patient care, streamline operations, and ensure regulatory compliance.</p>
 
                             <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5">
-                                <Link href="#">
+                                <Link href="/contact">
                                     <span>Learn More</span>
                                     <ChevronRight className="size-2" />
                                 </Link>
@@ -234,7 +234,7 @@ export default function HealthWellnessPage() {
                                     </div>
                                 ))}
                             </div>
-                            <Link href="/Contact">
+                            <Link href="/contact">
                                 <Button className="bg-green-600 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300">
                                     <span className="mr-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -10,7 +10,7 @@ const PrivacyPolicy: React.FC = () => {
                     <section>
                         <h2 className="text-2xl font-semibold text-white mb-4">Introduction</h2>
                         <p className="mb-4">
-                            CData, Inc. ("CData," C"we," "us," or "our") respects your privacy and is committed to protecting
+                            CData, Inc. ("CData," "we," "us," or "our") respects your privacy and is committed to protecting
                             your personal data. This Privacy Policy describes how we collect, use, and disclose personal data
                             when you visit our website (the "Site") or otherwise interact with us, and informs you about
                             your privacy rights and how the law protects you.
@@ -37,7 +37,7 @@ const PrivacyPolicy: React.FC = () => {
                         <ul className="list-disc pl-6 mb-4 space-y-2">
                             <li>Name</li>
                             <li>Email address</li>
-                            <li>Cone number</li>
+                            <li>Phone number</li>
                             <li>Company name and job title</li>
                             <li>Address, State, Province, ZIP/Postal code, City</li>
                             <li>Cookies and Usage Data</li>
@@ -127,7 +127,7 @@ const PrivacyPolicy: React.FC = () => {
                             If you have any questions about this Privacy Policy, please contact us:
                         </p>
                         <div className="pl-6">
-                            <p>By email: info@CdataInsights.com</p>
+                            <p>By email: info@cdatainsights.com</p>
 
 
                         </div>

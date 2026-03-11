@@ -6,7 +6,7 @@ const CareersPage: React.FC = () => {
         <div className="bg-background pt-[10vh] min-h-screen py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-white mb-4">Careers at CData</h1>
+                    <h1 className="text-4xl font-bold text-white mb-4">Careers at Cdata Consulting Inc.</h1>
                     <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                         Join our team of data experts and help organizations unlock the value of their data
                     </p>
@@ -63,9 +63,9 @@ const CareersPage: React.FC = () => {
                             We're not actively hiring at the moment, but we're always on the lookout for exceptional talent.
                             Send us your resume to be considered for future opportunities as they become available.
                         </p>
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-md font-medium transition-colors duration-300">
+                        <a href="mailto:info@cdatainsights.com?subject=Resume%20Submission" className="inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-md font-medium transition-colors duration-300">
                             Submit Your Resume
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@ const CareersPage: React.FC = () => {
                     </p>
                     <div className="flex items-center justify-center space-x-2">
                         <Mail className="w-5 h-5 text-blue-500" />
-                        <a href="mailto:info@Cdatainsights.com" className="text-blue-400 hover:text-blue-300">info@cdatainsights.com</a>
+                        <a href="mailto:info@cdatainsights.com" className="text-blue-400 hover:text-blue-300">info@cdatainsights.com</a>
                     </div>
                 </div>
             </div>

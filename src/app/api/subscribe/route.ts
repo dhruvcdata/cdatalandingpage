@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(req: Request) {
     if (!process.env.RESEND_API_KEY) {
         return NextResponse.json(
@@ -10,6 +8,8 @@ export async function POST(req: Request) {
             { status: 503 }
         )
     }
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     try {
         const { email } = await req.json()
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
                 html: `
                     <p>Thank you for subscribing to the CData Insights blog newsletter!</p>
                     <p>You'll receive insights on Snowflake, data architecture, and modern analytics directly in your inbox.</p>
-                    <p>In the meantime, check out our latest articles at <a href="https://cdatainsights.com/Blogs">cdatainsights.com/Blogs</a>.</p>
+                    <p>In the meantime, check out our latest articles at <a href="https://cdatainsights.com/blogs">cdatainsights.com/blogs</a>.</p>
                     <p>Best regards,<br>The CData Insights Team</p>
                 `,
             }),

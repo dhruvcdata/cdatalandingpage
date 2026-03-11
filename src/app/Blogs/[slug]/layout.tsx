@@ -16,11 +16,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: `${blog.title} | CData Insights`,
         description: blog.subtitle,
-        alternates: { canonical: `https://cdatainsights.com/Blogs/${slug}` },
+        alternates: { canonical: `https://cdatainsights.com/blogs/${slug}` },
         openGraph: {
             title: blog.title,
             description: blog.subtitle,
-            url: `https://cdatainsights.com/Blogs/${slug}`,
+            url: `https://cdatainsights.com/blogs/${slug}`,
             type: "article",
             images: [{ url: blog.heroImage }],
         },

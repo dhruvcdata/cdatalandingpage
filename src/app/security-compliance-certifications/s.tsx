@@ -9,7 +9,7 @@ const SecurityComplianceCertifications: React.FC = () => {
                 <div className="space-y-8 text-gray-300">
                     <section>
                         <p className="mb-6">
-                            At phData, we are committed to protecting the security and privacy of our customers' data. We have implemented robust
+                            At Cdata Consulting Inc., we are committed to protecting the security and privacy of our customers' data. We have implemented robust
                             security measures and comply with industry standards and regulations to ensure the highest level of protection.
                         </p>
 
@@ -77,7 +77,7 @@ const SecurityComplianceCertifications: React.FC = () => {
                             <div>
                                 <h3 className="text-xl font-medium text-white mb-3">Infrastructure Security</h3>
                                 <p>
-                                    Our infrastructure is hosted in secure, SOC 2 compliant data centers with Cysical security measures in place.
+                                    Our infrastructure is hosted in secure, SOC 2 compliant data centers with Physical security measures in place.
                                     We implement network security controls, including firewalls, intrusion detection systems, and regular vulnerability
                                     scanning to protect against unauthorized access.
                                 </p>
@@ -110,7 +110,7 @@ const SecurityComplianceCertifications: React.FC = () => {
                             assessments and penetration tests to identify and address potential vulnerabilities.
                         </p>
                         <p>
-                            For more information about our security and compliance programs, please contact our security team at info@CdataInsights.com.
+                            For more information about our security and compliance programs, please contact our security team at info@cdatainsights.com.
                         </p>
                     </section>
 

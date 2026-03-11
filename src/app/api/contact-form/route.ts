@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(req: Request) {
     if (!process.env.RESEND_API_KEY) {
         return NextResponse.json(
@@ -10,6 +8,8 @@ export async function POST(req: Request) {
             { status: 503 }
         )
     }
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     try {
         const { firstName, lastName, email, phone, subject, message } = await req.json()
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
             // Email to admin with all form details
             resend.emails.send({
                 from: 'noreply@cdatainsights.com',
-                to: process.env.ADMIN_EMAIL as string,
+                to: process.env.ADMIN_EMAIL || 'info@cdatainsights.com',
                 subject: `[Contact Form] ${subject}`,
                 html: adminEmailHtml,
 

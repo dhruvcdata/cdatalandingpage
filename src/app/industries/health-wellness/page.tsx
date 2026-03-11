@@ -87,20 +87,10 @@ export default function HealthWellnessPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-lg pl-5 pr-3 text-base bg-white hover:bg-blu-700">
-                  <Link href="#cta">
-                    <span className="text-nowrap">Get Started</span>
+                  className="h-12 rounded-lg pl-5 pr-3 text-base">
+                  <Link href="/contact">
+                    <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
-                  </Link>
-                </Button>
-                <Button
-                  key={2}
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-lg px-5 text-base border-ble-500 text-bue-500 hover:bg-lue-500 dark:hover:bg-ble-900/20">
-                  <Link href="/Contact">
-                    <span className="text-nowrap">Schedule a consultation</span>
                   </Link>
                 </Button>
               </div>
@@ -125,7 +115,7 @@ export default function HealthWellnessPage() {
               <p>In today's digital health landscape, data is the foundation of exceptional care. Our advanced analytics solutions help healthcare providers, wellness centers, and fitness organizations transform raw data into actionable insights that improve patient care, streamline operations, and ensure regulatory compliance.</p>
 
               <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5 bg-blue-500 text-white hover:bg-blue-700">
-                <Link href="#">
+                <Link href="/contact">
                   <span>Learn More</span>
                   <ChevronRight className="size-2" />
                 </Link>
@@ -249,7 +239,7 @@ export default function HealthWellnessPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/Contact">
+                <Link href="/contact">
                   <Button className="bg-blue-500 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300 border  hover:bg-blue-700">
                     <span className="mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -368,7 +358,7 @@ export default function HealthWellnessPage() {
           <h2 className="text-3xl font-semibold md:text-4xl mb-6">Ready to Transform Your Health Data?</h2>
           <p className="max-w-2xl mx-auto mb-10">Partner with us to unlock the full potential of your healthcare and wellness data, improving outcomes and operational excellence.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/Contact">
+            <a href="/contact">
               <Button className="bg-blue-500 text-white hover:bg-blue-50 py-3 px-6 rounded-full font-medium">
                 Get Your Free Assessment
               </Button>

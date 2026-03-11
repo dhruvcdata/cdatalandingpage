@@ -19,8 +19,6 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import Head from 'next/head';
-
 export default function DataMigrationPage() {
   // State for Solutions component
   type SolutionKey = 'CloudMigration' | 'DataLakeMigration' | 'LegacyModernization' | 'DatabaseMigration';
@@ -86,29 +84,6 @@ export default function DataMigrationPage() {
 
   return (
     <div>
-      <Head>
-        <title>Best Data & Cloud Migration Services | Toronto & GTA | CData Consultancy</title>
-
-        <meta name="description" content="Get the best data migration services in Toronto, GTA & Mississauga. We offer expert cloud data and database migration solutions tailored to your business needs." />
-        <meta name="author" content="CData Consultancy" />
-        <meta name="keywords" content="Data Migration, Cloud Migration, Toronto, GTA, Mississauga, CData Consultancy" />
-
-        <meta property="og:title" content="Best Data & Cloud Migration Services | Toronto & GTA | CData Consultancy" />
-        <meta property="og:description" content="Get the best data migration services in Toronto, GTA & Mississauga. We offer expert cloud data and database migration solutions tailored to your business needs." />
-        <meta property="og:url" content="https://cdatainsights.com/services/data-migration" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="CData Consultancy" />
-        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Best Data & Cloud Migration Services | Toronto & GTA | CData Consultancy" />
-        <meta name="twitter:description" content="Get the best data migration services in Toronto, GTA & Mississauga. We offer expert cloud data and database migration solutions tailored to your business needs." />
-        <meta name="twitter:url" content="https://cdatainsights.com/services/data-migration" />
-        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" />
-
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <HeroHeader />
 
       {/* Hero Section */}
@@ -123,20 +98,10 @@ export default function DataMigrationPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-lg pl-5 pr-3 text-base bg-white ">
-                  <Link href="#cta">
-                    <span className="text-nowrap">Start Your Migration</span>
+                  className="h-12 rounded-lg pl-5 pr-3 text-base">
+                  <Link href="/contact">
+                    <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
-                  </Link>
-                </Button>
-                <Button
-                  key={2}
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-lg px-5 text-base">
-                  <Link href="/Contact">
-                    <span className="text-nowrap">Schedule a consultation</span>
                   </Link>
                 </Button>
               </div>
@@ -161,7 +126,7 @@ export default function DataMigrationPage() {
               <p>Data migration is more than moving bits and bytes—it's about transforming your organization's capabilities while preserving your most valuable asset: your data. Our proven migration methodology minimizes risk, eliminates downtime, and ensures your data arrives intact and optimized for your new environment.</p>
 
               <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5 bg-blue-500 text-white hover:bg-blue-700">
-                <Link href="#">
+                <Link href="/contact">
                   <span>View Our Approach</span>
                   <ChevronRight className="size-2" />
                 </Link>
@@ -285,7 +250,7 @@ export default function DataMigrationPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/Contact">
+                <Link href="/contact">
                   <Button className="bg-blue-500 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300 border hover:bg-blue-700">
                     <span className="mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -460,7 +425,7 @@ export default function DataMigrationPage() {
           <h2 className="text-3xl font-semibold md:text-4xl mb-6">Ready to Transform Your Data Infrastructure?</h2>
           <p className="max-w-2xl mx-auto mb-10">Let's discuss your migration needs and develop a customized strategy that minimizes risk and maximizes business value.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/Contact">
+            <a href="/contact">
               <Button className="bg-blue-500 text-white hover:bg-blue-400 py-3 px-6 rounded-full font-medium">
                 Request Migration Assessment
               </Button>

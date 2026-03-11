@@ -86,20 +86,10 @@ export default function HospitalitySMBsPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-lg pl-5 pr-3 text-base ">
-                  <Link href="#cta">
-                    <span className="text-nowrap">Get Started</span>
+                  className="h-12 rounded-lg pl-5 pr-3 text-base">
+                  <Link href="/contact">
+                    <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
-                  </Link>
-                </Button>
-                <Button
-                  key={2}
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-lg px-5 text-base ">
-                  <Link href="/Contact">
-                    <span className="text-nowrap">Schedule a consultation</span>
                   </Link>
                 </Button>
               </div>
@@ -124,7 +114,7 @@ export default function HospitalitySMBsPage() {
               <p>In today's competitive hospitality landscape, data is the key to exceptional service and business growth. Our advanced analytics solutions help hotels, restaurants, entertainment venues, and small businesses transform raw data into actionable insights that enhance guest experiences, optimize operations, and maximize revenue.</p>
 
               <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5 bg-blue-500 text-white hover:bg-blue-700">
-                <Link href="#">
+                <Link href="/contact">
                   <span>Learn More</span>
                   <ChevronRight className="size-2" />
                 </Link>
@@ -248,7 +238,7 @@ export default function HospitalitySMBsPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/Contact">
+                <Link href="/contact">
                   <Button className="bg-blue-500 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300 border hover:bg-blue-700">
                     <span className="mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -361,7 +351,7 @@ export default function HospitalitySMBsPage() {
           <h2 className="text-3xl font-semibold md:text-4xl mb-6">Ready to Transform Your Hospitality Data?</h2>
           <p className="max-w-2xl mx-auto mb-10">Partner with us to unlock the full potential of your hospitality and business data, improving guest experiences and operational excellence.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/Contact">
+            <a href="/contact">
               <Button className="bg-blue-500 text-white hover:bg-blue-400 py-3 px-6 rounded-full font-medium">
                 Get Your Free Assessment
               </Button>

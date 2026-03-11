@@ -19,7 +19,7 @@ export async function generateMetadata({
     const blog = BLOG_DATA_MAP[slug]
     if (!blog) return {}
 
-    const url = `https://cdatainsights.com/Blogs/${slug}`
+    const url = `https://cdatainsights.com/blogs/${slug}`
 
     return {
         title: `${blog.title} | CData Insights`,
@@ -71,7 +71,7 @@ export default async function BlogSlugPage({
             name: 'CData Insights',
             logo: { '@type': 'ImageObject', url: 'https://cdatainsights.com/whitelogo.png' },
         },
-        mainEntityOfPage: `https://cdatainsights.com/Blogs/${slug}`,
+        mainEntityOfPage: `https://cdatainsights.com/blogs/${slug}`,
     }
 
     const faqSchema = {
@@ -102,7 +102,7 @@ export default async function BlogSlugPage({
 
                 {/* BACK BUTTON */}
                 <Link
-                    href="/Blogs"
+                    href="/blogs"
                     className="
             absolute
             top-6
@@ -167,7 +167,7 @@ export default async function BlogSlugPage({
                     {blog.content.map((block, index) => {
                         if (block.type === 'heading') {
                             return (
-                                <h2 key={index} className="text-2xl font-semibold text-white">
+                                <h2 key={`heading-${index}`} className="text-2xl font-semibold text-white">
                                     {block.value}
                                 </h2>
                             )
@@ -176,7 +176,7 @@ export default async function BlogSlugPage({
                         if (block.type === 'paragraph') {
                             return (
                                 <p
-                                    key={index}
+                                    key={`paragraph-${index}`}
                                     className="text-gray-300 leading-relaxed [&_strong]:text-white [&_strong]:font-semibold [&_code]:text-blue-400 [&_code]:bg-white/5 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono [&_a]:text-blue-400 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-blue-300"
                                     dangerouslySetInnerHTML={{ __html: block.value }}
                                 />
@@ -187,7 +187,7 @@ export default async function BlogSlugPage({
                             const isSvg = block.value.endsWith('.svg')
                             return (
                                 <div
-                                    key={index}
+                                    key={`image-${index}`}
                                     className="mx-auto w-full max-w-3xl overflow-hidden"
                                 >
                                     {isSvg ? (
@@ -221,9 +221,9 @@ export default async function BlogSlugPage({
                         </h3>
 
                         <div className="space-y-4">
-                            {blog.faq.map((item, i) => (
+                            {blog.faq.map((item) => (
                                 <Card
-                                    key={i}
+                                    key={item.question}
                                     className="bg-neutral-900 border border-white/10 p-6"
                                 >
                                     <h4 className="font-medium">{item.question}</h4>
@@ -246,7 +246,7 @@ export default async function BlogSlugPage({
                         </p>
                         <div className="mt-6 flex flex-wrap gap-4">
                             <Link
-                                href="/Contact"
+                                href="/contact"
                                 className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
                             >
                                 Schedule a Consultation
@@ -319,7 +319,7 @@ export default async function BlogSlugPage({
                             Data engineering, platform architecture, and cloud migration — delivered by senior consultants.
                         </p>
                         <Link
-                            href="/Contact"
+                            href="/contact"
                             className="block w-full rounded-lg bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-blue-500"
                         >
                             Get in Touch

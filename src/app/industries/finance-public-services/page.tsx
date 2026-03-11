@@ -87,20 +87,10 @@ export default function FinancePublicServicesPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-lg pl-5 pr-3 text-base ">
-                  <Link href="/Contact">
-                    <span className="text-nowrap">Get Started</span>
+                  className="h-12 rounded-lg pl-5 pr-3 text-base">
+                  <Link href="/contact">
+                    <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
-                  </Link>
-                </Button>
-                <Button
-                  key={2}
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-lg px-5 text-base">
-                  <Link href="#cta">
-                    <span className="text-nowrap">Schedule a consultation</span>
                   </Link>
                 </Button>
               </div>
@@ -125,7 +115,7 @@ export default function FinancePublicServicesPage() {
               <p>In today's complex financial landscape, data is the foundation of sound risk management and exceptional customer service. Our advanced analytics solutions help banks, insurance companies, investment firms, and public sector organizations transform raw data into actionable insights that improve decision-making, streamline operations, and ensure regulatory compliance.</p>
 
               <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5 bg-blue-500 text-white hover:bg-blue-700">
-                <Link href="#">
+                <Link href="/contact">
                   <span>Learn More</span>
                   <ChevronRight className="size-2" />
                 </Link>
@@ -249,7 +239,7 @@ export default function FinancePublicServicesPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/Contact">
+                <Link href="/contact">
                   <Button className="bg-blue-500 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300 border hover:bg-blue-700">
                     <span className="mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -372,7 +362,7 @@ export default function FinancePublicServicesPage() {
           <h2 className="text-3xl font-semibold md:text-4xl mb-6">Ready to Transform Your Financial Data?</h2>
           <p className="max-w-2xl mx-auto mb-10">Partner with us to unlock the full potential of your financial and public sector data, improving risk management and operational excellence.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/Contact">
+            <a href="/contact">
               <Button className="bg-blue-500 text-white hover:bg-blue-400 py-3 px-6 rounded-full font-medium">
                 Get Your Free Assessment
               </Button>

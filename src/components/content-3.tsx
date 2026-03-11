@@ -14,7 +14,7 @@ export default function ContentSection() {
                         <p>Lyra is evolving to be more than just the models. It supports an entire ecosystem — from products to the APIs and platforms helping developers and businesses innovate.</p>
 
                         <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5">
-                            <Link href="#">
+                            <Link href="/contact">
                                 <span>Learn More</span>
                                 <ChevronRight className="size-2" />
                             </Link>

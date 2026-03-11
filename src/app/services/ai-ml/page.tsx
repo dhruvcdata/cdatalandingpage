@@ -19,7 +19,6 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import Head from 'next/head';
 export default function AIMLServicesPage() {
   // State for Solutions component
   type SolutionKey = 'PredictiveAnalytics' | 'MLOps' | 'ComputerVision' | 'NLP';
@@ -92,29 +91,6 @@ export default function AIMLServicesPage() {
 
   return (
     <div>
-      <Head>
-        <title>AI & Machine Learning Services in Detroit & Mississauga | CData Consultancy</title>
-
-        <meta name="description" content="Get expert machine learning services in Detroit & Mississauga. We offer AI solutions, machine learning consulting, and custom models for smarter decisions." />
-        <meta name="author" content="CData Consultancy" />
-        <meta name="keywords" content="AI Services, Machine Learning, Detroit, Mississauga, CData Consultancy" />
-
-        <meta property="og:title" content="AI & Machine Learning Services in Detroit & Mississauga | CData Consultancy" />
-        <meta property="og:description" content="Get expert machine learning services in Detroit & Mississauga. We offer AI solutions, machine learning consulting, and custom models for smarter decisions." />
-        <meta property="og:url" content="https://cdatainsights.com/services/ai-ml" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="CData Consultancy" />
-
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AI & Machine Learning Services in Detroit & Mississauga | CData Consultancy" />
-        <meta name="twitter:description" content="Get expert machine learning services in Detroit & Mississauga. We offer AI solutions, machine learning consulting, and custom models for smarter decisions." />
-        <meta name="twitter:url" content="https://cdatainsights.com/services/ai-ml" />
-
-
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <HeroHeader />
 
       {/* Hero Section */}
@@ -129,20 +105,10 @@ export default function AIMLServicesPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-lg pl-5 pr-3 text-base ">
-                  <Link href="/Contact">
-                    <span className="text-nowrap">Get Started</span>
+                  className="h-12 rounded-lg pl-5 pr-3 text-base">
+                  <Link href="/contact">
+                    <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
-                  </Link>
-                </Button>
-                <Button
-                  key={2}
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-lg px-5 text-base ">
-                  <Link href="#cta">
-                    <span className="text-nowrap">Schedule a consultation</span>
                   </Link>
                 </Button>
               </div>
@@ -171,7 +137,7 @@ export default function AIMLServicesPage() {
               <p>AI and machine learning are transforming industries by enabling smarter decision-making, automating processes, and uncovering hidden insights. Our comprehensive AI/ML services help you harness the power of data to drive innovation and growth.</p>
 
               <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5 bg-blue-500 text-white hover:bg-blue-700">
-                <Link href="#">
+                <Link href="/contact">
                   <span>View Our Approach</span>
                   <ChevronRight className="size-2" />
                 </Link>
@@ -295,7 +261,7 @@ export default function AIMLServicesPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/Contact">
+                <Link href="/contact">
                   <Button className="bg-blue-500 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300 border hover:bg-blue-700">
                     <span className="mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -470,7 +436,7 @@ export default function AIMLServicesPage() {
           <h2 className="text-3xl font-semibold md:text-4xl mb-6">Ready to Transform Your Business with AI/ML?</h2>
           <p className="max-w-2xl mx-auto mb-10">Let's discuss your AI/ML needs and develop a customized strategy that drives innovation and growth.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/Contact">
+            <a href="/contact">
               <Button className="bg-blue-500 text-white hover:bg-blue-400 py-3 px-6 rounded-full font-medium">
                 Request AI/ML Assessment
               </Button>

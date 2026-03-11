@@ -14,7 +14,7 @@ const DataVisualizationSection = () => {
     const tabContent = {
         research: {
             title: "Data Visualization Research\nTechnique & Solution",
-            description: "Delightful unreserved impossible few estimating men favourable see entreaties. She propriety immediate was improving. He or entrance humoured likewise moderate. Much nor game son say feel. Fat make met can must form into gate. Me we offending prevailed discovery.",
+            description: "We combine advanced analytics with intuitive visualization techniques to uncover hidden patterns in your data. Our research-driven approach ensures every dashboard and report delivers actionable insights that drive real business outcomes.",
             image: "https://lottie.host/f8227b01-b1f6-4ae1-a613-5653cd2de634/mekmy5VmOA.lottie",
             alt: "Data Visualization Research Illustration"
         },
@@ -124,22 +124,22 @@ const DataVisualizationSection = () => {
                 {/* Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     <div className="flex flex-col items-center">
-                        <p className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">15+</p>
-                        <p className="text-gray-300">Years of Excellence</p>
+                        <p className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">10+</p>
+                        <p className="text-gray-300">Years of Experience</p>
                     </div>
 
                     <div className="flex flex-col items-center">
-                        <p className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">500+</p>
-                        <p className="text-gray-300">Data Implementations</p>
+                        <p className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">50+</p>
+                        <p className="text-gray-300">Projects Delivered</p>
                     </div>
 
                     <div className="flex flex-col items-center">
-                        <p className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">99.9%</p>
-                        <p className="text-gray-300">System Uptime</p>
+                        <p className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">100%</p>
+                        <p className="text-gray-300">Client Satisfaction</p>
                     </div>
 
                     <div className="flex flex-col items-center">
-                        <p className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">40+</p>
+                        <p className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">5+</p>
                         <p className="text-gray-300">Industries Served</p>
                     </div>
                 </div>

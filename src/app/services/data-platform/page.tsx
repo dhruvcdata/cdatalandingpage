@@ -25,8 +25,6 @@ import {
   Box
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import Head from 'next/head';
-
 export default function DataPlatformsPage() {
   // State for Solutions component
   type SolutionKey = 'DataInfrastructure' | 'CloudPlatforms' | 'DataIntegration' | 'PlatformModernization';
@@ -92,29 +90,6 @@ export default function DataPlatformsPage() {
 
   return (
     <div>
-      <Head>
-        <title>Top Customer Data & Digital Asset Platforms | GTA & Detroit | CData Consultancy</title>
-
-        <meta name="description" content="Discover the best customer data platform in GTA, top digital asset management in Detroit, and expert solutions using Google Cloud database technology." />
-        <meta name="author" content="CData Consultancy" />
-        <meta name="keywords" content="Customer Data Platform, Digital Asset Management, GTA, Detroit, CData Consultancy" />
-
-        <meta property="og:title" content="Top Customer Data & Digital Asset Platforms | GTA & Detroit | CData Consultancy" />
-        <meta property="og:description" content="Discover the best customer data platform in GTA, top digital asset management in Detroit, and expert solutions using Google Cloud database technology." />
-        <meta property="og:url" content="https://cdatainsights.com/services/data-platform" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="CData Consultancy" />
-        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Top Customer Data & Digital Asset Platforms | GTA & Detroit | CData Consultancy" />
-        <meta name="twitter:description" content="Discover the best customer data platform in GTA, top digital asset management in Detroit, and expert solutions using Google Cloud database technology." />
-        <meta name="twitter:url" content="https://cdatainsights.com/services/data-platform" />
-        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" />
-
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <HeroHeader />
 
       {/* Hero Section */}
@@ -129,20 +104,10 @@ export default function DataPlatformsPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-lg pl-5 pr-3 text-base ">
-                  <Link href="#cta">
-                    <span className="text-nowrap">Start Your Data Journey</span>
+                  className="h-12 rounded-lg pl-5 pr-3 text-base">
+                  <Link href="/contact">
+                    <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
-                  </Link>
-                </Button>
-                <Button
-                  key={2}
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-lg px-5 text-base ">
-                  <Link href="/Contact">
-                    <span className="text-nowrap">Schedule a consultation</span>
                   </Link>
                 </Button>
               </div>
@@ -167,7 +132,7 @@ export default function DataPlatformsPage() {
               <p>Data platforms are the backbone of modern data-driven organizations. We design, build, and manage data platforms that enable seamless data access, processing, and analytics.</p>
 
               <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5 bg-blue-500 text-white hover:bg-blue-700">
-                <Link href="#">
+                <Link href="/contact">
                   <span>View Our Approach</span>
                   <ChevronRight className="size-2" />
                 </Link>
@@ -291,7 +256,7 @@ export default function DataPlatformsPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/Contact">
+                <Link href="/contact">
                   <Button className="bg-blue-500 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300 border hover:bg-blue-700">
                     <span className="mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -466,7 +431,7 @@ export default function DataPlatformsPage() {
           <h2 className="text-3xl font-semibold md:text-4xl mb-6">Ready to Build Your Data Platform?</h2>
           <p className="max-w-2xl mx-auto mb-10">Let's discuss your data platform needs and develop a customized strategy that drives business value.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/Contact">
+            <a href="/contact">
               <Button className="bg-blue-500 text-white hover:bg-blue-400 py-3 px-6 rounded-full font-medium">
                 Request Data Platform Assessment
               </Button>

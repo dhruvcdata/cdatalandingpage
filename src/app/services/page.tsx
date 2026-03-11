@@ -20,14 +20,14 @@ export default function ServicesPage() {
           <div className="relative mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
             <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
               <h1 className="mt-8 max-w-2xl text-balance text-5xl md:text-6xl lg:mt-16 xl:text-7xl">Data Innovation Journeys </h1>
-              <p className="mt-8 max-w-6xl text-balance text-lg">Every successful journey begins with a plan, and a good plan is informed by experience and insight. CData Consultancy wrapped our expertise and research into a framework called The Data Innovation Journey, enabling your organization to deliver pragmatic solutions to real world problems.</p>
+              <p className="mt-8 max-w-6xl text-balance text-lg">Every successful journey begins with a plan, and a good plan is informed by experience and insight. Cdata Consulting wrapped our expertise and research into a framework called The Data Innovation Journey, enabling your organization to deliver pragmatic solutions to real world problems.</p>
 
               <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                 <Button
                   asChild
                   size="lg"
                   className="h-12 rounded-full pl-5 pr-3 text-base">
-                  <Link href="/Contact">
+                  <Link href="/contact">
                     <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
                   </Link>
@@ -65,10 +65,6 @@ export default function ServicesPage() {
         </div>
       </section >
       <DataServicesGrid />
-
-      <br></br>
-
-      <br></br>
       <DataRevivalComponent />
       {/* Why Choose Us Section */}
       < section className="py-16 md:py-32" >

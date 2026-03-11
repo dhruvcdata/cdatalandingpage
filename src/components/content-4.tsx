@@ -14,7 +14,7 @@ export default function ContentSection() {
                             Tailus UI. <span className="font-bold">It supports an entire ecosystem</span> — from products innovate. Sit minus, quod debitis autem quia aspernatur delectus impedit modi, neque non id ad dignissimos? Saepe deleniti perferendis beatae.
                         </p>
                         <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5">
-                            <Link href="#">
+                            <Link href="/contact">
                                 <span>Learn More</span>
                                 <ChevronRight className="size-2" />
                             </Link>

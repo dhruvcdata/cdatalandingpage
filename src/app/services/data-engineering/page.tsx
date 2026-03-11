@@ -20,7 +20,6 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import Head from 'next/head';
 export default function DataEngineeringPage() {
   // State for Solutions component
   type SolutionKey = 'DataPipelines' | 'DataWarehousing' | 'DataLake' | 'DataGovernance';
@@ -86,33 +85,6 @@ export default function DataEngineeringPage() {
 
   return (
     <div>
-      <Head>
-        <title>Top Data Engineering Solutions in Toronto & GTA | CData Consultancy</title>
-
-        {/* SEO Meta Tags */}
-        <meta name="description" content="Expert data engineering solutions in Toronto & GTA. Boost performance with advanced data engineering and machine learning services tailored to your business." />
-        <meta name="author" content="CData Consultancy" />
-        <meta name="keywords" content="Data Engineering, Machine Learning, Toronto, GTA, CData Consultancy" />
-
-        {/* Open Graph Meta Tags */}
-        <meta property="og:title" content="Top Data Engineering Solutions in Toronto & GTA | CData Consultancy" />
-        <meta property="og:description" content="Expert data engineering solutions in Toronto & GTA. Boost performance with advanced data engineering and machine learning services tailored to your business." />
-        <meta property="og:url" content="https://cdatainsights.com/services/data-engineering" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="CData Consultancy" />
-        <meta property="og:image" content="https://cdatainsights.com/og-image.jpg" /> {/* optional image */}
-
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Top Data Engineering Solutions in Toronto & GTA | CData Consultancy" />
-        <meta name="twitter:description" content="Expert data engineering solutions in Toronto & GTA. Boost performance with advanced data engineering and machine learning services tailored to your business." />
-        <meta name="twitter:url" content="https://cdatainsights.com/services/data-engineering" />
-        <meta name="twitter:image" content="https://cdatainsights.com/og-image.jpg" /> {/* optional image */}
-
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <HeroHeader />
 
       {/* Hero Section */}
@@ -127,20 +99,10 @@ export default function DataEngineeringPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-full pl-5 pr-3 text-base ">
-                  <Link href="/Contact">
-                    <span className="text-nowrap">Start Your Data Journey</span>
+                  className="h-12 rounded-lg pl-5 pr-3 text-base">
+                  <Link href="/contact">
+                    <span className="text-nowrap">Get Free Assessment</span>
                     <ChevronRight className="ml-1" />
-                  </Link>
-                </Button>
-                <Button
-                  key={2}
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-full px-5 text-base">
-                  <Link href="#cta">
-                    <span className="text-nowrap">Schedule a consultation</span>
                   </Link>
                 </Button>
               </div>
@@ -165,7 +127,7 @@ export default function DataEngineeringPage() {
               <p>Data engineering is the backbone of modern data-driven organizations. We design and build the infrastructure that turns raw data into valuable insights, enabling better decision-making and innovation.</p>
 
               <Button asChild variant="secondary" size="sm" className="gap-1 pr-1.5 bg-blue-500 text-white hover:bg-blue-700">
-                <Link href="#">
+                <Link href="/contact">
                   <span>View Our Approach</span>
                   <ChevronRight className="size-2" />
                 </Link>
@@ -309,7 +271,7 @@ export default function DataEngineeringPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/Contact">
+                <Link href="/contact">
                   <Button className="bg-blue-500 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300 border hover:bg-blue-700">
                     <span className="mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -479,7 +441,7 @@ export default function DataEngineeringPage() {
           <h2 className="text-3xl font-semibold md:text-4xl mb-6">Ready to Transform Your Data Infrastructure?</h2>
           <p className="max-w-2xl mx-auto mb-10">Let's discuss your data engineering needs and develop a customized strategy that drives business value.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/Contact">
+            <a href="/contact">
               <Button className="bg-blue-500 text-white hover:bg-blue-400 py-3 px-6 rounded-full font-medium">
                 Request Data Engineering Assessment
               </Button>

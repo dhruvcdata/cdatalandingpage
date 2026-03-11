@@ -22,11 +22,11 @@ const links = [
         group: 'Resources',
         items: [
             { title: 'Home', href: '/' },
-            { title: 'About Us', href: '/About' },
-            { title: 'Blog', href: '/Blogs' },
+            { title: 'About Us', href: '/about' },
+            { title: 'Blog', href: '/blogs' },
             { title: 'News', href: '/news' },
             { title: 'Careers', href: '/career' },
-            { title: 'Contact Us', href: '/Contact' },
+            { title: 'Contact Us', href: '/contact' },
         ],
     },
     {
@@ -54,19 +54,10 @@ export default function FooterSection() {
     const [email, setEmail] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
-    const [hasClickedOnce, setHasClickedOnce] = useState(false)
 
     const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault()
 
-        // 🪤 FIRST CLICK — FAKE SUBMIT (ANTI-BOT)
-        if (!hasClickedOnce) {
-            setHasClickedOnce(true)
-            setMessage('Click again to subscribe')
-            return
-        }
-
-        // ✅ SECOND CLICK — REAL SUBMIT
         setLoading(true)
         setMessage('')
 
@@ -82,7 +73,6 @@ export default function FooterSection() {
             if (response.ok) {
                 setMessage('Subscribed successfully!')
                 setEmail('')
-                setHasClickedOnce(false)
             } else {
                 setMessage(data.error || 'Failed to subscribe.')
             }
@@ -117,12 +107,12 @@ export default function FooterSection() {
             <div className="mx-auto max-w-5xl px-6">
                 <div className="grid gap-12 md:grid-cols-5 lg:grid-cols-4">
                     <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:col-span-5 lg:col-span-3">
-                        {links.map((link, index) => (
-                            <div key={index} className="space-y-4 text-sm">
+                        {links.map((link) => (
+                            <div key={link.group} className="space-y-4 text-sm">
                                 <span className="font-medium block">{link.group}</span>
-                                {link.items.map((item, idx) => (
+                                {link.items.map((item) => (
                                     <Link
-                                        key={idx}
+                                        key={item.href}
                                         href={item.href}
                                         className="text-muted-foreground hover:text-primary block"
                                     >
@@ -151,7 +141,6 @@ export default function FooterSection() {
                                     value={email}
                                     onChange={(e) => {
                                         setEmail(e.target.value)
-                                        setHasClickedOnce(false)
                                         setMessage('')
                                     }}
                                     required
@@ -176,7 +165,7 @@ export default function FooterSection() {
 
                 <div className="mt-12 flex flex-wrap justify-between gap-6 border-t py-6">
                     <small className="text-muted-foreground text-sm">
-                        © {new Date().getFullYear()} Cdata Consultancy. All rights reserved.
+                        © {new Date().getFullYear()} Cdata Consulting Inc. All rights reserved.
                     </small>
                 </div>
             </div>

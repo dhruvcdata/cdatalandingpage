@@ -29,8 +29,8 @@ const CASE_STUDIES: CaseStudy[] = [
     {
         id: '1',
         title: 'Fortune 500 BioTech & Pharma Company',
-        description: 'Explore how a large biotechnology and pharmaceuticals company modernized its demand planning and forecasting process for manufacturing in Snowflake by working with phData',
-        imageUrl: 'https://i0.wp.com/www.phdata.io/wp-content/uploads/2025/02/case-study-portrait-1.jpg',
+        description: 'Explore how a large biotechnology and pharmaceuticals company modernized its demand planning and forecasting process for manufacturing in Snowflake.',
+        imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
         industry: 'Healthcare',
         link: '/case-studies/biotech-pharma'
     },
@@ -38,7 +38,7 @@ const CASE_STUDIES: CaseStudy[] = [
         id: '2',
         title: 'Leading Speciality Insurance Provider',
         description: 'Discover how a leading Insurance Provider fully migrates its SQL Server database to Snowflake while utilizing modern data stack technologies like Qlik Replicate, dbt, DataOps.live, & Power BI',
-        imageUrl: 'https://i0.wp.com/www.phdata.io/wp-content/uploads/2025/02/case-study-portrait-1.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
 
         industry: 'Financial Services',
         link: '/case-studies/insurance-provider'
@@ -47,7 +47,7 @@ const CASE_STUDIES: CaseStudy[] = [
         id: '3',
         title: 'Fast Casual Restaurant Chain',
         description: 'Learn how this growing restaurant brand leveraged data analytics to optimize menu offerings and supply chain management with our cloud solutions',
-        imageUrl: 'https://i0.wp.com/www.phdata.io/wp-content/uploads/2025/02/case-study-portrait-1.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
 
         industry: 'Retail & CPG',
         link: '/case-studies/restaurant-chain'
@@ -56,7 +56,7 @@ const CASE_STUDIES: CaseStudy[] = [
         id: '4',
         title: 'Real Estate Management Firm',
         description: 'See how we helped a property management company modernize their tenant data system and gain valuable insights through predictive analytics',
-        imageUrl: 'https://i0.wp.com/www.phdata.io/wp-content/uploads/2025/02/case-study-portrait-1.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
 
         industry: 'Financial Services',
         link: '/case-studies/real-estate-firm'
@@ -138,12 +138,9 @@ const CaseStudiesShowcase: React.FC = () => {
                                 <p className="text-gray-300 mb-4">
                                     {study.description}
                                 </p>
-                                <a
-                                    href={study.link}
-                                    className="inline-block text-blue-400 hover:text-blue-300 font-medium"
-                                >
-                                    READ THE CASE STUDY →
-                                </a>
+                                <span className="inline-block text-blue-400 font-medium">
+                                    {study.industry}
+                                </span>
                             </div>
                         </div>
                     ))}

@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils'
 
 const menuItems = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/About' },
-    { name: 'Blog', href: '/Blogs' },
+    { name: 'About', href: '/about' },
+    { name: 'Blog', href: '/blogs' },
     { name: 'News', href: '/news' },
     {
         name: 'Resources',
@@ -58,7 +58,12 @@ export const HeroHeader = () => {
             setIsScrolled(window.scrollY > 50)
         }
         window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+            }
+        }
     }, [])
 
     const handleSubMenuEnter = (name: string | null) => {
@@ -99,6 +104,7 @@ export const HeroHeader = () => {
     return (
         <header>
             <nav
+                aria-label="Main navigation"
                 data-state={menuState && 'active'}
                 className="fixed z-20 w-full px-2">
                 <div className={cn('mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5')}>
@@ -122,8 +128,8 @@ export const HeroHeader = () => {
 
                         <div className="absolute inset-0 m-auto hidden size-fit lg:block">
                             <ul className="flex gap-8 text-sm">
-                                {menuItems.map((item, index) => (
-                                    <li key={index} className="relative">
+                                {menuItems.map((item) => (
+                                    <li key={item.name} className="relative">
                                         {item.subMenu ? (
                                             <div className="relative">
                                                 {/* Clickable parent menu item */}
@@ -162,10 +168,10 @@ export const HeroHeader = () => {
                                                         <div className="rounded-lg border bg-background p-6 shadow-lg">
                                                             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                                                                 {getMenuColumns(item.subMenu).map((column, colIndex) => (
-                                                                    <div key={colIndex} className="space-y-3">
-                                                                        {column.map((subItem, subIndex) => (
+                                                                    <div key={`col-${colIndex}`} className="space-y-3">
+                                                                        {column.map((subItem) => (
                                                                             <Link
-                                                                                key={subIndex}
+                                                                                key={subItem.href}
                                                                                 href={subItem.href}
                                                                                 className="text-muted-foreground hover:text-accent-foreground block rounded p-2 transition-colors duration-150 hover:bg-muted">
                                                                                 <span className="block text-white font-medium">{subItem.title}</span>
@@ -207,8 +213,8 @@ export const HeroHeader = () => {
                             )}>
                             <div className="lg:hidden">
                                 <ul className="space-y-6 text-base">
-                                    {menuItems.map((item, index) => (
-                                        <li key={index}>
+                                    {menuItems.map((item) => (
+                                        <li key={item.name}>
                                             {item.subMenu ? (
                                                 <div>
                                                     <div className="flex items-center justify-between">
@@ -219,6 +225,7 @@ export const HeroHeader = () => {
                                                             {item.name}
                                                         </Link>
                                                         <button
+                                                            aria-label={`Toggle ${item.name} submenu`}
                                                             onClick={(e) => handleMobileMenuClick(e, item.name)}
                                                             className="ml-2 p-1"
                                                         >
@@ -244,9 +251,9 @@ export const HeroHeader = () => {
                                                     {openSubMenu === item.name && (
                                                         <div className="mt-2 pl-4">
                                                             <div className="grid grid-cols-1 gap-3">
-                                                                {item.subMenu.map((subItem, subIndex) => (
+                                                                {item.subMenu.map((subItem) => (
                                                                     <Link
-                                                                        key={subIndex}
+                                                                        key={subItem.href}
                                                                         href={subItem.href}
                                                                         className="text-muted-foreground hover:text-accent-foreground block rounded p-2 duration-150">
                                                                         <span className="block font-medium">{subItem.title}</span>
@@ -273,7 +280,7 @@ export const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link href="/Contact">
+                                    <Link href="/contact">
                                         <span>Contact Us</span>
                                     </Link>
                                 </Button>
@@ -281,7 +288,7 @@ export const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled ? 'lg:flex' : 'hidden')}>
-                                    <Link href="/Contact">
+                                    <Link href="/contact">
                                         <span>Contact Us</span>
                                     </Link>
                                 </Button>

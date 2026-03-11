@@ -7,7 +7,6 @@ import { Card } from '@/components/ui/card'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import BlogSubscribe from '@/components/blog-subscribe'
 
 const BLOGS_PER_PAGE = 6
 const FALLBACK_IMAGE = '/logo.png'
@@ -72,7 +71,7 @@ export default function BlogPage() {
                             setCurrentPage(1)
                         }}
                         placeholder="Search by keyword..."
-                        className="w-full max-w-xs rounded-md border px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        className="w-full max-w-xs rounded-md border border-gray-700 bg-gray-900 px-4 py-2 text-sm text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
 
                     {/* TAG FILTERS */}
@@ -106,7 +105,7 @@ export default function BlogPage() {
                             setSortBy(e.target.value as 'newest' | 'oldest')
                             setCurrentPage(1)
                         }}
-                        className="rounded-md border px-3 py-2 text-sm"
+                        className="rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-sm text-white"
                     >
                         <option value="newest">Newest First</option>
                         <option value="oldest">Oldest First</option>
@@ -118,6 +117,7 @@ export default function BlogPage() {
                 <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     {paginatedBlogs.map((blog) => (
                         <Card
+                            key={blog.slug}
                             className="
     group
     relative
@@ -135,7 +135,7 @@ export default function BlogPage() {
                         >
                             {/* FULL CARD CLICK AREA */}
                             <Link
-                                href={`/Blogs/${blog.slug}`}
+                                href={`/blogs/${blog.slug}`}
                                 aria-label={`Read blog ${blog.title}`}
                                 className="absolute inset-0 z-10"
                             />
@@ -186,17 +186,12 @@ export default function BlogPage() {
                                     {blog.title}
                                 </h2>
 
-                                <p className="mt-2 text-sm text-muted-foreground">
+                                <p className="mt-2 text-sm text-muted-foreground line-clamp-3">
                                     {blog.subtitle}
                                 </p>
 
-                                <p className="mt-4 text-sm text-muted-foreground">
-                                    {blog.excerpt}
-                                </p>
-
-                                <div className="mt-6 flex items-center justify-between text-sm text-muted-foreground">
+                                <div className="mt-6 text-sm text-muted-foreground">
                                     <span>{blog.date}</span>
-                                    <span>By {blog.author}</span>
                                 </div>
                             </div>
 
@@ -241,7 +236,6 @@ export default function BlogPage() {
                     </div>
                 )}
 
-                <BlogSubscribe />
 
             </div>
         </section>

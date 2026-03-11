@@ -1,4 +1,3 @@
-import { desc } from 'motion/react-client';
 import React from 'react';
 
 interface ServiceCardProps {
@@ -95,9 +94,9 @@ const DataServicesGrid = () => {
         <div className="w-full bg-background px-4 py-12 md:py-16">
             <div className="container mx-auto max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((service, index) => (
+                    {services.map((service) => (
                         <ServiceCard
-                            key={index}
+                            key={service.title}
                             icon={service.icon}
                             title={service.title}
                             description={service.description}

@@ -95,8 +95,8 @@ const DataRevivalComponent = () => {
                         {tabContent[activeTab].description}
                     </p>
                     <div className="space-y-4 mb-8">
-                        {tabContent[activeTab].points.map((point, index) => (
-                            <div key={index} className="flex items-start">
+                        {tabContent[activeTab].points.map((point) => (
+                            <div key={point} className="flex items-start">
                                 <div className={`p-1 rounded-full ${tabContent[activeTab].color} text-white mr-2`}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -106,7 +106,7 @@ const DataRevivalComponent = () => {
                             </div>
                         ))}
                     </div>
-                    <a href="/Contact">
+                    <a href="/contact">
                         <button className="bg-blue-600 text-white py-3 px-6 rounded-full font-medium flex items-center shadow-md hover:shadow-lg transition-all duration-300">
                             <span className="mr-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -69,7 +69,7 @@ const WebsiteTermsOfUse: React.FC = () => {
                     <section>
                         <h2 className="text-2xl font-semibold text-white mb-4">Accuracy of Materials</h2>
                         <p className="mb-4">
-                            The materials appearing on CData's website could include technical, typograCical, or CotograCic errors.
+                            The materials appearing on CData's website could include technical, typographical, or photographic errors.
                             CData does not warrant that any of the materials on its website are accurate, complete or current. CData may
                             make changes to the materials contained on its website at any time without notice. However, CData does not make
                             any commitment to update the materials.
@@ -107,7 +107,7 @@ const WebsiteTermsOfUse: React.FC = () => {
                             If you have any questions about these Terms of Use, please contact us:
                         </p>
                         <div className="pl-6">
-                            <p>By email: info@CdataInsights.com</p>
+                            <p>By email: info@cdatainsights.com</p>
 
                         </div>
                     </section>
