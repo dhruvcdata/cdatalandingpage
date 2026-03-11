@@ -16,8 +16,10 @@ export default function ContactSection() {
         email: '',
         phone: '',
         subject: '',
-        message: ''
+        message: '',
+        website: '', // honeypot
     })
+    const [formLoadedAt] = useState(Date.now())
     const [loading, setLoading] = useState(false)
     const [formStatus, setFormStatus] = useState({
         success: false,
@@ -42,7 +44,7 @@ export default function ContactSection() {
             const response = await fetch('/api/contact-form', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({ ...formData, formLoadedAt })
             })
 
             const data = await response.json()
@@ -64,7 +66,8 @@ export default function ContactSection() {
                     email: '',
                     phone: '',
                     subject: '',
-                    message: ''
+                    message: '',
+                    website: '',
                 })
             } else {
                 setFormStatus({
@@ -154,6 +157,18 @@ export default function ContactSection() {
                         )}
 
                         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+                            {/* Honeypot field — hidden from humans, bots will fill it */}
+                            <div className="absolute opacity-0 -z-10" style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true" tabIndex={-1}>
+                                <Label htmlFor="website">Website</Label>
+                                <Input
+                                    type="text"
+                                    id="website"
+                                    value={formData.website}
+                                    onChange={handleChange}
+                                    autoComplete="off"
+                                    tabIndex={-1}
+                                />
+                            </div>
                             <div className="space-y-2">
                                 <Label htmlFor="firstName" className="text-white font-medium">First name</Label>
                                 <Input

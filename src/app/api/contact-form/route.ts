@@ -1,7 +1,33 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
+// Simple in-memory rate limiter: max 3 submissions per IP per 10 minutes
+const rateLimitMap = new Map<string, number[]>()
+const RATE_LIMIT_WINDOW = 10 * 60 * 1000 // 10 minutes
+const RATE_LIMIT_MAX = 3
+
+function isRateLimited(ip: string): boolean {
+    const now = Date.now()
+    const timestamps = rateLimitMap.get(ip) || []
+    const recent = timestamps.filter(t => now - t < RATE_LIMIT_WINDOW)
+    rateLimitMap.set(ip, recent)
+    if (recent.length >= RATE_LIMIT_MAX) return true
+    recent.push(now)
+    rateLimitMap.set(ip, recent)
+    return false
+}
+
 export async function POST(req: Request) {
+    // Rate limiting
+    const forwarded = req.headers.get('x-forwarded-for')
+    const ip = forwarded?.split(',')[0]?.trim() || 'unknown'
+    if (isRateLimited(ip)) {
+        return NextResponse.json(
+            { error: 'Too many submissions. Please try again later.' },
+            { status: 429 }
+        )
+    }
+
     if (!process.env.RESEND_API_KEY) {
         return NextResponse.json(
             { error: 'Email service is not configured. Please set RESEND_API_KEY environment variable.' },
@@ -12,11 +38,28 @@ export async function POST(req: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     try {
-        const { firstName, lastName, email, phone, subject, message } = await req.json()
+        const { firstName, lastName, email, phone, subject, message, website, formLoadedAt } = await req.json()
+
+        // Honeypot: if the hidden "website" field is filled, it's a bot
+        if (website) {
+            // Return success to the bot so it doesn't retry
+            return NextResponse.json({ success: true, message: 'Message sent.' }, { status: 200 })
+        }
+
+        // Time-based check: form must have been on screen for at least 3 seconds
+        if (formLoadedAt && Date.now() - formLoadedAt < 3000) {
+            return NextResponse.json({ success: true, message: 'Message sent.' }, { status: 200 })
+        }
 
         // Basic validation
         if (!firstName || !lastName || !email || !subject || !message) {
             return NextResponse.json({ error: 'All required fields must be filled' }, { status: 400 })
+        }
+
+        // Email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!emailRegex.test(email)) {
+            return NextResponse.json({ error: 'Please provide a valid email address' }, { status: 400 })
         }
 
         // Format the data for the admin email
