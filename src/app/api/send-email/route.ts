@@ -1,7 +1,28 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
+const rateLimitMap = new Map<string, number[]>()
+const RATE_LIMIT_WINDOW = 10 * 60 * 1000
+const RATE_LIMIT_MAX = 3
+
+function isRateLimited(ip: string): boolean {
+    const now = Date.now()
+    const timestamps = rateLimitMap.get(ip) || []
+    const recent = timestamps.filter(t => now - t < RATE_LIMIT_WINDOW)
+    rateLimitMap.set(ip, recent)
+    if (recent.length >= RATE_LIMIT_MAX) return true
+    recent.push(now)
+    rateLimitMap.set(ip, recent)
+    return false
+}
+
 export async function POST(req: Request) {
+    const forwarded = req.headers.get('x-forwarded-for')
+    const ip = forwarded?.split(',')[0]?.trim() || 'unknown'
+    if (isRateLimited(ip)) {
+        return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 })
+    }
+
     if (!process.env.RESEND_API_KEY) {
         return NextResponse.json({ error: 'Email service not configured' }, { status: 503 })
     }
@@ -11,8 +32,8 @@ export async function POST(req: Request) {
     try {
         const { email } = await req.json()
 
-        if (!email) {
-            return NextResponse.json({ error: 'Email is required' }, { status: 400 })
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return NextResponse.json({ error: 'Please provide a valid email address' }, { status: 400 })
         }
 
         const adminEmail = process.env.ADMIN_EMAIL

@@ -1,7 +1,28 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
+const rateLimitMap = new Map<string, number[]>()
+const RATE_LIMIT_WINDOW = 10 * 60 * 1000
+const RATE_LIMIT_MAX = 3
+
+function isRateLimited(ip: string): boolean {
+    const now = Date.now()
+    const timestamps = rateLimitMap.get(ip) || []
+    const recent = timestamps.filter(t => now - t < RATE_LIMIT_WINDOW)
+    rateLimitMap.set(ip, recent)
+    if (recent.length >= RATE_LIMIT_MAX) return true
+    recent.push(now)
+    rateLimitMap.set(ip, recent)
+    return false
+}
+
 export async function POST(req: Request) {
+    const forwarded = req.headers.get('x-forwarded-for')
+    const ip = forwarded?.split(',')[0]?.trim() || 'unknown'
+    if (isRateLimited(ip)) {
+        return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 })
+    }
+
     if (!process.env.RESEND_API_KEY) {
         return NextResponse.json(
             { error: 'Email service is not configured. Please set RESEND_API_KEY environment variable.' },
@@ -53,7 +74,6 @@ export async function POST(req: Request) {
             { status: 200 }
         )
     } catch (error) {
-        console.error('Subscribe error:', error)
         return NextResponse.json(
             { error: 'Failed to subscribe. Please try again later.' },
             { status: 500 }
