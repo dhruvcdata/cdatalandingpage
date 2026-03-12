@@ -1,23 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Card } from '@/components/ui/card'
-import { Mail, MapPin, Phone, CheckCircle, AlertCircle } from 'lucide-react'
+import { Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-function generateToken(timestamp: number): string {
-    const key = 'cdata-' + timestamp.toString(36) + '-' + navigator.userAgent.length
-    let hash = 0
-    for (let i = 0; i < key.length; i++) {
-        hash = ((hash << 5) - hash) + key.charCodeAt(i)
-        hash |= 0
-    }
-    return Math.abs(hash).toString(36)
-}
+import { useTurnstile, TurnstileWidget } from '@/components/turnstile'
 
 export default function ContactSection() {
     const [formData, setFormData] = useState({
@@ -29,13 +20,8 @@ export default function ContactSection() {
         message: '',
         website: '', // honeypot
     })
-    const [formLoadedAt] = useState(Date.now())
-    const [challengeToken, setChallengeToken] = useState('')
+    const { token: turnstileToken, containerRef, reset: resetTurnstile } = useTurnstile()
     const [loading, setLoading] = useState(false)
-
-    useEffect(() => {
-        setChallengeToken(generateToken(formLoadedAt))
-    }, [formLoadedAt])
     const [formStatus, setFormStatus] = useState({
         success: false,
         error: false,
@@ -55,11 +41,17 @@ export default function ContactSection() {
         setLoading(true)
         setFormStatus({ success: false, error: false, message: '' })
 
+        if (!turnstileToken) {
+            setFormStatus({ success: false, error: true, message: 'Please complete the verification check.' })
+            setLoading(false)
+            return
+        }
+
         try {
             const response = await fetch('/api/contact-form', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...formData, formLoadedAt, _token: challengeToken })
+                body: JSON.stringify({ ...formData, turnstileToken })
             })
 
             const data = await response.json()
@@ -84,6 +76,7 @@ export default function ContactSection() {
                     message: '',
                     website: '',
                 })
+                resetTurnstile()
             } else {
                 setFormStatus({
                     success: false,
@@ -249,6 +242,8 @@ export default function ContactSection() {
                                     className="focus:ring-2 focus:ring-blue-500 focus:border-blue-500 border-gray-300 min-h-[120px]"
                                 />
                             </div>
+
+                            <TurnstileWidget containerRef={containerRef} />
 
                             <Button
                                 type="submit"

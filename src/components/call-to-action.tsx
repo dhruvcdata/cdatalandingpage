@@ -3,23 +3,30 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Mail, SendHorizonal } from 'lucide-react'
+import { useTurnstile, TurnstileWidget } from '@/components/turnstile'
 
 export default function CallToAction() {
     const [email, setEmail] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
-    const [mountedAt] = useState(Date.now())
+    const { token: turnstileToken, containerRef, reset: resetTurnstile } = useTurnstile()
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-
         setLoading(true)
         setMessage('')
+
+        if (!turnstileToken) {
+            setMessage('Please complete the verification check.')
+            setLoading(false)
+            return
+        }
 
         try {
             const response = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, _ts: mountedAt }),
+                body: JSON.stringify({ email, turnstileToken }),
             })
 
             const data = await response.json()
@@ -27,7 +34,7 @@ export default function CallToAction() {
             if (response.ok) {
                 setMessage('Your request has been sent successfully!')
                 setEmail('')
-
+                resetTurnstile()
             } else {
                 setMessage(data.error || 'Failed to send the email.')
             }
@@ -87,10 +94,12 @@ export default function CallToAction() {
                                 </Button>
                             </div>
                         </div>
+
+                        <TurnstileWidget containerRef={containerRef} />
                     </form>
 
                     {message && (
-                        <p className="mt-4 text-sm text-gray-600">
+                        <p className="mt-4 text-sm text-muted-foreground">
                             {message}
                         </p>
                     )}

@@ -103,6 +103,13 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* Cloudflare Turnstile */}
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+          async
+        />
+
         {children}
       </body>
     </html>
