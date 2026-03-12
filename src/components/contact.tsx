@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -8,6 +8,16 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card } from '@/components/ui/card'
 import { Mail, MapPin, Phone, CheckCircle, AlertCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
+
+function generateToken(timestamp: number): string {
+    const key = 'cdata-' + timestamp.toString(36) + '-' + navigator.userAgent.length
+    let hash = 0
+    for (let i = 0; i < key.length; i++) {
+        hash = ((hash << 5) - hash) + key.charCodeAt(i)
+        hash |= 0
+    }
+    return Math.abs(hash).toString(36)
+}
 
 export default function ContactSection() {
     const [formData, setFormData] = useState({
@@ -20,7 +30,12 @@ export default function ContactSection() {
         website: '', // honeypot
     })
     const [formLoadedAt] = useState(Date.now())
+    const [challengeToken, setChallengeToken] = useState('')
     const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setChallengeToken(generateToken(formLoadedAt))
+    }, [formLoadedAt])
     const [formStatus, setFormStatus] = useState({
         success: false,
         error: false,
@@ -44,7 +59,7 @@ export default function ContactSection() {
             const response = await fetch('/api/contact-form', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...formData, formLoadedAt })
+                body: JSON.stringify({ ...formData, formLoadedAt, _token: challengeToken })
             })
 
             const data = await response.json()

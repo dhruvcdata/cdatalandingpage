@@ -8,6 +8,7 @@ export default function CallToAction() {
     const [email, setEmail] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
+    const [mountedAt] = useState(Date.now())
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
@@ -18,7 +19,7 @@ export default function CallToAction() {
             const response = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, _ts: mountedAt }),
             })
 
             const data = await response.json()

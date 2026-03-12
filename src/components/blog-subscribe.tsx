@@ -8,6 +8,7 @@ export default function BlogSubscribe() {
     const [email, setEmail] = useState('')
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
     const [message, setMessage] = useState('')
+    const [mountedAt] = useState(Date.now())
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -18,7 +19,7 @@ export default function BlogSubscribe() {
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, _ts: mountedAt }),
             })
 
             const data = await response.json()

@@ -30,10 +30,15 @@ export async function POST(req: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     try {
-        const { email } = await req.json()
+        const { email, _ts } = await req.json()
 
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             return NextResponse.json({ error: 'Please provide a valid email address' }, { status: 400 })
+        }
+
+        // JS challenge: _ts must be a recent timestamp (set by client JS)
+        if (!_ts || typeof _ts !== 'number' || Date.now() - _ts < 3000 || Date.now() - _ts > 24 * 60 * 60 * 1000) {
+            return NextResponse.json({ success: true, message: 'Emails sent successfully' }, { status: 200 })
         }
 
         const adminEmail = process.env.ADMIN_EMAIL

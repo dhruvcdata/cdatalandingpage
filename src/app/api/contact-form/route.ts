@@ -38,16 +38,25 @@ export async function POST(req: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     try {
-        const { firstName, lastName, email, phone, subject, message, website, formLoadedAt } = await req.json()
+        const { firstName, lastName, email, phone, subject, message, website, formLoadedAt, _token } = await req.json()
 
         // Honeypot: if the hidden "website" field is filled, it's a bot
         if (website) {
-            // Return success to the bot so it doesn't retry
             return NextResponse.json({ success: true, message: 'Message sent.' }, { status: 200 })
         }
 
-        // Time-based check: form must have been on screen for at least 3 seconds
-        if (formLoadedAt && Date.now() - formLoadedAt < 3000) {
+        // JS challenge token: bots that POST directly won't have this
+        if (!_token || typeof _token !== 'string' || _token.length < 2) {
+            return NextResponse.json({ success: true, message: 'Message sent.' }, { status: 200 })
+        }
+
+        // Time-based check: form must have been on screen for at least 5 seconds
+        if (!formLoadedAt || Date.now() - formLoadedAt < 5000) {
+            return NextResponse.json({ success: true, message: 'Message sent.' }, { status: 200 })
+        }
+
+        // Reject if form was "loaded" more than 24 hours ago (stale/forged timestamp)
+        if (Date.now() - formLoadedAt > 24 * 60 * 60 * 1000) {
             return NextResponse.json({ success: true, message: 'Message sent.' }, { status: 200 })
         }
 
@@ -60,6 +69,12 @@ export async function POST(req: Request) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!emailRegex.test(email)) {
             return NextResponse.json({ error: 'Please provide a valid email address' }, { status: 400 })
+        }
+
+        // Spam content detection: block messages with excessive URLs
+        const urlCount = (message.match(/https?:\/\//gi) || []).length
+        if (urlCount > 2) {
+            return NextResponse.json({ success: true, message: 'Message sent.' }, { status: 200 })
         }
 
         // Format the data for the admin email
