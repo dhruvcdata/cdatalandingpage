@@ -46,7 +46,7 @@ const SecurityComplianceCertifications: React.FC = () => {
                                 <h3 className="text-xl font-medium text-white mb-4">HIPAA Compliance</h3>
                                 <p>
                                     We maintain compliance with the Health Insurance Portability and Accountability Act (HIPAA), ensuring that
-                                    protected health information (CI) is properly safeguarded. Our policies, procedures, and technical safeguards
+                                    protected health information (PHI) is properly safeguarded. Our policies, procedures, and technical safeguards
                                     align with HIPAA requirements to support healthcare organizations in their compliance efforts.
                                 </p>
                             </div>

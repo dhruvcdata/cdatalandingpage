@@ -10,7 +10,7 @@ const PrivacyPolicy: React.FC = () => {
                     <section>
                         <h2 className="text-2xl font-semibold text-white mb-4">Introduction</h2>
                         <p className="mb-4">
-                            CData, Inc. ("CData," "we," "us," or "our") respects your privacy and is committed to protecting
+                            Cdata Consulting Inc. ("Cdata," "we," "us," or "our") respects your privacy and is committed to protecting
                             your personal data. This Privacy Policy describes how we collect, use, and disclose personal data
                             when you visit our website (the "Site") or otherwise interact with us, and informs you about
                             your privacy rights and how the law protects you.
