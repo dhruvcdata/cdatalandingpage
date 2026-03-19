@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Modeling Assessment — RBC Insurance Division</title>
+<style>
+  :root {
+    --blue: #003168;
+    --gold: #FEDB00;
+    --light: #E8EEF4;
+    --dark: #001A38;
+    --accent: #0070C0;
+    --green: #2E7D32;
+    --red: #C62828;
+    --orange: #EF6C00;
+    --gray: #546E7A;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:#F4F6F9; color:#1A1A1A; line-height:1.6; }
+
+  /* Slides */
+  .slide { min-height:100vh; padding:48px 64px; display:flex; flex-direction:column; page-break-after:always; position:relative; }
+  .sn { position:absolute; bottom:24px; right:48px; font-size:13px; color:var(--gray); font-weight:600; }
+
+  /* Cover */
+  .cover { background:linear-gradient(135deg,var(--blue),var(--dark)); color:#fff; justify-content:center; align-items:center; text-align:center; }
+  .cover h1 { font-size:42px; font-weight:700; margin-bottom:8px; }
+  .cover .sub { font-size:22px; color:var(--gold); margin-bottom:32px; }
+  .cover .meta { font-size:16px; opacity:.85; line-height:2; }
+  .bar { width:80px; height:4px; background:var(--gold); margin:24px auto; border-radius:2px; }
+
+  /* Section */
+  .section { background:var(--blue); color:#fff; justify-content:center; padding-left:80px; }
+  .tag { background:var(--gold); color:var(--dark); padding:4px 16px; border-radius:4px; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; display:inline-block; }
+  .section h2 { font-size:38px; font-weight:700; margin-bottom:12px; }
+  .section p { font-size:18px; opacity:.85; max-width:700px; }
+
+  /* Content */
+  .content { background:#fff; }
+  .content h2 { font-size:26px; color:var(--blue); border-bottom:3px solid var(--gold); padding-bottom:8px; margin-bottom:24px; }
+  .content h3 { font-size:18px; color:var(--blue); margin:20px 0 10px; }
+
+  /* Cards */
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin:16px 0; }
+  .c { background:var(--light); border-radius:8px; padding:20px; border-left:4px solid var(--accent); }
+  .c.gold { border-left-color:var(--gold); }
+  .c.green { border-left-color:var(--green); }
+  .c.red { border-left-color:var(--red); }
+  .c.orange { border-left-color:var(--orange); }
+  .c h4 { font-size:15px; color:var(--blue); margin-bottom:8px; }
+  .c p, .c li { font-size:14px; color:#333; }
+  .c ul { padding-left:18px; }
+  .c ul li { margin-bottom:4px; }
+
+  /* Code */
+  pre { background:#1E293B; color:#E2E8F0; padding:20px 24px; border-radius:8px; font-family:'JetBrains Mono','Fira Code','Consolas',monospace; font-size:13px; line-height:1.65; overflow-x:auto; margin:12px 0; white-space:pre; }
+  .kw { color:#93C5FD; } .fn { color:#FDE68A; } .str { color:#86EFAC; } .cm { color:#64748B; font-style:italic; } .num { color:#FCA5A5; } .type { color:#C4B5FD; }
+
+  /* Two column */
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:12px 0; }
+
+  /* Callout */
+  .note { background:#FFF8E1; border-left:4px solid var(--gold); padding:14px 20px; border-radius:4px; margin:16px 0; font-size:14px; }
+  .note.blue { background:#E3F2FD; border-left-color:var(--accent); }
+  .note.green { background:#E8F5E9; border-left-color:var(--green); }
+
+  /* Badge */
+  .b { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:600; margin-right:6px; color:#fff; }
+  .b.fact { background:var(--blue); }
+  .b.dim { background:var(--accent); }
+  .b.agg { background:var(--green); }
+
+  /* Table */
+  table.dt { width:100%; border-collapse:collapse; font-size:14px; margin:12px 0; }
+  table.dt th { background:var(--blue); color:#fff; padding:10px 14px; text-align:left; font-weight:600; }
+  table.dt td { padding:8px 14px; border-bottom:1px solid #E0E0E0; }
+  table.dt tr:nth-child(even) { background:#F8FAFC; }
+
+  /* ── SCHEMA DIAGRAM (CSS-only) ── */
+  .schema { position:relative; padding:30px 0; }
+  .schema-center { display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin-bottom:24px; }
+
+  .tbl { border-radius:10px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.08); width:260px; }
+  .tbl .th { padding:8px 14px; font-weight:700; font-size:13px; color:#fff; text-align:center; }
+  .tbl .th.dim-h { background:var(--accent); }
+  .tbl .th.fact-h { background:var(--blue); }
+  .tbl .th.agg-h { background:var(--green); }
+  .tbl .tb { padding:10px 14px; font-size:12px; line-height:1.8; background:#fff; border:2px solid; border-top:none; border-radius:0 0 10px 10px; }
+  .tbl .tb.dim-b { border-color:var(--accent); }
+  .tbl .tb.fact-b { border-color:var(--blue); }
+  .tbl .tb.agg-b { border-color:var(--green); }
+  .pk { color:var(--red); font-weight:700; }
+  .fk { color:var(--accent); font-weight:600; }
+  .grain { color:var(--green); font-style:italic; font-size:11px; margin-top:6px; display:block; padding-top:4px; border-top:1px dashed #ddd; }
+  .measure { color:var(--blue); font-weight:700; }
+
+  .arrow-down { text-align:center; font-size:28px; color:var(--accent); margin:8px 0; letter-spacing:12px; }
+  .arrow-label { text-align:center; font-size:12px; color:var(--gray); font-weight:600; margin:2px 0 8px; letter-spacing:1px; }
+
+  .legend { display:flex; gap:24px; justify-content:center; margin:16px 0; flex-wrap:wrap; }
+  .legend-i { display:flex; align-items:center; gap:6px; font-size:12px; color:#555; }
+  .legend-d { width:14px; height:14px; border-radius:3px; }
+
+  /* SCD2 Timeline */
+  .scd2 { display:flex; gap:0; margin:16px 0; }
+  .scd2-v { flex:1; padding:14px 18px; text-align:center; font-size:12px; line-height:1.7; }
+  .scd2-old { background:#FFEBEE; border:2px solid var(--red); border-radius:10px 0 0 10px; border-right:2px dashed var(--red); }
+  .scd2-new { background:#E8F5E9; border:2px solid var(--green); border-radius:0 10px 10px 0; }
+  .scd2-label { font-weight:700; text-transform:uppercase; font-size:11px; letter-spacing:.5px; margin-bottom:4px; }
+  .scd2-old .scd2-label { color:var(--red); }
+  .scd2-new .scd2-label { color:var(--green); }
+  .scd2-event { background:var(--gold); color:var(--dark); padding:3px 14px; border-radius:12px; font-size:12px; font-weight:700; display:inline-block; margin-bottom:12px; }
+
+  @media print { .slide { min-height:auto; padding:32px; } pre { font-size:11px; } }
+</style>
+</head>
+<body>
+
+<!-- ═══════ SLIDE 1: COVER ═══════ -->
+<div class="slide cover">
+  <div class="tag" style="margin-bottom:24px;">TAKE-HOME ASSESSMENT</div>
+  <h1>Data Modeling Exercise</h1>
+  <div class="sub">Insurance Analytics — Actuarial, Finance &amp; Regulatory</div>
+  <div class="bar"></div>
+  <div class="meta">
+    <strong>Candidate:</strong> Nitin Jain<br>
+    <strong>Position:</strong> Lead Data Engineer — RBC Insurance Division<br>
+    <strong>Date:</strong> March 19, 2026
+  </div>
+  <div class="sn" style="color:rgba(255,255,255,.5);">1</div>
+</div>
+
+<!-- ═══════ SLIDE 2: AGENDA ═══════ -->
+<div class="slide content">
+  <h2>Agenda</h2>
+  <div class="grid" style="margin-top:24px;">
+    <div class="c gold"><h4>Deliverable 1 — Core Dimensional Model</h4><p>Star schema: 2 fact tables, 4 dimensions, 1 aggregate. Grain definitions and design rationale.</p></div>
+    <div class="c"><h4>Deliverable 2 — Critical Table DDL</h4><p>Production DDL for the primary fact table and SCD Type 2 policy dimension (Snowflake).</p></div>
+    <div class="c green"><h4>Deliverable 3 — Analytical Queries</h4><p>Monthly financial close for Feb 2026: premium activity, claims, earned premium by product line.</p></div>
+    <div class="c orange"><h4>Deliverable 4 — Design Reflections</h4><p>Trade-offs between detail and aggregates, plus data quality risks and mitigations.</p></div>
+  </div>
+  <div class="note" style="margin-top:32px;"><strong>Design Philosophy:</strong> Prioritize financial accuracy and auditability. Insurance data models must reconcile to the penny for regulatory filings (SOX, quarterly statements).</div>
+  <div class="sn">2</div>
+</div>
+
+<!-- ═══════ SLIDE 3: SECTION — DELIVERABLE 1 ═══════ -->
+<div class="slide section">
+  <div class="tag">Deliverable 1</div>
+  <h2>Core Dimensional Model</h2>
+  <p>Star schema optimized for loss ratio analysis, earned premium tracking, and monthly financial close.</p>
+  <div class="sn" style="color:rgba(255,255,255,.5);">3</div>
+</div>
+
+<!-- ═══════ SLIDE 4: SOURCE → TARGET ═══════ -->
+<div class="slide content">
+  <h2>Source Systems → Star Schema Mapping</h2>
+  <p style="color:var(--gray);margin-bottom:20px;">How the 4 source tables map into the data mart — what feeds what and why.</p>
+
+  <table class="dt">
+    <thead>
+      <tr><th style="width:22%;">Source Table</th><th style="width:10%;">→</th><th style="width:28%;">Target Table(s)</th><th>Transform Logic</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Policies</strong><br><span style="font-size:12px;color:var(--gray);">policy_id, customer_id, product_line, premium_amount, dates, status</span></td>
+        <td style="text-align:center;color:var(--gold);font-size:20px;font-weight:700;">→</td>
+        <td><span class="b dim">DIM</span> <strong>dim_policy</strong></td>
+        <td>SCD Type 2 versioning — new row on endorsement/status change. Surrogate key <code>policy_key</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>Premium Transactions</strong><br><span style="font-size:12px;color:var(--gray);">transaction_id, policy_id, txn_type, premium_change_amount</span></td>
+        <td style="text-align:center;color:var(--gold);font-size:20px;font-weight:700;">→</td>
+        <td><span class="b fact">FACT</span> <strong>fact_premium_transaction</strong></td>
+        <td>1:1 mapping. Join to dim_policy (surrogate key), dim_date, dim_geography.</td>
+      </tr>
+      <tr>
+        <td><strong>Claims</strong> + <strong>Claim Payments</strong><br><span style="font-size:12px;color:var(--gray);">claim_id, loss_date, report_date, amounts + payment_id, payment_date, amount</span></td>
+        <td style="text-align:center;color:var(--gold);font-size:20px;font-weight:700;">→</td>
+        <td><span class="b fact">FACT</span> <strong>fact_claim_activity</strong></td>
+        <td>Merge claims + payments into event-level grain (1 row per payment or status change). Track both loss_date and report_date.</td>
+      </tr>
+      <tr>
+        <td><em>Derived from Policies</em></td>
+        <td style="text-align:center;color:var(--gold);font-size:20px;font-weight:700;">→</td>
+        <td><span class="b dim">DIM</span> <strong>dim_geography</strong><br><span class="b dim">DIM</span> <strong>dim_claim_type</strong><br><span class="b dim">DIM</span> <strong>dim_date</strong></td>
+        <td>Extract state/region, claim types, and build calendar + fiscal date dimension.</td>
+      </tr>
+      <tr style="background:#E8F5E9;">
+        <td><em>Both fact tables</em></td>
+        <td style="text-align:center;color:var(--green);font-size:20px;font-weight:700;">→</td>
+        <td><span class="b agg">AGG</span> <strong>agg_monthly_financial</strong></td>
+        <td>ETL rollup: pre-compute earned premium, loss ratio, reserve changes per policy x month. Performance layer for Finance dashboards.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="legend">
+    <div class="legend-i"><div class="legend-d" style="background:var(--accent);"></div> Dimension</div>
+    <div class="legend-i"><div class="legend-d" style="background:var(--blue);"></div> Fact Table</div>
+    <div class="legend-i"><div class="legend-d" style="background:var(--green);"></div> Pre-computed Aggregate</div>
+  </div>
+  <div class="sn">4</div>
+</div>
+
+<!-- ═══════ SLIDE 5: STAR SCHEMA DIAGRAM ═══════ -->
+<div class="slide content">
+  <h2>Star Schema — Insurance Analytics Data Mart</h2>
+
+  <!-- DIMENSIONS ROW -->
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+    <div style="height:2px;flex:1;background:var(--accent);"></div>
+    <div style="font-size:13px;font-weight:700;color:var(--accent);letter-spacing:1px;white-space:nowrap;">DIMENSIONS — Slice &amp; Dice</div>
+    <div style="height:2px;flex:1;background:var(--accent);"></div>
+  </div>
+  <div class="schema-center">
+    <div class="tbl">
+      <div class="th dim-h">dim_date</div>
+      <div class="tb dim-b">
+        <span class="pk">PK date_key</span><br>
+        full_date<br>
+        calendar_year, month, quarter<br>
+        fiscal_year, fiscal_quarter<br>
+        month_end_flag, is_business_day
+        <span class="grain">Enables calendar vs fiscal reporting</span>
+      </div>
+    </div>
+    <div class="tbl">
+      <div class="th dim-h">dim_policy &nbsp;(SCD Type 2)</div>
+      <div class="tb dim-b">
+        <span class="pk">PK policy_key (surrogate)</span><br>
+        policy_id (natural key)<br>
+        product_line, coverage_type<br>
+        premium_amount, term_months<br>
+        effective_date, expiry_date<br>
+        <em style="color:var(--orange);">valid_from, valid_to, is_current</em>
+        <span class="grain">Tracks mid-term endorsements</span>
+      </div>
+    </div>
+    <div class="tbl" style="width:200px;">
+      <div class="th dim-h">dim_geography</div>
+      <div class="tb dim-b">
+        <span class="pk">PK geo_key</span><br>
+        state_code, region<br>
+        regulatory_zone
+        <span class="grain">Regulatory reporting by jurisdiction</span>
+      </div>
+    </div>
+    <div class="tbl" style="width:200px;">
+      <div class="th dim-h">dim_claim_type</div>
+      <div class="tb dim-b">
+        <span class="pk">PK claim_type_key</span><br>
+        claim_type, category<br>
+        payment_type, coverage_mapping
+        <span class="grain">Links to fact_claim only</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector: Dims → Facts -->
+  <div style="display:flex;justify-content:center;margin:16px 0;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:40px;height:2px;background:var(--accent);"></div>
+      <div style="background:var(--gold);color:var(--dark);padding:5px 18px;border-radius:20px;font-size:12px;font-weight:700;">FK REFERENCES</div>
+      <div style="width:40px;height:2px;background:var(--accent);"></div>
+    </div>
+  </div>
+
+  <!-- FACT TABLES ROW -->
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+    <div style="height:2px;flex:1;background:var(--blue);"></div>
+    <div style="font-size:13px;font-weight:700;color:var(--blue);letter-spacing:1px;white-space:nowrap;">FACT TABLES — Measurable Business Events</div>
+    <div style="height:2px;flex:1;background:var(--blue);"></div>
+  </div>
+  <div class="schema-center">
+    <div class="tbl">
+      <div class="th fact-h">fact_premium_transaction</div>
+      <div class="tb fact-b">
+        <span class="pk">PK transaction_key</span><br>
+        <span class="fk">FK date_key, policy_key, geo_key</span><br>
+        transaction_type, reason_code<br>
+        <span class="measure">$ premium_change_amount</span>
+        <span class="grain">Grain: 1 row per premium event (new, renewal, endorsement, cancel)</span>
+      </div>
+    </div>
+    <div class="tbl">
+      <div class="th fact-h">fact_claim_activity</div>
+      <div class="tb fact-b">
+        <span class="pk">PK claim_activity_key</span><br>
+        <span class="fk">FK date_key, policy_key, geo_key, claim_type_key</span><br>
+        loss_date_key, report_date_key<br>
+        <span class="measure">$ claim_amount, paid_amount, outstanding</span><br>
+        claim_status
+        <span class="grain">Grain: 1 row per claim payment or status change</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector: Facts → Aggregate -->
+  <div style="display:flex;justify-content:center;margin:16px 0;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:40px;height:2px;background:var(--green);"></div>
+      <div style="background:var(--green);color:#fff;padding:5px 18px;border-radius:20px;font-size:12px;font-weight:700;">ETL ROLLUP — pre-computed for month-end performance</div>
+      <div style="width:40px;height:2px;background:var(--green);"></div>
+    </div>
+  </div>
+
+  <!-- AGGREGATE -->
+  <div class="schema-center">
+    <div class="tbl" style="width:500px;">
+      <div class="th agg-h">agg_monthly_financial</div>
+      <div class="tb agg-b">
+        <span class="pk">PK monthly_key</span> &nbsp;|&nbsp; <span class="fk">FK month_key, policy_key, geo_key</span><br>
+        product_line &nbsp;|&nbsp; written_premium, <span class="measure">earned_premium</span><br>
+        new_biz, renewal, endorsement, cancel &nbsp;|&nbsp; claims_paid, reserves_change &nbsp;|&nbsp; <span class="measure">loss_ratio</span>
+        <span class="grain">Grain: 1 row per policy x month — Finance dashboards query this, not the fact tables</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sn">5</div>
+</div>
+
+<!-- ═══════ SLIDE 6: WHY THIS DESIGN ═══════ -->
+<div class="slide content">
+  <h2>Design Decisions — Why This Schema</h2>
+
+  <h3 style="margin-top:4px;">Why 2 Fact Tables (not 1, not 4)?</h3>
+  <div class="two" style="margin-bottom:16px;">
+    <div class="c"><h4><span class="b fact">FACT 1</span> Premium — Money Flows IN</h4>
+      <p><strong>Grain:</strong> 1 row per premium transaction</p>
+      <p style="margin-top:6px;"><strong>Measure:</strong> <code>premium_change_amount</code> (+ve new/renewal, -ve cancel)</p>
+      <p style="margin-top:6px;color:var(--gray);font-size:13px;">Every dollar traceable for SOX audit.</p>
+    </div>
+    <div class="c"><h4><span class="b fact">FACT 2</span> Claims — Money Flows OUT</h4>
+      <p><strong>Grain:</strong> 1 row per claim payment or status change</p>
+      <p style="margin-top:6px;"><strong>Measures:</strong> <code>claim_amount</code>, <code>paid_amount</code>, <code>outstanding</code></p>
+      <p style="margin-top:6px;color:var(--gray);font-size:13px;">Full lifecycle: report → reserve → pay → close.</p>
+    </div>
+  </div>
+  <div class="note"><strong>Why not 1 combined table?</strong> Different grains — a premium transaction is a fundamentally different event from a claim payment. Combining forces NULLs everywhere and makes queries confusing. <strong>Why not 4?</strong> Claims + Claim Payments merge into one event-level fact (same grain: claim lifecycle events).</div>
+
+  <h3>Why SCD Type 2 on dim_policy?</h3>
+  <p style="font-size:14px;color:#555;margin-bottom:12px;">Policies change mid-term (endorsements). Actuarial needs to know what the policy looked like <em>when a claim happened</em>.</p>
+
+  <div style="text-align:center;margin-bottom:8px;"><span class="scd2-event">Endorsement: teen driver added on Mar 1</span></div>
+  <div class="scd2">
+    <div class="scd2-v scd2-old">
+      <div class="scd2-label">Version 1 (Expired)</div>
+      <strong>policy_key = 101</strong><br>
+      Coverage: $50K &nbsp;|&nbsp; Premium: $1,200<br>
+      valid_from: Jan 1 → valid_to: Feb 28<br>
+      is_current: <strong style="color:var(--red);">FALSE</strong>
+    </div>
+    <div class="scd2-v scd2-new">
+      <div class="scd2-label">Version 2 (Current)</div>
+      <strong>policy_key = 102</strong><br>
+      Coverage: $75K &nbsp;|&nbsp; Premium: $1,800<br>
+      valid_from: Mar 1 → valid_to: 9999-12-31<br>
+      is_current: <strong style="color:var(--green);">TRUE</strong>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--gray);text-align:center;margin-bottom:16px;">Claim in April → joins to policy_key 102 (version active at loss date) → accurate loss ratio</p>
+
+  <h3>Why a Pre-Computed Aggregate?</h3>
+  <div class="two">
+    <div class="c green"><h4>agg_monthly_financial</h4>
+      <ul>
+        <li>Finance queries the monthly close report <strong>hundreds of times</strong> during close week</li>
+        <li>Fact table scan = <strong>minutes</strong>. Aggregate = <strong>seconds</strong>.</li>
+        <li>Includes earned premium (pro-rata daily), loss ratio, reserve changes</li>
+      </ul>
+    </div>
+    <div class="c red"><h4>Key Rule</h4>
+      <p>Aggregate is a <strong>cache</strong>, not a source of truth.</p>
+      <p style="margin-top:6px;">ETL validates: <code>SUM(fact) = SUM(agg)</code> per product line per month. Mismatch > $0.01 → batch fails.</p>
+    </div>
+  </div>
+
+  <div class="note blue" style="margin-top:12px;"><strong>Earned Premium:</strong> 12-month policy, $1,200, effective Jan 1 → Feb earned = $1,200 / 12 = $100. Policy starting Feb 15 → earns 14/28 of monthly rate = $50.</div>
+  <div class="sn">6</div>
+</div>
+
+<!-- ═══════ SLIDE 7: SECTION — DELIVERABLE 2 ═══════ -->
+<div class="slide section">
+  <div class="tag">Deliverable 2</div>
+  <h2>Critical Table DDL</h2>
+  <p>Production DDL for the primary fact table and SCD Type 2 policy dimension — optimized for Snowflake.</p>
+  <div class="sn" style="color:rgba(255,255,255,.5);">7</div>
+</div>
+
+<!-- ═══════ SLIDE 8: DDL FACT ═══════ -->
+<div class="slide content">
+  <h2>DDL — fact_premium_transaction</h2>
+<pre><span class="kw">CREATE TABLE</span> insurance_mart.fact_premium_transaction (
+    <span class="cm">-- Surrogate key</span>
+    transaction_key       <span class="type">BIGINT</span>        <span class="kw">IDENTITY</span>(1,1)  <span class="kw">PRIMARY KEY</span>,
+
+    <span class="cm">-- Dimension foreign keys</span>
+    date_key              <span class="type">INT</span>           <span class="kw">NOT NULL</span>       <span class="kw">REFERENCES</span> insurance_mart.dim_date(date_key),
+    policy_key            <span class="type">BIGINT</span>        <span class="kw">NOT NULL</span>       <span class="kw">REFERENCES</span> insurance_mart.dim_policy(policy_key),
+    geo_key               <span class="type">INT</span>           <span class="kw">NOT NULL</span>       <span class="kw">REFERENCES</span> insurance_mart.dim_geography(geo_key),
+
+    <span class="cm">-- Degenerate dimensions (audit trail)</span>
+    transaction_id        <span class="type">VARCHAR(50)</span>   <span class="kw">NOT NULL</span>,       <span class="cm">-- Source system PK</span>
+    policy_id             <span class="type">VARCHAR(50)</span>   <span class="kw">NOT NULL</span>,       <span class="cm">-- Natural key for reconciliation</span>
+    transaction_date      <span class="type">DATE</span>          <span class="kw">NOT NULL</span>,
+
+    <span class="cm">-- Transaction attributes</span>
+    transaction_type      <span class="type">VARCHAR(20)</span>   <span class="kw">NOT NULL</span>,       <span class="cm">-- New Business, Renewal, Endorsement, Cancellation</span>
+    reason_code           <span class="type">VARCHAR(20)</span>,
+
+    <span class="cm">-- Measures (additive)</span>
+    premium_change_amount <span class="type">NUMERIC(15,2)</span> <span class="kw">NOT NULL</span>,       <span class="cm">-- +ve for new/renewal, -ve for cancel</span>
+
+    <span class="cm">-- ETL metadata</span>
+    etl_batch_id          <span class="type">BIGINT</span>        <span class="kw">NOT NULL</span>,
+    etl_loaded_at         <span class="type">TIMESTAMP_NTZ</span> <span class="kw">DEFAULT</span> <span class="fn">CURRENT_TIMESTAMP</span>(),
+    source_system         <span class="type">VARCHAR(30)</span>   <span class="kw">DEFAULT</span> <span class="str">'POLICY_ADMIN'</span>
+)
+<span class="kw">CLUSTER BY</span> (transaction_date, transaction_type);
+
+<span class="kw">ALTER TABLE</span> insurance_mart.fact_premium_transaction
+  <span class="kw">ADD CONSTRAINT</span> uq_fact_premium_txn <span class="kw">UNIQUE</span> (transaction_id);</pre>
+  <div class="two">
+    <div class="c"><h4>Design Decisions</h4><ul><li><strong>NUMERIC(15,2)</strong> — avoids floating-point rounding in financial data</li><li><strong>Degenerate dimensions</strong> (transaction_id, policy_id) — audit trail without extra joins</li><li><strong>Cluster key</strong> on date + type — aligns with month-end queries</li></ul></div>
+    <div class="c green"><h4>Idempotency &amp; Audit</h4><ul><li><strong>etl_batch_id</strong> — traces every row to a specific load</li><li><strong>Unique constraint</strong> on transaction_id prevents duplicate loads</li><li><strong>source_system</strong> — supports multi-source reconciliation</li></ul></div>
+  </div>
+  <div class="sn">8</div>
+</div>
+
+<!-- ═══════ SLIDE 9: DDL DIM_POLICY ═══════ -->
+<div class="slide content">
+  <h2>DDL — dim_policy (SCD Type 2)</h2>
+<pre><span class="kw">CREATE TABLE</span> insurance_mart.dim_policy (
+    <span class="cm">-- Surrogate key (new row per version)</span>
+    policy_key            <span class="type">BIGINT</span>        <span class="kw">IDENTITY</span>(1,1)  <span class="kw">PRIMARY KEY</span>,
+
+    <span class="cm">-- Natural key</span>
+    policy_id             <span class="type">VARCHAR(50)</span>   <span class="kw">NOT NULL</span>,
+    policy_number         <span class="type">VARCHAR(30)</span>   <span class="kw">NOT NULL</span>,
+
+    <span class="cm">-- Policy attributes</span>
+    customer_id           <span class="type">VARCHAR(50)</span>   <span class="kw">NOT NULL</span>,
+    agent_id              <span class="type">VARCHAR(50)</span>,
+    product_line          <span class="type">VARCHAR(20)</span>   <span class="kw">NOT NULL</span>,       <span class="cm">-- Auto, Home, Commercial, Life</span>
+    coverage_type         <span class="type">VARCHAR(30)</span>   <span class="kw">NOT NULL</span>,
+    coverage_amount       <span class="type">NUMERIC(15,2)</span> <span class="kw">NOT NULL</span>,
+    effective_date        <span class="type">DATE</span>          <span class="kw">NOT NULL</span>,
+    expiry_date           <span class="type">DATE</span>          <span class="kw">NOT NULL</span>,
+    premium_amount        <span class="type">NUMERIC(15,2)</span> <span class="kw">NOT NULL</span>,
+    policy_term_months    <span class="type">INT</span>           <span class="kw">NOT NULL</span>,
+    policy_status         <span class="type">VARCHAR(20)</span>   <span class="kw">NOT NULL</span>,
+    state_code            <span class="type">VARCHAR(5)</span>,
+    region                <span class="type">VARCHAR(30)</span>,
+
+    <span class="cm">-- Derived: monthly earned premium rate (populated by ETL)</span>
+    monthly_earned_rate   <span class="type">NUMERIC(15,2)</span> <span class="kw">NOT NULL</span>,       <span class="cm">-- premium_amount / policy_term_months</span>
+
+    <span class="cm">-- SCD Type 2 tracking</span>
+    valid_from            <span class="type">TIMESTAMP_NTZ</span> <span class="kw">NOT NULL</span>,
+    valid_to              <span class="type">TIMESTAMP_NTZ</span> <span class="kw">DEFAULT</span> <span class="str">'9999-12-31'</span>::<span class="type">TIMESTAMP_NTZ</span>,
+    is_current            <span class="type">BOOLEAN</span>       <span class="kw">DEFAULT</span> <span class="num">TRUE</span>,
+
+    <span class="cm">-- ETL metadata</span>
+    etl_batch_id          <span class="type">BIGINT</span>        <span class="kw">NOT NULL</span>,
+    etl_loaded_at         <span class="type">TIMESTAMP_NTZ</span> <span class="kw">DEFAULT</span> <span class="fn">CURRENT_TIMESTAMP</span>(),
+    row_hash              <span class="type">VARCHAR(64)</span>   <span class="kw">NOT NULL</span>        <span class="cm">-- SHA-256 for change detection</span>
+)
+<span class="kw">CLUSTER BY</span> (product_line, is_current);
+
+<span class="cm">-- Note: Snowflake uses clustering keys instead of indexes.</span>
+<span class="cm">-- Filter on is_current = TRUE for current-state queries.</span></pre>
+  <div class="note blue"><strong>Why SCD2:</strong> Endorsements change coverage mid-term. Old row → <code>is_current=FALSE</code>, new row created. This lets actuarial report on <em>what the policy looked like when a claim occurred</em>. The <code>row_hash</code> enables efficient change detection in ETL.</div>
+  <div class="sn">9</div>
+</div>
+
+<!-- ═══════ SLIDE 10: SECTION — DELIVERABLE 3 ═══════ -->
+<div class="slide section">
+  <div class="tag">Deliverable 3</div>
+  <h2>Analytical Queries</h2>
+  <p>Monthly financial close for February 2026 — premium, claims, earned premium by product line.</p>
+  <div class="sn" style="color:rgba(255,255,255,.5);">10</div>
+</div>
+
+<!-- ═══════ SLIDE 11: QUERY 1 ═══════ -->
+<div class="slide content">
+  <h2>Query 1 — Premium Activity by Product Line (Feb 2026)</h2>
+<pre><span class="kw">WITH</span> premium_activity <span class="kw">AS</span> (
+    <span class="kw">SELECT</span>
+        p.product_line,
+        f.transaction_type,
+        <span class="fn">SUM</span>(f.premium_change_amount)  <span class="kw">AS</span> total_premium
+    <span class="kw">FROM</span> insurance_mart.fact_premium_transaction  f
+    <span class="kw">JOIN</span> insurance_mart.dim_policy               p  <span class="kw">ON</span> f.policy_key = p.policy_key
+    <span class="kw">JOIN</span> insurance_mart.dim_date                 d  <span class="kw">ON</span> f.date_key   = d.date_key
+    <span class="kw">WHERE</span> d.calendar_year  = <span class="num">2026</span>
+      <span class="kw">AND</span> d.calendar_month = <span class="num">2</span>
+    <span class="kw">GROUP BY</span> p.product_line, f.transaction_type
+)
+<span class="kw">SELECT</span>
+    product_line,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> transaction_type = <span class="str">'New Business'</span>  <span class="kw">THEN</span> total_premium <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>)  <span class="kw">AS</span> new_business_premium,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> transaction_type = <span class="str">'Renewal'</span>       <span class="kw">THEN</span> total_premium <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>)  <span class="kw">AS</span> renewal_premium,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> transaction_type = <span class="str">'Endorsement'</span>   <span class="kw">THEN</span> total_premium <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>)  <span class="kw">AS</span> endorsement_changes,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> transaction_type = <span class="str">'Cancellation'</span>  <span class="kw">THEN</span> total_premium <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>)  <span class="kw">AS</span> cancellation_returns,
+    <span class="fn">SUM</span>(total_premium)  <span class="kw">AS</span> net_written_premium
+<span class="kw">FROM</span> premium_activity
+<span class="kw">GROUP BY</span> product_line
+<span class="kw">ORDER BY</span> product_line;</pre>
+  <div class="note"><strong>Note:</strong> Cancellations are negative by convention. <code>net_written_premium</code> is the algebraic sum — reconciles directly with general ledger.</div>
+  <div class="sn">11</div>
+</div>
+
+<!-- ═══════ SLIDE 12: QUERY 2 ═══════ -->
+<div class="slide content">
+  <h2>Query 2 — Earned Premium by Product Line (Feb 2026)</h2>
+<pre><span class="cm">-- Earned premium = pro-rata portion of written premium recognized in February</span>
+
+<span class="kw">SELECT</span>
+    p.product_line,
+    <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> p.policy_id)       <span class="kw">AS</span> active_policies,
+    <span class="fn">SUM</span>(
+        p.premium_amount / p.policy_term_months
+        * <span class="fn">GREATEST</span>(
+            <span class="fn">DATEDIFF</span>(<span class="str">'day'</span>,
+                <span class="fn">GREATEST</span>(p.effective_date,  <span class="str">'2026-02-01'</span>::<span class="type">DATE</span>),
+                <span class="fn">LEAST</span>(p.expiry_date,    <span class="str">'2026-02-28'</span>::<span class="type">DATE</span>) + <span class="num">1</span>
+            ), <span class="num">0</span>
+        )
+        / <span class="num">28.0</span>
+    )                                     <span class="kw">AS</span> earned_premium
+<span class="kw">FROM</span> insurance_mart.dim_policy p
+<span class="kw">WHERE</span> p.is_current = <span class="num">TRUE</span>
+  <span class="kw">AND</span> p.policy_status <span class="kw">IN</span> (<span class="str">'Active'</span>, <span class="str">'Cancelled'</span>)
+  <span class="kw">AND</span> p.effective_date &lt;= <span class="str">'2026-02-28'</span>::<span class="type">DATE</span>
+  <span class="kw">AND</span> p.expiry_date    &gt;= <span class="str">'2026-02-01'</span>::<span class="type">DATE</span>
+<span class="kw">GROUP BY</span> p.product_line
+<span class="kw">ORDER BY</span> p.product_line;</pre>
+  <div class="two">
+    <div class="c"><h4>Earned Premium Logic</h4><ul><li><strong>Pro-rata daily:</strong> Premium / term months, then by actual days in Feb</li><li><strong>Partial months:</strong> Policy effective Feb 15 earns 14/28 of monthly rate</li><li><strong>Cancelled policies:</strong> Earn up to cancellation date</li></ul></div>
+    <div class="c gold"><h4>Production Note</h4><ul><li>ETL pre-computes this into <code>agg_monthly_financial.earned_premium</code></li><li>This query serves as reconciliation: <code>|detail - agg| &lt; $0.01</code></li></ul></div>
+  </div>
+  <div class="sn">12</div>
+</div>
+
+<!-- ═══════ SLIDE 13: QUERY 3 ═══════ -->
+<div class="slide content">
+  <h2>Query 3 — Claims Activity &amp; Combined Close (Feb 2026)</h2>
+<pre><span class="kw">WITH</span> new_claims <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> p.product_line,
+           <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> c.claim_id) <span class="kw">AS</span> new_claims_count,
+           <span class="fn">SUM</span>(c.claim_amount)          <span class="kw">AS</span> new_claims_incurred
+    <span class="kw">FROM</span> insurance_mart.fact_claim_activity c
+    <span class="kw">JOIN</span> insurance_mart.dim_policy p <span class="kw">ON</span> c.policy_key = p.policy_key
+    <span class="kw">JOIN</span> insurance_mart.dim_date   d <span class="kw">ON</span> c.report_date_key = d.date_key
+    <span class="kw">WHERE</span> d.calendar_year = <span class="num">2026</span> <span class="kw">AND</span> d.calendar_month = <span class="num">2</span>
+    <span class="kw">GROUP BY</span> p.product_line
+),
+claims_paid <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> p.product_line, <span class="fn">SUM</span>(c.paid_amount) <span class="kw">AS</span> feb_paid
+    <span class="kw">FROM</span> insurance_mart.fact_claim_activity c
+    <span class="kw">JOIN</span> insurance_mart.dim_policy p <span class="kw">ON</span> c.policy_key = p.policy_key
+    <span class="kw">JOIN</span> insurance_mart.dim_date   d <span class="kw">ON</span> c.date_key   = d.date_key
+    <span class="kw">WHERE</span> d.calendar_year = <span class="num">2026</span> <span class="kw">AND</span> d.calendar_month = <span class="num">2</span>
+    <span class="kw">GROUP BY</span> p.product_line
+),
+reserves <span class="kw">AS</span> (
+    <span class="cm">-- Reserve change already pre-computed in the monthly aggregate</span>
+    <span class="kw">SELECT</span> product_line,
+           <span class="fn">SUM</span>(reserves_change) <span class="kw">AS</span> reserve_change
+    <span class="kw">FROM</span> insurance_mart.agg_monthly_financial
+    <span class="kw">WHERE</span> month_key = (<span class="kw">SELECT</span> date_key <span class="kw">FROM</span> insurance_mart.dim_date
+                      <span class="kw">WHERE</span> full_date = <span class="str">'2026-02-28'</span>::<span class="type">DATE</span>)
+    <span class="kw">GROUP BY</span> product_line
+)
+<span class="kw">SELECT</span>
+    <span class="fn">COALESCE</span>(nc.product_line, cp.product_line, r.product_line) <span class="kw">AS</span> product_line,
+    nc.new_claims_count, nc.new_claims_incurred,
+    cp.feb_paid            <span class="kw">AS</span> claims_paid_in_feb,
+    r.reserve_change       <span class="kw">AS</span> reserve_change_jan_to_feb,
+    cp.feb_paid + r.reserve_change  <span class="kw">AS</span> total_incurred
+<span class="kw">FROM</span> new_claims nc
+<span class="kw">FULL OUTER JOIN</span> claims_paid cp <span class="kw">ON</span> nc.product_line = cp.product_line
+<span class="kw">FULL OUTER JOIN</span> reserves     r  <span class="kw">ON</span> nc.product_line = r.product_line
+<span class="kw">ORDER BY</span> product_line;</pre>
+  <div class="note green"><strong>Incurred Claims Formula:</strong> <code>Total Incurred = Paid in Period + (Ending Reserves - Beginning Reserves)</code> — standard actuarial definition for statutory reporting.</div>
+  <div class="sn">13</div>
+</div>
+
+<!-- ═══════ SLIDE 14: SAMPLE OUTPUT ═══════ -->
+<div class="slide content">
+  <h2>Combined Monthly Close — Expected Output (Feb 2026)</h2>
+  <table class="dt">
+    <thead><tr><th>Product Line</th><th>New Biz</th><th>Renewal</th><th>Endorse</th><th>Cancel</th><th>Net Written</th><th>Earned</th><th>Claims Paid</th><th>Reserve Chg</th><th>Incurred</th><th>Loss Ratio</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Auto</strong></td><td>$2.45M</td><td>$5.10M</td><td>$120K</td><td>($340K)</td><td>$7.33M</td><td>$6.80M</td><td>$3.20M</td><td>$180K</td><td>$3.38M</td><td style="color:var(--green);font-weight:600;">49.7%</td></tr>
+      <tr><td><strong>Home</strong></td><td>$1.20M</td><td>$3.40M</td><td>$85K</td><td>($180K)</td><td>$4.51M</td><td>$4.10M</td><td>$1.80M</td><td>($50K)</td><td>$1.75M</td><td style="color:var(--green);font-weight:600;">42.7%</td></tr>
+      <tr><td><strong>Commercial</strong></td><td>$800K</td><td>$2.10M</td><td>$200K</td><td>($95K)</td><td>$3.01M</td><td>$2.75M</td><td>$1.50M</td><td>$320K</td><td>$1.82M</td><td style="color:var(--orange);font-weight:600;">66.2%</td></tr>
+      <tr><td><strong>Life</strong></td><td>$500K</td><td>$1.80M</td><td>$30K</td><td>($60K)</td><td>$2.27M</td><td>$2.10M</td><td>$900K</td><td>$75K</td><td>$975K</td><td style="color:var(--green);font-weight:600;">46.4%</td></tr>
+      <tr style="background:var(--light);font-weight:700;"><td>TOTAL</td><td>$4.95M</td><td>$12.40M</td><td>$435K</td><td>($675K)</td><td>$17.11M</td><td>$15.75M</td><td>$7.40M</td><td>$525K</td><td>$7.93M</td><td style="color:var(--green);">50.3%</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><strong>Loss Ratio</strong> = Total Incurred / Earned Premium. Commercial at 66.2% warrants actuarial review — likely driven by reserve increases on older claims. Values are illustrative to demonstrate report structure.</div>
+  <div class="sn">14</div>
+</div>
+
+<!-- ═══════ SLIDE 15: SECTION — DELIVERABLE 4 ═══════ -->
+<div class="slide section">
+  <div class="tag">Deliverable 4</div>
+  <h2>Design Reflections</h2>
+  <p>Critical trade-offs and data quality considerations.</p>
+  <div class="sn" style="color:rgba(255,255,255,.5);">15</div>
+</div>
+
+<!-- ═══════ SLIDE 16: REFLECTIONS ═══════ -->
+<div class="slide content">
+  <h2>Critical Design Trade-offs &amp; Data Quality</h2>
+  <div class="two">
+    <div>
+      <h3>Q1: Transaction Detail vs. Monthly Aggregates</h3>
+      <div class="c" style="margin-top:8px;"><h4>Dual-Layer Approach</h4><ul>
+        <li><strong>Transaction-level facts</strong> preserve every event for audit, SOX compliance, ad-hoc analysis</li>
+        <li><strong>Pre-computed aggregate</strong> serves dashboards and monthly close — seconds vs minutes</li>
+        <li><strong>Reconciliation:</strong> ETL asserts <code>SUM(fact) = SUM(agg)</code> per product line per month. Mismatch > $0.01 fails the batch</li>
+        <li><strong>Snowflake clustering</strong> on transaction_date gives aggregate-like performance on facts when needed</li>
+      </ul></div>
+      <div class="note blue" style="margin-top:12px;"><strong>Key principle:</strong> Aggregates are a performance optimization, not a source of truth. Fact tables are always authoritative.</div>
+    </div>
+    <div>
+      <h3>Q2: Anticipated Data Quality Issue</h3>
+      <div class="c red" style="margin-top:8px;"><h4>Late-Reported Claims (IBNR)</h4><ul>
+        <li><strong>Issue:</strong> <code>loss_date</code> may precede <code>report_date</code> by weeks/months. Auto accident in Jan reported in Mar.</li>
+        <li><strong>Impact:</strong> Feb close understates incurred claims for Feb losses. Distorts loss ratios.</li>
+      </ul></div>
+      <div class="c green" style="margin-top:12px;"><h4>Detection &amp; Mitigation</h4><ul>
+        <li><strong>Detection:</strong> Monitor <code>DATEDIFF(loss_date, report_date)</code> distribution. Alert if avg lag exceeds norms</li>
+        <li><strong>Model:</strong> <code>fact_claim_activity</code> carries both <code>loss_date_key</code> and <code>report_date_key</code> for accident-period vs report-period analysis</li>
+        <li><strong>Fix:</strong> IBNR reserve estimate in aggregate (computed by actuarial models outside this mart)</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="sn">16</div>
+</div>
+
+<!-- ═══════ SLIDE 17: BONUS ═══════ -->
+<div class="slide content">
+  <h2>Bonus: ETL Architecture &amp; Data Flow</h2>
+  <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin:24px 0;flex-wrap:wrap;">
+    <div style="background:var(--light);padding:14px 20px;border-radius:8px;text-align:center;min-width:120px;"><div style="font-size:12px;color:var(--gray);margin-bottom:4px;">SOURCE</div><div style="font-weight:700;color:var(--blue);">Policy Admin</div><div style="font-weight:700;color:var(--blue);">Claims System</div></div>
+    <div style="font-size:24px;color:var(--gray);">→</div>
+    <div style="background:#E3F2FD;padding:14px 20px;border-radius:8px;text-align:center;min-width:120px;"><div style="font-size:12px;color:var(--gray);margin-bottom:4px;">INGEST</div><div style="font-weight:700;color:var(--accent);">Snowflake Raw</div></div>
+    <div style="font-size:24px;color:var(--gray);">→</div>
+    <div style="background:#FFF8E1;padding:14px 20px;border-radius:8px;text-align:center;min-width:120px;"><div style="font-size:12px;color:var(--gray);margin-bottom:4px;">TRANSFORM</div><div style="font-weight:700;color:var(--orange);">dbt Models</div><div style="font-size:11px;color:var(--gray);">SCD2 + Validation</div></div>
+    <div style="font-size:24px;color:var(--gray);">→</div>
+    <div style="background:#E8F5E9;padding:14px 20px;border-radius:8px;text-align:center;min-width:120px;"><div style="font-size:12px;color:var(--gray);margin-bottom:4px;">SERVE</div><div style="font-weight:700;color:var(--green);">Insurance Mart</div><div style="font-size:11px;color:var(--gray);">Facts + Dims + Aggs</div></div>
+    <div style="font-size:24px;color:var(--gray);">→</div>
+    <div style="background:var(--light);padding:14px 20px;border-radius:8px;text-align:center;min-width:120px;"><div style="font-size:12px;color:var(--gray);margin-bottom:4px;">CONSUME</div><div style="font-weight:700;color:var(--blue);">Dashboards</div><div style="font-weight:700;color:var(--blue);">Regulatory Reports</div></div>
+  </div>
+  <div class="grid">
+    <div class="c"><h4>dbt Best Practices</h4><ul><li><strong>Staging:</strong> 1:1 with source, rename + type-cast</li><li><strong>Intermediate:</strong> SCD2, dedup</li><li><strong>Mart:</strong> Star schema tables</li><li><strong>Tests:</strong> unique, not_null, relationships + balance checks</li></ul></div>
+    <div class="c green"><h4>Monthly Close Process</h4><ul><li><strong>Day 1-2:</strong> ETL loads through month-end</li><li><strong>Day 3:</strong> Reconciliation: fact vs aggregate</li><li><strong>Day 4:</strong> Finance reviews, signs off</li><li><strong>Day 5:</strong> Regulatory reports, month locked</li></ul></div>
+    <div class="c gold"><h4>SOX Compliance Controls</h4><ul><li><strong>Immutable facts:</strong> No UPDATE — corrections via reversing entries</li><li><strong>Audit trail:</strong> Every row tagged with batch_id + timestamp</li><li><strong>Month lock:</strong> Aggregate frozen after close</li></ul></div>
+  </div>
+  <div class="sn">17</div>
+</div>
+
+<!-- ═══════ SLIDE 18: CLOSING ═══════ -->
+<div class="slide cover" style="background:linear-gradient(135deg,var(--dark),var(--blue));">
+  <div class="bar"></div>
+  <h1 style="font-size:36px;">Thank You</h1>
+  <div class="sub">Questions &amp; Discussion</div>
+  <div class="meta" style="margin-top:32px;"><strong>Nitin Jain</strong><br>Lead Data Engineer Candidate<br>RBC Insurance Division</div>
+  <div class="sn" style="color:rgba(255,255,255,.5);">18</div>
+</div>
+
+</body>
+</html>
