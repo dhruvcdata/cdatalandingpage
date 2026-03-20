@@ -509,6 +509,17 @@
 <span class="kw">GROUP BY</span> product_line
 <span class="kw">ORDER BY</span> product_line;</pre>
   <div class="note"><strong>Note:</strong> Cancellations are negative by convention. <code>net_written_premium</code> is the algebraic sum — reconciles directly with general ledger.</div>
+
+  <h3>Sample Output</h3>
+  <table class="dt">
+    <thead><tr><th>product_line</th><th>new_business</th><th>renewal</th><th>endorsement</th><th>cancellation</th><th>net_written</th></tr></thead>
+    <tbody>
+      <tr><td>Auto</td><td>$2,450,000</td><td>$5,100,000</td><td>$120,000</td><td>($340,000)</td><td>$7,330,000</td></tr>
+      <tr><td>Commercial</td><td>$800,000</td><td>$2,100,000</td><td>$200,000</td><td>($95,000)</td><td>$3,005,000</td></tr>
+      <tr><td>Home</td><td>$1,200,000</td><td>$3,400,000</td><td>$85,000</td><td>($180,000)</td><td>$4,505,000</td></tr>
+      <tr><td>Life</td><td>$500,000</td><td>$1,800,000</td><td>$30,000</td><td>($60,000)</td><td>$2,270,000</td></tr>
+    </tbody>
+  </table>
   <div class="sn">11</div>
 </div>
 
@@ -537,8 +548,29 @@
   <span class="kw">AND</span> p.expiry_date    &gt;= <span class="str">'2026-02-01'</span>::<span class="type">DATE</span>
 <span class="kw">GROUP BY</span> p.product_line
 <span class="kw">ORDER BY</span> p.product_line;</pre>
-  <div class="two">
-    <div class="c"><h4>Earned Premium Logic</h4><ul><li><strong>Pro-rata daily:</strong> Premium / term months, then by actual days in Feb</li><li><strong>Partial months:</strong> Policy effective Feb 15 earns 14/28 of monthly rate</li><li><strong>Cancelled policies:</strong> Earn up to cancellation date</li></ul></div>
+  <h3>Sample Output</h3>
+  <table class="dt">
+    <thead><tr><th>product_line</th><th>active_policies</th><th>earned_premium</th></tr></thead>
+    <tbody>
+      <tr><td>Auto</td><td>12,450</td><td>$6,800,000</td></tr>
+      <tr><td>Commercial</td><td>3,200</td><td>$2,750,000</td></tr>
+      <tr><td>Home</td><td>8,100</td><td>$4,100,000</td></tr>
+      <tr><td>Life</td><td>5,600</td><td>$2,100,000</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:12px;">Worked Example — Single Policy</h3>
+  <table class="dt">
+    <thead><tr><th>Scenario</th><th>Premium</th><th>Term</th><th>Monthly Rate</th><th>Days in Feb</th><th>Earned</th></tr></thead>
+    <tbody>
+      <tr><td>Full month (eff Jan 1)</td><td>$1,200</td><td>12 mo</td><td>$100</td><td>28/28</td><td><strong>$100.00</strong></td></tr>
+      <tr><td>Partial (eff Feb 15)</td><td>$1,200</td><td>12 mo</td><td>$100</td><td>14/28</td><td><strong>$50.00</strong></td></tr>
+      <tr><td>Cancelled Feb 10</td><td>$1,200</td><td>12 mo</td><td>$100</td><td>10/28</td><td><strong>$35.71</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="two" style="margin-top:12px;">
+    <div class="c"><h4>Earned Premium Logic</h4><ul><li><strong>Pro-rata daily:</strong> Premium / term months, then by actual days in Feb</li><li><strong>Partial months:</strong> Policy effective Feb 15 earns 14/28 of its monthly rate</li><li><strong>Cancelled policies:</strong> Earn up to cancellation date</li></ul></div>
     <div class="c gold"><h4>Production Note</h4><ul><li>ETL pre-computes this into <code>agg_monthly_financial.earned_premium</code></li><li>This query serves as reconciliation: <code>|detail - agg| &lt; $0.01</code></li></ul></div>
   </div>
   <div class="sn">12</div>
@@ -584,7 +616,18 @@ reserves <span class="kw">AS</span> (
 <span class="kw">FULL OUTER JOIN</span> claims_paid cp <span class="kw">ON</span> nc.product_line = cp.product_line
 <span class="kw">FULL OUTER JOIN</span> reserves     r  <span class="kw">ON</span> nc.product_line = r.product_line
 <span class="kw">ORDER BY</span> product_line;</pre>
-  <div class="note green"><strong>Incurred Claims Formula:</strong> <code>Total Incurred = Paid in Period + (Ending Reserves - Beginning Reserves)</code> — standard actuarial definition for statutory reporting.</div>
+  <h3>Sample Output</h3>
+  <table class="dt">
+    <thead><tr><th>product_line</th><th>new_claims</th><th>new_incurred</th><th>claims_paid</th><th>reserve_chg</th><th>total_incurred</th></tr></thead>
+    <tbody>
+      <tr><td>Auto</td><td>142</td><td>$4,250,000</td><td>$3,200,000</td><td>$180,000</td><td>$3,380,000</td></tr>
+      <tr><td>Commercial</td><td>38</td><td>$2,100,000</td><td>$1,500,000</td><td>$320,000</td><td>$1,820,000</td></tr>
+      <tr><td>Home</td><td>85</td><td>$1,950,000</td><td>$1,800,000</td><td>($50,000)</td><td>$1,750,000</td></tr>
+      <tr><td>Life</td><td>22</td><td>$1,100,000</td><td>$900,000</td><td>$75,000</td><td>$975,000</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note green"><strong>Incurred Claims Formula:</strong> <code>Total Incurred = Paid in Period + Reserve Change</code>. Example: Auto paid $3.2M + reserves up $180K = $3.38M incurred. Home reserves dropped ($50K) — claims settled cheaper than reserved.</div>
   <div class="sn">13</div>
 </div>
 
