@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import Link from 'next/link'
+import { useTurnstile, TurnstileWidget } from '@/components/turnstile'
 
 const links = [
     {
@@ -54,6 +55,7 @@ export default function FooterSection() {
     const [email, setEmail] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
+    const { token: turnstileToken, containerRef, reset: resetTurnstile } = useTurnstile()
 
     const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault()
@@ -61,11 +63,17 @@ export default function FooterSection() {
         setLoading(true)
         setMessage('')
 
+        if (!turnstileToken) {
+            setMessage('Please complete the verification check below.')
+            setLoading(false)
+            return
+        }
+
         try {
             const response = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, turnstileToken }),
             })
 
             const data = await response.json()
@@ -73,6 +81,7 @@ export default function FooterSection() {
             if (response.ok) {
                 setMessage('Subscribed successfully!')
                 setEmail('')
+                resetTurnstile()
             } else {
                 setMessage(data.error || 'Failed to subscribe.')
             }
@@ -149,6 +158,8 @@ export default function FooterSection() {
                                     {loading ? 'Sending...' : 'Submit'}
                                 </Button>
                             </div>
+
+                            <TurnstileWidget containerRef={containerRef} />
 
                             {message && (
                                 <span className="block text-sm text-muted-foreground">

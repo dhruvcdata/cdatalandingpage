@@ -1,138 +1,183 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
-<url>
-<loc>https://cdatainsights.com/</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>1.00</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/About</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/services</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/industries</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/Contact</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/services/data-engineering</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/services/data-platform</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/services/data-visualization</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/services/ai-ml</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/services/data-migration</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/industries/real-estate</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/industries/health-wellness</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/industries/retail-consumer-goods</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/industries/finance-public-services</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/industries/hospitality-smbs</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/services/data-and-ai-strategy</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/privacy-policies</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/terms-and-conditions</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/security-compliance-certifications</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/case-studies</loc>
-<lastmod>2025-09-07T14:56:17+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/Blogs</loc>
-<lastmod>2026-02-23T00:00:00+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/Blogs/central-data-team-often-becomes-blockers</loc>
-<lastmod>2026-02-23T00:00:00+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/Blogs/redshift-to-snowflake-iceberg</loc>
-<lastmod>2026-02-23T00:00:00+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/Blogs/snowflake-cost-optimization</loc>
-<lastmod>2026-02-23T00:00:00+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/Blogs/redshift-to-snowflake-migration</loc>
-<lastmod>2026-02-23T00:00:00+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/Blogs/apache-iceberg-snowflake</loc>
-<lastmod>2026-02-23T00:00:00+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<url>
-<loc>https://cdatainsights.com/Blogs/snowflake-enterprise-architecture</loc>
-<lastmod>2026-02-23T00:00:00+00:00</lastmod>
-<priority>0.64</priority>
-</url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://cdatainsights.com/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/about</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/contact</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/career</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/news</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/services</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/services/data-engineering</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/services/data-platform</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/services/data-visualization</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/services/ai-ml</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/services/data-migration</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/services/data-and-ai-strategy</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/industries</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/industries/real-estate</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/industries/health-wellness</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/industries/retail-consumer-goods</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/industries/finance-public-services</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/industries/hospitality-smbs</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/privacy-policies</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.40</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/terms-and-conditions</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.40</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/security-compliance-certifications</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.40</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/central-data-team-often-becomes-blockers</loc>
+    <lastmod>2023-02-07</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/redshift-to-snowflake-iceberg</loc>
+    <lastmod>2026-02-18</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/snowflake-cost-optimization</loc>
+    <lastmod>2026-02-25</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/redshift-to-snowflake-migration</loc>
+    <lastmod>2026-03-04</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/apache-iceberg-snowflake</loc>
+    <lastmod>2026-03-11</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/snowflake-enterprise-architecture</loc>
+    <lastmod>2026-03-18</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/scaling-data-engineering-consultancies</loc>
+    <lastmod>2026-02-26</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/regulatory-data-platform-canadian-fintechs</loc>
+    <lastmod>2026-02-26</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/dbt-airflow-at-scale</loc>
+    <lastmod>2026-02-26</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/modern-data-lakehouse-iceberg-spark-glue</loc>
+    <lastmod>2026-03-01</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/real-time-vs-batch-data-pipelines</loc>
+    <lastmod>2026-03-01</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/esg-data-real-estate-certification</loc>
+    <lastmod>2026-03-06</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/data-pipeline-observability-silent-failures</loc>
+    <lastmod>2026-03-01</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://cdatainsights.com/blogs/data-driven-trap-nike-25b-lesson</loc>
+    <lastmod>2026-03-09</lastmod>
+    <priority>0.64</priority>
+  </url>
 </urlset>

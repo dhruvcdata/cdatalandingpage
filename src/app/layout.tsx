@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "CData Insights — Data Engineering & AI Consulting",
     description: "Data engineering, Snowflake implementation, cloud migration, and AI consulting for enterprises.",
     creator: "@cdatainsights",
@@ -81,8 +81,6 @@ export default function RootLayout({
               url: "https://cdatainsights.com/",
               logo: "https://cdatainsights.com/whitelogo.png",
               sameAs: [
-                "https://www.facebook.com/cdatainsights",
-                "https://www.instagram.com/p/DNp6vJCS4kN/?utm_source=ig_web_button_share_sheet",
                 "https://www.linkedin.com/company/cdatainsights/"
               ]
             })
