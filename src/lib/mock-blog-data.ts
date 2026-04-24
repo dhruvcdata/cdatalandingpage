@@ -2367,7 +2367,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             role: 'Founder, CData Insights',
             avatar: '/whitelogo.png',
         },
-        heroImage: '/blog-diagrams/leed-certification-pipeline.svg',
+        heroImage: 'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1600',
         tags: ['LEED', 'Real Estate', 'Sustainability', 'Data Engineering', 'ENERGY STAR'],
         content: [
             {
@@ -2579,7 +2579,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             role: 'Founder, CData Insights',
             avatar: '/whitelogo.png',
         },
-        heroImage: '/blog-diagrams/city-energy-benchmarking-architecture.svg',
+        heroImage: 'https://images.pexels.com/photos/2096700/pexels-photo-2096700.jpeg?auto=compress&cs=tinysrgb&w=1600',
         tags: ['Real Estate', 'Sustainability', 'Open Data', 'LEED', 'ENERGY STAR', 'Public Sector'],
         content: [
             {
@@ -2762,7 +2762,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             role: 'Founder, CData Insights',
             avatar: '/whitelogo.png',
         },
-        heroImage: '/blog-diagrams/leed-v5-data-pillars.svg',
+        heroImage: 'https://images.pexels.com/photos/2096622/pexels-photo-2096622.jpeg?auto=compress&cs=tinysrgb&w=1600',
         tags: ['LEED v5', 'Real Estate', 'Sustainability', 'Data Engineering', 'Decarbonization'],
         content: [
             {

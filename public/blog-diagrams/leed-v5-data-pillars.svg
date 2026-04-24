@@ -1,82 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" font-family="Georgia, 'Iowan Old Style', serif">
-  <rect width="1200" height="620" fill="#F5F1EA"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <rect width="1200" height="620" fill="#0a0a0a"/>
 
-  <text x="600" y="60" text-anchor="middle" font-size="32" fill="#1F1E1D" font-style="italic">The five data pillars of LEED v5</text>
-  <text x="600" y="92" text-anchor="middle" font-size="16" fill="#6B655D" font-family="system-ui, sans-serif">What real estate operators need to track for the next standard</text>
+  <text x="600" y="60" text-anchor="middle" font-size="26" fill="#ffffff" font-weight="600">The five data pillars of LEED v5</text>
+  <text x="600" y="90" text-anchor="middle" font-size="15" fill="#9ca3af">What real estate operators need to track for the next standard</text>
 
   <!-- Center hub -->
-  <circle cx="600" cy="350" r="85" fill="#C15F3C"/>
-  <text x="600" y="343" text-anchor="middle" font-size="18" fill="#F5F1EA" font-style="italic">LEED v5</text>
-  <text x="600" y="368" text-anchor="middle" font-size="13" fill="#F5F1EA" font-family="system-ui, sans-serif" letter-spacing="2">UNIFIED LEDGER</text>
+  <circle cx="600" cy="350" r="85" fill="#3b82f6"/>
+  <text x="600" y="343" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="600">LEED v5</text>
+  <text x="600" y="370" text-anchor="middle" font-size="11" fill="#dbeafe" letter-spacing="2" font-weight="600">UNIFIED LEDGER</text>
 
   <!-- Pillar 1: Decarbonization -->
-  <g>
-    <line x1="600" y1="280" x2="600" y2="220" stroke="#E8E2D5" stroke-width="1.5"/>
-    <rect x="430" y="160" width="340" height="80" rx="8" fill="#FFFFFF" stroke="#E8E2D5" stroke-width="1.5"/>
-    <text x="450" y="184" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="1.5">PILLAR · DECARBONIZATION</text>
-    <text x="450" y="208" font-size="14" fill="#1F1E1D" font-style="italic">Operational + embodied carbon</text>
-    <text x="450" y="226" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Hourly emissions factors · Scope 1+2 · refrigerant leakage · embodied carbon LCA</text>
-  </g>
+  <line x1="600" y1="265" x2="600" y2="240" stroke="#262626" stroke-width="1.5"/>
+  <rect x="430" y="160" width="340" height="80" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="450" y="184" font-size="11" fill="#3b82f6" letter-spacing="1.5" font-weight="600">PILLAR · DECARBONIZATION</text>
+  <text x="450" y="208" font-size="14" fill="#ffffff" font-weight="500">Operational + embodied carbon</text>
+  <text x="450" y="226" font-size="12" fill="#9ca3af">Hourly emissions factors · Scope 1+2 · refrigerant leakage · embodied carbon LCA</text>
 
   <!-- Pillar 2: Equity (top right) -->
-  <g>
-    <line x1="660" y1="320" x2="780" y2="240" stroke="#E8E2D5" stroke-width="1.5"/>
-    <rect x="800" y="170" width="350" height="80" rx="8" fill="#FFFFFF" stroke="#E8E2D5" stroke-width="1.5"/>
-    <text x="820" y="194" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="1.5">PILLAR · EQUITY</text>
-    <text x="820" y="218" font-size="14" fill="#1F1E1D" font-style="italic">Community + worker outcomes</text>
-    <text x="820" y="236" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Workforce demographics · accessibility audits · displacement risk indicators</text>
-  </g>
+  <line x1="660" y1="320" x2="780" y2="240" stroke="#262626" stroke-width="1.5"/>
+  <rect x="800" y="170" width="350" height="80" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="820" y="194" font-size="11" fill="#3b82f6" letter-spacing="1.5" font-weight="600">PILLAR · EQUITY</text>
+  <text x="820" y="218" font-size="14" fill="#ffffff" font-weight="500">Community + worker outcomes</text>
+  <text x="820" y="236" font-size="12" fill="#9ca3af">Workforce demographics · accessibility audits · displacement risk indicators</text>
 
   <!-- Pillar 3: Resilience (right) -->
-  <g>
-    <line x1="685" y1="350" x2="800" y2="350" stroke="#E8E2D5" stroke-width="1.5"/>
-    <rect x="800" y="310" width="350" height="80" rx="8" fill="#FFFFFF" stroke="#E8E2D5" stroke-width="1.5"/>
-    <text x="820" y="334" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="1.5">PILLAR · RESILIENCE</text>
-    <text x="820" y="358" font-size="14" fill="#1F1E1D" font-style="italic">Climate-risk-ready operations</text>
-    <text x="820" y="376" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Hazard exposure · backup power telemetry · passive survivability hours</text>
-  </g>
+  <line x1="685" y1="350" x2="800" y2="350" stroke="#262626" stroke-width="1.5"/>
+  <rect x="800" y="310" width="350" height="80" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="820" y="334" font-size="11" fill="#3b82f6" letter-spacing="1.5" font-weight="600">PILLAR · RESILIENCE</text>
+  <text x="820" y="358" font-size="14" fill="#ffffff" font-weight="500">Climate-risk-ready operations</text>
+  <text x="820" y="376" font-size="12" fill="#9ca3af">Hazard exposure · backup power telemetry · passive survivability hours</text>
 
   <!-- Pillar 4: Health (bottom right) -->
-  <g>
-    <line x1="660" y1="380" x2="780" y2="460" stroke="#E8E2D5" stroke-width="1.5"/>
-    <rect x="800" y="445" width="350" height="80" rx="8" fill="#FFFFFF" stroke="#E8E2D5" stroke-width="1.5"/>
-    <text x="820" y="469" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="1.5">PILLAR · HEALTH</text>
-    <text x="820" y="493" font-size="14" fill="#1F1E1D" font-style="italic">Indoor environmental quality</text>
-    <text x="820" y="511" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Real-time IAQ sensors · CO2 ppm · PM2.5 · ventilation rates · daylight modeling</text>
-  </g>
+  <line x1="660" y1="380" x2="780" y2="460" stroke="#262626" stroke-width="1.5"/>
+  <rect x="800" y="445" width="350" height="80" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="820" y="469" font-size="11" fill="#3b82f6" letter-spacing="1.5" font-weight="600">PILLAR · HEALTH</text>
+  <text x="820" y="493" font-size="14" fill="#ffffff" font-weight="500">Indoor environmental quality</text>
+  <text x="820" y="511" font-size="12" fill="#9ca3af">Real-time IAQ sensors · CO2 ppm · PM2.5 · ventilation · daylight modeling</text>
 
   <!-- Pillar 5: Ecosystems (bottom) -->
-  <g>
-    <line x1="600" y1="435" x2="600" y2="500" stroke="#E8E2D5" stroke-width="1.5"/>
-    <rect x="430" y="510" width="340" height="80" rx="8" fill="#FFFFFF" stroke="#E8E2D5" stroke-width="1.5"/>
-    <text x="450" y="534" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="1.5">PILLAR · ECOSYSTEMS</text>
-    <text x="450" y="558" font-size="14" fill="#1F1E1D" font-style="italic">Water + biodiversity + materials</text>
-    <text x="450" y="576" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Potable water reduction · stormwater capture · native species cover · circular materials</text>
-  </g>
+  <line x1="600" y1="435" x2="600" y2="500" stroke="#262626" stroke-width="1.5"/>
+  <rect x="430" y="510" width="340" height="80" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="450" y="534" font-size="11" fill="#3b82f6" letter-spacing="1.5" font-weight="600">PILLAR · ECOSYSTEMS</text>
+  <text x="450" y="558" font-size="14" fill="#ffffff" font-weight="500">Water + biodiversity + materials</text>
+  <text x="450" y="576" font-size="12" fill="#9ca3af">Potable water reduction · stormwater capture · native species cover · circular materials</text>
 
-  <!-- Left side cluster (data sources) -->
-  <g>
-    <line x1="515" y1="350" x2="400" y2="350" stroke="#E8E2D5" stroke-width="1.5"/>
-    <rect x="50" y="310" width="350" height="80" rx="8" fill="#FAF7F2" stroke="#E8E2D5" stroke-width="1.5"/>
-    <text x="70" y="334" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="1.5">SOURCES</text>
-    <text x="70" y="358" font-size="14" fill="#1F1E1D" font-style="italic">Building telemetry · third-party APIs</text>
-    <text x="70" y="376" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">BMS · IoT · grid intensity feeds · hazard layers · LCA databases · HR systems</text>
-  </g>
+  <!-- Left side cluster -->
+  <line x1="515" y1="350" x2="400" y2="350" stroke="#262626" stroke-width="1.5"/>
+  <rect x="50" y="310" width="350" height="80" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="70" y="334" font-size="11" fill="#3b82f6" letter-spacing="1.5" font-weight="600">SOURCES</text>
+  <text x="70" y="358" font-size="14" fill="#ffffff" font-weight="500">Building telemetry · third-party APIs</text>
+  <text x="70" y="376" font-size="12" fill="#9ca3af">BMS · IoT · grid intensity feeds · hazard layers · LCA databases · HR systems</text>
 
-  <!-- Top left & bottom left -->
-  <g>
-    <line x1="540" y1="320" x2="400" y2="240" stroke="#E8E2D5" stroke-width="1.5"/>
-    <rect x="50" y="180" width="350" height="80" rx="8" fill="#FAF7F2" stroke="#E8E2D5" stroke-width="1.5"/>
-    <text x="70" y="204" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="1.5">REGULATORY FEEDS</text>
-    <text x="70" y="228" font-size="14" fill="#1F1E1D" font-style="italic">City + utility + grid</text>
-    <text x="70" y="246" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Disclosure mandates · grid carbon intensity · local hazard registries</text>
-  </g>
+  <line x1="540" y1="320" x2="400" y2="240" stroke="#262626" stroke-width="1.5"/>
+  <rect x="50" y="180" width="350" height="80" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="70" y="204" font-size="11" fill="#3b82f6" letter-spacing="1.5" font-weight="600">REGULATORY FEEDS</text>
+  <text x="70" y="228" font-size="14" fill="#ffffff" font-weight="500">City + utility + grid</text>
+  <text x="70" y="246" font-size="12" fill="#9ca3af">Disclosure mandates · grid carbon intensity · local hazard registries</text>
 
-  <g>
-    <line x1="540" y1="380" x2="400" y2="460" stroke="#E8E2D5" stroke-width="1.5"/>
-    <rect x="50" y="450" width="350" height="80" rx="8" fill="#FAF7F2" stroke="#E8E2D5" stroke-width="1.5"/>
-    <text x="70" y="474" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="1.5">PUBLISHING</text>
-    <text x="70" y="498" font-size="14" fill="#1F1E1D" font-style="italic">Arc + LEED Online + investor reports</text>
-    <text x="70" y="516" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Quarterly performance · ESG disclosures · GRESB / SEC climate filings</text>
-  </g>
+  <line x1="540" y1="380" x2="400" y2="460" stroke="#262626" stroke-width="1.5"/>
+  <rect x="50" y="450" width="350" height="80" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="70" y="474" font-size="11" fill="#3b82f6" letter-spacing="1.5" font-weight="600">PUBLISHING</text>
+  <text x="70" y="498" font-size="14" fill="#ffffff" font-weight="500">Arc + LEED Online + investor reports</text>
+  <text x="70" y="516" font-size="12" fill="#9ca3af">Quarterly performance · ESG disclosures · GRESB / SEC climate filings</text>
 </svg>
