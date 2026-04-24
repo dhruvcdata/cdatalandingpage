@@ -15,7 +15,7 @@ const DataRevivalComponent = () => {
 
         'Data Engineering': {
             title: 'Data Engineering',
-            description: 'Build robust data pipelines and infrastructure...',
+            description: 'Build robust data pipelines and infrastructure that turn raw, scattered data into a reliable foundation for analytics, AI, and operational decision-making.',
             points: [
                 'Design and implement scalable data pipelines tailored to your business needs.',
                 'Establish robust ETL processes for reliable data integration.',
@@ -27,7 +27,7 @@ const DataRevivalComponent = () => {
         },
         'Data Platforms': {
             title: 'Data Platforms',
-            description: 'Architect and manage scalable data environments...',
+            description: 'Architect and manage scalable cloud-native data environments — from Snowflake and Databricks to BigQuery — that grow with your business and unify analytics across teams.',
             points: [
                 'Architect cloud-native data platforms that reduce costs while enhancing capabilities.',
                 'Create unified data ecosystems that break down organizational silos.',
@@ -39,7 +39,7 @@ const DataRevivalComponent = () => {
         },
         'Data Visualization': {
             title: 'Data Visualization',
-            description: 'Turn complex data into actionable insights through powerful visualizations...',
+            description: 'Turn complex data into actionable insights through dashboards and self-serve reporting in Looker, Tableau, Power BI, and Hex that stakeholders actually use.',
             points: [
                 'Create intuitive dashboards that make complex data instantly understandable.',
                 'Develop interactive reports that allow users to explore insights independently.',
@@ -51,7 +51,7 @@ const DataRevivalComponent = () => {
         },
         'AI & Machine Learning': {
             title: 'AI & Machine Learning',
-            description: 'Leverage AI and machine learning to drive business innovation...',
+            description: 'Leverage AI and machine learning — from predictive models and recommender systems to GenAI agents — to automate decisions and surface insights at scale.',
             points: [
                 'Develop predictive models that forecast trends and anticipate market changes.',
                 'Implement natural language processing to extract insights from unstructured data.',
@@ -67,7 +67,7 @@ const DataRevivalComponent = () => {
     return (
         <div className="max-w-6xl mx-auto p-6 bg-background text-gray-300 rounded-xl shadow-lg">
             <div className="mb-10">
-                <h1 className="text-4xl font-light text-blue-400 mb-1">Data Revival &</h1>
+                <h2 className="text-4xl font-light text-blue-400 mb-1">Data Revival &</h2>
                 <h2 className="text-4xl font-bold text-white mb-4">Democratization Solutions</h2>
                 <p className="text-xl text-gray-400">Transform Raw Data into Strategic Business Advantage</p>
             </div>

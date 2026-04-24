@@ -369,7 +369,7 @@ export default function AIMLServicesPage() {
               <div className="bg-background border border-gray-800 p-3 rounded-lg">
                 <p className="text-sm text-blue-700 font-medium">Improved customer satisfaction and operational efficiency</p>
               </div>
-              <Link href="/case-studies">
+              <Link href="/contact">
                 <Button variant="ghost" size="sm" className="mt-4 text-blue-500 hover:text-white hover:bg-blue-500 gap-1">
                   <span>View case study</span>
                   <ChevronRight className="size-3" />
@@ -387,7 +387,7 @@ export default function AIMLServicesPage() {
               <div className="bg-background border border-gray-800 p-3 rounded-lg">
                 <p className="text-sm text-blue-700 font-medium">Enhanced patient outcomes and reduced diagnostic time</p>
               </div>
-              <Link href="/case-studies">
+              <Link href="/contact">
                 <Button variant="ghost" size="sm" className="mt-4 text-blue-500 hover:text-white hover:bg-blue-500 gap-1">
                   <span>View case study</span>
                   <ChevronRight className="size-3" />

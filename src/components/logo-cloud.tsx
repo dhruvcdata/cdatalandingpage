@@ -15,10 +15,10 @@ export default function LogoCloud() {
                             speed={50}
                             gap={50}>
                             {[
-                                { src: "/logos/meta.avif", alt: "Client logo" },
-                                { src: "/logos/bn.avif", alt: "Client logo" },
-                                { src: "/logos/nax.avif", alt: "Client logo" },
-                                { src: "/logos/lazy.avif", alt: "Client logo" }
+                                { src: "/logos/meta.avif", alt: "Meta" },
+                                { src: "/logos/bn.avif", alt: "Barnes & Noble" },
+                                { src: "/logos/nax.avif", alt: "NielsenIQ" },
+                                { src: "/logos/lazy.avif", alt: "Lazada" }
                             ].map((logo) => (
                                 <div key={logo.src} className="flex items-center justify-center px-4">
                                     <img
