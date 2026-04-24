@@ -2353,4 +2353,600 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             },
         ],
     },
+
+    'leed-certification-data-pipeline': {
+        slug: 'leed-certification-data-pipeline',
+        title: 'Building a LEED Certification Data Pipeline: From Utility Bills to Final Submission',
+        subtitle:
+            'A practical reference architecture for the data infrastructure that turns scattered utility, water, and waste data into a defensible LEED submission package — and keeps it current for re-certification.',
+        category: 'DATA ENGINEERING',
+        date: 'April 23, 2026',
+        readingTime: '9 min read',
+        author: {
+            name: 'Nitin Jain',
+            role: 'Founder, CData Insights',
+            avatar: '/whitelogo.png',
+        },
+        heroImage: '/blog-diagrams/leed-certification-pipeline.svg',
+        tags: ['LEED', 'Real Estate', 'Sustainability', 'Data Engineering', 'ENERGY STAR'],
+        content: [
+            {
+                type: 'paragraph',
+                value:
+                    'LEED certification is, at its core, a data problem. The U.S. Green Building Council does not measure your building with their own instruments — they measure your <strong>documentation</strong> of the building. Every credit you claim is a row in a database somewhere. Every "yes" requires a CSV, a PDF, a screenshot from a control system, or a calculation that traces back to a utility bill or a sensor reading.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'For new construction this is painful but bounded — you do it once and you are done. For existing buildings under LEED O+M (Operations + Maintenance) or for portfolios pursuing certification at scale, the data work never stops. Re-certification cycles every three years, performance scores update annually, and the move toward continuous performance disclosure means the spreadsheet-and-shared-drive approach that worked for one building does not work for a hundred.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'This piece is a reference architecture — the data pipeline we have seen work for owners and consultants moving past one-off submissions into LEED as an operating capability.',
+            },
+            {
+                type: 'heading',
+                value: 'The Pipeline at a Glance',
+            },
+            {
+                type: 'image',
+                value: '/blog-diagrams/leed-certification-pipeline.svg',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Four stages: <strong>sources</strong> (where the raw data lives), <strong>normalization</strong> (where it gets reshaped into a portfolio-comparable form), <strong>transformation</strong> (where credits are calculated and validated), and <strong>submission</strong> (where it lands in front of a reviewer). A continuous monitoring layer underpins all of it for v4.1 and v5 performance tracking.',
+            },
+            {
+                type: 'heading',
+                value: 'Stage 1: Sources Are Messier Than You Think',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'A typical mid-size commercial building has six to ten distinct data feeds relevant to LEED: electricity, gas, district steam or chilled water, domestic water, irrigation water, waste haulers, indoor air quality sensors, occupancy badge swipes, transportation surveys, and procurement systems for materials credits.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Almost none of these arrive in the same format. Utility bills come as PDFs (and the PDF parser someone wrote two years ago breaks every time the utility changes their template). Building Management Systems (BMS) export proprietary formats — Tridium Niagara, Johnson Controls Metasys, Honeywell Webs — each with their own time alignment quirks. Waste haulers report tonnage in monthly statements that arrive 30 days late. Tenant surveys live in SurveyMonkey or Google Forms. Procurement logs are in whichever ERP the construction team happened to use.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The first job of the pipeline is to land all of this in one place — usually a cloud object store like S3 or a managed warehouse like Snowflake — without trying to reshape it. Raw fidelity matters because LEED reviewers will sometimes ask to see the underlying source. Throwing away the original PDF to save space is a mistake people only make once.',
+            },
+            {
+                type: 'heading',
+                value: 'Stage 2: ENERGY STAR Portfolio Manager Is Your Normalizer',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'For energy and water credits — which represent the largest single block of LEED points for existing buildings — ENERGY STAR Portfolio Manager (ESPM) is non-negotiable. Whether you love it or hate it, it is the EPA tool that the USGBC anchors performance scoring against, and getting your data into ESPM cleanly is a hard prerequisite.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The good news is ESPM has a Web Services API. The less good news is that it is a SOAP API designed in the 2010s, and most utilities will exchange data with it through one-way feeds that can take weeks to set up. The pragmatic path is a thin Python service that reads from your raw layer, translates units and time intervals to ESPM\'s expectations, and posts updates on a schedule. Expect to write code for weather normalization, site-vs-source EUI conversion, and property-use metadata that ESPM needs to compare your building to peers.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Treat ESPM as a normalization layer, not a system of record. Your warehouse should hold the raw and normalized values; ESPM holds the EPA-blessed view that goes to LEED.',
+            },
+            {
+                type: 'heading',
+                value: 'Stage 3: Credit Calculations Belong in dbt',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'LEED credits are mostly arithmetic. Reductions versus baselines, percentages of materials sourced regionally, ratios of recycled content, percent reduction in potable water versus a 1.6 GPF baseline. The arithmetic is not hard — but the <strong>auditability</strong> is.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'When a LEED reviewer challenges your Energy Performance score, you need to be able to show: "this number came from this transformation of these source rows, with this baseline assumption, validated against this expected range." If your calculations live in five-tab Excel files emailed between consultants, you cannot defend them.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'A dbt project (or any other version-controlled SQL transformation framework) gives you that defense for free. Each credit is a model. Each model has tests for value ranges, completeness, and unit consistency. A QA layer flags outliers before they get into a submission package. The lineage graph dbt produces is itself the audit trail.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'For storage we have used both Snowflake and Postgres successfully. Snowflake is overkill for a single building but pays back at portfolio scale where you are joining occupancy, utility, and weather data across hundreds of properties. Postgres works well below 50 buildings.',
+            },
+            {
+                type: 'heading',
+                value: 'Stage 4: Submission Is a Document Generation Problem',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'LEED Online and Arc Skoru are the destinations. LEED Online accepts credit forms, supporting documentation, and narrative responses. Arc handles ongoing performance scoring for v4.1 and v5.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Once your warehouse holds validated credit calculations, generating the submission package is mostly a templating problem. We use Jinja templates (or any document generator) to populate credit form PDFs with values from the warehouse, attach the supporting CSVs, and produce a manifest of every claim with its underlying calculation. This collapses the final submission step from weeks of consultant time to hours of review.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Arc accepts continuous data via API, which means once your pipeline is running daily for v5 performance scoring you can stop thinking about "submission" as a discrete event. The data flows. Your score updates. Re-certification becomes a formality.',
+            },
+            {
+                type: 'heading',
+                value: 'What This Architecture Buys You',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Defensibility.</strong> Every claimed credit traces back to a source row. Reviewer challenges become 15-minute lookups instead of week-long fire drills.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Portfolio scale.</strong> Adding a new building is a configuration change, not a months-long onboarding. The same models calculate credits whether you have 5 buildings or 500.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Continuous certification.</strong> v4.1 and v5 are explicitly performance-based. A pipeline that already runs daily makes annual re-scoring trivial. The teams still doing this with quarterly Excel rollups will lose to the teams that automated it.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Optionality.</strong> The same data also feeds GRESB, SEC climate disclosures, ESG investor reports, and tenant ESG asks. The pipeline pays for itself across compliance regimes.',
+            },
+            {
+                type: 'heading',
+                value: 'Common Pitfalls',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Throwing away raw data.</strong> Compress and archive forever. Storage is cheap; defensibility is priceless.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Letting consultants own the spreadsheets.</strong> If your sustainability consultant leaves and your LEED workbook walks out the door, you do not have a process — you have a person.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Skipping the QA layer.</strong> A single bad utility-bill OCR can throw an entire credit into question. Every transformation needs a sanity-check test.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Forgetting the human review step.</strong> Automation is for the boring 90%. The narrative responses, the credit interpretations, the project-specific judgment calls still need an experienced LEED AP. The pipeline frees them to do that work instead of wrangling CSVs.',
+            },
+        ],
+        faq: [
+            {
+                question: 'Do I need ENERGY STAR Portfolio Manager for LEED?',
+                answer:
+                    'For energy and water performance credits in LEED for Existing Buildings (LEED O+M) and v5, yes. Portfolio Manager is the EPA tool the USGBC anchors performance scoring against. New construction projects can avoid it for some credits, but every building over 25 employees that is pursuing performance-based credits should be using it.',
+            },
+            {
+                question: 'Why use dbt for LEED calculations instead of Excel?',
+                answer:
+                    'Auditability and defensibility. dbt gives you version-controlled, tested transformations with full lineage from source to credit. When a reviewer challenges a number you can show exactly which rows produced it. Excel cannot do that, and the moment your spreadsheet author leaves the project, the institutional knowledge goes with them.',
+            },
+            {
+                question: 'How long does this pipeline take to build?',
+                answer:
+                    'For a single building, 3 to 6 weeks if your sources are well documented. For a portfolio of 50 buildings, plan on 3 to 4 months for the first wave, then weeks per additional wave as you templatize source connectors. Most of the time goes into source-system integration, not the warehouse modeling.',
+            },
+            {
+                question: 'Does this work for LEED v5?',
+                answer:
+                    'Yes — and the architecture pays back more under v5 because v5 expects continuous performance data rather than point-in-time submissions. A pipeline that already runs daily makes v5 trivial; one that runs annually will be a constant scramble.',
+            },
+        ],
+        relatedBlogs: [
+            {
+                title: 'How Cities Are Using Building Energy Data to Drive Green Certification at Scale',
+                slug: '/blogs/city-energy-benchmarking-scorecards',
+            },
+            {
+                title: 'The Data Architecture Behind LEED v5: What Real Estate Operators Need to Track',
+                slug: '/blogs/leed-v5-data-architecture',
+            },
+            {
+                title: 'ESG in Real Estate: How Data Pipelines Power Green Building Certification and Compliance',
+                slug: '/blogs/esg-data-real-estate-certification',
+            },
+        ],
+    },
+
+    'city-energy-benchmarking-scorecards': {
+        slug: 'city-energy-benchmarking-scorecards',
+        title: 'How Cities Are Using Building Energy Data to Drive Green Certification at Scale',
+        subtitle:
+            'Mandatory disclosure laws are generating decades of building performance data. Here is the data architecture cities use to turn that raw disclosure into public scorecards that reshape commercial real estate markets.',
+        category: 'INNOVATION',
+        date: 'April 23, 2026',
+        readingTime: '8 min read',
+        author: {
+            name: 'Nitin Jain',
+            role: 'Founder, CData Insights',
+            avatar: '/whitelogo.png',
+        },
+        heroImage: '/blog-diagrams/city-energy-benchmarking-architecture.svg',
+        tags: ['Real Estate', 'Sustainability', 'Open Data', 'LEED', 'ENERGY STAR', 'Public Sector'],
+        content: [
+            {
+                type: 'paragraph',
+                value:
+                    'For most of the history of commercial real estate, a building\'s energy performance was a private fact between the owner and their utility company. That is changing fast. More than 40 North American cities now require commercial buildings above a size threshold to disclose annual energy and water consumption. Several have gone further and publish that data — building by building, in public, with searchable maps and visual scorecards.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'These programs do something subtler than just shame underperformers. They create a market for performance information that did not exist before. Brokers cite scores in listings. Tenants ask for them in RFPs. Lenders factor them into refinancing. Green certification — LEED, BOMA BEST, ENERGY STAR — becomes a way to publicly answer the question the scorecard implicitly asks.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The data architecture behind these programs is interesting in its own right, and worth studying whether you are a city building one, an owner subject to one, or a consultant helping clients comply.',
+            },
+            {
+                type: 'heading',
+                value: 'The Three-Layer Architecture',
+            },
+            {
+                type: 'image',
+                value: '/blog-diagrams/city-energy-benchmarking-architecture.svg',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Almost every city benchmarking program — New York, Chicago, Toronto, Vancouver, Boston, Seattle, San Francisco — converges on the same three-layer pattern: <strong>building owners disclose</strong>, the <strong>city processes and validates</strong>, and a <strong>public scorecard</strong> publishes results. The implementations differ in tooling, but the data shapes are remarkably consistent.',
+            },
+            {
+                type: 'heading',
+                value: 'Layer 1: Disclosure Through Portfolio Manager',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Almost every city anchors disclosure on ENERGY STAR Portfolio Manager (ESPM). It is the de facto standard, EPA-maintained, and free. Cities require building owners to enter consumption data into their own ESPM accounts, then "share" their property record with the city\'s ESPM account on a defined schedule.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'This design choice is doing a lot of work. By using ESPM as the disclosure surface, the city offloads weather normalization, site-vs-source EUI calculations, and property-use peer comparisons to EPA — and gets a normalized data feed they can ingest. The trade-off is that owners have to learn ESPM, and the user experience is famously rough.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The disclosure threshold matters. Most programs start with buildings over 50,000 square feet, then ratchet down. Toronto\'s program covers buildings over 50,000 sq ft today; Vancouver\'s drops to 25,000 sq ft. The smaller the threshold, the more buildings included, the larger the data engineering burden.',
+            },
+            {
+                type: 'heading',
+                value: 'Layer 2: The City Data Platform',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Once data lands at the city, four things have to happen: <strong>ingestion</strong>, <strong>validation</strong>, <strong>scoring</strong>, and <strong>publishing</strong>.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Ingestion</strong> means pulling from ESPM (via the EPA Web Services API or via scheduled ESPM "data request" templates), then joining against the city\'s authoritative property database — typically the tax assessor roll, plus GIS layers for parcel boundaries and zoning. The join is harder than it looks. Building IDs in ESPM are user-entered and frequently do not match assessor parcel IDs cleanly. Address normalization, fuzzy matching, and a manual review queue are required for the long tail.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Validation</strong> catches the obvious problems before they become public embarrassments. Outliers — a 50,000 sq ft office reporting 12 kWh/sq ft annual consumption (about 1/3 of normal) — get flagged for owner review. Data completeness checks ensure all 12 months are reported. Square footage sanity checks compare reported floor area against assessor records. Most cities give owners a window to correct flagged data before publication.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Scoring</strong> is where the program\'s personality shows. Some cities publish raw EUI numbers and let the market interpret. Others (Chicago, Toronto) publish a 1-to-5-star or A-to-F letter grade based on percentile rank within the building\'s use type. Letter grades are more interpretable to non-experts and create a stronger market signal — but require the city to take a position on what "good" means, which can be politically fraught.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Publishing</strong> is the last mile. The data goes into the city\'s open data portal (CSV download, plus an API) and into a dedicated scorecard application — a searchable web app that lets anyone look up any covered building. The scorecard is what residents, brokers, journalists, and competitors actually see, so its UX matters enormously.',
+            },
+            {
+                type: 'heading',
+                value: 'Layer 3: The Scorecard as Market Signal',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'A scorecard does three jobs at once. It informs the public. It pressures owners. And it creates a baseline that LEED and other certifications are measured against.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'New York City\'s Local Law 33 grade — a letter posted physically on the building entrance — is the most aggressive version. Chicago\'s Energy Benchmarking Report and Toronto\'s emerging program are gentler but follow the same logic. Once a building has a public score, the conversation about LEED certification changes from "should we?" to "we have to — our score is a D and our competitor across the street is a B".',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'For LEED specifically, public scorecards accelerate adoption of LEED for Existing Buildings (O+M) and v5 because both standards are explicitly performance-based. A building cannot fake a public ESPM score the way it might fake a one-time submission narrative.',
+            },
+            {
+                type: 'heading',
+                value: 'What Owners Should Do About It',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Get ahead of disclosure.</strong> If your city is heading toward mandatory disclosure (and most are), set up your own ESPM presence now. Discover what your score is going to be in private, before it goes public. The first published score sets a baseline that anchors public perception for years.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Build the same pipeline cities build.</strong> Owners who can see their portfolio the way the city sees it — same normalization, same percentile ranks — can make capital allocation decisions about which buildings need retrofits and which need certification efforts. The scorecard is also a roadmap.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Treat the scorecard data as a marketing asset.</strong> If your buildings score well, surface that. Embed scores in listing pages. Cite them in lease negotiations. The cities are doing the marketing work for you — meet it halfway.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Plan for re-disclosure cycles.</strong> Disclosure is annual. Letter grades update annually. A building that improved last year and slipped this year tells a story. A pipeline that updates ESPM monthly catches drift before it shows up on the scorecard.',
+            },
+            {
+                type: 'heading',
+                value: 'Where This Is Going',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Disclosure programs are converging on a few directions: lower size thresholds (more buildings included), higher-resolution data (sub-annual, eventually hourly), and integration with carbon-intensity scoring tied to LEED v5 and SEC climate disclosure. The buildings that win in this environment are the ones whose data infrastructure is at least as mature as the city\'s.',
+            },
+        ],
+        faq: [
+            {
+                question: 'Which cities have mandatory building energy disclosure?',
+                answer:
+                    'In Canada: Toronto, Vancouver, Calgary, and Edmonton have programs in various stages. In the US: New York, Chicago, Boston, Seattle, San Francisco, Washington DC, Philadelphia, Denver, Minneapolis, and dozens more. Most large North American cities have either a current or planned disclosure ordinance.',
+            },
+            {
+                question: 'How do cities use my Portfolio Manager data?',
+                answer:
+                    'Cities ingest the ESPM data, join it against their property database (assessor + GIS), validate it, score it against peer buildings of the same use type, and publish the result. Most programs give owners a window to correct flagged data before publication.',
+            },
+            {
+                question: 'Does a public scorecard affect property value?',
+                answer:
+                    'Studies of New York City\'s Local Law 33 letter-grade program show small but measurable rent and value premiums for buildings with high grades, and discounts for low grades. The effect is largest in Class A office and falls off in lower asset classes. Lenders are also starting to factor scores into refinancing terms.',
+            },
+            {
+                question: 'How does this connect to LEED?',
+                answer:
+                    'A city scorecard is the public baseline. LEED certification — particularly LEED for Existing Buildings (O+M) and the new LEED v5 — is the credible answer to a poor score. Both standards rely on the same ESPM data pipeline as the city, so a building set up for one is mostly set up for the other.',
+            },
+        ],
+        relatedBlogs: [
+            {
+                title: 'Building a LEED Certification Data Pipeline: From Utility Bills to Final Submission',
+                slug: '/blogs/leed-certification-data-pipeline',
+            },
+            {
+                title: 'The Data Architecture Behind LEED v5: What Real Estate Operators Need to Track',
+                slug: '/blogs/leed-v5-data-architecture',
+            },
+            {
+                title: 'ESG in Real Estate: How Data Pipelines Power Green Building Certification and Compliance',
+                slug: '/blogs/esg-data-real-estate-certification',
+            },
+        ],
+    },
+
+    'leed-v5-data-architecture': {
+        slug: 'leed-v5-data-architecture',
+        title: 'The Data Architecture Behind LEED v5: What Real Estate Operators Need to Track',
+        subtitle:
+            'LEED v5 reframes certification around decarbonization, equity, resilience, health, and ecosystems. Each pillar demands a different data model. Here is what real estate operators need to instrument before the standard becomes default.',
+        category: 'DATA ENGINEERING',
+        date: 'April 23, 2026',
+        readingTime: '10 min read',
+        author: {
+            name: 'Nitin Jain',
+            role: 'Founder, CData Insights',
+            avatar: '/whitelogo.png',
+        },
+        heroImage: '/blog-diagrams/leed-v5-data-pillars.svg',
+        tags: ['LEED v5', 'Real Estate', 'Sustainability', 'Data Engineering', 'Decarbonization'],
+        content: [
+            {
+                type: 'paragraph',
+                value:
+                    'LEED v5 is a meaningful break from v4. Where v4 was structured around credit categories that mapped roughly to building systems (Energy + Atmosphere, Water Efficiency, Indoor Environmental Quality), v5 reorganizes around <strong>impact areas</strong> — decarbonization, equity, resilience, health, and ecosystems — and demands continuous performance data rather than point-in-time documentation.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'For real estate operators, this is a data engineering problem first and a sustainability problem second. The buildings that certify well under v5 will be the ones whose data infrastructure is already capturing the right signals before the standard becomes default. The buildings starting from a static spreadsheet will find themselves a year behind their peers.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'This piece walks through what data each impact area actually requires, where the sources live, and how to model it.',
+            },
+            {
+                type: 'heading',
+                value: 'The Five Impact Areas',
+            },
+            {
+                type: 'image',
+                value: '/blog-diagrams/leed-v5-data-pillars.svg',
+            },
+            {
+                type: 'heading',
+                value: 'Pillar 1: Decarbonization',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The big shift is from kWh to <strong>tonnes CO2e</strong>. v5 wants you to report not just how much energy you used, but the carbon intensity of that energy at the time you used it. A building running its chillers at 2 PM in California in summer has a very different emissions profile than the same building running them at 2 AM in Quebec in winter.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The data this requires: <strong>hourly grid emissions factors</strong> from your local ISO or utility (WattTime and Electricity Maps both publish APIs), hourly building consumption data from your BMS or revenue meter, refrigerant leakage logs (Scope 1), and embodied carbon from material LCAs for any major capital work. You need a time-series store — not a row-per-month spreadsheet — to multiply hourly consumption by hourly grid intensity and sum to tonnes CO2e.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Embodied carbon is the harder part. Most LCA tools (Tally, EC3, OneClick LCA) export structured data; you want to land those exports in your warehouse with project-level rollups so you can answer "what is the embodied carbon per square foot of our 2026 capital projects?"',
+            },
+            {
+                type: 'heading',
+                value: 'Pillar 2: Equity',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'v5 expects buildings to demonstrate positive impact on the surrounding community and on the workers who construct, operate, and clean them. This is not a credit type that fits cleanly into a building automation system.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The data sources are organizational rather than physical: <strong>workforce demographics</strong> from HR systems, <strong>contractor and subcontractor diversity data</strong> from procurement, <strong>community engagement records</strong> from your stakeholder relations team, <strong>accessibility audit results</strong> from facilities, and <strong>displacement risk indicators</strong> from public datasets like the U.S. Census or municipal equity scorecards.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The architecture challenge is that none of these sources naturally talk to your building data warehouse. The operators who get this right build a thin equity data mart that joins HR data, procurement spend, and external geographic data into a single per-property view.',
+            },
+            {
+                type: 'heading',
+                value: 'Pillar 3: Resilience',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Climate-risk exposure has gone from a niche concern to a central LEED requirement. v5 wants to know how your building survives a power outage, a flood, a heatwave, or a wildfire smoke event.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The data this requires: <strong>geographic hazard layers</strong> from FEMA, NOAA, or equivalent national agencies for flood, wildfire, hurricane, and extreme-heat exposure; <strong>backup power telemetry</strong> from your generators and batteries; <strong>passive survivability</strong> calculations — how many hours can the building maintain habitable temperature without grid power; and <strong>continuity-of-operations</strong> documentation tied to actual incident logs.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The pattern that works here is to land hazard layers as static reference data in your warehouse, joined to property location, then refresh annually. Telemetry data flows continuously from BMS. Event logs (outages, smoke days, heat waves) need a manual entry surface — usually a thin internal app — that operators actually use.',
+            },
+            {
+                type: 'heading',
+                value: 'Pillar 4: Health',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Indoor environmental quality moves from periodic third-party verification (v4) to continuous sensor-based monitoring (v5). You need real-time data on CO2 ppm, PM2.5, VOCs, temperature, humidity, and ventilation rates — not a single test conducted on a Tuesday morning in October.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'For new buildings this is straightforward — IAQ sensors are now affordable enough to install in every zone. For existing buildings the retrofit is the hard part. Networks like Awair, Kaiterra, and AirThings publish APIs you can ingest into your time-series store. Most BMS vendors now offer IAQ modules that integrate with your existing controls network.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'On the data side, what matters is the <strong>aggregation policy</strong>. Hourly averages mask short spikes; minute-level data is too noisy to compare across buildings. v5 documentation guidance is settling on percentile metrics — what percent of occupied hours did CO2 stay below 1000 ppm — which require minute-level inputs and percentile calculations in your transformation layer.',
+            },
+            {
+                type: 'heading',
+                value: 'Pillar 5: Ecosystems',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Water, biodiversity, and material flows. The traditional water credits — potable consumption reduction, stormwater management — get joined by new credits around native species cover, on-site biodiversity, and material circularity.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The data sources are mixed: <strong>water meters</strong> for potable consumption, <strong>stormwater system telemetry</strong> for capture and treatment, <strong>landscaping audit data</strong> (often manual surveys) for native species cover, and <strong>procurement + waste hauler data</strong> for material circularity (what came in, what went out, what was reused on-site).',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The procurement side is where most operators have the least mature data. ERP systems were built for cost, not for material composition. A circular materials credit requires you to know that a piece of equipment contains 30% recycled aluminum — which means you need supplier-level material declarations (HPDs, EPDs) joined to your purchase orders. Most teams will need a separate ingestion pipeline for these supplier documents.',
+            },
+            {
+                type: 'heading',
+                value: 'A Unified Ledger, Not Five Spreadsheets',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The temptation is to address each pillar with a separate tool — an energy-monitoring SaaS for decarbonization, an HR report for equity, a hazard-mapping vendor for resilience, an IAQ vendor for health, a CSR tracker for ecosystems. That works at one building. At a portfolio of 50 it becomes unmanageable.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The architecture pattern that scales is a <strong>unified building ledger</strong> in your warehouse — one row per property, time-series tables for every signal, and modeled views per pillar that roll signals into LEED-credit-shaped outputs. From the same ledger you can also produce GRESB submissions, SEC climate disclosure data, investor ESG reports, and tenant sustainability asks. The pipeline pays for itself across compliance regimes.',
+            },
+            {
+                type: 'heading',
+                value: 'What to Build First',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'If you are starting from a typical "spreadsheets and email" baseline, build in this order: <strong>energy + carbon</strong> first (largest credit weight, ESPM gets you most of the way), then <strong>health</strong> (IAQ retrofits have short payback and tenant-marketing value), then <strong>resilience</strong> (insurance and lender pressure are forcing it anyway), then <strong>ecosystems</strong>, then <strong>equity</strong>. Equity is last not because it is unimportant, but because it requires organizational data work that benefits from having the technical pipeline already in place.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The teams that win under v5 are not the ones that bolt on more sustainability tools. They are the ones that treat building performance as a first-class data problem and build the warehouse, models, and tests to match. The standard is going to keep moving. The data infrastructure should be ready for it.',
+            },
+        ],
+        faq: [
+            {
+                question: 'When does LEED v5 become required?',
+                answer:
+                    'LEED v5 is in active rollout. New project registrations under v4.1 are still accepted but the USGBC has signaled v5 will become the default for new registrations within the next certification cycle. Operators who certify under v4.1 today will face a v5 path on re-certification.',
+            },
+            {
+                question: 'What is the biggest difference between v4 and v5?',
+                answer:
+                    'Two things: v5 is organized around outcomes (decarbonization, equity, resilience, health, ecosystems) rather than building systems, and v5 expects continuous performance data rather than point-in-time documentation. Buildings need data infrastructure that updates monthly or daily, not annually.',
+            },
+            {
+                question: 'How does v5 change what data I need to track?',
+                answer:
+                    'You move from kWh to tonnes CO2e (requires hourly grid intensity), from periodic IAQ verification to continuous sensor data, from project-level resilience narratives to quantified hazard exposure and survivability hours, and add equity data sources (workforce demographics, contractor diversity) that did not exist in v4.',
+            },
+            {
+                question: 'Can I use the same pipeline for GRESB and SEC climate disclosure?',
+                answer:
+                    'Yes — and you should. The underlying signals overlap heavily. A unified ledger that holds your building performance time-series feeds LEED, GRESB, SEC climate disclosure, ESG investor reports, and tenant sustainability requests from the same source of truth. The economics of a single pipeline across compliance regimes are very strong.',
+            },
+        ],
+        relatedBlogs: [
+            {
+                title: 'Building a LEED Certification Data Pipeline: From Utility Bills to Final Submission',
+                slug: '/blogs/leed-certification-data-pipeline',
+            },
+            {
+                title: 'How Cities Are Using Building Energy Data to Drive Green Certification at Scale',
+                slug: '/blogs/city-energy-benchmarking-scorecards',
+            },
+            {
+                title: 'ESG in Real Estate: How Data Pipelines Power Green Building Certification and Compliance',
+                slug: '/blogs/esg-data-real-estate-certification',
+            },
+        ],
+    },
 }
