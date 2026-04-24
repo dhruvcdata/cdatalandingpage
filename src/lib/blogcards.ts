@@ -199,4 +199,43 @@ export const Blogs: BlogCard[] = [
         date: 'Mar 09, 2026',
         image: 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
+    {
+        id: 15,
+        slug: 'leed-certification-data-pipeline',
+        title: 'Building a LEED Certification Data Pipeline: From Utility Bills to Final Submission',
+        subtitle:
+            'A practical reference architecture for the data infrastructure that turns scattered utility, water, and waste data into a defensible LEED submission package — and keeps it current for re-certification.',
+        excerpt:
+            'A reference data architecture for LEED certification — ingestion, normalization in ENERGY STAR Portfolio Manager, dbt transformations, and submission to LEED Online and Arc.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'Apr 23, 2026',
+        image: '/blog-diagrams/leed-certification-pipeline.svg',
+    },
+    {
+        id: 16,
+        slug: 'city-energy-benchmarking-scorecards',
+        title: 'How Cities Are Using Building Energy Data to Drive Green Certification at Scale',
+        subtitle:
+            'Mandatory disclosure laws are generating decades of building performance data. Here is the data architecture cities use to turn that raw disclosure into public scorecards that reshape commercial real estate markets.',
+        excerpt:
+            'How city-level energy disclosure programs ingest, validate, score, and publish building performance data — and what owners can learn from the architecture.',
+        tag: 'Innovation',
+        author: 'Nitin Jain',
+        date: 'Apr 23, 2026',
+        image: '/blog-diagrams/city-energy-benchmarking-architecture.svg',
+    },
+    {
+        id: 17,
+        slug: 'leed-v5-data-architecture',
+        title: 'The Data Architecture Behind LEED v5: What Real Estate Operators Need to Track',
+        subtitle:
+            'LEED v5 reframes certification around decarbonization, equity, resilience, health, and ecosystems. Each pillar demands a different data model. Here is what real estate operators need to instrument before the standard becomes default.',
+        excerpt:
+            'A breakdown of the five LEED v5 impact areas and the data sources, models, and ingestion patterns each one requires from real estate operators.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'Apr 23, 2026',
+        image: '/blog-diagrams/leed-v5-data-pillars.svg',
+    },
 ]
