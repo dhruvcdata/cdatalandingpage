@@ -1,65 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" font-family="Georgia, 'Iowan Old Style', serif">
-  <rect width="1200" height="600" fill="#F5F1EA"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <rect width="1200" height="600" fill="#0a0a0a"/>
 
-  <text x="600" y="60" text-anchor="middle" font-size="32" fill="#1F1E1D" font-style="italic">From building meter to public scorecard</text>
-  <text x="600" y="92" text-anchor="middle" font-size="16" fill="#6B655D" font-family="system-ui, sans-serif">A reference architecture for city-led energy benchmarking programs</text>
+  <text x="600" y="60" text-anchor="middle" font-size="26" fill="#ffffff" font-weight="600">From building meter to public scorecard</text>
+  <text x="600" y="90" text-anchor="middle" font-size="15" fill="#9ca3af">Reference architecture for city-led energy benchmarking programs</text>
 
   <!-- Layer 1: Building owners -->
-  <rect x="60" y="150" width="1080" height="100" rx="8" fill="#FFFFFF" stroke="#E8E2D5" stroke-width="1.5"/>
-  <text x="80" y="178" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="2">LAYER 1 · BUILDING OWNERS</text>
-  <text x="80" y="218" font-size="15" fill="#1F1E1D">Annual energy + water disclosure submitted via ENERGY STAR Portfolio Manager</text>
-  <text x="80" y="240" font-size="13" fill="#6B655D" font-family="system-ui, sans-serif">Office · multifamily · retail · institutional · industrial · mixed-use buildings above the disclosure threshold</text>
+  <rect x="60" y="150" width="1080" height="100" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="80" y="180" font-size="11" fill="#3b82f6" letter-spacing="2" font-weight="600">LAYER 1 · BUILDING OWNERS</text>
+  <text x="80" y="218" font-size="15" fill="#ffffff">Annual energy + water disclosure submitted via ENERGY STAR Portfolio Manager</text>
+  <text x="80" y="240" font-size="13" fill="#9ca3af">Office · multifamily · retail · institutional · industrial · mixed-use buildings above the disclosure threshold</text>
 
-  <!-- Arrow down 1 -->
-  <g stroke="#C15F3C" stroke-width="2" fill="none">
+  <g stroke="#3b82f6" stroke-width="2" fill="none">
     <path d="M 600 260 L 600 285" marker-end="url(#a)"/>
   </g>
 
   <!-- Layer 2: City data platform -->
-  <rect x="60" y="295" width="1080" height="155" rx="8" fill="#FFFFFF" stroke="#E8E2D5" stroke-width="1.5"/>
-  <text x="80" y="323" font-size="13" fill="#C15F3C" font-family="system-ui, sans-serif" letter-spacing="2">LAYER 2 · CITY DATA PLATFORM</text>
+  <rect x="60" y="295" width="1080" height="155" rx="12" fill="#171717" stroke="#262626" stroke-width="1"/>
+  <text x="80" y="325" font-size="11" fill="#3b82f6" letter-spacing="2" font-weight="600">LAYER 2 · CITY DATA PLATFORM</text>
 
-  <g>
-    <rect x="80" y="345" width="240" height="90" rx="6" fill="#FAF7F2" stroke="#E8E2D5"/>
-    <text x="200" y="370" text-anchor="middle" font-size="14" fill="#1F1E1D" font-style="italic">Ingestion</text>
-    <text x="200" y="395" text-anchor="middle" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Portfolio Manager exports</text>
-    <text x="200" y="412" text-anchor="middle" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Tax assessor + GIS joins</text>
-  </g>
+  <rect x="80" y="345" width="240" height="90" rx="8" fill="#0a0a0a" stroke="#262626"/>
+  <text x="200" y="370" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="500">Ingestion</text>
+  <text x="200" y="395" text-anchor="middle" font-size="12" fill="#9ca3af">Portfolio Manager exports</text>
+  <text x="200" y="412" text-anchor="middle" font-size="12" fill="#9ca3af">Tax assessor + GIS joins</text>
 
-  <g>
-    <rect x="335" y="345" width="240" height="90" rx="6" fill="#FAF7F2" stroke="#E8E2D5"/>
-    <text x="455" y="370" text-anchor="middle" font-size="14" fill="#1F1E1D" font-style="italic">Validation</text>
-    <text x="455" y="395" text-anchor="middle" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Outlier detection</text>
-    <text x="455" y="412" text-anchor="middle" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Owner review queue</text>
-  </g>
+  <rect x="335" y="345" width="240" height="90" rx="8" fill="#0a0a0a" stroke="#262626"/>
+  <text x="455" y="370" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="500">Validation</text>
+  <text x="455" y="395" text-anchor="middle" font-size="12" fill="#9ca3af">Outlier detection</text>
+  <text x="455" y="412" text-anchor="middle" font-size="12" fill="#9ca3af">Owner review queue</text>
 
-  <g>
-    <rect x="590" y="345" width="240" height="90" rx="6" fill="#FAF7F2" stroke="#E8E2D5"/>
-    <text x="710" y="370" text-anchor="middle" font-size="14" fill="#1F1E1D" font-style="italic">Scoring</text>
-    <text x="710" y="395" text-anchor="middle" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">EUI bucketing by use type</text>
-    <text x="710" y="412" text-anchor="middle" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">YoY trend + percentile rank</text>
-  </g>
+  <rect x="590" y="345" width="240" height="90" rx="8" fill="#0a0a0a" stroke="#262626"/>
+  <text x="710" y="370" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="500">Scoring</text>
+  <text x="710" y="395" text-anchor="middle" font-size="12" fill="#9ca3af">EUI bucketing by use type</text>
+  <text x="710" y="412" text-anchor="middle" font-size="12" fill="#9ca3af">YoY trend + percentile rank</text>
 
-  <g>
-    <rect x="845" y="345" width="285" height="90" rx="6" fill="#FAF7F2" stroke="#E8E2D5"/>
-    <text x="987" y="370" text-anchor="middle" font-size="14" fill="#1F1E1D" font-style="italic">Publishing API</text>
-    <text x="987" y="395" text-anchor="middle" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Open data portal · scorecard service</text>
-    <text x="987" y="412" text-anchor="middle" font-size="12" fill="#6B655D" font-family="system-ui, sans-serif">Compliance reports for council</text>
-  </g>
+  <rect x="845" y="345" width="285" height="90" rx="8" fill="#0a0a0a" stroke="#262626"/>
+  <text x="987" y="370" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="500">Publishing API</text>
+  <text x="987" y="395" text-anchor="middle" font-size="12" fill="#9ca3af">Open data portal · scorecard service</text>
+  <text x="987" y="412" text-anchor="middle" font-size="12" fill="#9ca3af">Compliance reports for council</text>
 
-  <!-- Arrow down 2 -->
-  <g stroke="#C15F3C" stroke-width="2" fill="none">
+  <g stroke="#3b82f6" stroke-width="2" fill="none">
     <path d="M 600 460 L 600 485" marker-end="url(#a)"/>
   </g>
 
   <!-- Layer 3: Public scorecard -->
-  <rect x="60" y="495" width="1080" height="80" rx="8" fill="#C15F3C"/>
-  <text x="80" y="523" font-size="13" fill="#F5F1EA" font-family="system-ui, sans-serif" letter-spacing="2">LAYER 3 · PUBLIC SCORECARD</text>
-  <text x="80" y="553" font-size="15" fill="#F5F1EA" font-style="italic">Visual badge per building · searchable map · trend charts · downloadable open data · embedded on listings sites</text>
+  <rect x="60" y="495" width="1080" height="80" rx="12" fill="#3b82f6"/>
+  <text x="80" y="525" font-size="11" fill="#dbeafe" letter-spacing="2" font-weight="600">LAYER 3 · PUBLIC SCORECARD</text>
+  <text x="80" y="555" font-size="15" fill="#ffffff">Visual badge per building · searchable map · trend charts · downloadable open data · embedded on listings</text>
 
   <defs>
     <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C15F3C"/>
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/>
     </marker>
   </defs>
 </svg>

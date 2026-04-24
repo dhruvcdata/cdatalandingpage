@@ -210,7 +210,7 @@ export const Blogs: BlogCard[] = [
         tag: 'Technology',
         author: 'Nitin Jain',
         date: 'Apr 23, 2026',
-        image: '/blog-diagrams/leed-certification-pipeline.svg',
+        image: 'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
     {
         id: 16,
@@ -223,7 +223,7 @@ export const Blogs: BlogCard[] = [
         tag: 'Innovation',
         author: 'Nitin Jain',
         date: 'Apr 23, 2026',
-        image: '/blog-diagrams/city-energy-benchmarking-architecture.svg',
+        image: 'https://images.pexels.com/photos/2096700/pexels-photo-2096700.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
     {
         id: 17,
@@ -236,6 +236,6 @@ export const Blogs: BlogCard[] = [
         tag: 'Technology',
         author: 'Nitin Jain',
         date: 'Apr 23, 2026',
-        image: '/blog-diagrams/leed-v5-data-pillars.svg',
+        image: 'https://images.pexels.com/photos/2096622/pexels-photo-2096622.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
 ]
