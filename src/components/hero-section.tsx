@@ -45,7 +45,7 @@ export default function HeroSection() {
                                 loop
                                 muted
                                 playsInline
-                                className="z-1 order-first ml-auto h-48 w-full object-cover sm:h-64 lg:absolute lg:inset-0 lg:-right-20 lg:-top-20 lg:order-last lg:h-[50vh] lg:w-2/3 lg:object-contain"
+                                className="order-first ml-auto h-48 w-full rounded-2xl object-cover sm:h-64 lg:absolute lg:right-0 lg:top-1/2 lg:order-last lg:h-[60vh] lg:w-[48%] lg:-translate-y-1/2 lg:rounded-3xl lg:object-contain"
                             >
                                 <source src="/videos/vid2data.webm" type="video/webm" />
                                 <source src="/videos/vid2data.mp4" type="video/mp4" />
