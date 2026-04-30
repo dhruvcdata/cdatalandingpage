@@ -35,7 +35,7 @@ const DataServicesGrid = () => {
                 </svg>
             ),
             title: "Data Engineering",
-            description: "Transform your data infrastructure with scalable and secure solutions."
+            description: "Production-grade pipelines, ETL/ELT, and real-time streaming — built to scale and stay reliable."
             , link: "/services/data-engineering"
         },
         {
@@ -45,7 +45,7 @@ const DataServicesGrid = () => {
                 </svg>
             ),
             title: "Data Platforms",
-            description: "Design modern data platforms to store, process, and analyze data efficiently."
+            description: "Cloud-native lakehouses on Snowflake, Databricks, and BigQuery — unified, governed, cost-aware."
             , link: "/services/data-platform"
         },
         {
@@ -55,7 +55,7 @@ const DataServicesGrid = () => {
                 </svg>
             ),
             title: "Data Visualization",
-            description: "Unlock insights with interactive dashboards and business intelligence tools."
+            description: "Dashboards and self-serve reporting in Looker, Tableau, Power BI, and Hex — built for the people who actually use them."
             , link: "/services/data-visualization"
         },
         {
@@ -65,7 +65,7 @@ const DataServicesGrid = () => {
                 </svg>
             ),
             title: "AI & Machine Learning",
-            description: "Leverage AI-driven automation and predictive analytics for smarter decision-making."
+            description: "Predictive models, recommender systems, and GenAI agents — from prototype to production."
             , link: "/services/ai-ml"
         },
         {
@@ -75,7 +75,7 @@ const DataServicesGrid = () => {
                 </svg>
             ),
             title: "Data Migration",
-            description: "Seamlessly transfer data between systems with minimal downtime and risk.",
+            description: "Move from legacy warehouses to modern lakehouses without breaking dashboards or downstream consumers.",
             link: "/services/data-migration"
         },
         {
@@ -85,7 +85,7 @@ const DataServicesGrid = () => {
                 </svg>
             ),
             title: "Data and AI Strategy",
-            description: "Develop a roadmap for data and AI initiatives that align with your business goals.",
+            description: "Pragmatic roadmaps that prioritize what to build, what to buy, and what to kill.",
             link: "/services/data-and-ai-strategy"
         }
     ];

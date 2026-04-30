@@ -6,8 +6,8 @@ const DataRevivalComponent = () => {
     const [activeTab, setActiveTab] = useState<TabKey>('Data Engineering');
 
     const tabs = [
-        'Data Platforms',
         'Data Engineering',
+        'Data Platforms',
         'Data Visualization',
         'AI & Machine Learning'
     ];

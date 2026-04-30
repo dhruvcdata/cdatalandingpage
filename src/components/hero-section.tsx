@@ -25,7 +25,7 @@ export default function HeroSection() {
 
                                 {/* Adjusted margin and text size */}
                                 <p className="mt-6 max-w-2xl text-pretty z-11 text-base sm:text-lg md:mt-8">
-                                    Creating a powerhouse in data modernization and AI driven transformation
+                                    Data modernization and AI transformation — built on Snowflake, Databricks, and the major clouds.
                                 </p>
 
                                 {/* Button container adjustments */}
