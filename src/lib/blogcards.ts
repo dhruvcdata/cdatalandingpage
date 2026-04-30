@@ -238,4 +238,43 @@ export const Blogs: BlogCard[] = [
         date: 'Apr 23, 2026',
         image: 'https://images.pexels.com/photos/2096622/pexels-photo-2096622.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
+    {
+        id: 18,
+        slug: 'streaming-redshift-to-snowflake-case-study',
+        title: 'From Redshift to Snowflake at a Streaming Platform: A Case Study in Workload Isolation',
+        subtitle:
+            'A first-person account of leading a 6-month Redshift to Snowflake migration at a major streaming media company — what broke, what worked, and the workload isolation pattern that made it stick.',
+        excerpt:
+            'Lessons from leading a Redshift to Snowflake migration at a major streaming platform — workload isolation, parallel-run validation, and what we would do differently.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'Apr 28, 2026',
+        image: '/blog-diagrams/streaming-workload-isolation.svg',
+    },
+    {
+        id: 19,
+        slug: 'data-governance-quality-pipelines',
+        title: 'Data Governance Without the Bureaucracy: Quality Built Into the Pipeline',
+        subtitle:
+            'Most data governance programs fail because they live in PowerPoint, not in the pipeline. Here is the federated, in-pipeline model that actually catches bad data before it reaches stakeholders.',
+        excerpt:
+            'A practical governance model that puts quality gates inside data pipelines — schema contracts, freshness SLAs, dbt tests, and federated ownership across domain, platform, and stewards.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'Apr 29, 2026',
+        image: '/blog-diagrams/data-governance-quality-gates.svg',
+    },
+    {
+        id: 20,
+        slug: 'dbt-cortex-semantic-layer',
+        title: 'From dbt Models to Conversational Analytics: Snowflake Cortex Meets the Semantic Layer',
+        subtitle:
+            'dbt unlocked analytics engineering. The semantic layer plus Snowflake Cortex Analyst is the next chapter — one metric definition, every consumer, including natural-language queries that route through governed SQL.',
+        excerpt:
+            'How dbt\'s Semantic Layer plus Snowflake Cortex Analyst removes metric sprawl and lets business users self-serve common questions through governed natural-language queries.',
+        tag: 'Innovation',
+        author: 'Nitin Jain',
+        date: 'Apr 30, 2026',
+        image: '/blog-diagrams/dbt-semantic-cortex-flow.svg',
+    },
 ]

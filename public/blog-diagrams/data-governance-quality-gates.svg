@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#60a5fa"/>
+    </marker>
+  </defs>
+  <rect width="900" height="520" fill="url(#bg)" rx="16"/>
+  <text x="450" y="38" text-anchor="middle" fill="#f1f5f9" font-size="20" font-weight="700">Data Governance: Quality Gates Built Into the Pipeline</text>
+  <text x="450" y="60" text-anchor="middle" fill="#94a3b8" font-size="12">Catch failures upstream — not when stakeholders see broken dashboards</text>
+
+  <rect x="40" y="110" width="140" height="70" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="110" y="135" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="700">Source</text>
+  <text x="110" y="155" text-anchor="middle" fill="#cbd5e1" font-size="11">Postgres · Stripe</text>
+  <text x="110" y="170" text-anchor="middle" fill="#cbd5e1" font-size="11">SaaS APIs</text>
+
+  <line x1="180" y1="145" x2="220" y2="145" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="220" y="110" width="140" height="70" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="290" y="135" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="700">Ingest</text>
+  <text x="290" y="155" text-anchor="middle" fill="#cbd5e1" font-size="11">Fivetran · Snowpipe</text>
+  <text x="290" y="170" text-anchor="middle" fill="#cbd5e1" font-size="11">Airbyte · Kafka</text>
+
+  <line x1="360" y1="145" x2="400" y2="145" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="400" y="110" width="140" height="70" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="470" y="135" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="700">Stage (Bronze)</text>
+  <text x="470" y="155" text-anchor="middle" fill="#cbd5e1" font-size="11">Raw immutable</text>
+  <text x="470" y="170" text-anchor="middle" fill="#cbd5e1" font-size="11">Append-only</text>
+
+  <line x1="540" y1="145" x2="580" y2="145" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="580" y="110" width="140" height="70" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="650" y="135" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="700">Transform</text>
+  <text x="650" y="155" text-anchor="middle" fill="#cbd5e1" font-size="11">dbt models</text>
+  <text x="650" y="170" text-anchor="middle" fill="#cbd5e1" font-size="11">Silver / Gold</text>
+
+  <line x1="720" y1="145" x2="760" y2="145" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="760" y="110" width="100" height="70" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="810" y="135" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="700">Serve</text>
+  <text x="810" y="155" text-anchor="middle" fill="#cbd5e1" font-size="11">BI · ML</text>
+  <text x="810" y="170" text-anchor="middle" fill="#cbd5e1" font-size="11">APIs</text>
+
+  <text x="450" y="225" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="700">Quality Gates · block on failure</text>
+
+  <rect x="40" y="245" width="140" height="65" rx="8" fill="#3f1d1d" opacity="0.4" stroke="#ef4444" stroke-width="1"/>
+  <text x="110" y="265" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="700">Schema Contract</text>
+  <text x="110" y="282" text-anchor="middle" fill="#cbd5e1" font-size="10">Producer-owned</text>
+  <text x="110" y="298" text-anchor="middle" fill="#cbd5e1" font-size="10">JSON Schema · Avro</text>
+
+  <rect x="220" y="245" width="140" height="65" rx="8" fill="#3f1d1d" opacity="0.4" stroke="#ef4444" stroke-width="1"/>
+  <text x="290" y="265" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="700">Freshness + Volume</text>
+  <text x="290" y="282" text-anchor="middle" fill="#cbd5e1" font-size="10">SLA: ≤15 min</text>
+  <text x="290" y="298" text-anchor="middle" fill="#cbd5e1" font-size="10">Anomaly on row counts</text>
+
+  <rect x="400" y="245" width="140" height="65" rx="8" fill="#3f1d1d" opacity="0.4" stroke="#ef4444" stroke-width="1"/>
+  <text x="470" y="265" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="700">Type + Null Checks</text>
+  <text x="470" y="282" text-anchor="middle" fill="#cbd5e1" font-size="10">dbt source tests</text>
+  <text x="470" y="298" text-anchor="middle" fill="#cbd5e1" font-size="10">Great Expectations</text>
+
+  <rect x="580" y="245" width="140" height="65" rx="8" fill="#3f1d1d" opacity="0.4" stroke="#ef4444" stroke-width="1"/>
+  <text x="650" y="265" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="700">Business Rules</text>
+  <text x="650" y="282" text-anchor="middle" fill="#cbd5e1" font-size="10">dbt tests · custom assertions</text>
+  <text x="650" y="298" text-anchor="middle" fill="#cbd5e1" font-size="10">Cross-table joins</text>
+
+  <rect x="760" y="245" width="100" height="65" rx="8" fill="#3f1d1d" opacity="0.4" stroke="#ef4444" stroke-width="1"/>
+  <text x="810" y="265" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="700">SLO Monitoring</text>
+  <text x="810" y="282" text-anchor="middle" fill="#cbd5e1" font-size="10">Monte Carlo</text>
+  <text x="810" y="298" text-anchor="middle" fill="#cbd5e1" font-size="10">PagerDuty</text>
+
+  <line x1="110" y1="180" x2="110" y2="245" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="290" y1="180" x2="290" y2="245" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="470" y1="180" x2="470" y2="245" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="650" y1="180" x2="650" y2="245" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="810" y1="180" x2="810" y2="245" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <text x="450" y="360" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="700">Federated Ownership</text>
+
+  <rect x="80" y="385" width="220" height="100" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="190" y="408" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="700">Domain Teams</text>
+  <text x="190" y="428" text-anchor="middle" fill="#cbd5e1" font-size="11">Own data products</text>
+  <text x="190" y="445" text-anchor="middle" fill="#cbd5e1" font-size="11">Schema contracts</text>
+  <text x="190" y="462" text-anchor="middle" fill="#cbd5e1" font-size="11">Source-level SLAs</text>
+  <text x="190" y="479" text-anchor="middle" fill="#94a3b8" font-size="10">"You build it, you own it"</text>
+
+  <rect x="340" y="385" width="220" height="100" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="450" y="408" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="700">Platform Team</text>
+  <text x="450" y="428" text-anchor="middle" fill="#cbd5e1" font-size="11">Pipeline tooling</text>
+  <text x="450" y="445" text-anchor="middle" fill="#cbd5e1" font-size="11">Test framework</text>
+  <text x="450" y="462" text-anchor="middle" fill="#cbd5e1" font-size="11">Lineage + catalog</text>
+  <text x="450" y="479" text-anchor="middle" fill="#94a3b8" font-size="10">Self-serve enablers</text>
+
+  <rect x="600" y="385" width="220" height="100" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="710" y="408" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="700">Stewards Council</text>
+  <text x="710" y="428" text-anchor="middle" fill="#cbd5e1" font-size="11">Cross-domain standards</text>
+  <text x="710" y="445" text-anchor="middle" fill="#cbd5e1" font-size="11">PII · regulatory</text>
+  <text x="710" y="462" text-anchor="middle" fill="#cbd5e1" font-size="11">Conflict resolution</text>
+  <text x="710" y="479" text-anchor="middle" fill="#94a3b8" font-size="10">Federated decisions</text>
+</svg>
