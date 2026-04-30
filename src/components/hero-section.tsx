@@ -1,11 +1,19 @@
 'use client';
 import React from 'react'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { Button } from '@/components/ui/button'
 import { HeroHeader } from '@/components/hero5-header'
 import { InfiniteSlider } from '@/components/ui/infinite-slider'
 import { ProgressiveBlur } from '@/components/ui/progressive-blur'
 import LogoCloud from './logo-cloud'
+
+const Hero3DScene = dynamic(() => import('./hero-3d-scene'), {
+    ssr: false,
+    loading: () => (
+        <div className="order-first ml-auto h-48 w-full rounded-2xl bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 sm:h-64 lg:absolute lg:right-0 lg:top-1/2 lg:order-last lg:h-[60vh] lg:w-[48%] lg:-translate-y-1/2 lg:rounded-3xl" />
+    ),
+})
 
 export default function HeroSection() {
     return (
@@ -40,16 +48,7 @@ export default function HeroSection() {
                                 </div>
                             </div>
 
-                            <video
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="order-first ml-auto h-48 w-full rounded-2xl object-cover sm:h-64 lg:absolute lg:right-0 lg:top-1/2 lg:order-last lg:h-[60vh] lg:w-[48%] lg:-translate-y-1/2 lg:rounded-3xl lg:object-contain"
-                            >
-                                <source src="/videos/vid2data.webm" type="video/webm" />
-                                <source src="/videos/vid2data.mp4" type="video/mp4" />
-                            </video>
+                            <Hero3DScene className="order-first ml-auto h-48 w-full rounded-2xl sm:h-64 lg:absolute lg:right-0 lg:top-1/2 lg:order-last lg:h-[60vh] lg:w-[48%] lg:-translate-y-1/2 lg:rounded-3xl" />
                         </div>
                     </div>
                 </div>
