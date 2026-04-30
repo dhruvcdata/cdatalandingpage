@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { Building, BarChart, LineChart, ClipboardList, Home, Shield, Clock, Database, TrendingUp } from 'lucide-react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 export default function RealEstatePage() {
   // State for Solutions component
   type SolutionKey = 'PropertyAnalytics' | 'MarketIntelligence' | 'InvestmentOptimization' | 'CustomerExperience';
@@ -252,11 +251,16 @@ export default function RealEstatePage() {
 
               <div className="md:w-1/2 relative">
                 <div className="absolute -inset-0.5 rounded-lg blur opacity-75"></div>
-                <DotLottieReact
-                  src="https://lottie.host/ab050bc0-d03d-4364-8e39-1d96027084fc/FAPGbi2Flh.lottie"
+                <video
+                  autoPlay
                   loop
-                  autoplay
-                />
+                  muted
+                  playsInline
+                  className="w-full rounded-lg"
+                >
+                  <source src="/videos/indus.webm" type="video/webm" />
+                  <source src="/videos/indus.mp4" type="video/mp4" />
+                </video>
                 {/* <img
                   src="/real-estate-analytics.png"
                   alt="Real estate data solutions in action"

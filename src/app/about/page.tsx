@@ -1,6 +1,5 @@
 'use client';
 import FooterSection from "@/components/footer";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { HeroHeader } from "@/components/hero5-header";
 import { Cpu, Zap } from 'lucide-react'
 import DataRevivalComponent from "../tog2";
@@ -47,12 +46,10 @@ export default function AboutPage() {
             </div>
             <div className="relative mt-6 sm:mt-0">
               <div className="bg-linear-to-b aspect-67/34 relative rounded-2xl to-transparent p-px">
-                <DotLottieReact
-                  src="https://lottie.host/ce0e90f8-d790-4b2f-a673-72cba8ec8672/dVcXgTaprK.lottie"
-                  loop
-                  autoplay
-                  width={1606}
-                  height={612}
+                <img
+                  src="/about3.png"
+                  alt="Cdata Consulting team and approach"
+                  className="w-full h-full object-cover rounded-2xl"
                 />
               </div>
             </div>

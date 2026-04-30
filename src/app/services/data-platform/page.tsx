@@ -24,7 +24,6 @@ import {
   Layers,
   Box
 } from 'lucide-react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 export default function DataPlatformsPage() {
   // State for Solutions component
   type SolutionKey = 'DataInfrastructure' | 'CloudPlatforms' | 'DataIntegration' | 'PlatformModernization';
@@ -275,11 +274,16 @@ export default function DataPlatformsPage() {
                   alt="Data platforms solution visualization"
                   className="relative rounded-lg shadow-2xl"
                 /> */}
-                <DotLottieReact
-                  src="https://lottie.host/ce0e90f8-d790-4b2f-a673-72cba8ec8672/dVcXgTaprK.lottie"
+                <video
+                  autoPlay
                   loop
-                  autoplay
-                />
+                  muted
+                  playsInline
+                  className="w-full rounded-lg"
+                >
+                  <source src="/videos/data.webm" type="video/webm" />
+                  <source src="/videos/data.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
           </div>

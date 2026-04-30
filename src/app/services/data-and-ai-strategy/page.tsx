@@ -18,7 +18,6 @@ import {
   CheckCircle,
   AlertTriangle
 } from 'lucide-react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 export default function DataAndAIStrategyPage() {
   // State for Solutions component
   type SolutionKey = 'DataStrategy' | 'AIConsulting' | 'CloudAdoption' | 'DataGovernance';
@@ -269,11 +268,16 @@ export default function DataAndAIStrategyPage() {
                   alt="Data & AI Strategy visualization"
                   className="relative rounded-lg shadow-2xl"
                 /> */}
-                <DotLottieReact
-                  src="https://lottie.host/ce0e90f8-d790-4b2f-a673-72cba8ec8672/dVcXgTaprK.lottie"
+                <video
+                  autoPlay
                   loop
-                  autoplay
-                />
+                  muted
+                  playsInline
+                  className="w-full rounded-lg"
+                >
+                  <source src="/videos/ai.webm" type="video/webm" />
+                  <source src="/videos/ai.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
           </div>
