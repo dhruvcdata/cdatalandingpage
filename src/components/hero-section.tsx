@@ -6,7 +6,6 @@ import { HeroHeader } from '@/components/hero5-header'
 import { InfiniteSlider } from '@/components/ui/infinite-slider'
 import { ProgressiveBlur } from '@/components/ui/progressive-blur'
 import LogoCloud from './logo-cloud'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 export default function HeroSection() {
     return (
@@ -41,13 +40,16 @@ export default function HeroSection() {
                                 </div>
                             </div>
 
-                            {/* Lottie animation adjustments */}
-                            <DotLottieReact
-                                src="https://lottie.host/b6b86012-06be-4fdb-b534-fd58a8793da4/g4Wi1XsXFF.lottie"
+                            <video
+                                autoPlay
                                 loop
+                                muted
+                                playsInline
                                 className="z-1 order-first ml-auto h-48 w-full object-cover sm:h-64 lg:absolute lg:inset-0 lg:-right-20 lg:-top-20 lg:order-last lg:h-[50vh] lg:w-2/3 lg:object-contain"
-                                autoplay
-                            />
+                            >
+                                <source src="/videos/vid2data.webm" type="video/webm" />
+                                <source src="/videos/vid2data.mp4" type="video/mp4" />
+                            </video>
                         </div>
                     </div>
                 </div>
