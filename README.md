@@ -56,4 +56,4 @@ Set in Vercel project settings:
 
 Push to `main` → Vercel auto-builds → live at https://cdatainsights.com within ~2 minutes.
 
-DNS (apex + `www`) is managed in **AWS Route 53** (account `nitinj025`, hosted zone `Z01165032PAZHTR8OTWM8`). Apex `A` record and `www` CNAME both point to Vercel.
+DNS (apex + `www`) is managed in **AWS Route 53** (account `nitinj025`, hosted zone `Z01165032PAZHTR8OTWM8`). Apex `A` record and `www` CNAME both point to Vercel. t
