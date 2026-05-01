@@ -876,7 +876,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             role: 'Founder, CData Insights',
             avatar: '/whitelogo.png',
         },
-        heroImage: '/scaling-data-consultancy.svg',
+        heroImage: '/scaling-data-consultancy.jpg',
         tags: ['Data Engineering', 'Consultancy', 'Scaling', 'Strategy', 'Databricks', 'Snowflake'],
         content: [
             {

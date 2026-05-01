@@ -106,7 +106,7 @@ export const Blogs: BlogCard[] = [
         tag: 'Business',
         author: 'Nitin Jain',
         date: 'Feb 26, 2026',
-        image: '/scaling-data-consultancy.svg',
+        image: '/scaling-data-consultancy.jpg',
     },
     {
         id: 8,
