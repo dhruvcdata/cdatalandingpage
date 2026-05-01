@@ -145,7 +145,7 @@ export const Blogs: BlogCard[] = [
         tag: 'Technology',
         author: 'Nitin Jain',
         date: 'Mar 01, 2026',
-        image: '/blog-diagrams/lakehouse-architecture.svg',
+        image: '/blog-diagrams/lakehouse-architecture.jpg',
     },
     {
         id: 11,

@@ -1327,7 +1327,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             role: 'Founder, CData Insights',
             avatar: '/whitelogo.png',
         },
-        heroImage: '/blog-diagrams/lakehouse-architecture.svg',
+        heroImage: '/blog-diagrams/lakehouse-architecture.jpg',
         tags: ['Apache Iceberg', 'Spark', 'AWS Glue', 'Data Lakehouse', 'Parquet', 'Data Engineering'],
         content: [
             {
