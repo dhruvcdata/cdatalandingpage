@@ -158,7 +158,7 @@ export const Blogs: BlogCard[] = [
         tag: 'Technology',
         author: 'Nitin Jain',
         date: 'Mar 01, 2026',
-        image: '/blog-diagrams/hybrid-pipeline-architecture.svg',
+        image: '/blog-diagrams/hybrid-pipeline-architecture.jpg',
     },
     {
         id: 13,

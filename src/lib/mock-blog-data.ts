@@ -1493,7 +1493,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             role: 'Founder, CData Insights',
             avatar: '/whitelogo.png',
         },
-        heroImage: '/blog-diagrams/hybrid-pipeline-architecture.svg',
+        heroImage: '/blog-diagrams/hybrid-pipeline-architecture.jpg',
         tags: ['Kafka', 'Spark', 'Streaming', 'Batch', 'Data Engineering', 'Architecture'],
         content: [
             {
