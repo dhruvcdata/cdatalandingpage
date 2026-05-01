@@ -119,7 +119,7 @@ export const Blogs: BlogCard[] = [
         tag: 'Technology',
         author: 'Nitin Jain',
         date: 'Feb 26, 2026',
-        image: '/regulatory-data-platform-fintech.svg',
+        image: '/regulatory-data-platform-fintech.jpg',
     },
     {
         id: 9,

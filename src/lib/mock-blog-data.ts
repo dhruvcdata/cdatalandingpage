@@ -1023,7 +1023,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             role: 'Founder, CData Consulting Inc',
             avatar: '/whitelogo.png',
         },
-        heroImage: '/regulatory-data-platform-fintech.svg',
+        heroImage: '/regulatory-data-platform-fintech.jpg',
         tags: ['Fintech', 'Regulatory', 'OSFI', 'Data Governance', 'Data Engineering', 'AWS', 'Compliance'],
         content: [
             {
