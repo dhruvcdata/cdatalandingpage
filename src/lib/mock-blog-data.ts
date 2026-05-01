@@ -1670,7 +1670,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             role: 'Founder, CData Insights',
             avatar: '/whitelogo.png',
         },
-        heroImage: '/blog-diagrams/observability-architecture.svg',
+        heroImage: '/blog-diagrams/observability-architecture.jpg',
         tags: ['Observability', 'Data Quality', 'Data Engineering', 'Monitoring', 'Architecture'],
         content: [
             {

@@ -184,7 +184,7 @@ export const Blogs: BlogCard[] = [
         tag: 'Technology',
         author: 'Nitin Jain',
         date: 'Mar 01, 2026',
-        image: '/blog-diagrams/observability-architecture.svg',
+        image: '/blog-diagrams/observability-architecture.jpg',
     },
     {
         id: 14,
