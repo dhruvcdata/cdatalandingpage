@@ -132,7 +132,7 @@ export const Blogs: BlogCard[] = [
         tag: 'Technology',
         author: 'Nitin Jain',
         date: 'Feb 26, 2026',
-        image: '/dbt-airflow-at-scale.svg',
+        image: '/dbt-airflow-at-scale.jpg',
     },
     {
         id: 10,

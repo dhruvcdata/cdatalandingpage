@@ -1175,7 +1175,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             role: 'Founder, CData Consulting Inc',
             avatar: '/whitelogo.png',
         },
-        heroImage: '/dbt-airflow-at-scale.svg',
+        heroImage: '/dbt-airflow-at-scale.jpg',
         tags: ['DBT', 'Airflow', 'Data Engineering', 'AWS', 'MWAA', 'Redshift', 'Production'],
         content: [
             {
