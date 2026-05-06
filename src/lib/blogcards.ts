@@ -277,4 +277,17 @@ export const Blogs: BlogCard[] = [
         date: 'Apr 30, 2026',
         image: '/blog-diagrams/dbt-semantic-cortex-flow.svg',
     },
+    {
+        id: 21,
+        slug: 'semantic-layer-synonyms-cutting-time-to-answer',
+        title: 'The Semantic Layer Is the Synonym Map: Cutting Time-to-Answer From Days to Minutes',
+        subtitle:
+            'Finance says revenue was $4.2M. Sales says $4.7M. Same quarter, same company, different numbers. The fix is not another dashboard — it is a governed semantic layer with a synonym map. Here is how it works and what it saves.',
+        excerpt:
+            'Why "active customer" means 5 different things at most companies, the 3 layers of a real semantic layer, and how a synonym map drops time-to-answer from 2 days to 20 minutes.',
+        tag: 'Technology',
+        author: 'Nitin Jain',
+        date: 'May 05, 2026',
+        image: 'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=600',
+    },
 ]

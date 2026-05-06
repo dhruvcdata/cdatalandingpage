@@ -211,6 +211,149 @@ export default async function BlogSlugPage({
                             )
                         }
 
+                        if (block.type === 'code') {
+                            return (
+                                <pre
+                                    key={`code-${index}`}
+                                    className="rounded-lg border border-white/10 bg-neutral-950 p-5 overflow-x-auto"
+                                >
+                                    {block.language && (
+                                        <div className="mb-3 text-xs font-mono uppercase tracking-wider text-gray-500">
+                                            {block.language}
+                                        </div>
+                                    )}
+                                    <code className="text-sm font-mono text-gray-200 leading-relaxed whitespace-pre">
+                                        {block.value}
+                                    </code>
+                                </pre>
+                            )
+                        }
+
+                        if (block.type === 'list') {
+                            const ListTag = block.ordered ? 'ol' : 'ul'
+                            const listClass = block.ordered ? 'list-decimal' : 'list-disc'
+                            return (
+                                <ListTag
+                                    key={`list-${index}`}
+                                    className={`${listClass} pl-6 space-y-2 text-gray-300 leading-relaxed marker:text-blue-400 [&_strong]:text-white [&_strong]:font-semibold [&_code]:text-blue-400 [&_code]:bg-white/5 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono [&_a]:text-blue-400 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-blue-300`}
+                                >
+                                    {block.items.map((item, itemIndex) => (
+                                        <li
+                                            key={`list-${index}-item-${itemIndex}`}
+                                            dangerouslySetInnerHTML={{ __html: item }}
+                                        />
+                                    ))}
+                                </ListTag>
+                            )
+                        }
+
+                        if (block.type === 'quote') {
+                            return (
+                                <blockquote
+                                    key={`quote-${index}`}
+                                    className="border-l-4 border-blue-500/60 bg-blue-500/5 pl-5 pr-4 py-4 rounded-r-md text-gray-200 italic [&_strong]:not-italic [&_strong]:text-white [&_a]:text-blue-400 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-blue-300"
+                                    dangerouslySetInnerHTML={{ __html: block.value }}
+                                />
+                            )
+                        }
+
+                        if (block.type === 'table') {
+                            return (
+                                <div
+                                    key={`table-${index}`}
+                                    className="overflow-x-auto rounded-lg border border-white/10"
+                                >
+                                    <table className="w-full text-sm text-left">
+                                        <thead className="bg-white/5 text-white">
+                                            <tr>
+                                                {block.headers.map((header, headerIndex) => (
+                                                    <th
+                                                        key={`table-${index}-head-${headerIndex}`}
+                                                        className="px-4 py-3 font-semibold border-b border-white/10"
+                                                    >
+                                                        {header}
+                                                    </th>
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody className="text-gray-300">
+                                            {block.rows.map((row, rowIndex) => (
+                                                <tr
+                                                    key={`table-${index}-row-${rowIndex}`}
+                                                    className="border-b border-white/5 last:border-b-0"
+                                                >
+                                                    {row.map((cell, cellIndex) => (
+                                                        <td
+                                                            key={`table-${index}-row-${rowIndex}-cell-${cellIndex}`}
+                                                            className="px-4 py-3 align-top [&_strong]:text-white [&_strong]:font-semibold"
+                                                            dangerouslySetInnerHTML={{ __html: cell }}
+                                                        />
+                                                    ))}
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )
+                        }
+
+                        if (block.type === 'cta') {
+                            return (
+                                <div
+                                    key={`cta-${index}`}
+                                    className="rounded-xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-7 lg:p-8"
+                                >
+                                    <h3 className="text-xl font-semibold text-white">
+                                        {block.title}
+                                    </h3>
+                                    <p
+                                        className="mt-3 text-gray-300 leading-relaxed [&_strong]:text-white [&_strong]:font-semibold [&_a]:text-blue-400 [&_a]:underline hover:[&_a]:text-blue-300"
+                                        dangerouslySetInnerHTML={{ __html: block.body }}
+                                    />
+                                    {block.buttons.length > 0 && (
+                                        <div className="mt-5 flex flex-wrap gap-3">
+                                            {block.buttons.map((button, btnIndex) => {
+                                                const isPrimary =
+                                                    (button.variant ?? 'primary') === 'primary'
+                                                const className = isPrimary
+                                                    ? 'inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500'
+                                                    : 'inline-flex items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10'
+                                                const isExternal = button.href.startsWith('http')
+                                                return isExternal ? (
+                                                    <a
+                                                        key={`cta-${index}-btn-${btnIndex}`}
+                                                        href={button.href}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className={className}
+                                                    >
+                                                        {button.label}
+                                                    </a>
+                                                ) : (
+                                                    <Link
+                                                        key={`cta-${index}-btn-${btnIndex}`}
+                                                        href={button.href}
+                                                        className={className}
+                                                    >
+                                                        {button.label}
+                                                    </Link>
+                                                )
+                                            })}
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        }
+
+                        if (block.type === 'divider') {
+                            return (
+                                <hr
+                                    key={`divider-${index}`}
+                                    className="border-t border-white/10"
+                                />
+                            )
+                        }
+
                         return null
                     })}
 
