@@ -1,0 +1,40 @@
+Metric Drift Audit Template - CData Consulting
+Instructions,"Fill in one row per (metric x source) combination. Goal: surface every place a single business metric is calculated. Most teams find 4-7 versions of each headline metric.",,,,,,,,
+,,,,,,,,,
+Metric Name,Synonym / Alias Used,Source System,Owner / Team,SQL Definition Location,Calculation Logic (1-line summary),Grain,Filters Applied,Last Validated,Notes / Drift Risk
+Revenue,revenue,Looker - Finance Dashboard,Finance,looker/views/finance_revenue.view.lkml,SUM(invoice.amount) net of credits,Invoice recognition date,fiscal_period IS NOT NULL,2026-04-15,Canonical for Finance
+Revenue,sales,Salesforce - Pipeline Report,Sales Ops,SF Report 00OXXXXX,SUM(opportunity.amount) where stage = Closed Won,Opportunity close date,stage = 'Closed Won',2026-03-30,Booking-based - drifts vs Finance by ~10-15%
+Revenue,bookings,dbt mart fct_bookings,Analytics,dbt: models/marts/finance/fct_bookings.sql,SUM(contract.tcv) per signed contract,Contract signature date,is_signed = true,2026-04-20,Different grain than recognized revenue
+Revenue,gmv,Mode notebook - Marketing Attribution,Marketing,Mode workspace > attribution_v3,SUM(order.gross_value) before discounts,Order date,channel IS NOT NULL,2026-02-10,Pre-discount - inflates by ~8%
+Revenue,top line,Hand-rolled SQL in BoardDocs.pdf,CFO Office,manual quarterly extract,SUM(invoice.amount) + adjustments,Quarter,fiscal_quarter,2026-01-31,Quarterly only - no automation
+,,,,,,,,,
+Active Customer,active customer,Product Analytics - Mixpanel,Product,mixpanel cohort 'MAU',Logged in within last 30 days,User-day,event_count > 0 in 30d,2026-04-22,Engagement-based
+Active Customer,active customer,Stripe Dashboard,Finance,Stripe filter,Has open subscription,Subscription,status = 'active',2026-04-25,Billing-based
+Active Customer,active customer,CS Health Score (Gainsight),Customer Success,Gainsight rule R-042,Renewed in last 12 months,Account,renewal_date >= today - 365d,2026-03-12,Renewal-based
+Active Customer,paying customer,dbt mart dim_customer,Analytics,dbt: models/marts/dim_customer.sql,is_churned = false AND mrr > 0,Customer,is_churned = false,2026-04-20,MRR-based
+Active Customer,active account,Sales Operations Spreadsheet,Sales,Google Sheet 'Account Tracker',Bought something in current FY,Account-FY,fy_revenue > 0,2026-02-28,Manual - spreadsheet drift risk HIGH
+,,,,,,,,,
+MRR,mrr,Stripe Dashboard,Finance,Stripe ARR/MRR view,Sum of active subscription monthly amounts,Customer,subscription.status = 'active',2026-04-25,Stripe canonical
+MRR,mrr,dbt mart fct_mrr,Analytics,dbt: models/marts/finance/fct_mrr.sql,Snapshot of subscription value per month,Customer-month,month_end snapshot,2026-04-20,Includes prorations - differs from Stripe
+MRR,recurring revenue,Sales Comp Dashboard,Sales Ops,Tableau dashboard,SUM(arr) / 12,Account,arr > 0,2026-03-15,Annualized then divided - rounding drift
+MRR,arr/12,CFO board pack,Finance,manual board prep,Year-end ARR / 12,Annual,fiscal_year_end,2026-01-31,Point-in-time only
+,,,,,,,,,
+Pipeline,pipeline,Salesforce Pipeline Report,Sales Ops,SF Report 00OYYYYY,SUM(opportunity.amount) where stage IN open stages,Opportunity,stage NOT IN ('Closed Won','Closed Lost'),2026-04-30,SF canonical
+Pipeline,weighted pipeline,SF Pipeline Forecast,Sales Leadership,SF custom report,SUM(opportunity.amount * stage_probability),Opportunity,stage NOT IN ('Closed Won','Closed Lost'),2026-04-30,Probability-weighted
+Pipeline,coverage,Sales QBR Slides,Sales VP,Slides quarterly,Pipeline / quota,Quarter,fiscal_quarter,2026-01-31,Manual - format drift
+Pipeline,qualified pipeline,SDR Dashboard,Marketing/SDRs,Marketo dashboard,Pipeline where mql_date IS NOT NULL,Opportunity,mql_date NOT NULL,2026-04-15,Marketing-attributed only
+,,,,,,,,,
+Retention,gross revenue retention,CFO board pack,Finance,manual board prep,1 - (churn$ / starting_arr$),Cohort-quarter,cohort_quarter,2026-01-31,GAAP-style
+Retention,net revenue retention,CFO board pack,Finance,manual board prep,(starting_arr - churn + expansion) / starting_arr,Cohort-quarter,cohort_quarter,2026-01-31,Net of expansion
+Retention,logo retention,CS Dashboard,Customer Success,Gainsight,1 - (churned_logos / starting_logos),Cohort-quarter,cohort_quarter,2026-04-01,Customer count not $
+Retention,renewal rate,Sales Renewal Report,Sales Ops,SF report,Renewed contracts / up-for-renewal,Contract,renewal_due_date,2026-04-15,Contract count basis
+,,,,,,,,,
+,How to read this audit:,,,,,,,,
+,1. Group rows by Metric Name. If you have more than 1 row per metric you have drift.,,,,,,,,
+,2. The 'Owner / Team' column tells you who needs to be in the canonical-definition workshop.,,,,,,,,
+,3. The 'Drift Risk' notes tell you which definitions diverge most - prioritize those for the synonym map first.,,,,,,,,
+,4. After audit: assign one canonical definition per metric. Other definitions become named alternates in the synonym map.,,,,,,,,
+,,,,,,,,,
+,Want help running this on your stack?,,,,,,,,
+,Book a free 60-min Semantic Layer Strategy Call: https://cdatainsights.com/contact,,,,,,,,
+,Read the full guide: https://cdatainsights.com/blogs/semantic-layer-synonyms-cutting-time-to-answer,,,,,,,,
