@@ -282,12 +282,25 @@ export const Blogs: BlogCard[] = [
         slug: 'semantic-layer-synonyms-cutting-time-to-answer',
         title: 'The Semantic Layer Is the Synonym Map: Cutting Time-to-Answer From Days to Minutes',
         subtitle:
-            'Finance says revenue was $4.2M. Sales says $4.7M. Same quarter, same company, different numbers. The fix is not another dashboard — it is a governed semantic layer with a synonym map. Here is how it works and what it saves.',
+            'Every executive is asking for self-serve data — type a question, get an answer. The companies shipping it without a governed semantic + synonym layer are shipping a confidence machine that occasionally lies to the CFO. Here is how to build the layer that makes self-serve actually trustworthy.',
         excerpt:
             'Why "active customer" means 5 different things at most companies, the 3 layers of a real semantic layer, and how a synonym map drops time-to-answer from 2 days to 20 minutes.',
         tag: 'Technology',
         author: 'Nitin Jain',
         date: 'May 05, 2026',
         image: 'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=600',
+    },
+    {
+        id: 22,
+        slug: 'snowflake-summit-2026-recap',
+        title: 'Snowflake Summit 2026: What the Agentic Enterprise Actually Means for Your Data Team',
+        subtitle:
+            'Snowflake shipped 26+ launches in four days — CoWork, CoCo, Cortex Sense, Agent Identity, managed Postgres, Iceberg v3. Underneath the announcements is one architectural bet: Snowflake wants to be the control plane for the agentic enterprise. Here is the signal cut from the noise, and what it changes for the teams we work with.',
+        excerpt:
+            'A practitioner’s cut of Snowflake Summit 2026 — the six themes that matter, the launches worth your attention, and what to actually do about them.',
+        tag: 'Innovation',
+        author: 'Nitin Jain',
+        date: 'Jun 08, 2026',
+        image: '/blog-diagrams/snowflake-summit-2026-hero.svg',
     },
 ]

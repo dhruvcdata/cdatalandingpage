@@ -98,7 +98,7 @@ export default async function BlogSlugPage({
             />
 
             {/* ================= HERO ================= */}
-            <section className="relative">
+            <section className="relative pt-12 md:pt-16">
 
                 {/* BACK BUTTON */}
                 <Link

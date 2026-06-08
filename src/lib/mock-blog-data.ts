@@ -3622,7 +3622,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
         slug: 'semantic-layer-synonyms-cutting-time-to-answer',
         title: 'The Semantic Layer Is the Synonym Map: Cutting Time-to-Answer From Days to Minutes',
         subtitle:
-            'Finance says revenue was $4.2M. Sales says $4.7M. Same quarter, same company, different numbers. The fix is not another dashboard — it is a governed semantic layer with a synonym map. Here is how it works and what it saves.',
+            'Every executive is asking for self-serve data — type a question, get an answer. The companies shipping it without a governed semantic + synonym layer are shipping a confidence machine that occasionally lies to the CFO. Here is how to build the layer that makes self-serve actually trustworthy.',
         category: 'DATA ENGINEERING',
         date: 'May 05, 2026',
         readingTime: '9 min read',
@@ -3645,7 +3645,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    'A client asked us last month: <em>&ldquo;Why does Finance say revenue was $4.2M and Sales says $4.7M?&rdquo;</em>',
+                    'A client asked us last month: <em>“Why does Finance say revenue was $4.2M and Sales says $4.7M?”</em>',
             },
             {
                 type: 'paragraph',
@@ -3654,7 +3654,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    'The dashboards weren&rsquo;t broken. The pipelines weren&rsquo;t broken. The <strong>definitions</strong> were broken. Finance counted revenue at invoice. Sales counted at contract signature. Both called it &ldquo;revenue&rdquo; — and both were technically right inside their own world.',
+                    'The dashboards weren’t broken. The pipelines weren’t broken. The <strong>definitions</strong> were broken. Finance counted revenue at invoice. Sales counted at contract signature. Both called it “revenue” — and both were technically right inside their own world.',
             },
             {
                 type: 'paragraph',
@@ -3668,17 +3668,17 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    'At CData Consulting, the first thing we do on a new analytics engagement is dump every dashboard, scheduled report, and &ldquo;trusted&rdquo; SQL snippet into a spreadsheet and tag the metrics. The same business term, calculated six different ways, is the rule, not the exception.',
+                    'At CData Consulting, the first thing we do on a new analytics engagement is dump every dashboard, scheduled report, and “trusted” SQL snippet into a spreadsheet and tag the metrics. The same business term, calculated six different ways, is the rule, not the exception.',
             },
             {
                 type: 'paragraph',
                 value:
-                    'Take &ldquo;active customer.&rdquo; We&rsquo;ve audited environments where it meant:',
+                    'Take “active customer.” We’ve audited environments where it meant:',
             },
             {
                 type: 'list',
                 items: [
-                    'Logged in within 30 days (Product team&rsquo;s definition)',
+                    'Logged in within 30 days (Product team’s definition)',
                     'Has an open invoice (Finance)',
                     'Renewed in the last 12 months (CS)',
                     'Anyone not flagged <code>is_churned = true</code> (Marketing)',
@@ -3688,7 +3688,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    'None of these teams were wrong. They were each optimizing for their own decisions. But when the CEO asks &ldquo;how many active customers do we have?&rdquo;, the answer depends entirely on which dashboard they happen to open.',
+                    'None of these teams were wrong. They were each optimizing for their own decisions. But when the CEO asks “how many active customers do we have?”, the answer depends entirely on which dashboard they happen to open.',
             },
             {
                 type: 'paragraph',
@@ -3699,7 +3699,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
                 type: 'cta',
                 title: 'Free download: The Metric Drift Audit Template',
                 body:
-                    'The exact spreadsheet we use on the first day of every engagement to surface how many definitions of &ldquo;revenue,&rdquo; &ldquo;active customer,&rdquo; and &ldquo;MRR&rdquo; exist across your stack. Most teams find 4-7 versions of each.',
+                    'The exact spreadsheet we use on the first day of every engagement to surface how many definitions of “revenue,” “active customer,” and “MRR” exist across your stack. Most teams find 4-7 versions of each.',
                 buttons: [
                     {
                         label: 'Download the audit template →',
@@ -3715,7 +3715,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    'Most teams use &ldquo;semantic layer&rdquo; to mean Layer 2 only. The teams getting compounding leverage from it build all three.',
+                    'Most teams use “semantic layer” to mean Layer 2 only. The teams getting compounding leverage from it build all three.',
             },
             {
                 type: 'code',
@@ -3772,7 +3772,7 @@ export const BLOG_DATA_MAP: Record<string, BlogData> = {
             {
                 type: 'paragraph',
                 value:
-                    'Here&rsquo;s a stripped-down example of how we structure synonym registration on top of dbt&rsquo;s MetricFlow:',
+                    'Here’s a stripped-down example of how we structure synonym registration on top of dbt’s MetricFlow:',
             },
             {
                 type: 'code',
@@ -3807,13 +3807,13 @@ metrics:
             {
                 type: 'paragraph',
                 value:
-                    'When a user — or an LLM — types <code>&ldquo;what was sales last quarter&rdquo;</code>, the resolver does three things:',
+                    'When a user — or an LLM — types <code>“what was sales last quarter”</code>, the resolver does three things:',
             },
             {
                 type: 'list',
                 ordered: true,
                 items: [
-                    'Looks up &ldquo;sales&rdquo; in the synonym map → finds it ambiguous between <code>net_revenue</code> and <code>bookings</code>',
+                    'Looks up “sales” in the synonym map → finds it ambiguous between <code>net_revenue</code> and <code>bookings</code>',
                     'Either disambiguates by context (Finance Slack channel? → <code>net_revenue</code>. Sales Slack? → <code>bookings</code>) or asks one clarifying question',
                     'Issues the canonical SQL against the warehouse',
                 ],
@@ -3821,7 +3821,7 @@ metrics:
             {
                 type: 'paragraph',
                 value:
-                    'That&rsquo;s it. No new dashboard. No new mart. Just a layer of governed vocabulary.',
+                    'That’s it. No new dashboard. No new mart. Just a layer of governed vocabulary.',
             },
             {
                 type: 'heading',
@@ -3857,7 +3857,7 @@ metrics:
             {
                 type: 'paragraph',
                 value:
-                    'Notice that BI tools, Slack bots, notebooks, and AI agents all hit the same resolver. There is exactly one path from question to SQL. That&rsquo;s the property that makes the time savings possible.',
+                    'Notice that BI tools, Slack bots, notebooks, and AI agents all hit the same resolver. There is exactly one path from question to SQL. That’s the property that makes the time savings possible.',
             },
             {
                 type: 'heading',
@@ -3866,31 +3866,31 @@ metrics:
             {
                 type: 'paragraph',
                 value:
-                    'The &ldquo;cutting time&rdquo; claim is concrete. Here&rsquo;s where the savings show up on real engagements we&rsquo;ve run:',
+                    'The “cutting time” claim is concrete. Here’s where the savings show up on real engagements we’ve run:',
             },
             {
                 type: 'paragraph',
                 value:
-                    '<strong>1. Ad-hoc questions don&rsquo;t trigger custom SQL anymore.</strong> Before: every Slack ping to the data team becomes a 1-2 day ticket. After: the requester (or the agent in their channel) resolves &ldquo;active customers in West region this quarter&rdquo; themselves against the semantic layer. Days → minutes.',
+                    '<strong>1. Ad-hoc questions don’t trigger custom SQL anymore.</strong> Before: every Slack ping to the data team becomes a 1-2 day ticket. After: the requester (or the agent in their channel) resolves “active customers in West region this quarter” themselves against the semantic layer. Days → minutes.',
             },
             {
                 type: 'paragraph',
                 value:
-                    '<strong>2. Reconciliation meetings disappear.</strong> Before: weekly sync between Finance, Sales, and RevOps to explain why the numbers don&rsquo;t match. After: there&rsquo;s one number. The meeting agenda evaporates.',
+                    '<strong>2. Reconciliation meetings disappear.</strong> Before: weekly sync between Finance, Sales, and RevOps to explain why the numbers don’t match. After: there’s one number. The meeting agenda evaporates.',
             },
             {
                 type: 'paragraph',
                 value:
-                    '<strong>3. New analyst onboarding collapses.</strong> Before: 6 weeks to learn which dashboard is &ldquo;the real one&rdquo; for each metric, who owns it, and the gotchas. After: read the metric registry. The institutional knowledge is in code.',
+                    '<strong>3. New analyst onboarding collapses.</strong> Before: 6 weeks to learn which dashboard is “the real one” for each metric, who owns it, and the gotchas. After: read the metric registry. The institutional knowledge is in code.',
             },
             {
                 type: 'paragraph',
                 value:
-                    '<strong>4. AI chat agents stop hallucinating.</strong> This is the new one — and the reason this layer is suddenly urgent. An LLM pointed at a raw warehouse will guess column names and invent metric definitions. An LLM pointed at a synonym-resolved semantic layer can only return numbers the business has already agreed on. The error rate on a recent client engagement dropped from &ldquo;we can&rsquo;t ship this&rdquo; to &ldquo;we shipped it to the CFO&rdquo; once the synonym map was in place.',
+                    '<strong>4. AI chat agents stop hallucinating.</strong> This is the new one — and the reason this layer is suddenly urgent. An LLM pointed at a raw warehouse will guess column names and invent metric definitions. An LLM pointed at a synonym-resolved semantic layer can only return numbers the business has already agreed on. The error rate on a recent client engagement dropped from “we can’t ship this” to “we shipped it to the CFO” once the synonym map was in place.',
             },
             {
                 type: 'heading',
-                value: 'What We&rsquo;ve Measured on Real Engagements',
+                value: 'What We’ve Measured on Real Engagements',
             },
             {
                 type: 'paragraph',
@@ -3927,13 +3927,13 @@ metrics:
             {
                 type: 'paragraph',
                 value:
-                    'These aren&rsquo;t projections. They&rsquo;re what happens when the same metric stops being defined by whoever wrote the SQL most recently.',
+                    'These aren’t projections. They’re what happens when the same metric stops being defined by whoever wrote the SQL most recently.',
             },
             {
                 type: 'cta',
                 title: 'Where do you stand on metric drift?',
                 body:
-                    'Most teams we talk to underestimate the scale of their metric drift by 3-5x. We offer a <strong>free 60-minute Semantic Layer Strategy Call</strong> for data leaders. You&rsquo;ll leave with a live walkthrough of the audit on one of your metrics, a scoped recommendation on dbt MetricFlow vs. Cube vs. Looker, and a 90-day rollout plan. Limited to 4 calls per month.',
+                    'Most teams we talk to underestimate the scale of their metric drift by 3-5x. We offer a <strong>free 60-minute Semantic Layer Strategy Call</strong> for data leaders. You’ll leave with a live walkthrough of the audit on one of your metrics, a scoped recommendation on dbt MetricFlow vs. Cube vs. Looker, and a 90-day rollout plan. Limited to 4 calls per month.',
                 buttons: [
                     {
                         label: 'Book a Strategy Call →',
@@ -3954,18 +3954,102 @@ metrics:
             {
                 type: 'paragraph',
                 value:
-                    'If you&rsquo;re standing this up from scratch, sequence matters. We&rsquo;ve watched teams try to start at Layer 3 and stall — you can&rsquo;t synonym-map metrics that don&rsquo;t have stable definitions yet.',
+                    'If you’re standing this up from scratch, sequence matters. We’ve watched teams try to start at Layer 3 and stall — you can’t synonym-map metrics that don’t have stable definitions yet.',
             },
             {
                 type: 'list',
                 ordered: true,
                 items: [
                     '<strong>Audit the drift first.</strong> Before you build anything, list every metric, who defines it, and the SQL behind each definition. The list will be longer than you expect. Show it to the executive team. The project funds itself.',
-                    '<strong>Pick canonical definitions, not &ldquo;best&rdquo; ones.</strong> Don&rsquo;t try to find the perfect definition of revenue. Pick the one Finance signs off on, document the alternatives as separate metrics (<code>bookings</code>, <code>invoiced_revenue</code>), and move on.',
+                    '<strong>Pick canonical definitions, not “best” ones.</strong> Don’t try to find the perfect definition of revenue. Pick the one Finance signs off on, document the alternatives as separate metrics (<code>bookings</code>, <code>invoiced_revenue</code>), and move on.',
                     '<strong>Build Layer 2 before Layer 3.</strong> Get metrics defined in MetricFlow / Cube / LookML and tested. Without stable definitions, the synonym map points at moving targets.',
-                    '<strong>Register synonyms as you migrate dashboards.</strong> Every time you replace a hand-rolled dashboard query, harvest the column names and labels into the synonym map. The map writes itself if you&rsquo;re disciplined.',
+                    '<strong>Register synonyms as you migrate dashboards.</strong> Every time you replace a hand-rolled dashboard query, harvest the column names and labels into the synonym map. The map writes itself if you’re disciplined.',
                     '<strong>Put the resolver in front of the AI agent last.</strong> Once the underlying layer is governed, plugging an LLM into it is the easy part. Without governance underneath, the LLM is just a faster way to be wrong.',
                 ],
+            },
+            {
+                type: 'heading',
+                value: 'Every Board Conversation in 2026: “I Want to Ask the Data Questions Myself”',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Walk into any data leader’s office today and you’ll hear the same conversation, just with different titles in the room.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The CFO doesn’t want to file a ticket to ask <em>“what was net revenue in EMEA last quarter, excluding the one-time true-up?”</em> The Head of Sales doesn’t want a meeting to find out <em>“which 10 accounts had the biggest pipeline movement this week?”</em> The CEO doesn’t want a Tableau training session to ask <em>“is our churn accelerating in the SMB segment, year-over-year?”</em>',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Every executive we’ve worked with this year has asked some version of the same thing:',
+            },
+            {
+                type: 'quote',
+                value:
+                    '“I just want to type my question and get the answer. Why is that so hard?”',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'It’s not hard. It’s a semantic-layer problem dressed up as an AI problem.',
+            },
+            {
+                type: 'heading',
+                value: 'The Trap Most Teams Are Walking Into',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Vendors are racing to sell the answer: Snowflake Cortex Analyst, dbt Semantic Layer + AI, Cube AI, ThoughtSpot Sage, Hex Magic, Databricks Genie, custom GPT and Claude integrations on top of the warehouse. The pitches all sound the same — natural language in, governed answer out.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Companies are buying these tools and bolting them onto warehouses that have no agreed-on definitions. The result is predictable:',
+            },
+            {
+                type: 'list',
+                items: [
+                    'The CFO asks “what was revenue?” The agent picks the Sales team’s bookings number. The CFO cites it publicly. Finance has to retract.',
+                    'The Head of Product asks “active users last week?” The agent returns Mixpanel’s MAU. Product Marketing was using a different definition for the launch report. Two decks contradict each other in the same all-hands.',
+                    'The CEO asks “what’s our LTV?” The agent picks one of three formulas in the warehouse. The board deck shows a fourth.',
+                ],
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The chatbot isn’t wrong — it’s returning something that’s true <em>somewhere</em> in the data. The problem is that “somewhere” has fifteen versions of the answer, and the system has no way to know which is canonical.',
+            },
+            {
+                type: 'heading',
+                value: 'What a Real Self-Serve Layer Requires',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The self-serve dream — type a question, get a trustworthy answer — only works when three things are true:',
+            },
+            {
+                type: 'list',
+                ordered: true,
+                items: [
+                    '<strong>One canonical definition per metric</strong> (Layer 2 of the semantic layer)',
+                    '<strong>A synonym map</strong> that resolves every phrasing of the question to that definition (Layer 3)',
+                    '<strong>An AI agent constrained to only those definitions,</strong> refusing to invent SQL on the fly',
+                ],
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Skip any of these and you ship a confidence machine that occasionally lies to the CFO.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The companies getting self-serve right in 2026 built the semantic layer first, then put the chatbot on top. The companies struggling bought the chatbot first and are now retro-fitting governance underneath while it’s already in production.',
             },
             {
                 type: 'heading',
@@ -3979,12 +4063,12 @@ metrics:
             {
                 type: 'paragraph',
                 value:
-                    'That&rsquo;s no longer the consumer profile. The consumers now include:',
+                    'That’s no longer the consumer profile. The consumers now include:',
             },
             {
                 type: 'list',
                 items: [
-                    '<strong>Slack bots</strong> answering &ldquo;what&rsquo;s MRR?&rdquo; in a channel',
+                    '<strong>Slack bots</strong> answering “what’s MRR?” in a channel',
                     '<strong>AI agents</strong> writing SQL on the fly against the warehouse',
                     '<strong>Embedded analytics</strong> inside customer-facing products',
                     '<strong>Executive copilots</strong> synthesizing across dozens of metrics in a single answer',
@@ -3993,7 +4077,7 @@ metrics:
             {
                 type: 'paragraph',
                 value:
-                    'None of these consumers can be trained the way an analyst can. They will return whatever the system tells them is true. If the system has fifteen versions of &ldquo;revenue&rdquo; and no synonym map, you will ship fifteen versions of &ldquo;revenue&rdquo; to fifteen surfaces — and the moment one of them is wrong in front of a customer, the credibility hit lands on data engineering.',
+                    'None of these consumers can be trained the way an analyst can. They will return whatever the system tells them is true. If the system has fifteen versions of “revenue” and no synonym map, you will ship fifteen versions of “revenue” to fifteen surfaces — and the moment one of them is wrong in front of a customer, the credibility hit lands on data engineering.',
             },
             {
                 type: 'quote',
@@ -4002,30 +4086,36 @@ metrics:
             },
             {
                 type: 'heading',
-                value: 'The Practitioner&rsquo;s Takeaway',
+                value: 'The Practitioner’s Takeaway',
             },
             {
                 type: 'paragraph',
                 value:
-                    'If your team is still arguing about whose number is right, you don&rsquo;t have a BI problem. You have a definition problem.',
+                    'If your team is still arguing about whose number is right, you don’t have a BI problem. You have a definition problem.',
             },
             {
                 type: 'paragraph',
                 value:
-                    'A semantic layer fixes the definitions. A synonym map fixes the language people (and agents) use to ask for them. Together, they&rsquo;re the difference between a data org that translates and a data org that ships.',
+                    'A semantic layer fixes the definitions. A synonym map fixes the language people (and agents) use to ask for them. Together, they’re the difference between a data org that translates and a data org that ships.',
             },
             {
                 type: 'paragraph',
                 value:
-                    'The time savings — days to minutes, weeks to days — aren&rsquo;t the goal. They&rsquo;re the side effect of having one source of truth and one vocabulary to query it with. Get that right and the rest of the modern data stack actually starts to compound.',
+                    'The time savings — days to minutes, weeks to days — aren’t the goal. They’re the side effect of having one source of truth and one vocabulary to query it with. Get that right and the rest of the modern data stack actually starts to compound.',
             },
         ],
         faq: [
             {
                 question:
+                    'Can I put a chatbot on my warehouse without a semantic layer?',
+                answer:
+                    'You can, and lots of teams have. They tend to regret it. An LLM pointed at raw tables guesses column names, picks one of several possible SQLs, and returns a number with high confidence. With no canonical metric definitions underneath, there is no way for the agent — or the executive reading the answer — to know which of the warehouse’s 4-7 versions of “revenue” got returned. The chatbot demos well in week one and embarrasses you in month six. If self-serve AI is on your roadmap, the semantic + synonym layer is the prerequisite, not the follow-up.',
+            },
+            {
+                question:
                     'What is the difference between a data catalog and a semantic layer?',
                 answer:
-                    'A data catalog (Atlan, Collibra, DataHub) tells you what data exists and who owns it — it is a metadata index. A semantic layer (dbt MetricFlow, Cube, LookML) defines how metrics are computed and how they can be queried. You need both. The catalog answers &ldquo;does this column exist?&rdquo; The semantic layer answers &ldquo;how is revenue calculated?&rdquo;',
+                    'A data catalog (Atlan, Collibra, DataHub) tells you what data exists and who owns it — it is a metadata index. A semantic layer (dbt MetricFlow, Cube, LookML) defines how metrics are computed and how they can be queried. You need both. The catalog answers “does this column exist?” The semantic layer answers “how is revenue calculated?”',
             },
             {
                 question:
@@ -4064,6 +4154,256 @@ metrics:
             {
                 title: 'Central Data Teams Often Become Blockers — And How to Fix It',
                 slug: '/blogs/central-data-team-often-becomes-blockers',
+            },
+        ],
+    },
+
+    'snowflake-summit-2026-recap': {
+        slug: 'snowflake-summit-2026-recap',
+        title: 'Snowflake Summit 2026: What the Agentic Enterprise Actually Means for Your Data Team',
+        subtitle:
+            'Snowflake shipped 26+ launches in four days. Underneath the announcements is one architectural bet — Snowflake wants to be the control plane for the agentic enterprise. Here is the signal cut from the noise, and what it changes for the teams we work with.',
+        category: 'DATA & AI',
+        date: 'June 8, 2026',
+        readingTime: '11 min read',
+        author: {
+            name: 'Nitin Jain',
+            role: 'Founder, CData Insights',
+            avatar: '/whitelogo.png',
+        },
+        heroImage: '/blog-diagrams/snowflake-summit-2026-hero.svg',
+        tags: [
+            'Snowflake',
+            'Snowflake Summit',
+            'Agentic AI',
+            'Cortex',
+            'Apache Iceberg',
+            'Data Engineering',
+        ],
+        content: [
+            {
+                type: 'image',
+                value: '/blog-diagrams/snowflake-summit-2026-architecture.webp',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Snowflake Summit 2026 wrapped up at Moscone Center on June 4th — 20,000+ attendees, a keynote co-hosted with Anthropic President Daniela Amodei, a $6B AWS commitment, and 26+ product launches. I spend most of my year inside Snowflake accounts for the companies we work with, so I read these announcements through one filter: what actually changes the work on Monday morning. This is that cut — the themes that matter, the launches worth your attention, and what to do about them.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'If 2024 was “Snowflake plus AI,” and 2025 was “AI inside Snowflake,” then 2026 is unambiguously “Snowflake is the agentic enterprise platform.” CEO Sridhar Ramaswamy framed the whole thing in one line: <strong>“The model is not your unique advantage. It’s when you combine models with your data that things begin to shine.”</strong> Everything announced this week is downstream of that idea.',
+            },
+            {
+                type: 'heading',
+                value: 'Six themes that ran through everything',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Strip away the product names and Summit 2026 was making six bets. If you only remember the launches, you will chase features. If you remember the bets, you will know which features to actually adopt.',
+            },
+            {
+                type: 'list',
+                ordered: true,
+                items: [
+                    '<strong>Snowflake wants to be the control plane.</strong> CoWork and CoCo are the user-facing layer of a platform where your data, governance, security, context, and the LLMs all live in the same place. The co-location is the point — when the model, the data, the policies, and the business context all run together, you stop stitching systems and start building.',
+                    '<strong>Context belongs where the data lives.</strong> Cortex Sense and Horizon Context argue your semantic layer should not be a separate system you maintain — it should sit with the data it describes. Fragmented context is the root cause of most “the AI got it wrong” moments.',
+                    '<strong>Open is the strategy, not the concession.</strong> Apache Iceberg v3 GA, a 54-vendor open semantic standard, a Polaris-powered Horizon Catalog, and open table-format sharing all signal Snowflake treating openness as a weapon rather than a liability.',
+                    '<strong>Postgres is now a first-class citizen.</strong> pg_lake, Postgres Data Mirroring, and Managed Postgres make Snowflake a serious answer for teams that live in OLTP and want lakehouse benefits without a migration. OLTP and OLAP on one platform, under one governance model, is a real shift.',
+                    '<strong>Streaming is table stakes.</strong> Datastream removes the Kafka-management tax and pulls real-time data into the same governance envelope as everything else.',
+                    '<strong>Agents need identity.</strong> The Natoma acquisition and Agent Identity make the same point — the era of agents running as anonymous processes is over. Governed agentic access is the new zero-trust, and Snowflake’s audit surface now covers every autonomous agent, not just human users.',
+                ],
+            },
+            {
+                type: 'heading',
+                value: 'AI & developer experience: CoCo, CoWork, and Cortex',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>CoCo Desktop is GA.</strong> Cortex Code got a rename and a real product — Snowflake CoCo is now a native desktop app with extensions for VS Code, Claude Code, and even Excel. It is Snowflake’s fastest-growing offering (7,100+ users), and GA finally gets it out of the browser and into the workflow. If you build anything on Snowflake, this is the new default starting point.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>CoWork is the personal work agent</strong> (formerly Snowflake Intelligence, now GA). It runs natural-language queries against your enterprise data, does multi-step reasoning, executes actions, and ships a Skill Catalog for reusable agent workflows — powered by Claude, grounded in your Snowflake perimeter. User Memory (preview) layers personalization on top: it learns what “revenue” means to <em>you</em>, not just to the data model. NextGen Artifacts make CoWork outputs shareable and certifiable, so an AI-generated dashboard can carry a trust stamp from someone with the right role.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Cortex AI Function Studio and Custom AI Functions</strong> (public preview) are the piece I am most interested in for client work. You describe a task in natural language and the Studio automates prompt engineering, model selection, and benchmarking against your actual data — text, documents, images, audio, video. Then you wrap that domain logic — compliance checks, extraction schemas, entity classification — into callable SQL functions any query or pipeline can invoke. Building custom AI functions used to be duct tape and prayer; now it is a guided product.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Two more worth noting: <strong>Agentic Search</strong> turns Cortex Search from point-in-time retrieval into iterative, multi-step research where an agent refines queries and synthesizes across results, and the <strong>Snowsight Pipeline Builder</strong> gives analysts a visual, no-code way to build pipelines on top of tasks and dynamic tables. And <strong>Grok</strong> (xAI) joins the Cortex model roster alongside Claude, GPT, Gemini, Llama, Mistral, and DeepSeek — more model choice inside the same governed boundary.',
+            },
+            {
+                type: 'heading',
+                value: 'AI governance: the part most teams will under-rate',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'This is the category I would push every data leader to read closely, because it is the difference between a fun demo and something you can put in production.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Agent Identity</strong> (preview) is the security primitive the agentic enterprise has been waiting for. Traditional IAM was built for humans. Agent Identity gives every AI agent a cryptographic, verifiable identity before it touches a Snowflake resource — with per-agent RBAC (not inherited from whoever launched it), dynamic masking by agent type, and a full audit trail. As EVP Christian Kleinerman put it: “Traditional security models were designed for human users, not autonomous software agents.”',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The <strong>Natoma acquisition</strong> extends that perimeter past your data to your tools. Natoma is an enterprise MCP (Model Context Protocol) gateway — centralized identity, access policy, and audit at the tool-call level, governing exactly what an agent can do against external APIs and SaaS systems. The strategic read: Snowflake is becoming the control plane for agentic <em>access</em>, not just agentic data.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'And <strong>Cortex Sense + Horizon Context</strong> are two halves of the same context story. Horizon Context is the collection-and-enrichment layer inside Horizon Catalog — it ingests external metadata (Wave 1: PostgreSQL, SQL Server, Tableau, Power BI, dbt), stitches column-level lineage, auto-generates docs, and exposes it all through hybrid semantic + keyword search. Cortex Sense is the runtime half: it assembles those definitions, policies, and domain knowledge dynamically and injects them into every agent query. Snowflake’s headline number — <strong>86% accuracy on structured enterprise questions versus 24% with generic frontier models</strong> — is what you get when the catalog and the runtime finally speak the same language.',
+            },
+            {
+                type: 'quote',
+                value:
+                    'The accuracy gap between “LLM on a raw warehouse” and “LLM on a governed semantic layer” is the entire ballgame. Everything Snowflake shipped in governance this year is in service of closing it.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Rounding out governance: <strong>Cost Control for AI</strong> (public preview) brings per-user Cortex quotas, budget-triggered actions (pause, alert, reroute), and function-level spend visibility — you can finally budget AI workloads the way you budget a warehouse. And <strong>SLA-backed RPO</strong> turns recovery-point objectives into a contractual commitment, the kind of thing that unlocks budgets in banking, healthcare, and government.',
+            },
+            {
+                type: 'heading',
+                value: 'Data engineering & collaboration: Postgres grows up, streaming gets cheap',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'The Postgres story is the sleeper of the show. <strong>Managed pg_lake</strong> gives a Postgres instance zero-ETL read/write access to Iceberg tables in Snowflake-managed storage — your OLTP app queries lakehouse-scale data through native SQL, against a single live governed copy. <strong>Postgres Data Mirroring</strong> continuously replicates Postgres changes into the Snowflake lakehouse in real time, so operational and analytical views stay in sync with no pipeline in between. Together with Managed Postgres, this is the “Postgres <em>and</em> Snowflake, not Postgres <em>vs.</em> Snowflake” moment.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    '<strong>Snowflake Datastream</strong> (preview) is a fully managed, Kafka-compatible streaming service — a drop-in replacement for existing Kafka topologies with no code changes. The architecture is clever: stateless processors write directly to blob storage, so a topic in Datastream is a table in Snowflake, with sub-second latency, no broker fleet to babysit, and automatic governance inheritance. The data-engineering tax on real-time workloads just dropped sharply.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'On the openness front, <strong>Manage Storage for Iceberg is GA</strong> — Snowflake owns compaction, manifest management, and cleanup while you keep the ability to read those same tables from Spark, Trino, or any Iceberg engine. That is the “open but managed” promise actually delivered. And a cluster of sharing capabilities — <strong>Open Sharing</strong> to non-Snowflake consumers, <strong>Zero-Copy Sharing</strong> with SAP / Salesforce / Workday / IBM, <strong>Sharing Data to Agents</strong>, <strong>Resharing</strong>, <strong>Multi-Party Collaboration</strong>, and <strong>Heterogeneous Data Access</strong> via Polaris — all push toward one query layer over any data, anywhere, with governance applied consistently.',
+            },
+            {
+                type: 'heading',
+                value: 'What this actually changes for your team',
+            },
+            {
+                type: 'table',
+                headers: ['If you are…', 'The launch that matters', 'What to do about it'],
+                rows: [
+                    [
+                        'Building “AI on our data” and seeing it hallucinate',
+                        'Cortex Sense + Horizon Context',
+                        'Stop trying to fix the model. Invest in the semantic/context layer — that is where 24% becomes 86%.',
+                    ],
+                    [
+                        'Running agents against production data',
+                        'Agent Identity + Natoma MCP Gateway',
+                        'Treat agents as identities with their own RBAC and audit trail before you scale them, not after.',
+                    ],
+                    [
+                        'Paying a Kafka or streaming-ops tax',
+                        'Datastream',
+                        'Pilot it as a drop-in for one topic. Sub-second latency with no broker fleet is a real cost line removed.',
+                    ],
+                    [
+                        'Living in Postgres, wanting lakehouse analytics',
+                        'pg_lake + Postgres Data Mirroring',
+                        'You may not need the migration you were dreading. Evaluate the “Postgres and Snowflake” path first.',
+                    ],
+                    [
+                        'Worried about a surprise Cortex bill',
+                        'Cost Control for AI',
+                        'Set per-user quotas and budget actions on day one. Govern AI spend like warehouse spend.',
+                    ],
+                ],
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'A note on release stages, because it matters for planning: a lot of this is <strong>Preview</strong> or <strong>Public Preview</strong>, not GA. CoCo Desktop, CoWork, Grok in Cortex, and Manage Storage for Iceberg are GA. Cortex AI Function Studio, App Runtime, Multi-Party Collaboration, and Cost Control are Public Preview. Agent Identity, Cortex Sense, Datastream, pg_lake, and most of the sharing features are Preview — available for evaluation, not recommended for production without review. Snowflake’s Preview Features page is the authoritative source; check it before you build a roadmap on any single item.',
+            },
+            {
+                type: 'image',
+                value: '/blog-diagrams/snowflake-summit-2026-release-status.svg',
+            },
+            {
+                type: 'cta',
+                title: 'Want a Summit 2026 readout tailored to your Snowflake account?',
+                body:
+                    'We run a focused session that maps these launches to your actual architecture — what to pilot now, what to wait on, and where Agent Identity, Cortex Sense, and Datastream would move the needle for you specifically. No slideware, just a working plan.',
+                buttons: [
+                    {
+                        label: 'Book a Snowflake strategy session →',
+                        href: '/contact',
+                        variant: 'primary',
+                    },
+                ],
+            },
+            {
+                type: 'heading',
+                value: 'Where I would start',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Do not try to adopt 26 features. Pick the one bet that maps to your biggest current pain. For most of the teams we work with, that is context and governance — the gap between an AI demo and something an executive trusts. Start there: get your dbt models and metric definitions healthy, wire Horizon Context to your existing metadata, and only then put Cortex (or a CoWork agent) in front of it. Governance first, semantic layer second, conversational analytics third. Skip the order, skip the value.',
+            },
+            {
+                type: 'paragraph',
+                value:
+                    'Summit 2026 was less a conference and more an architectural declaration: the agentic enterprise is no longer coming, it is here. A lot shipped, more is coming, and the documentation is still landing. But the through-line is clear — the advantage is not the model, it is the model standing on top of your governed data. That has been the thesis of our work for years. It is good to see the platform catch up to it.',
+            },
+        ],
+        faq: [
+            {
+                question: 'Is Snowflake CoWork the same thing as Snowflake Intelligence?',
+                answer:
+                    'Yes — CoWork is the rebrand of Snowflake Intelligence, and it went GA at Summit 2026. It is positioned as the personal AI agent for knowledge workers: natural-language queries against enterprise data, multi-step reasoning, action execution, and a Skill Catalog of reusable workflows, powered by Claude and grounded in your Snowflake data perimeter. The rename signals intent — it is meant to be an assistant that anticipates, not just a chatbot you prompt.',
+            },
+            {
+                question: 'What is Agent Identity and why does it matter?',
+                answer:
+                    'Agent Identity (in preview) gives every AI agent its own cryptographic, verifiable identity before it can access any Snowflake resource. Crucially, an agent gets its own RBAC rather than inheriting permissions from the human who launched it, plus dynamic masking by agent type and a complete audit trail. It matters because traditional IAM was built for humans — once you have autonomous agents reading and writing production data, you need a security model designed for software, and this is Snowflake’s answer.',
+            },
+            {
+                question: 'Does pg_lake mean I can avoid a Postgres-to-Snowflake migration?',
+                answer:
+                    'Often, yes — that is the whole pitch. Managed pg_lake gives a Snowflake Postgres instance zero-ETL read/write access to Apache Iceberg tables in Snowflake-managed storage, and Postgres Data Mirroring continuously replicates Postgres changes into the lakehouse in real time. Together they let OLTP and analytical workloads share one governed copy of the data, which means many teams can get lakehouse benefits without ripping out their transactional layer. Evaluate that path before committing to a migration.',
+            },
+            {
+                question: 'How much of what was announced is actually production-ready?',
+                answer:
+                    'A meaningful chunk is still Preview or Public Preview, not GA. GA items include CoCo Desktop, CoWork, Grok in Cortex AI, and Snowflake-managed storage for Iceberg. Public Preview includes Cortex AI Function Studio, App Runtime, Multi-Party Collaboration, and Cost Control for AI. Agent Identity, Cortex Sense, Datastream, pg_lake, and most sharing features are Preview — fine for evaluation, but not recommended for production without review. Always confirm current status on Snowflake’s Preview Features page before planning a rollout.',
+            },
+            {
+                question: 'What is the single most important takeaway for a data leader?',
+                answer:
+                    'That the advantage is not the model — it is the model combined with your governed data and context. The 86%-versus-24% accuracy gap Snowflake highlighted between Cortex Sense and generic frontier models is the entire case for investing in your semantic layer, catalog, and governance before you invest in fancier AI. Get the context layer right and the AI gets dramatically more accurate almost for free. Skip it and you have a confident demo that occasionally lies to your CFO.',
+            },
+        ],
+        relatedBlogs: [
+            {
+                title: 'From dbt Models to Conversational Analytics: Snowflake Cortex Meets the Semantic Layer',
+                slug: '/blogs/dbt-cortex-semantic-layer',
+            },
+            {
+                title: 'The Semantic Layer Is the Synonym Map: Cutting Time-to-Answer From Days to Minutes',
+                slug: '/blogs/semantic-layer-synonyms-cutting-time-to-answer',
+            },
+            {
+                title: 'Snowflake Architecture for the Enterprise',
+                slug: '/blogs/snowflake-enterprise-architecture',
             },
         ],
     },
