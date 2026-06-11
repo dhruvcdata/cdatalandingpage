@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { verifyTurnstile } from '@/lib/turnstile'
+import { saveLead } from '@/lib/leads'
 
 const rateLimitMap = new Map<string, number[]>()
 const RATE_LIMIT_WINDOW = 10 * 60 * 1000
@@ -50,6 +51,13 @@ export async function POST(req: Request) {
         const sourceLabel = isWorldcup ? 'World Cup Hub' : 'Blog'
 
         await Promise.all([
+            // Persist lead to Supabase (fail-open: never throws, never blocks emails)
+            saveLead({
+                email,
+                source: isWorldcup ? 'worldcup' : 'blog',
+                kind: 'subscribe',
+            }),
+
             // Notify admin of new subscriber
             resend.emails.send({
                 from: 'noreply@cdatainsights.com',

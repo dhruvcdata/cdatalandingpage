@@ -502,6 +502,70 @@ function AmbientParticles({ reducedMotion }: { reducedMotion: boolean }) {
 }
 
 // ---------------------------------------------------------------------------
+// Wireframe football — glowing icosahedron ball drifting around the globe
+// ---------------------------------------------------------------------------
+//
+// Generic ball geometry only (icosahedron wireframe — the pentagon/hexagon
+// family a football panel pattern comes from). Two trivial draw calls:
+// a wireframe icosahedron plus a faint additive core so the wireframe
+// reads as a glowing solid ball rather than bare scaffolding. Honors
+// reducedMotion (static), pauses with the canvas frameloop, and fades
+// with the wrapper's scrollProgress CSS fade like everything else.
+
+const BALL_RADIUS = 0.16
+const BALL_ORBIT_RADIUS = 1.7
+const BALL_HEIGHT = 0.55
+/** Orbit speed (rad/s) — combined with the camera's idle drift the ball
+ *  crosses the frame slowly, roughly once every ~75s. */
+const BALL_ORBIT_SPEED = 0.05
+
+function WireframeFootball({ reducedMotion }: { reducedMotion: boolean }) {
+    const orbitRef = useRef<THREE.Group>(null)
+    const ballRef = useRef<THREE.Mesh>(null)
+
+    useFrame((_, delta) => {
+        if (reducedMotion) return
+        if (orbitRef.current) orbitRef.current.rotation.y += delta * BALL_ORBIT_SPEED
+        if (ballRef.current) {
+            // Slow tumble so the panel wireframe is visibly a rotating ball.
+            ballRef.current.rotation.y += delta * 0.4
+            ballRef.current.rotation.x += delta * 0.16
+        }
+    })
+
+    return (
+        // Slightly inclined orbit; initial Y rotation places the ball in
+        // frame for the static reduced-motion shot (camera starts over
+        // North America).
+        <group ref={orbitRef} rotation={[0.14, -0.55, 0]}>
+            <group position={[BALL_ORBIT_RADIUS, BALL_HEIGHT, 0]}>
+                <mesh ref={ballRef}>
+                    <icosahedronGeometry args={[BALL_RADIUS, 1]} />
+                    <meshBasicMaterial
+                        color={DOT_COLOR}
+                        wireframe
+                        transparent
+                        opacity={0.55}
+                        depthWrite={false}
+                        blending={THREE.AdditiveBlending}
+                    />
+                </mesh>
+                <mesh>
+                    <sphereGeometry args={[BALL_RADIUS * 0.92, 16, 16]} />
+                    <meshBasicMaterial
+                        color={ATMOSPHERE_COLOR}
+                        transparent
+                        opacity={0.08}
+                        depthWrite={false}
+                        blending={THREE.AdditiveBlending}
+                    />
+                </mesh>
+            </group>
+        </group>
+    )
+}
+
+// ---------------------------------------------------------------------------
 // Camera rig — scroll keyframes + slow idle drift, critically damped
 // ---------------------------------------------------------------------------
 
@@ -647,6 +711,7 @@ export default function WorldCupGlobe({
                     <Atmosphere />
                     <StadiumMarkers markers={markers} reducedMotion={reducedMotion} />
                     <TravelArcs arcs={arcs} reducedMotion={reducedMotion} />
+                    <WireframeFootball reducedMotion={reducedMotion} />
                     <AmbientParticles reducedMotion={reducedMotion} />
                 </Canvas>
             </Suspense>

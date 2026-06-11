@@ -472,6 +472,86 @@ function SectionGlow({ className }: { className: string }) {
 }
 
 // ---------------------------------------------------------------------------
+// Football motifs — generic pitch geometry & ball-panel hex mesh only.
+// Stroke-only inline SVG in the brand cyan at 5–10% opacity; purely
+// decorative (aria-hidden, pointer-events-none, absolutely positioned,
+// zero layout impact). No protected tournament marks anywhere.
+// ---------------------------------------------------------------------------
+
+/** Pitch center mark: halfway line + center circle + spot. */
+function PitchCenterCircle({ className }: { className: string }) {
+    return (
+        <svg
+            aria-hidden
+            viewBox="0 0 360 240"
+            fill="none"
+            className={`pointer-events-none absolute text-sky-400 ${className}`}
+        >
+            <line x1="180" y1="0" x2="180" y2="240" stroke="currentColor" strokeOpacity="0.09" />
+            <circle cx="180" cy="120" r="72" stroke="currentColor" strokeOpacity="0.09" />
+            <circle cx="180" cy="120" r="3" fill="currentColor" fillOpacity="0.09" />
+        </svg>
+    )
+}
+
+/** Penalty-area corner, cropped like a broadcast frame: goal line,
+ *  box edges, penalty spot and arc. */
+function PitchPenaltyCorner({ className }: { className: string }) {
+    return (
+        <svg
+            aria-hidden
+            viewBox="0 0 320 220"
+            fill="none"
+            className={`pointer-events-none absolute text-sky-400 ${className}`}
+        >
+            {/* goal line */}
+            <path d="M0 6H320" stroke="currentColor" strokeOpacity="0.08" />
+            {/* penalty box */}
+            <path d="M36 6V140H320" stroke="currentColor" strokeOpacity="0.08" />
+            {/* six-yard box */}
+            <path d="M110 6V56H320" stroke="currentColor" strokeOpacity="0.08" />
+            {/* penalty spot + arc */}
+            <circle cx="230" cy="96" r="3" fill="currentColor" fillOpacity="0.08" />
+            <path d="M154 140A88 88 0 0 1 306 140" stroke="currentColor" strokeOpacity="0.08" />
+        </svg>
+    )
+}
+
+/** Hex-mesh surface texture echoing football panel geometry. Rendered
+ *  once (the model-accuracy card), so the pattern id stays unique. */
+function HexMeshOverlay() {
+    return (
+        <svg
+            aria-hidden
+            className="pointer-events-none absolute inset-0 h-full w-full text-sky-400"
+        >
+            <defs>
+                <pattern
+                    id="wc-hexmesh"
+                    width="28"
+                    height="48.5"
+                    patternUnits="userSpaceOnUse"
+                >
+                    <path
+                        d={
+                            'M14 0L28 8.08V24.25L14 32.33L0 24.25V8.08Z' +
+                            'M0 24.25L14 32.33V48.5L0 56.58L-14 48.5V32.33Z' +
+                            'M28 24.25L42 32.33V48.5L28 56.58L14 48.5V32.33Z' +
+                            'M0 -24.25L14 -16.17V0L0 8.08L-14 0V-16.17Z' +
+                            'M28 -24.25L42 -16.17V0L28 8.08L14 0V-16.17Z'
+                        }
+                        fill="none"
+                        stroke="currentColor"
+                        strokeOpacity="0.07"
+                    />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#wc-hexmesh)" />
+        </svg>
+    )
+}
+
+// ---------------------------------------------------------------------------
 // Page
 // ---------------------------------------------------------------------------
 
@@ -524,6 +604,7 @@ export default async function WorldCupPage() {
             {/* Upset tracker */}
             <section id="upsets" className="relative scroll-mt-24 py-16 md:py-24">
                 <SectionGlow className="-top-20 right-[-10rem] h-96 w-96 bg-sky-500/10" />
+                <PitchCenterCircle className="top-2 right-[4%] hidden h-60 w-[22.5rem] md:block" />
                 <div className="mx-auto max-w-5xl px-6">
                     <Reveal>
                         <h2 className="text-4xl font-medium">Upset tracker</h2>
@@ -582,7 +663,8 @@ export default async function WorldCupPage() {
                         </div>
 
                         <Reveal delay={0.15} duration={0.9}>
-                            <div className={`${GLASS_STATIC} h-fit p-6 shadow-[0_0_50px_-18px_rgba(56,189,248,0.45)]`}>
+                            <div className={`${GLASS_STATIC} relative h-fit overflow-hidden p-6 shadow-[0_0_50px_-18px_rgba(56,189,248,0.45)]`}>
+                                <HexMeshOverlay />
                                 <p className="font-mono text-xs text-muted-foreground">
                                     Model accuracy
                                 </p>
@@ -670,6 +752,7 @@ export default async function WorldCupPage() {
             {/* Groups */}
             <section id="groups" className="relative scroll-mt-24 py-16 md:py-24">
                 <SectionGlow className="bottom-0 right-[-8rem] h-[26rem] w-[26rem] bg-sky-500/[0.07]" />
+                <PitchPenaltyCorner className="top-6 right-0 hidden h-56 w-[20rem] md:block" />
                 <div className="mx-auto max-w-5xl px-6">
                     <Reveal>
                         <h2 className="text-4xl font-medium">All 12 groups</h2>
@@ -764,6 +847,7 @@ export default async function WorldCupPage() {
                 object on the page. */}
             <section id="writeup" className="relative scroll-mt-24 py-16 md:py-32">
                 <SectionGlow className="left-1/2 top-1/2 h-[30rem] w-[44rem] -translate-x-1/2 -translate-y-1/2 bg-sky-500/[0.08]" />
+                <PitchCenterCircle className="left-[-7rem] top-0 hidden h-72 w-[27rem] lg:block" />
                 <div className="mx-auto max-w-5xl px-6">
                     <Reveal duration={0.9}>
                         <div className="relative overflow-hidden rounded-3xl border border-sky-400/25 bg-gradient-to-br from-sky-500/10 via-white/[0.03] to-transparent p-8 shadow-[0_0_90px_-25px_rgba(56,189,248,0.5)] backdrop-blur-md md:p-14">

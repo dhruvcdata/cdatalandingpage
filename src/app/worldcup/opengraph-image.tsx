@@ -33,8 +33,63 @@ export default function Image() {
                         'radial-gradient(circle at 88% 92%, rgba(56,189,248,0.18), transparent 55%)',
                     color: '#f8fafc',
                     fontFamily: 'sans-serif',
+                    position: 'relative',
                 }}
             >
+                {/* Stylized football, bottom-right: outline circle + hexagon
+                    panel + radiating seam lines. Generic ball geometry only —
+                    no protected tournament marks. Drawn first so all text
+                    stacks above it. */}
+                <svg
+                    width="600"
+                    height="600"
+                    viewBox="0 0 600 600"
+                    fill="none"
+                    style={{ position: 'absolute', right: -140, bottom: -150 }}
+                >
+                    <circle
+                        cx="300"
+                        cy="300"
+                        r="250"
+                        stroke="rgba(56,189,248,0.18)"
+                        strokeWidth="2.5"
+                    />
+                    <path
+                        d="M300 205L382 252.5V347.5L300 395L218 347.5V252.5Z"
+                        stroke="rgba(56,189,248,0.32)"
+                        strokeWidth="2.5"
+                    />
+                    <path
+                        d="M300 205V50M382 252.5L517 175M382 347.5L517 425M300 395V550M218 347.5L83 425M218 252.5L83 175"
+                        stroke="rgba(56,189,248,0.18)"
+                        strokeWidth="2.5"
+                    />
+                </svg>
+                {/* Faint pitch center circle + halfway line peeking in from
+                    the top edge. */}
+                <svg
+                    width="440"
+                    height="440"
+                    viewBox="0 0 440 440"
+                    fill="none"
+                    style={{ position: 'absolute', top: -250, left: 330 }}
+                >
+                    <line
+                        x1="220"
+                        y1="0"
+                        x2="220"
+                        y2="440"
+                        stroke="rgba(125,211,252,0.10)"
+                        strokeWidth="2"
+                    />
+                    <circle
+                        cx="220"
+                        cy="220"
+                        r="150"
+                        stroke="rgba(125,211,252,0.10)"
+                        strokeWidth="2"
+                    />
+                </svg>
                 <div
                     style={{
                         display: 'flex',
