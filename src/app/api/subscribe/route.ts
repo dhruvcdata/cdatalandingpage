@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { verifyTurnstile } from '@/lib/turnstile'
+import { saveLead } from '@/lib/leads'
 
 const rateLimitMap = new Map<string, number[]>()
 const RATE_LIMIT_WINDOW = 10 * 60 * 1000
@@ -34,7 +35,7 @@ export async function POST(req: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     try {
-        const { email, turnstileToken } = await req.json()
+        const { email, turnstileToken, source } = await req.json()
 
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             return NextResponse.json({ error: 'Please provide a valid email address.' }, { status: 400 })
@@ -46,33 +47,55 @@ export async function POST(req: Request) {
         }
 
         const adminEmail = process.env.ADMIN_EMAIL || 'info@cdatainsights.com'
+        const isWorldcup = source === 'worldcup'
+        const sourceLabel = isWorldcup ? 'World Cup Hub' : 'Blog'
 
         await Promise.all([
+            // Persist lead to Supabase (fail-open: never throws, never blocks emails)
+            saveLead({
+                email,
+                source: isWorldcup ? 'worldcup' : 'blog',
+                kind: 'subscribe',
+            }),
+
             // Notify admin of new subscriber
             resend.emails.send({
                 from: 'noreply@cdatainsights.com',
                 to: adminEmail,
-                subject: `New Blog Subscriber: ${email}`,
+                subject: `New ${sourceLabel} Subscriber: ${email}`,
                 html: `
-                    <h2>New Blog Subscriber</h2>
-                    <p>A new user has subscribed to the CData Insights blog newsletter.</p>
+                    <h2>New ${sourceLabel} Subscriber</h2>
+                    <p>A new user has subscribed via the ${isWorldcup ? 'World Cup data hub' : 'CData Insights blog newsletter'}.</p>
                     <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Source:</strong> ${typeof source === 'string' && source ? source : 'blog'}</p>
                     <p><strong>Date:</strong> ${new Date().toISOString()}</p>
                 `,
             }),
 
-            // Send welcome email to subscriber
-            resend.emails.send({
-                from: 'noreply@cdatainsights.com',
-                to: email,
-                subject: 'Welcome to CData Insights Newsletter',
-                html: `
+            // Send confirmation email to subscriber
+            isWorldcup
+                ? resend.emails.send({
+                      from: 'noreply@cdatainsights.com',
+                      to: email,
+                      subject: "You're on the list for the World Cup data hub writeup",
+                      html: `
+                    <p>Thanks for signing up!</p>
+                    <p>You'll get the technical writeup on how we built the World Cup 2026 data hub — two open data feeds, a transparent Elo model, hourly ISR — as soon as it ships.</p>
+                    <p>In the meantime, the live hub is at <a href="https://cdatainsights.com/worldcup">cdatainsights.com/worldcup</a>.</p>
+                    <p>Best regards,<br>The CData Insights Team</p>
+                `,
+                  })
+                : resend.emails.send({
+                      from: 'noreply@cdatainsights.com',
+                      to: email,
+                      subject: 'Welcome to CData Insights Newsletter',
+                      html: `
                     <p>Thank you for subscribing to the CData Insights blog newsletter!</p>
                     <p>You'll receive insights on Snowflake, data architecture, and modern analytics directly in your inbox.</p>
                     <p>In the meantime, check out our latest articles at <a href="https://cdatainsights.com/blogs">cdatainsights.com/blogs</a>.</p>
                     <p>Best regards,<br>The CData Insights Team</p>
                 `,
-            }),
+                  }),
         ])
 
         return NextResponse.json(

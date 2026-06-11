@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { verifyTurnstile } from '@/lib/turnstile'
+import { saveLead } from '@/lib/leads'
 
 // Simple in-memory rate limiter: max 3 submissions per IP per 10 minutes
 const rateLimitMap = new Map<string, number[]>()
@@ -104,6 +105,16 @@ export async function POST(req: Request) {
                 to: email,
                 subject: `Thank you for contacting ${process.env.COMPANY_NAME || 'CData Insights'}`,
                 html: userEmailHtml,
+            }),
+
+            // Persist lead to Supabase (fail-open: never throws, never blocks emails)
+            saveLead({
+                email,
+                source: 'contact',
+                kind: 'contact',
+                name: `${firstName} ${lastName}`.trim(),
+                message,
+                metadata: { subject, ...(phone ? { phone } : {}) },
             })
         ])
 
